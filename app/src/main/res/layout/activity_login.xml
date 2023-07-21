@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".LoginActivity">
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/loading"
+
+        ></ImageView>
+
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/email_input"
+            android:layout_width="356dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/input_background"
+            android:hint="이메일을 입력해주세요"
+            android:paddingLeft="27dp"
+            android:textColorHint="#999999" />
+
+        <EditText
+            android:id="@+id/pw_input"
+            android:layout_width="356dp"
+            android:layout_height="55dp"
+            android:background="@drawable/input_background"
+            android:hint="패스워드를 입력해주세요"
+            android:inputType="textPassword"
+            android:paddingLeft="27dp"
+            android:textColorHint="#999999" />
+
+        <TextView
+            android:id="@+id/login_btn"
+            android:layout_width="356dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="30dp"
+
+            android:layout_weight="1"
+            android:background="@drawable/button_round"
+            android:gravity="center"
+
+            android:text="로그인"
+            android:textColor="@color/white"
+
+            android:textSize="20dp"></TextView>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#666666"
+            android:layout_marginTop="120dp"
+            android:text="아직 나네를 시작하지 않으셨나요?" />
+
+        <TextView
+            android:id="@+id/nanez_join"
+            android:layout_width="356dp"
+            android:layout_height="58dp"
+
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="회원가입"
+            android:textColor="#65BFC4"
+            android:textSize="18dp"
+            tools:layout_marginBottom="30dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
