@@ -32,6 +32,21 @@
         <activity
             android:name=".JoinPasswordActivity"
             android:exported="false"/>
+        <activity
+            android:name=".JoinGenderActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".JoinAgeActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".JoinNicknameActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".JoinScentActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".JoinEventActivity"
+            android:exported="false"/>
 
         <activity
             android:name=".SplashActivity"

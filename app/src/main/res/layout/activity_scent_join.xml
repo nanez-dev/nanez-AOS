@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:gravity="start"
-            android:text="로그인에 사용할"
+            android:text="마지막 질문!"
             android:textColor="#666666"
             android:textSize="26dp"
             android:textStyle="bold" />
@@ -36,7 +36,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:gravity="start"
-            android:text="비밀번호를 입력해주세요!"
+            android:text="좋아하는 향 있어요?"
             android:textColor="#666666"
             android:textSize="26dp"
             android:textStyle="bold" />
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:gravity="start"
-            android:text="아이디로 사용됩니다 :)"
+            android:text="가장 취향에 맞는 향을 한 가지만 선택해주세요 :)"
             android:textColor="#CCCCCC"
             android:textSize="17dp" />
 
@@ -61,44 +61,16 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="비밀번호"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/email_input"
-            android:layout_width="356dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/button_round3"
-            android:hint="숫자, 영문, 특수문자 8~16자 입력"
-            android:inputType="textPassword"
-            android:paddingLeft="27dp"
-            android:textColorHint="#999999" />
-
-        <EditText
-            android:id="@+id/emailnum_input"
-            android:layout_width="356dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/button_round3"
-            android:hint="비밀번호를 다시 한 번 입력해주세요."
-            android:inputType="textPassword"
-            android:paddingLeft="27dp"
-            android:textColorHint="#999999" />
-
-
+            android:text="향 종류 기입 예정" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="356dp"
         android:layout_height="58dp"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="380dp"
         android:orientation="vertical">
 
         <TextView

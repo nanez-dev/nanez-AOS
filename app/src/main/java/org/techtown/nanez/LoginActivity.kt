@@ -14,10 +14,14 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        Log.d("태그","로딩 페이지에서 로그인 페이지로 전환")
 
         findViewById<TextView>(R.id.nanez_join).setOnClickListener {
             startActivity(Intent(this@LoginActivity, JoinActivity::class.java)
+            )
+        }
+
+        findViewById<TextView>(R.id.login_btn).setOnClickListener {
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java)
             )
         }
 

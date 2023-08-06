@@ -5,14 +5,14 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-class JoinPasswordActivity : AppCompatActivity()  {
+class JoinNicknameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_password_join)
+        setContentView(R.layout.activity_nickname_join)
 
         findViewById<TextView>(R.id.next_text).setOnClickListener {
             startActivity(
-                Intent(this@JoinPasswordActivity, JoinGenderActivity::class.java)
+                Intent(this@JoinNicknameActivity, JoinScentActivity::class.java)
             )
         }
 
