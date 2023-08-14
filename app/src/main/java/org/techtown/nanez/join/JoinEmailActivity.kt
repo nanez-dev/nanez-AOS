@@ -1,4 +1,4 @@
-package org.techtown.nanez
+package org.techtown.nanez.join
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import com.google.gson.GsonBuilder
+import org.techtown.nanez.R
+import org.techtown.nanez.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,7 +67,7 @@ class JoinEmailActivity: AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.next_text).setOnClickListener {
-            val intent = Intent(this@JoinEmailActivity,JoinEmailNumActivity::class.java)
+            val intent = Intent(this@JoinEmailActivity, JoinEmailNumActivity::class.java)
             intent.putExtra("EMAIL", email)
             startActivity(intent)
         }

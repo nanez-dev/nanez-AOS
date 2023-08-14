@@ -9,7 +9,7 @@
     android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".login.LoginActivity">
 
 
     <androidx.appcompat.widget.LinearLayoutCompat

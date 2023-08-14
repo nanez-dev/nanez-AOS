@@ -1,4 +1,4 @@
-package org.techtown.nanez.presentation.view.base
+package org.techtown.nanez.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

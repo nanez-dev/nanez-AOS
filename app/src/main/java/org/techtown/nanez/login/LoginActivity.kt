@@ -1,11 +1,12 @@
-package org.techtown.nanez
+package org.techtown.nanez.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
+import org.techtown.nanez.main.MainActivity
+import org.techtown.nanez.R
+import org.techtown.nanez.join.JoinActivity
 
 class LoginActivity : AppCompatActivity() {
     var email: String = ""

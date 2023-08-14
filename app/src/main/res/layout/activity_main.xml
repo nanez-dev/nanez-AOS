@@ -7,7 +7,7 @@
     android:background="#FFFFFF"
     android:orientation="vertical"
 
-    tools:context=".MainActivity">
+    tools:context=".main.MainActivity">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/main_pager"

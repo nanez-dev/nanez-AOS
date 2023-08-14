@@ -1,4 +1,4 @@
-package org.techtown.nanez
+package org.techtown.nanez.join
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.content.SharedPreferences
+import org.techtown.nanez.R
 
 class JoinEmailNumActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?){

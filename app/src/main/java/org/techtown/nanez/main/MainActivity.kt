@@ -1,4 +1,4 @@
-package org.techtown.nanez
+package org.techtown.nanez.main
 
 import android.content.Context
 import android.graphics.Color
@@ -13,6 +13,10 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import org.techtown.nanez.FeedFragment
+import org.techtown.nanez.PostFragment
+import org.techtown.nanez.ProfileFragment
+import org.techtown.nanez.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

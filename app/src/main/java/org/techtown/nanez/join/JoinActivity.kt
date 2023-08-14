@@ -1,4 +1,4 @@
-package org.techtown.nanez
+package org.techtown.nanez.join
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import org.techtown.nanez.R
 
 class JoinActivity : AppCompatActivity() {
 

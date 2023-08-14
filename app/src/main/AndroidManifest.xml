@@ -14,41 +14,41 @@
         android:theme="@style/Theme.Nanez"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="false"/>
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="false"/>
         <activity
-            android:name=".JoinActivity"
+            android:name=".join.JoinActivity"
             android:exported="false"/>
         <activity
-            android:name=".JoinEmailActivity"
+            android:name=".join.JoinEmailActivity"
             android:exported="false"/>
         <activity
-            android:name=".JoinEmailNumActivity"
+            android:name=".join.JoinEmailNumActivity"
             android:exported="false"/>
         <activity
-            android:name=".JoinPasswordActivity"
+            android:name=".join.JoinPasswordActivity"
             android:exported="false"/>
         <activity
-            android:name=".JoinGenderActivity"
+            android:name=".join.JoinGenderActivity"
             android:exported="false"/>
         <activity
-            android:name=".JoinAgeActivity"
+            android:name=".join.JoinAgeActivity"
             android:exported="false"/>
         <activity
-            android:name=".JoinNicknameActivity"
+            android:name=".join.JoinNicknameActivity"
             android:exported="false"/>
         <activity
-            android:name=".JoinScentActivity"
+            android:name=".join.JoinScentActivity"
             android:exported="false"/>
         <activity
-            android:name=".JoinEventActivity"
+            android:name=".join.JoinEventActivity"
             android:exported="false"/>
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package org.techtown.nanez
+package org.techtown.nanez.join
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import org.techtown.nanez.R
+import org.techtown.nanez.sharedPreferences
 
 class JoinPasswordActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?){
