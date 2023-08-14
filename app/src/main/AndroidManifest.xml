@@ -4,14 +4,13 @@
     package="org.techtown.nanez">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CLEARTEXT_TRAFFIC" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/Theme.Nanez"
         android:usesCleartextTraffic="true">
         <activity

@@ -1,6 +1,5 @@
 package org.techtown.nanez
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +13,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class JoinEmailActivity: AppCompatActivity() {
@@ -26,7 +24,7 @@ class JoinEmailActivity: AppCompatActivity() {
         setContentView(R.layout.activity_email_join)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(BuildConfig.LOCAL_URL)
+            .baseUrl("https://api.nanez.co.kr/")
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setPrettyPrinting().create()))
             .build()
         val retrofitService = retrofit.create(RetrofitService::class.java)
