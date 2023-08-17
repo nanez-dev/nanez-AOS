@@ -1,7 +1,9 @@
 package org.techtown.nanez.domain.usecase
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import org.techtown.nanez.data.repository.UserRepository
 import org.techtown.nanez.domain.data.UserLoginDomainDTO
 import org.techtown.nanez.domain.mapper.UserDomainMapper
@@ -23,5 +25,7 @@ class UserLoginInfoUseCase @Inject constructor(
             .collect { domainDto ->
                 emit(domainDto)
             }
-    }.flowOn(Dispatchers.IO)
+    }.catch {
+        emit(UserLoginDomainDTO("", ""))
+    }
 }

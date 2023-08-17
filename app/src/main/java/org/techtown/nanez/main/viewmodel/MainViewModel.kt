@@ -1,39 +1,36 @@
-package org.techtown.nanez.splash.viewmodel
+package org.techtown.nanez.main.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.techtown.nanez.base.BaseViewModel
 import org.techtown.nanez.common.Event
 import org.techtown.nanez.common.post
 import org.techtown.nanez.domain.usecase.UserLoginInfoUseCase
-import org.techtown.nanez.splash.data.SplashEventData
+import org.techtown.nanez.main.data.MainEventData
 import javax.inject.Inject
 
 /**
  * Created by iseungjun on 2023/08/14
  */
 @HiltViewModel
-class SplashViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val userLoginInfoUseCase: UserLoginInfoUseCase
 ) : BaseViewModel() {
 
-    private val _eventData by lazy { MutableLiveData<Event<SplashEventData>>() }
+    private val _eventData by lazy { MutableLiveData<Event<MainEventData>>() }
     val eventData = _eventData
 
+    var isLoginCheckDone = false
+        private set
 
     fun checkAutoLogin() {
         viewModelScope.launch {
             delay(2000)
             userLoginInfoUseCase.getUserLoginInfo().collect { result ->
-                if (result.email.isEmpty() || result.passWord.isEmpty()) {
-                    _eventData.post(Event(SplashEventData.MoveToLoginPage))
-                } else {
-                    _eventData.post(Event(SplashEventData.MoveToMainPage))
-                }
+                isLoginCheckDone = true
             }
         }
     }

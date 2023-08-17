@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">nanez</string>
     <string name="spinner_choice">선택</string>
+
+    <string name="label_home">홈</string>
+    <string name="label_storage">보관함</string>
+    <string name="label_mypage">마이페이지</string>
 </resources>

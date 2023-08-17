@@ -1,7 +1,7 @@
 plugins {
+    kotlin("kapt")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
 
@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "org.techtown.nanez"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -42,8 +42,8 @@ dependencies {
     implementation(project(":utils"))
 
     implementation("androidx.core:core-ktx:1.10.1")
-    implementation("com.google.dagger:hilt-android:2.45")
-    kapt("com.google.dagger:hilt-android-compiler:2.45")
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
@@ -56,6 +56,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
+    implementation("androidx.core:core-splashscreen:1.0.0-rc01")
 
 
     testImplementation("junit:junit:4.13.2")
