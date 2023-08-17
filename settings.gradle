@@ -16,3 +16,4 @@ rootProject.name = "nanez"
 include ':app'
 include ':domain'
 include ':data'
+include ':utils'
