@@ -52,6 +52,7 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
                 }
                 true
             }
+            bottomNavView.itemIconTintList = null
         }
 
         viewModel.apply {
