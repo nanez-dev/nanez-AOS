@@ -5,4 +5,6 @@
     <string name="label_home">홈</string>
     <string name="label_storage">보관함</string>
     <string name="label_mypage">마이페이지</string>
+
+    <string name="msg_home_search">지금 나에게 맞는 향수를 찾아보세요</string>
 </resources>

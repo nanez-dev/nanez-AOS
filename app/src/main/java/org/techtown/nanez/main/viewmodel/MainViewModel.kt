@@ -6,10 +6,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.techtown.nanez.base.BaseViewModel
-import org.techtown.nanez.common.Event
-import org.techtown.nanez.common.post
 import org.techtown.nanez.domain.usecase.UserLoginInfoUseCase
 import org.techtown.nanez.main.data.MainEventData
+import org.techtown.nanez.utils.util.Event
 import javax.inject.Inject
 
 /**
