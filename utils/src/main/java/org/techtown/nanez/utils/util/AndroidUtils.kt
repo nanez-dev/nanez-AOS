@@ -1,4 +1,4 @@
-package org.techtown.nanez.common
+package org.techtown.nanez.utils.util
 
 import android.os.Bundle
 import android.os.Looper

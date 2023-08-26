@@ -6,14 +6,14 @@ import android.view.ViewTreeObserver
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
-import org.techtown.nanez.HomeFragment
+import org.techtown.nanez.home.view.HomeFragment
 import org.techtown.nanez.ProfileFragment
 import org.techtown.nanez.R
 import org.techtown.nanez.StorageFragment
 import org.techtown.nanez.base.BaseBindActivity
-import org.techtown.nanez.common.addFragment
 import org.techtown.nanez.databinding.MainActivityBinding
 import org.techtown.nanez.main.viewmodel.MainViewModel
+import org.techtown.nanez.utils.util.addFragment
 
 @AndroidEntryPoint
 class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layout.main_activity) {
