@@ -24,7 +24,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/viewPager"
             app:layout_constraintLeft_toLeftOf="@+id/viewPager"
             app:layout_constraintRight_toRightOf="@+id/viewPager"
-            app:progressMode="true"
+            app:progressMode="false"
             app:selectedDotColor="@color/gray_2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
