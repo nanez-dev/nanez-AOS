@@ -1,10 +1,11 @@
 package org.techtown.nanez.domain.usecase
 
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
+import org.techtown.nanez.data.api.users.SignInApi
+import org.techtown.nanez.data.data.DataResult
 import org.techtown.nanez.data.repository.UserRepository
+import org.techtown.nanez.domain.data.DomainResult
 import org.techtown.nanez.domain.data.UserLoginDomainDTO
 import org.techtown.nanez.domain.mapper.UserDomainMapper
 import javax.inject.Inject
@@ -17,15 +18,42 @@ class UserLoginInfoUseCase @Inject constructor(
     private val userDomainMapper: UserDomainMapper,
 ) {
 
-    suspend fun getUserLoginInfo(): Flow<UserLoginDomainDTO> = flow {
-        userRepository.getUserLoginInfo()
-            .map { dto ->
-                userDomainMapper.toDomainDTO(dto)
+    suspend fun getUserLoginInfo(): Flow<DomainResult<UserLoginDomainDTO>> = flow {
+        userRepository.getUserLoginInfo().collect { response ->
+            when (response) {
+                is DataResult.Success -> {
+                    emit(DomainResult.Success(userDomainMapper.toDomainDTO(response.data)))
+                }
+                is DataResult.Failed -> {
+                    emit(DomainResult.Failed(response.msg))
+                }
+                is DataResult.Error -> {
+                    emit(DomainResult.Error(response.exception))
+                }
             }
-            .collect { domainDto ->
-                emit(domainDto)
+        }
+    }
+
+
+    suspend fun requestLogin(email: String, password: String): Flow<DomainResult<UserLoginDomainDTO>> = flow {
+        userRepository.postLogin(SignInApi.Body(email = email, password = password)).collect { response ->
+            when (response) {
+                is DataResult.Success -> {
+                    val domainDto = userDomainMapper.toDomainDTO(email, password, response.data)
+                    saveLoginInfo(domainDto)
+                    emit(DomainResult.Success(domainDto))
+                }
+                is DataResult.Failed -> {
+                    emit(DomainResult.Failed(response.msg))
+                }
+                is DataResult.Error -> {
+                    emit(DomainResult.Error(response.exception))
+                }
             }
-    }.catch {
-        emit(UserLoginDomainDTO("", ""))
+        }
+    }
+
+    private suspend fun saveLoginInfo(domainDTO: UserLoginDomainDTO) {
+        userRepository.saveLoginInfo(userDomainMapper.toDataDTO(domainDTO))
     }
 }
