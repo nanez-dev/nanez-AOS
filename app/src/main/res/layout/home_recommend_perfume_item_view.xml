@@ -34,7 +34,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtBrand"
             style="@style/Text_14"
             android:layout_marginTop="12dp"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imgPerfume"
             tools:text="엑스 니힐로" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtName"
             style="@style/Text_16_bold"
             android:layout_marginTop="4dp"
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtBrand"
             tools:text="아이리스 포르셀라나" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtVolume"
             style="@style/Text_14"
             android:layout_marginTop="4dp"

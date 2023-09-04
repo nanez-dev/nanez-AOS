@@ -32,6 +32,10 @@ class HomeHorizontalAdapter : RecyclerView.Adapter<HomeHorizontalAdapter.HomeHor
 
     inner class HomeHorizontalViewHolder(private val binding: HomeHorizontalItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.vgParent.setOnClickListener {  }
+        }
+
         fun onBind(data: HomePerfumeItemViewData) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()

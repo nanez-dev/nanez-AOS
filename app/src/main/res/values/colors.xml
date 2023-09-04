@@ -12,4 +12,6 @@
     <color name="gray">#999999</color>
     <color name="gray_2">#424242</color>
     <color name="gray_3">#EFEFEF</color>
+
+    <color name="mint">#65BFC4</color>
 </resources>

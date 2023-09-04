@@ -1,5 +1,6 @@
 package org.techtown.nanez.home.view
 
+import android.content.Intent
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -10,6 +11,7 @@ import org.techtown.nanez.databinding.HomeFragmentBinding
 import org.techtown.nanez.home.view.adapter.HomeMainAdapter
 import org.techtown.nanez.home.view.adapter.decoration.HomeMainItemDecoration
 import org.techtown.nanez.home.viewmodel.HomeViewModel
+import org.techtown.nanez.login.view.LoginActivity
 
 @AndroidEntryPoint
 class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layout.home_fragment) {
@@ -24,7 +26,10 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
                 actionListener = object : ActionbarView.ActionListener {
                     override fun onClickBack() {}
                     override fun onClickRight() {
-
+                        //임시 로그인 이동 페이지
+                        activity?.let {
+                            startActivity(LoginActivity.createIntent(it))
+                        }
                     }
                 }
             }

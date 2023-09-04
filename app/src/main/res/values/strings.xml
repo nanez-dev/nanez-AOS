@@ -5,6 +5,12 @@
     <string name="label_home">홈</string>
     <string name="label_storage">보관함</string>
     <string name="label_mypage">마이페이지</string>
+    <string name="label_login">로그인</string>
+    <string name="label_join">회원가입</string>
 
     <string name="msg_home_search">지금 나에게 맞는 향수를 찾아보세요</string>
+
+    <string name="msg_hint_join">아직 나네를 시작하지 않으셨나요?</string>
+    <string name="msg_hint_input_email">이메일을 입력해주세요</string>
+    <string name="msg_hint_input_password">패스워드를 입력해주세요</string>
 </resources>
