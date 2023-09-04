@@ -1,6 +1,7 @@
 package org.techtown.nanez.data.api.home
 
 import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 
 /**
  * Created by iseungjun on 2023/08/26
@@ -10,12 +11,21 @@ class HomeApi {
 
     @Keep
     data class Response(
-        val imgList: List<String>?,
+        @SerializedName("top_rolling_banner")
+        val topBannerList: List<TopBanner>?,
         val mainTitle: MainTitle?,
         val horizontal: Horizontal?,
-        val recommend: Recommend?,
+        @SerializedName("main_perfumes")
+        val mainPerfumeList: Recommend?,
         val brand: Brand?,
         val accord: Accord?
+    )
+
+    @Keep
+    data class TopBanner(
+        val id: Int,
+        val image: String?,
+        val link: String?,
     )
 
     @Keep
@@ -50,10 +60,12 @@ class HomeApi {
 
     @Keep
     data class Perfume(
+        @SerializedName("kor")
         val name: String?,
-        val imgUrl: String?,
+        val image: String?,
         val brandName: String?,
         val volume: String?,
+        @SerializedName("subtitle")
         val description: String?,
     )
 

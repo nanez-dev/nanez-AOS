@@ -41,9 +41,9 @@ class HomeViewDataMapper @Inject constructor() {
         return viewDataList.toList()
     }
 
-    private fun toBannerViewData(dto: List<String>): HomeViewData.HomeBannerData {
+    private fun toBannerViewData(dto: List<HomeTopBannerDTO>): HomeViewData.HomeBannerData {
         return HomeViewData.HomeBannerData(
-            bannerList = dto
+            bannerList = dto.map { HomeViewData.HomeBannerData.HomeBanner(imgUrl = it.imgUrl, link = it.linkUrl) }
         )
     }
 

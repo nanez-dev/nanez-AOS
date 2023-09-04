@@ -12,13 +12,13 @@ class HomeDomainMapper @Inject constructor() {
 
     fun toDTO(apiData: HomeApi.Response?): HomeInfoDomainDTO {
         return HomeInfoDomainDTO(
-            bannerList = apiData?.imgList ?: emptyList(),
+            bannerList = apiData?.topBannerList?.map { HomeTopBannerDTO(it.image, it.link) } ?: emptyList(),
             mainTitle = HomeMainTitleDTO(
                 title = apiData?.mainTitle?.title,
                 content = apiData?.mainTitle?.subTitle,
             ),
             horizontalInfo = toHorizontalDTO(apiData?.horizontal),
-            recommendInfo = toRecommendDTO(apiData?.recommend),
+            recommendInfo = toRecommendDTO(apiData?.mainPerfumeList),
             brandInfo = toBrandDTO(apiData?.brand),
             accordInfo = toAccordDTO(apiData?.accord)
         )
@@ -28,7 +28,7 @@ class HomeDomainMapper @Inject constructor() {
         return HomeHorizontalDTO(
             title = apiData?.title,
             itemList = apiData?.itemList?.map {
-                HomePerfumeDTO(imgUrl = it.imgUrl, name = it.name, brandName = it.brandName, content = it.description, volume = it.volume)
+                HomePerfumeDTO(imgUrl = it.image, name = it.name, brandName = it.brandName, content = it.description, volume = it.volume)
             } ?: emptyList()
         )
     }
@@ -37,7 +37,7 @@ class HomeDomainMapper @Inject constructor() {
         return HomeRecommendDTO(
             title = apiData?.title,
             itemList = apiData?.itemList?.map {
-                HomePerfumeDTO(imgUrl = it.imgUrl, name = it.name, brandName = it.brandName, content = it.description, volume = it.volume)
+                HomePerfumeDTO(imgUrl = it.image, name = it.name, brandName = it.brandName, content = it.description, volume = it.volume)
             } ?: emptyList()
         )
     }

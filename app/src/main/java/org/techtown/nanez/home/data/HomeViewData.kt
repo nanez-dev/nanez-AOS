@@ -7,8 +7,14 @@ package org.techtown.nanez.home.data
 sealed class HomeViewData(@HomeViewType var viewType: Int) {
 
     data class HomeBannerData(
-        val bannerList: List<String> = emptyList()
-    ) : HomeViewData(HomeViewType.HOME_PAGER_TYPE)
+        val bannerList: List<HomeBanner> = emptyList()
+    ) : HomeViewData(HomeViewType.HOME_PAGER_TYPE) {
+
+        data class HomeBanner(
+            val imgUrl: String?,
+            val link: String?,
+        )
+    }
 
 
     data class HomeTitleData(

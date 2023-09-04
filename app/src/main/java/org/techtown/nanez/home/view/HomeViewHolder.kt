@@ -46,9 +46,9 @@ class HomePagerViewHolder(
 
     private inner class HomePagerAdapter : PagerAdapter() {
 
-        private var imgUrlList = listOf<String>()
+        private var imgUrlList = listOf<HomeViewData.HomeBannerData.HomeBanner>()
 
-        fun setDataList(dataList: List<String>) {
+        fun setDataList(dataList: List<HomeViewData.HomeBannerData.HomeBanner>) {
             imgUrlList = dataList
             notifyDataSetChanged()
         }
@@ -58,7 +58,7 @@ class HomePagerViewHolder(
                 scaleType = ImageView.ScaleType.FIT_XY
                 layoutParams ?: LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
             }
-            GlideUtil.instance.displayImage(GlideImageLoadData(imageView, imageUrl = imgUrlList[position]))
+            GlideUtil.instance.displayImage(GlideImageLoadData(imageView, imageUrl = imgUrlList.getOrNull(position)?.imgUrl))
             container.addView(imageView)
             return imageView
         }

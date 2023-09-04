@@ -4,7 +4,7 @@ package org.techtown.nanez.domain.data
  * Created by iseungjun on 2023/08/26
  */
 data class HomeInfoDomainDTO(
-    val bannerList: List<String> = emptyList(),
+    val bannerList: List<HomeTopBannerDTO>,
     val mainTitle: HomeMainTitleDTO?,
     val horizontalInfo: HomeHorizontalDTO?,
     val recommendInfo: HomeRecommendDTO?,
@@ -12,6 +12,10 @@ data class HomeInfoDomainDTO(
     val accordInfo: HomeAccordDTO?,
 )
 
+data class HomeTopBannerDTO(
+    val imgUrl: String?,
+    val linkUrl: String?
+)
 
 data class HomeMainTitleDTO(
     val title: String?,
