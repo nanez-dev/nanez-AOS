@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="viewData"
+            type="com.nane.home.presentation.data.HomePerfumeItemViewData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/vgParent"
+        android:layout_width="200dp"
+        android:foreground="@drawable/ripple"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgPerfume"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/shape_white_r20_gray3_s1"
+            android:scaleType="centerInside"
+            android:padding="1dp"
+            app:img_load="@{viewData.imgUrl}"
+            app:img_round="@{20}"
+            app:layout_constraintDimensionRatio="200:186"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtBrand"
+            style="@style/Text_14"
+            android:layout_marginTop="8dp"
+            android:text="@{viewData.brandName}"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="@+id/imgPerfume"
+            app:layout_constraintRight_toRightOf="@+id/imgPerfume"
+            app:layout_constraintTop_toBottomOf="@+id/imgPerfume"
+            tools:text="엑스 니힐로" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtName"
+            style="@style/Text_16_bold"
+            android:layout_marginTop="4dp"
+            android:text="@{viewData.name}"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="@+id/imgPerfume"
+            app:layout_constraintRight_toRightOf="@+id/imgPerfume"
+            app:layout_constraintTop_toBottomOf="@+id/txtBrand"
+            tools:text="아이리스 포르셀라나" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtVolume"
+            style="@style/Text_14"
+            android:layout_marginTop="4dp"
+            android:text="@{viewData.volume}"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="@+id/imgPerfume"
+            app:layout_constraintRight_toRightOf="@+id/imgPerfume"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            tools:text="50ml" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtContent"
+            style="@style/Text_14"
+            android:layout_width="0dp"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{viewData.content}"
+            android:textColor="@color/gray_2"
+            android:visibility="@{TextUtils.isEmpty(viewData.content) ? View.GONE : View.VISIBLE, default=gone}"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="@+id/imgPerfume"
+            app:layout_constraintRight_toRightOf="@+id/imgPerfume"
+            app:layout_constraintTop_toBottomOf="@+id/txtVolume"
+            tools:text="화이트 프리지아 부케향에 이제 막 익은 배의 신선함을 입히고 호박 신선함을 입히고 호박"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

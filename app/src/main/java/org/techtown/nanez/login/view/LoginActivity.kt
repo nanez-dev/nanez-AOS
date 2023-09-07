@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.R
-import org.techtown.nanez.base.BaseBindActivity
+import com.nane.base.view.BaseBindActivity
 import org.techtown.nanez.databinding.LoginActivityBinding
 import org.techtown.nanez.join.JoinActivity
 import org.techtown.nanez.login.data.LoginEventData

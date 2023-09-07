@@ -1,8 +1,8 @@
 package org.techtown.nanez
 
 import androidx.fragment.app.viewModels
-import org.techtown.nanez.base.BaseBindFragment
-import org.techtown.nanez.base.BaseViewModel
+import com.nane.base.view.BaseBindFragment
+import com.nane.base.viewmodel.BaseViewModel
 import org.techtown.nanez.databinding.ProfileFragmentBinding
 
 class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, BaseViewModel>(R.layout.profile_fragment) {
