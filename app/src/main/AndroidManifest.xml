@@ -1,54 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="org.techtown.nanez">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="false"
+        android:name=".NanezApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="false"
+        android:screenOrientation="portrait"
         android:theme="@style/Theme.Nanez"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".main.MainActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".login.LoginActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinEmailActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinEmailNumActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinPasswordActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinGenderActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinAgeActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinNicknameActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinScentActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinEventActivity"
-            android:exported="false"/>
-
-        <activity
-            android:name=".splash.SplashActivity"
+            android:name=".main.view.MainActivity"
+            android:theme="@style/Theme.App.Starting"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,6 +22,79 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".login.view.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
+        <activity
+            android:name=".join.JoinActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
+        <activity
+            android:name=".join.JoinEmailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
+        <activity
+            android:name=".join.JoinEmailNumActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
+        <activity
+            android:name=".join.JoinPasswordActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
+        <activity
+            android:name=".join.JoinGenderActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
+        <activity
+            android:name=".join.JoinAgeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
+        <activity
+            android:name=".join.JoinNicknameActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
+        <activity
+            android:name=".join.JoinScentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
+        <activity
+            android:name=".join.JoinEventActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
+
 
 
     </application>
