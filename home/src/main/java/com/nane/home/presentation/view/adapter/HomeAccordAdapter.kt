@@ -12,9 +12,9 @@ import com.nane.home.presentation.data.HomeViewData
  */
 class HomeAccordAdapter : RecyclerView.Adapter<HomeAccordAdapter.HomeAccordItemViewHolder>() {
 
-    private var itemList: List<HomeViewData.HomeAccordData.HomeAccordItemData> = emptyList()
+    private var itemList: List<HomeViewData.Accord.AccordItem> = emptyList()
 
-    fun setItemList(list: List<HomeViewData.HomeAccordData.HomeAccordItemData>) {
+    fun setItemList(list: List<HomeViewData.Accord.AccordItem>) {
         itemList = list
         notifyDataSetChanged()
     }
@@ -31,7 +31,7 @@ class HomeAccordAdapter : RecyclerView.Adapter<HomeAccordAdapter.HomeAccordItemV
 
     inner class HomeAccordItemViewHolder(private val binding: HomeAccordItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(data: HomeViewData.HomeAccordData.HomeAccordItemData) {
+        fun onBind(data: HomeViewData.Accord.AccordItem) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

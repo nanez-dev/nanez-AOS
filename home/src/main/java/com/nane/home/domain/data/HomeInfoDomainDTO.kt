@@ -6,8 +6,8 @@ package com.nane.home.domain.data
 data class HomeInfoDomainDTO(
     val bannerList: List<HomeTopBannerDTO>,
     val mainTitle: HomeMainTitleDTO?,
-    val horizontalInfo: HomeHorizontalDTO?,
-    val recommendInfo: HomeRecommendDTO?,
+    val specialPerfumeInfo: HomeSpecialPerfumeDTO?,
+    val recommendPerfumeInfo: HomeRecommendPerfumeDTO?,
     val brandInfo: HomeBrandDTO?,
     val accordInfo: HomeAccordDTO?,
 )
@@ -22,12 +22,12 @@ data class HomeMainTitleDTO(
     val content: String?,
 )
 
-data class HomeHorizontalDTO(
+data class HomeSpecialPerfumeDTO(
     val title: String?,
     val itemList: List<HomePerfumeDTO> = emptyList(),
 )
 
-data class HomeRecommendDTO(
+data class HomeRecommendPerfumeDTO(
     val title: String?,
     val itemList: List<HomePerfumeDTO> = emptyList(),
 )
@@ -57,7 +57,7 @@ data class HomePerfumeDTO(
     val imgUrl: String?,
     val name: String?,
     val brandName: String?,
-    val volume: String?,
+    val capacity: String?,
     val content: String?
 )
 

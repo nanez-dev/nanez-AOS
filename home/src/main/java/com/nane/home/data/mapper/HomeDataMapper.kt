@@ -1,7 +1,7 @@
 package com.nane.home.data.mapper
 
-import com.nane.network.api.home.HomeApi
 import com.nane.home.domain.data.*
+import com.nane.network.api.home.HomeApi
 import javax.inject.Inject
 
 /**
@@ -11,50 +11,50 @@ class HomeDataMapper @Inject constructor() {
 
     fun toDTO(apiData: HomeApi.Response?): HomeInfoDomainDTO {
         return HomeInfoDomainDTO(
-            bannerList = apiData?.topBannerList?.map { HomeTopBannerDTO(it.image, it.link) } ?: emptyList(),
+            bannerList = apiData?.topBannerList?.list?.map { HomeTopBannerDTO(it.image, it.link) } ?: emptyList(),
             mainTitle = HomeMainTitleDTO(
-                title = apiData?.mainTitle?.title,
-                content = apiData?.mainTitle?.subTitle,
+                title = apiData?.topBannerList?.title,
+                content = apiData?.topBannerList?.subTitle,
             ),
-            horizontalInfo = toHorizontalDTO(apiData?.horizontal),
-            recommendInfo = toRecommendDTO(apiData?.mainPerfumeList),
-            brandInfo = toBrandDTO(apiData?.brand),
-            accordInfo = toAccordDTO(apiData?.accord)
+            specialPerfumeInfo = toSpecialDTO(apiData?.specialPerfumeList),
+            recommendPerfumeInfo = toRecommendDTO(apiData?.recommendPerfumeList),
+            brandInfo = toBrandDTO(apiData?.popularBrandList),
+            accordInfo = toAccordDTO(apiData?.recommendAccordList)
         )
     }
 
-    private fun toHorizontalDTO(apiData: HomeApi.Horizontal?): HomeHorizontalDTO {
-        return HomeHorizontalDTO(
+    private fun toSpecialDTO(apiData: HomeApi.SpecialPerfume?): HomeSpecialPerfumeDTO {
+        return HomeSpecialPerfumeDTO(
             title = apiData?.title,
-            itemList = apiData?.itemList?.map {
-                HomePerfumeDTO(imgUrl = it.image, name = it.name, brandName = it.brandName, content = it.description, volume = it.volume)
+            itemList = apiData?.list?.map {
+                HomePerfumeDTO(imgUrl = it.image, name = it.name, brandName = it.brand?.name, content = it.description, capacity = it.capacity)
             } ?: emptyList()
         )
     }
 
-    private fun toRecommendDTO(apiData: HomeApi.Recommend?): HomeRecommendDTO {
-        return HomeRecommendDTO(
+    private fun toRecommendDTO(apiData: HomeApi.RecommendPerfume?): HomeRecommendPerfumeDTO {
+        return HomeRecommendPerfumeDTO(
             title = apiData?.title,
-            itemList = apiData?.itemList?.map {
-                HomePerfumeDTO(imgUrl = it.image, name = it.name, brandName = it.brandName, content = it.description, volume = it.volume)
+            itemList = apiData?.list?.map {
+                HomePerfumeDTO(imgUrl = it.image, name = it.name, brandName = it.brand?.name, content = it.description, capacity = it.capacity)
             } ?: emptyList()
         )
     }
 
-    private fun toBrandDTO(apiData: HomeApi.Brand?): HomeBrandDTO {
+    private fun toBrandDTO(apiData: HomeApi.PopularBrand?): HomeBrandDTO {
         return HomeBrandDTO(
             title = apiData?.title,
-            itemList = apiData?.itemList?.map {
-                HomeBrandDTO.HomeBrandItemDTO(imgUrl = it.imgUrl, name = it.name)
+            itemList = apiData?.list?.map {
+                HomeBrandDTO.HomeBrandItemDTO(imgUrl = it.image, name = it.name)
             } ?: emptyList()
         )
     }
 
-    private fun toAccordDTO(apiData: HomeApi.Accord?): HomeAccordDTO {
+    private fun toAccordDTO(apiData: HomeApi.RecommendAccord?): HomeAccordDTO {
         return HomeAccordDTO(
             title = apiData?.title,
-            itemList = apiData?.itemList?.map {
-                HomeAccordDTO.HomeAccordItemDTO(imgUrl = it.imgUrl, name = it.name)
+            itemList = apiData?.list?.map {
+                HomeAccordDTO.HomeAccordItemDTO(imgUrl = it.image, name = it.name)
             } ?: emptyList()
         )
     }

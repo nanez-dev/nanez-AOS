@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="com.nane.home.presentation.data.HomeViewData.HomeBrandData.HomeBrandItemData" />
+            type="com.nane.home.presentation.data.HomeViewData.Brand.BrandItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

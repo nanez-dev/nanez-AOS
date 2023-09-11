@@ -1,12 +1,11 @@
 package org.techtown.nanez.utils
 
-import android.content.Intent
 import android.util.Log
 
 /**
  * Created by iseungjun on 2023/08/17
  */
-object Logger {
+object NaneLog {
     private const val LEVEL = Log.VERBOSE
     private const val TAG = "NANEZ_LOG"
     private const val CLASS_STACK_DEPTH_INDEX = 4
@@ -85,30 +84,5 @@ object Logger {
         sb.append(">")
         sb.append(message ?: "")
         return sb.toString()
-    }
-
-    fun printIntent(i: Intent?) = printIntent(TAG, i)
-
-    @JvmStatic
-    fun printIntent(tag: String, i: Intent?) {
-        try {
-            d(tag, "-------------------------------------------------------")
-            d(tag, "intent = $i")
-            if (i != null) {
-                val extras = i.extras
-                d(tag, "extras = $extras")
-                if (extras != null) {
-                    val keys: Set<*> = extras.keySet()
-                    d(tag, "++ bundle key count = " + keys.size)
-                    for (_key in extras.keySet()) {
-                        d(tag, "key=" + _key + " : " + extras[_key])
-                    }
-                }
-            }
-        } catch (e: Exception) {
-            e(tag, e, e.toString())
-        } finally {
-            d(tag, "-------------------------------------------------------")
-        }
     }
 }

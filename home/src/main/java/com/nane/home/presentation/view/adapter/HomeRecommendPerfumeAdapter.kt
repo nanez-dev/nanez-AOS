@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nane.home.BR
 import com.nane.home.databinding.HomeRecommendPerfumeItemViewBinding
-import com.nane.home.presentation.data.HomePerfumeItemViewData
+import com.nane.home.presentation.data.PerfumeItemViewData
 
 /**
  * Created by iseungjun on 2023/08/26
  */
 class HomeRecommendPerfumeAdapter : RecyclerView.Adapter<HomeRecommendPerfumeAdapter.HomeRecommendPerfumeItemViewHolder>() {
 
-    private var itemList: List<HomePerfumeItemViewData> = emptyList()
+    private var itemList: List<PerfumeItemViewData> = emptyList()
 
-    fun setItemList(list: List<HomePerfumeItemViewData>) {
+    fun setItemList(list: List<PerfumeItemViewData>) {
         itemList = list
         notifyDataSetChanged()
     }
@@ -32,7 +32,7 @@ class HomeRecommendPerfumeAdapter : RecyclerView.Adapter<HomeRecommendPerfumeAda
 
     inner class HomeRecommendPerfumeItemViewHolder(private val binding: HomeRecommendPerfumeItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(data: HomePerfumeItemViewData) {
+        fun onBind(data: PerfumeItemViewData) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

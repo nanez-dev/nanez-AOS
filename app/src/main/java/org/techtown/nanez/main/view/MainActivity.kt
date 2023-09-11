@@ -3,6 +3,7 @@ package org.techtown.nanez.main.view
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.nane.base.view.BaseBindActivity
@@ -17,6 +18,8 @@ import org.techtown.nanez.utils.util.addFragment
 
 @AndroidEntryPoint
 class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layout.main_activity) {
+
+    private var waitTime = 0L
 
     override fun createViewModel() = viewModels<MainViewModel>().value
 
@@ -74,4 +77,14 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
         viewModel.checkAutoLogin()
     }
 
+
+
+    override fun onBackPressed() {
+        if(System.currentTimeMillis() - waitTime >=1500 ) {
+            waitTime = System.currentTimeMillis()
+            Toast.makeText(this, "뒤로가기 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+        } else {
+            finish()
+        }
+    }
 }

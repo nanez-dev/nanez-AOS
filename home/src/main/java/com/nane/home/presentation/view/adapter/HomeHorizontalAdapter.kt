@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nane.home.BR
 import com.nane.home.databinding.HomeHorizontalItemViewBinding
-import com.nane.home.presentation.data.HomePerfumeItemViewData
+import com.nane.home.presentation.data.PerfumeItemViewData
 
 /**
  * Created by iseungjun on 2023/08/26
  */
 class HomeHorizontalAdapter : RecyclerView.Adapter<HomeHorizontalAdapter.HomeHorizontalViewHolder>() {
 
-    private var itemList: List<HomePerfumeItemViewData> = emptyList()
+    private var itemList: List<PerfumeItemViewData> = emptyList()
 
-    fun setItemList(list: List<HomePerfumeItemViewData>) {
+    fun setItemList(list: List<PerfumeItemViewData>) {
         itemList = list
         notifyDataSetChanged()
     }
@@ -36,7 +36,7 @@ class HomeHorizontalAdapter : RecyclerView.Adapter<HomeHorizontalAdapter.HomeHor
             binding.vgParent.setOnClickListener {  }
         }
 
-        fun onBind(data: HomePerfumeItemViewData) {
+        fun onBind(data: PerfumeItemViewData) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

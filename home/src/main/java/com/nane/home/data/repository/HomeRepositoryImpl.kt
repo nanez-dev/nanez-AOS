@@ -1,21 +1,22 @@
 package com.nane.home.data.repository
 
 import com.nane.base.data.DataResult
-import com.nane.home.data.source.remote.HomeRemoteTestDataSource
+import com.nane.home.data.source.IHomeRemoteSource
+import com.nane.home.domain.repository.IHomeRepository
+import com.nane.network.api.home.HomeApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
-import com.nane.network.api.home.HomeApi
 import java.io.IOException
 import javax.inject.Inject
 
 /**
  * Created by iseungjun on 2023/08/26
  */
-class HomeRepository @Inject constructor(
-    private val remoteDataSource: HomeRemoteTestDataSource
-) {
+class HomeRepositoryImpl @Inject constructor(
+    private val remoteDataSource: IHomeRemoteSource
+) : IHomeRepository {
 
-    suspend fun getHomeInfo(): Flow<DataResult<HomeApi.Response?>> = flow {
+    override suspend fun getHomeInfo(): Flow<DataResult<HomeApi.Response?>> = flow {
         val response = remoteDataSource.getHomeInfo()
         if (response.isSuccessful) {
             emit(DataResult.Success(response.body()))

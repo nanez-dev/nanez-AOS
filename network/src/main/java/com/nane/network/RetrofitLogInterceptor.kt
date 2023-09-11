@@ -213,7 +213,7 @@ class RetrofitLogInterceptor @JvmOverloads constructor(private val logger: Logge
                 val source = responseBody?.source()
                 source?.let {
                     source.request(Long.MAX_VALUE) // Buffer the entire body.
-                    var buffer = source.buffer()
+                    var buffer = source.buffer
                     var gzippedLength: Long? = null
                     if ("gzip".equals(headers["Content-Encoding"], ignoreCase = true)) {
                         gzippedLength = buffer.size

@@ -67,7 +67,7 @@ class NanezDataStore {
                 }
             }
         } catch (e: Exception) {
-            Logger.e(e)
+            NaneLog.e(e)
         }
     }
 
