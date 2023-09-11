@@ -23,11 +23,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     dataBinding.enable = true
@@ -40,7 +40,12 @@ dependencies {
     implementation(project(":network"))
 
     implementation(libs.bundles.module.home)
+    kapt(libs.bundles.android.compile.kapt)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.bundles.androidx.test)
+}
+
+kapt {
+    correctErrorTypes = true
 }

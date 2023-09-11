@@ -12,9 +12,9 @@ import com.nane.home.presentation.data.HomeViewData
  */
 class HomeBrandAdapter : RecyclerView.Adapter<HomeBrandAdapter.HomeBrandItemViewHolder>() {
 
-    private var itemList: List<HomeViewData.HomeBrandData.HomeBrandItemData> = emptyList()
+    private var itemList: List<HomeViewData.Brand.BrandItem> = emptyList()
 
-    fun setItemList(list: List<HomeViewData.HomeBrandData.HomeBrandItemData>) {
+    fun setItemList(list: List<HomeViewData.Brand.BrandItem>) {
         itemList = list
         notifyDataSetChanged()
     }
@@ -31,7 +31,7 @@ class HomeBrandAdapter : RecyclerView.Adapter<HomeBrandAdapter.HomeBrandItemView
 
     inner class HomeBrandItemViewHolder(private val binding: HomeBrandItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(data: HomeViewData.HomeBrandData.HomeBrandItemData) {
+        fun onBind(data: HomeViewData.Brand.BrandItem) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

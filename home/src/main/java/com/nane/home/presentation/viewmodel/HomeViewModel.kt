@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import com.nane.home.domain.mapper.HomeDomainMapper
 import com.nane.home.domain.usecase.HomeInfoUseCase
 import com.nane.home.presentation.data.HomeViewData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.util.post
 import javax.inject.Inject
 

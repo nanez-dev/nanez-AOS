@@ -45,19 +45,19 @@ fun <T : Fragment> AppCompatActivity.addFragment(container: ViewGroup, saveInsta
         fragment = supportFragmentManager.findFragmentByTag(tag) as? T
     }
 
-    fragment?.let { fragment ->
+    fragment?.let { frag ->
         arguments?.let { arg ->
-            if (fragment.arguments != null) {
-                fragment.arguments?.let { existBundle ->
+            if (frag.arguments != null) {
+                frag.arguments?.let { existBundle ->
                     existBundle.clear()
                     arg.let { existBundle.putAll(arg) }
                 }
             } else {
-                fragment.arguments = arguments
+                frag.arguments = arguments
             }
         }
 
-        if (fragment.isAdded) {
+        if (frag.isAdded) {
             return fragment
         }
 

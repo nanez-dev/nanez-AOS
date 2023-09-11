@@ -1,7 +1,7 @@
 package com.nane.home.domain.mapper
 
 import com.nane.home.domain.data.*
-import com.nane.home.presentation.data.HomePerfumeItemViewData
+import com.nane.home.presentation.data.PerfumeItemViewData
 import com.nane.home.presentation.data.HomeViewData
 import javax.inject.Inject
 
@@ -22,12 +22,12 @@ class HomeDomainMapper @Inject constructor() {
             viewDataList.add(toTitleViewData(it))
         }
 
-        dto.horizontalInfo?.let {
-            viewDataList.add(toHorizontalViewData(it))
+        dto.specialPerfumeInfo?.let {
+            viewDataList.add(toSpecialPerfumeViewData(it))
         }
 
-        dto.recommendInfo?.let {
-            viewDataList.add(toRecommendViewData(it))
+        dto.recommendPerfumeInfo?.let {
+            viewDataList.add(toRecommendPerfumeViewData(it))
         }
 
         dto.brandInfo?.let {
@@ -41,38 +41,38 @@ class HomeDomainMapper @Inject constructor() {
         return viewDataList.toList()
     }
 
-    private fun toBannerViewData(dto: List<HomeTopBannerDTO>): HomeViewData.HomeBannerData {
-        return HomeViewData.HomeBannerData(
-            bannerList = dto.map { HomeViewData.HomeBannerData.HomeBanner(imgUrl = it.imgUrl, link = it.linkUrl) }
+    private fun toBannerViewData(dto: List<HomeTopBannerDTO>): HomeViewData.Banner {
+        return HomeViewData.Banner(
+            bannerList = dto.map { HomeViewData.Banner.BannerItem(imgUrl = it.imgUrl, link = it.linkUrl) }
         )
     }
 
-    private fun toTitleViewData(dto: HomeMainTitleDTO): HomeViewData.HomeTitleData {
-        return HomeViewData.HomeTitleData(
+    private fun toTitleViewData(dto: HomeMainTitleDTO): HomeViewData.MainTitle {
+        return HomeViewData.MainTitle(
             title = dto.title,
             content = dto.content
         )
     }
 
-    private fun toHorizontalViewData(dto: HomeHorizontalDTO): HomeViewData.HomeHorizontalData {
-        return HomeViewData.HomeHorizontalData(
+    private fun toSpecialPerfumeViewData(dto: HomeSpecialPerfumeDTO): HomeViewData.SpecialPerfume {
+        return HomeViewData.SpecialPerfume(
             title = dto.title,
             itemList = dto.itemList.map { toPerfumeViewData(it) }
         )
     }
 
-    private fun toRecommendViewData(dto: HomeRecommendDTO): HomeViewData.HomeRecommendPerfumeData {
-        return HomeViewData.HomeRecommendPerfumeData(
+    private fun toRecommendPerfumeViewData(dto: HomeRecommendPerfumeDTO): HomeViewData.RecommondPerfume {
+        return HomeViewData.RecommondPerfume(
             title = dto.title,
             itemList = dto.itemList.map { toPerfumeViewData(it) }
         )
     }
 
-    private fun toBrandViewData(dto: HomeBrandDTO): HomeViewData.HomeBrandData {
-        return HomeViewData.HomeBrandData(
+    private fun toBrandViewData(dto: HomeBrandDTO): HomeViewData.Brand {
+        return HomeViewData.Brand(
             title = dto.title,
             itemList = dto.itemList.map {
-                HomeViewData.HomeBrandData.HomeBrandItemData(
+                HomeViewData.Brand.BrandItem(
                     imgUrl = it.imgUrl,
                     brandName = it.name
                 )
@@ -80,11 +80,11 @@ class HomeDomainMapper @Inject constructor() {
         )
     }
 
-    private fun toAccordViewData(dto: HomeAccordDTO): HomeViewData.HomeAccordData {
-        return HomeViewData.HomeAccordData(
+    private fun toAccordViewData(dto: HomeAccordDTO): HomeViewData.Accord {
+        return HomeViewData.Accord(
             title = dto.title,
             itemList = dto.itemList.map {
-                HomeViewData.HomeAccordData.HomeAccordItemData(
+                HomeViewData.Accord.AccordItem(
                     imgUrl = it.imgUrl,
                     accordName = it.name
                 )
@@ -93,12 +93,12 @@ class HomeDomainMapper @Inject constructor() {
     }
 
 
-    private fun toPerfumeViewData(dto: HomePerfumeDTO): HomePerfumeItemViewData {
-        return HomePerfumeItemViewData(
+    private fun toPerfumeViewData(dto: HomePerfumeDTO): PerfumeItemViewData {
+        return PerfumeItemViewData(
             imgUrl = dto.imgUrl,
             brandName = dto.brandName,
             name = dto.name,
-            volume = dto.volume,
+            capacity = "${dto.capacity}ml",
             content = dto.content
         )
     }

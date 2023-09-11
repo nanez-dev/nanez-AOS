@@ -53,32 +53,32 @@ class HomeMainAdapter : RecyclerView.Adapter<AbsHomeViewHolder<*>>() {
     override fun onBindViewHolder(holder: AbsHomeViewHolder<*>, position: Int) {
         when(holder) {
             is HomePagerViewHolder -> {
-                (dataList[position] as? HomeViewData.HomeBannerData)?.let {
+                (dataList[position] as? HomeViewData.Banner)?.let {
                     holder.onBind(it)
                 }
             }
             is HomeTitleViewHolder -> {
-                (dataList[position] as? HomeViewData.HomeTitleData)?.let {
+                (dataList[position] as? HomeViewData.MainTitle)?.let {
                     holder.onBind(it)
                 }
             }
             is HomeHorizontalViewHolder -> {
-                (dataList[position] as? HomeViewData.HomeHorizontalData)?.let {
+                (dataList[position] as? HomeViewData.SpecialPerfume)?.let {
                     holder.onBind(it)
                 }
             }
             is HomeRecommendPerfumeViewHolder -> {
-                (dataList[position] as? HomeViewData.HomeRecommendPerfumeData)?.let {
+                (dataList[position] as? HomeViewData.RecommondPerfume)?.let {
                     holder.onBind(it)
                 }
             }
             is HomeBrandViewHolder -> {
-                (dataList[position] as? HomeViewData.HomeBrandData)?.let {
+                (dataList[position] as? HomeViewData.Brand)?.let {
                     holder.onBind(it)
                 }
             }
             is HomeAccordViewHolder -> {
-                (dataList[position] as? HomeViewData.HomeAccordData)?.let {
+                (dataList[position] as? HomeViewData.Accord)?.let {
                     holder.onBind(it)
                 }
             }

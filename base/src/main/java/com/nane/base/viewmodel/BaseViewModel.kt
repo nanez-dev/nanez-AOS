@@ -5,6 +5,4 @@ import androidx.lifecycle.ViewModel
 /**
  * Created by iseungjun on 2023/08/14
  */
-open class BaseViewModel : ViewModel() {
-
-}
+open class BaseViewModel : ViewModel()

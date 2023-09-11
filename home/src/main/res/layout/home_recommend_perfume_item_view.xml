@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="com.nane.home.presentation.data.HomePerfumeItemViewData" />
+            type="com.nane.home.presentation.data.PerfumeItemViewData" />
     </data>
 
 
@@ -60,7 +60,7 @@
             android:id="@+id/txtVolume"
             style="@style/Text_14"
             android:layout_marginTop="4dp"
-            android:text="@{viewData.volume}"
+            android:text="@{viewData.capacity}"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintLeft_toLeftOf="@+id/imgPerfume"
             app:layout_constraintRight_toRightOf="@+id/imgPerfume"

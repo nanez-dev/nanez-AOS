@@ -6,53 +6,53 @@ package com.nane.home.presentation.data
 
 sealed class HomeViewData(@HomeViewType var viewType: Int) {
 
-    data class HomeBannerData(
-        val bannerList: List<HomeBanner> = emptyList()
+    data class Banner(
+        val bannerList: List<BannerItem> = emptyList()
     ) : HomeViewData(HomeViewType.HOME_PAGER_TYPE) {
 
-        data class HomeBanner(
+        data class BannerItem(
             val imgUrl: String?,
             val link: String?,
         )
     }
 
 
-    data class HomeTitleData(
+    data class MainTitle(
         val title: String?,
         val content: String?,
     ) : HomeViewData(HomeViewType.HOME_TITLE_TYPE)
 
 
-    data class HomeHorizontalData(
+    data class SpecialPerfume(
         val title: String?,
-        val itemList: List<HomePerfumeItemViewData> = emptyList(),
+        val itemList: List<PerfumeItemViewData> = emptyList(),
     ) : HomeViewData(HomeViewType.HOME_HORI_LIST_TYPE)
 
 
-    data class HomeRecommendPerfumeData(
+    data class RecommondPerfume(
         val title: String?,
-        val itemList: List<HomePerfumeItemViewData> = emptyList(),
+        val itemList: List<PerfumeItemViewData> = emptyList(),
     ) : HomeViewData(HomeViewType.HOME_RECOMMEND_TYPE)
 
 
-    data class HomeBrandData(
+    data class Brand(
         val title: String?,
-        val itemList: List<HomeBrandItemData> = emptyList(),
+        val itemList: List<BrandItem> = emptyList(),
     ) : HomeViewData(HomeViewType.HOME_BRAND_TYPE) {
 
-        data class HomeBrandItemData(
+        data class BrandItem(
             val imgUrl: String?,
             val brandName: String?
         )
     }
 
 
-    data class HomeAccordData(
+    data class Accord(
         val title: String?,
-        val itemList: List<HomeAccordItemData> = emptyList(),
+        val itemList: List<AccordItem> = emptyList(),
     ) : HomeViewData(HomeViewType.HOME_ACCORD_TYPE) {
 
-        data class HomeAccordItemData(
+        data class AccordItem(
             val imgUrl: String?,
             val accordName: String?
         )
@@ -61,10 +61,10 @@ sealed class HomeViewData(@HomeViewType var viewType: Int) {
 }
 
 
-data class HomePerfumeItemViewData(
+data class PerfumeItemViewData(
     val imgUrl: String?,
     val brandName: String?,
     val name: String?,
-    val volume: String?,
+    val capacity: String?,
     val content: String? = null,
 )

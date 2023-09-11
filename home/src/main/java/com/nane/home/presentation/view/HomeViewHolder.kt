@@ -29,7 +29,7 @@ import org.techtown.nanez.utils.util.toDp
 
 class HomePagerViewHolder(
     private val binding: HomePagerItemViewBinding
-) : AbsHomeViewHolder<HomeViewData.HomeBannerData>(binding.root) {
+) : AbsHomeViewHolder<HomeViewData.Banner>(binding.root) {
 
     init {
         binding.viewPager.apply {
@@ -38,16 +38,16 @@ class HomePagerViewHolder(
         binding.indicator.attachTo(binding.viewPager)
     }
 
-    override fun onBind(data: HomeViewData.HomeBannerData) {
+    override fun onBind(data: HomeViewData.Banner) {
         (binding.viewPager.adapter as? HomePagerAdapter)?.setDataList(data.bannerList)
     }
 
 
     private inner class HomePagerAdapter : PagerAdapter() {
 
-        private var imgUrlList = listOf<HomeViewData.HomeBannerData.HomeBanner>()
+        private var imgUrlList = listOf<HomeViewData.Banner.BannerItem>()
 
-        fun setDataList(dataList: List<HomeViewData.HomeBannerData.HomeBanner>) {
+        fun setDataList(dataList: List<HomeViewData.Banner.BannerItem>) {
             imgUrlList = dataList
             notifyDataSetChanged()
         }
@@ -75,9 +75,9 @@ class HomePagerViewHolder(
 
 class HomeTitleViewHolder(
     private val binding: HomeTitleItemViewBinding
-) : AbsHomeViewHolder<HomeViewData.HomeTitleData>(binding.root) {
+) : AbsHomeViewHolder<HomeViewData.MainTitle>(binding.root) {
 
-    override fun onBind(data: HomeViewData.HomeTitleData) {
+    override fun onBind(data: HomeViewData.MainTitle) {
         binding.setVariable(BR.viewData, data)
         binding.executePendingBindings()
     }
@@ -86,7 +86,7 @@ class HomeTitleViewHolder(
 
 class HomeHorizontalViewHolder(
     private val binding: HomeListItemViewBinding
-) : AbsHomeViewHolder<HomeViewData.HomeHorizontalData>(binding.root) {
+) : AbsHomeViewHolder<HomeViewData.SpecialPerfume>(binding.root) {
 
     init {
         binding.recyclerView.apply {
@@ -104,7 +104,7 @@ class HomeHorizontalViewHolder(
         }
     }
 
-    override fun onBind(data: HomeViewData.HomeHorizontalData) {
+    override fun onBind(data: HomeViewData.SpecialPerfume) {
         binding.txtTitle.text = data.title
         binding.btnMore.visibility = View.GONE
         (binding.recyclerView.adapter as? HomeHorizontalAdapter)?.setItemList(data.itemList)
@@ -114,7 +114,7 @@ class HomeHorizontalViewHolder(
 
 class HomeRecommendPerfumeViewHolder(
     private val binding: HomeListItemViewBinding
-) : AbsHomeViewHolder<HomeViewData.HomeRecommendPerfumeData>(binding.root) {
+) : AbsHomeViewHolder<HomeViewData.RecommondPerfume>(binding.root) {
 
     init {
         binding.recyclerView.apply {
@@ -140,7 +140,7 @@ class HomeRecommendPerfumeViewHolder(
         }
     }
 
-    override fun onBind(data: HomeViewData.HomeRecommendPerfumeData) {
+    override fun onBind(data: HomeViewData.RecommondPerfume) {
         binding.txtTitle.text = data.title
         binding.btnMore.visibility = View.VISIBLE
         (binding.recyclerView.adapter as? HomeRecommendPerfumeAdapter)?.setItemList(data.itemList)
@@ -150,7 +150,7 @@ class HomeRecommendPerfumeViewHolder(
 
 class HomeBrandViewHolder(
     private val binding: HomeListItemViewBinding
-) : AbsHomeViewHolder<HomeViewData.HomeBrandData>(binding.root) {
+) : AbsHomeViewHolder<HomeViewData.Brand>(binding.root) {
 
     init {
         binding.recyclerView.apply {
@@ -175,7 +175,7 @@ class HomeBrandViewHolder(
         }
     }
 
-    override fun onBind(data: HomeViewData.HomeBrandData) {
+    override fun onBind(data: HomeViewData.Brand) {
         binding.txtTitle.text = data.title
         binding.btnMore.visibility = View.VISIBLE
         (binding.recyclerView.adapter as? HomeBrandAdapter)?.setItemList(data.itemList)
@@ -185,7 +185,7 @@ class HomeBrandViewHolder(
 
 class HomeAccordViewHolder(
     private val binding: HomeListItemViewBinding
-) : AbsHomeViewHolder<HomeViewData.HomeAccordData>(binding.root) {
+) : AbsHomeViewHolder<HomeViewData.Accord>(binding.root) {
 
     init {
         binding.recyclerView.apply {
@@ -210,7 +210,7 @@ class HomeAccordViewHolder(
         }
     }
 
-    override fun onBind(data: HomeViewData.HomeAccordData) {
+    override fun onBind(data: HomeViewData.Accord) {
         binding.txtTitle.text = data.title
         binding.btnMore.visibility = View.VISIBLE
         (binding.recyclerView.adapter as? HomeAccordAdapter)?.setItemList(data.itemList)

@@ -1,15 +1,16 @@
 [versions]
 material = "1.9.0"
 androidx-constraintlayout = "2.1.4"
-androidx-ktx = "1.7.2"
+androidx-activity-ktx = "1.7.2"
+androidx-fragment-ktx = "1.6.1"
 androidx-lifecycle = "2.6.1"
 androidx-appcompat = "1.6.1"
 androidx-splash = "1.0.0-rc01"
 ktx = "1.10.1"
 androidGradle = "7.3.1"
-kotlin = "1.7.20"
+kotlin = "1.8.20"
 kotlin-coroutines = "1.6.4"
-hilt = "2.44.2"
+hilt = "2.45"
 library = "7.3.1"
 retrofit2 = "2.9.0"
 okhttp3 = "4.10.0"
@@ -17,9 +18,10 @@ dotlib = "4.3"
 junit = "4.13.2"
 junit-ext = "1.1.5"
 espresso = "3.5.1"
-datastore = "1.1.0"
+datastore = "1.0.0"
 glide = "4.15.1"
 glide-trans = "4.3.0"
+javapoet = "1.13.0"
 
 
 [libraries]
@@ -28,8 +30,8 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-ktx = { module = "androidx.core:core-ktx", version.ref = "ktx" }
-androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-ktx" }
-androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-ktx" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment-ktx" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity-ktx" }
 androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-livedata-core = { module = "androidx.lifecycle:lifecycle-livedata-core-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
@@ -40,6 +42,7 @@ kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-co
 
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-poet = { module = "com.squareup:javapoet", version.ref = "javapoet" }
 
 retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit2" }
 retrofit2-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit2" }
@@ -72,12 +75,12 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 
 [bundles]
-android-hilt = [ "hilt-android-compiler", "hilt-android" ]
+android-compile-kapt = [ "hilt-android-compiler" ]
 android-coroutines = [ "kotlin-coroutines-android", "kotlin-coroutines-core" ]
 androidx-test = [ "junit-ext", "espresso" ]
 module-app = [
     "material",
-    "hilt-android-compiler", "hilt-android",
+    "hilt-android", "hilt-poet",
     "androidx-constraintlayout", "androidx-appcompat",
     "androidx-ktx", "androidx-fragment-ktx", "androidx-activity-ktx",
     "androidx-lifecycle-livedata", "androidx-lifecycle-viewmodel",
@@ -88,7 +91,6 @@ module-app = [
 
 module-base = [
     "material",
-    "hilt-android-compiler", "hilt-android",
     "androidx-constraintlayout", "androidx-appcompat",
     "androidx-ktx", "androidx-fragment-ktx", "androidx-activity-ktx",
     "androidx-lifecycle-livedata", "androidx-lifecycle-viewmodel",
@@ -96,7 +98,7 @@ module-base = [
 
 module-home = [
     "material",
-    "hilt-android-compiler", "hilt-android",
+    "hilt-android", "hilt-poet",
     "androidx-constraintlayout", "androidx-appcompat",
     "androidx-ktx", "androidx-fragment-ktx", "androidx-activity-ktx",
     "androidx-lifecycle-livedata", "androidx-lifecycle-viewmodel",
@@ -109,11 +111,12 @@ module-network = [
     "kotlin-coroutines-android", "kotlin-coroutines-core",
     "retrofit2", "retrofit2-gson",
     "okhttp3", "okhttp3-logging", "okhttp3-urlconnection",
-    "hilt-android-compiler", "hilt-android"
+    "hilt-android", "hilt-poet"
 ]
 
 module-utils = [
     "androidx-ktx",
+    "androidx-appcompat",
     "androidx-datastore", "androidx-datastore-core",
     "androidx-lifecycle-livedata-core",
     "glide", "glide-transform",

@@ -12,7 +12,7 @@ import okhttp3.OkHttpClient
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import org.techtown.nanez.utils.Logger
+import org.techtown.nanez.utils.NaneLog
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.CookieManager
@@ -106,13 +106,13 @@ object RetrofitModule {
 
             System.getProperty("line.separator")?.let { separator ->
                 val lines = message.split((separator).toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                Logger.d(requestTagId, "╔═══════════════════════════════════════════════════════════════════════════════════════")
+                NaneLog.d(requestTagId, "╔═══════════════════════════════════════════════════════════════════════════════════════")
                 for (line in lines) {
                     val removedEscapeMsg = line.replace("\\\\".toRegex(), "")
-                    Logger.d(requestTagId, removedEscapeMsg)
+                    NaneLog.d(requestTagId, removedEscapeMsg)
                 }
 
-                Logger.d(requestTagId, "╚═══════════════════════════════════════════════════════════════════════════════════════")
+                NaneLog.d(requestTagId, "╚═══════════════════════════════════════════════════════════════════════════════════════")
             }
         }
     }

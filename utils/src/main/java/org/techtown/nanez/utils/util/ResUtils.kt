@@ -15,14 +15,13 @@ import android.os.Build
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.View
-import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import org.techtown.nanez.utils.Logger
+import org.techtown.nanez.utils.NaneLog
 import kotlin.math.roundToInt
 
 /**
@@ -53,7 +52,7 @@ class ResUtils {
             return try {
                 context?.getDrawable(drawableResId)
             } catch (e: Resources.NotFoundException) {
-                Logger.e(e)
+                NaneLog.e(e)
                 return null
             }
         }
@@ -65,7 +64,7 @@ class ResUtils {
                     ContextCompat.getColor(it, colorRes) //context.getColor 가 api level 23 에서추가됨.
                 } ?: 0
             } catch (e: Resources.NotFoundException) {
-                Logger.e(e)
+                NaneLog.e(e)
                 0
             }
         }
