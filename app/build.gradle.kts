@@ -1,40 +1,32 @@
+import GradleBuildScript.gitBranch
+import AppConfigScript.buildTypeConfigs
+import AppConfigScript.etcOptionsConfigs
+import AppConfigScript.bindingConfigs
+
 plugins {
     kotlin("kapt")
+    kotlin("android")
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
 }
 
 android {
     namespace = "org.techtown.nanez"
-    compileSdk = 33
+    compileSdk = AppConfig.compileSdk
 
     defaultConfig {
-        applicationId = "org.techtown.nanez"
-        minSdk = 26
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = AppConfig.applicationId
+        minSdk = AppConfig.minSdk
+        targetSdk = AppConfig.targetSdk
+        versionName = AppConfig.versionName
+        resValue("string", "gitBranch", gitBranch())
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-
-    dataBinding.enable = true
-    viewBinding.enable = true
+    buildTypeConfigs()
+    etcOptionsConfigs(kotlinOptions)
+    bindingConfigs()
 }
 
 dependencies {
@@ -44,7 +36,7 @@ dependencies {
     implementation(project(mapOf("path" to ":network")))
 
     implementation(libs.bundles.module.app)
-    kapt(libs.bundles.android.compile.kapt)
+    kapt(libs.bundles.hilt.compile.kapt)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.bundles.androidx.test)

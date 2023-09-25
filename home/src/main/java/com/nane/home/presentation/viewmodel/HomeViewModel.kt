@@ -1,4 +1,4 @@
-package com.nane.home.home.viewmodel
+package com.nane.home.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
