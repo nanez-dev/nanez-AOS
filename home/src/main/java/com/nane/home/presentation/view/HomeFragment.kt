@@ -6,7 +6,7 @@ import com.nane.base.view.ActionbarView
 import com.nane.base.view.BaseBindFragment
 import com.nane.home.R
 import com.nane.home.databinding.HomeFragmentBinding
-import com.nane.home.home.viewmodel.HomeViewModel
+import com.nane.home.presentation.viewmodel.HomeViewModel
 import com.nane.home.presentation.view.adapter.HomeMainAdapter
 import com.nane.home.presentation.view.adapter.decoration.HomeMainItemDecoration
 import dagger.hilt.android.AndroidEntryPoint

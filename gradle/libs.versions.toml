@@ -7,7 +7,6 @@ androidx-lifecycle = "2.6.1"
 androidx-appcompat = "1.6.1"
 androidx-splash = "1.0.0-rc01"
 ktx = "1.10.1"
-androidGradle = "7.3.1"
 kotlin = "1.8.20"
 kotlin-coroutines = "1.6.4"
 hilt = "2.45"
@@ -22,9 +21,13 @@ datastore = "1.0.0"
 glide = "4.15.1"
 glide-trans = "4.3.0"
 javapoet = "1.13.0"
+agp = "8.1.1"
 
 
 [libraries]
+gradle-plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+gradle-plugin-android = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+
 material = { module = "com.google.android.material:material", version.ref = "material" }
 
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
@@ -66,8 +69,8 @@ espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "esp
 
 
 [plugins]
-android = { id = "com.android.application", version.ref = "androidGradle" }
-library = { id = "com.android.library", version.ref = "library" }
+android = { id = "com.android.application", version.ref = "agp" }
+library = { id = "com.android.library", version.ref = "agp" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
@@ -75,9 +78,18 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 
 [bundles]
-android-compile-kapt = [ "hilt-android-compiler" ]
+hilt-compile-kapt = [ "hilt-android-compiler" ]
+hilt = ["hilt-android", "hilt-poet"]
 android-coroutines = [ "kotlin-coroutines-android", "kotlin-coroutines-core" ]
 androidx-test = [ "junit-ext", "espresso" ]
+
+module-base = [
+    "material",
+    "androidx-constraintlayout", "androidx-appcompat",
+    "androidx-ktx", "androidx-fragment-ktx", "androidx-activity-ktx",
+    "androidx-lifecycle-livedata", "androidx-lifecycle-viewmodel",
+]
+
 module-app = [
     "material",
     "hilt-android", "hilt-poet",
@@ -89,25 +101,13 @@ module-app = [
     "retrofit2"
 ]
 
-module-base = [
-    "material",
-    "androidx-constraintlayout", "androidx-appcompat",
-    "androidx-ktx", "androidx-fragment-ktx", "androidx-activity-ktx",
-    "androidx-lifecycle-livedata", "androidx-lifecycle-viewmodel",
-]
-
 module-home = [
-    "material",
     "hilt-android", "hilt-poet",
-    "androidx-constraintlayout", "androidx-appcompat",
-    "androidx-ktx", "androidx-fragment-ktx", "androidx-activity-ktx",
-    "androidx-lifecycle-livedata", "androidx-lifecycle-viewmodel",
     "retrofit2",
     "dotindicator"
 ]
 
 module-network = [
-    "androidx-ktx",
     "kotlin-coroutines-android", "kotlin-coroutines-core",
     "retrofit2", "retrofit2-gson",
     "okhttp3", "okhttp3-logging", "okhttp3-urlconnection",
@@ -115,8 +115,6 @@ module-network = [
 ]
 
 module-utils = [
-    "androidx-ktx",
-    "androidx-appcompat",
     "androidx-datastore", "androidx-datastore-core",
     "androidx-lifecycle-livedata-core",
     "glide", "glide-transform",
