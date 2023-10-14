@@ -14,4 +14,9 @@
     <color name="gray_3">#EFEFEF</color>
 
     <color name="mint">#65BFC4</color>
+
+    <color name="beige">#FDFCF9</color>
+    <color name="beige_2">#F6F4EC</color>
+
+    <color name="kakao_bg">#FEE500</color>
 </resources>

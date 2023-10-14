@@ -22,15 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
+        
         <activity
-            android:name=".login.view.LoginActivity"
+            android:name="com.nane.login.presentation.view.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Nanez"
             android:windowSoftInputMode="adjustPan"
             android:exported="false"/>
+
         <activity
             android:name=".join.JoinActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

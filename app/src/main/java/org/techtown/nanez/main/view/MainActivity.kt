@@ -87,4 +87,6 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
             finish()
         }
     }
+
+
 }
