@@ -35,6 +35,8 @@ abstract class BaseBindFragment<VIEW: ViewDataBinding, VM: ViewModel>(@LayoutRes
             null
         }
 
+    protected var isBackPressedInterceptor: Boolean = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         _dataBinding = DataBindingUtil.inflate<VIEW>(inflater, layoutRes, container, false)
@@ -45,6 +47,11 @@ abstract class BaseBindFragment<VIEW: ViewDataBinding, VM: ViewModel>(@LayoutRes
         }
 
         return _dataBinding.root
+    }
+
+
+    open fun onBackPressedInterceptor(): Boolean {
+        return isBackPressedInterceptor
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

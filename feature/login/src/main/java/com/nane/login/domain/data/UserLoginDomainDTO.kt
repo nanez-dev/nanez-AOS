@@ -1,4 +1,4 @@
-package org.techtown.nanez.userinfo.domain.data
+package com.nane.login.domain.data
 
 /**
  * Created by iseungjun on 2023/08/17

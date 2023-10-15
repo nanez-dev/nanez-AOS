@@ -1,13 +1,13 @@
-package org.techtown.nanez.userinfo.domain.usecase
+package com.nane.login.domain.usecase
 
 import com.nane.base.data.DataResult
 import com.nane.base.data.DomainResult
+import com.nane.login.data.mapper.UserDataMapper
+import com.nane.login.data.repository.UserRepository
+import com.nane.login.domain.data.UserLoginDomainDTO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.techtown.nanez.data.api.users.SignInApi
-import org.techtown.nanez.userinfo.data.repository.UserRepository
-import org.techtown.nanez.userinfo.domain.data.UserLoginDomainDTO
-import org.techtown.nanez.userinfo.data.mapper.UserDataMapper
 import javax.inject.Inject
 
 /**

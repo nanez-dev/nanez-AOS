@@ -1,8 +1,8 @@
-package org.techtown.nanez.userinfo.data.mapper
+package com.nane.login.data.mapper
 
+import com.nane.login.data.data.UserLoginDTO
+import com.nane.login.domain.data.UserLoginDomainDTO
 import org.techtown.nanez.data.api.users.SignInApi
-import org.techtown.nanez.userinfo.data.data.UserLoginDTO
-import org.techtown.nanez.userinfo.domain.data.UserLoginDomainDTO
 import javax.inject.Inject
 
 /**

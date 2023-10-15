@@ -1,4 +1,4 @@
-package org.techtown.nanez.userinfo.data.source.remote
+package com.nane.login.data.source.remote
 
 import com.nane.network.service.RetrofitUserService
 import org.techtown.nanez.data.api.users.SignInApi

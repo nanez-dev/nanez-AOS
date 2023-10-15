@@ -1,7 +1,7 @@
-package org.techtown.nanez.userinfo.data.source.local
+package com.nane.login.data.source.local
 
+import com.nane.login.data.data.UserLoginDTO
 import kotlinx.coroutines.flow.firstOrNull
-import org.techtown.nanez.userinfo.data.data.UserLoginDTO
 import org.techtown.nanez.utils.NanezDataStore
 import org.techtown.nanez.utils.datastore.NanezDataConst
 import javax.inject.Inject

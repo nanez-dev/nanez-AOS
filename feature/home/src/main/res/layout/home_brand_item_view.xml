@@ -25,7 +25,7 @@
             android:layout_height="0dp"
             android:background="@drawable/shape_white_r20_gray3_s1"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
+            android:scaleType="center"
             android:padding="1dp"
             app:img_load="@{viewData.imgUrl}"
             app:img_round="@{20}"
