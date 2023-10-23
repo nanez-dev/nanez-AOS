@@ -35,10 +35,7 @@ class EmailLoginFragment : BaseBindFragment<EmailLoginFragmentBinding, EmailLogi
                 is EmailLoginEventData.LoginSuccess -> {
 
                 }
-                is EmailLoginEventData.NotMatchEmail -> {
-
-                }
-                is EmailLoginEventData.NotMatchPassword -> {
+                is EmailLoginEventData.NotMatchLoginInfo -> {
 
                 }
                 is EmailLoginEventData.NotInputEmail -> {

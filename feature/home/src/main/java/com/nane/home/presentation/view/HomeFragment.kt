@@ -20,7 +20,7 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
         dataBinding.apply {
             with(actionBar) {
                 setHomeImg(true)
-                setRightBtn(com.nane.base.R.drawable.img_pencel)
+                setRightBtn(com.nane.base.R.drawable.icon_search)
                 actionListener = object : ActionbarView.ActionListener {
                     override fun onClickBack() {}
                     override fun onClickRight() {

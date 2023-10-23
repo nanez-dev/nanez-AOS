@@ -21,8 +21,10 @@
             app:layout_constraintTop_toBottomOf="@+id/frameLayout"
             android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="68dp"
-            app:itemIconSize="36dp"
+            android:layout_height="52dp"
+            app:itemIconSize="28dp"
+            app:itemTextColor="@color/selector_bottom_nav"
+            app:itemIconTint="@color/selector_bottom_nav"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/menu_bottom_navigaion" />
 

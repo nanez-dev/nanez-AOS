@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Nanez" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="android:windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -9,9 +10,10 @@
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenIconBackgroundColor">@color/beige</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/beige_50</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen</item>
         <item name="postSplashScreenTheme">@style/Theme.Nanez</item>
         <item name="windowSplashScreenAnimationDuration">2000</item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/beige_50</item>
     </style>
 </resources>

@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/beige"
+        android:background="@color/beige_50"
         android:fitsSystemWindows="true">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -88,13 +88,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="게스트로 시작하기"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/gray_400" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:src="@drawable/icon_right_arrow"
-                    android:tint="@color/gray" />
+                    android:tint="@color/gray_400" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

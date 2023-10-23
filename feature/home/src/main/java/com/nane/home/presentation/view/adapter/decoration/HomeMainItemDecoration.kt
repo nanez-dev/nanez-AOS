@@ -16,9 +16,6 @@ class HomeMainItemDecoration : RecyclerView.ItemDecoration() {
 
         val position = parent.getChildAdapterPosition(view)
         when (parent.adapter?.getItemViewType(position)) {
-            HomeViewType.HOME_PAGER_TYPE -> {
-                outRect.top = 16.toDp()
-            }
             HomeViewType.HOME_TITLE_TYPE -> {
                 outRect.top = 16.toDp()
             }

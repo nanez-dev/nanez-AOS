@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.nane.base.view.BaseBindActivity
 import com.nane.home.presentation.view.HomeFragment
@@ -24,6 +25,7 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
     override fun createViewModel() = viewModels<MainViewModel>().value
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         installSplashScreen()
         super.onCreate(savedInstanceState)
     }
@@ -55,7 +57,6 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
                 }
                 true
             }
-            bottomNavView.itemIconTintList = null
         }
 
         viewModel.apply {
