@@ -16,21 +16,21 @@ import retrofit2.http.Query
 interface RetrofitUserService {
 
     @POST("api/users/email-send")
-    fun postValidationEmailCodeSend(@Body body: ValidationEmailApi.Body): Response<String>
+    suspend fun postValidationEmailCodeSend(@Body body: ValidationEmailApi.Body): Response<String>
 
     @POST("api/users/email-verify")
-    fun postEmailVerify(@Body body: EmailVerifyApi.Body): Response<Boolean>
+    suspend fun postEmailVerify(@Body body: EmailVerifyApi.Body): Response<Boolean>
 
     @POST("api/users/nickname-verify?nickname={nickname}")
-    fun postNicknameVerify(@Query("nickname") nickname: String): Response<Boolean>
+    suspend fun postNicknameVerify(@Query("nickname") nickname: String): Response<Boolean>
 
     @POST("api/users/signup")
-    fun postSignUp(@Body body: SignUpApi.Body): Response<SignUpApi.Response>
+    suspend fun postSignUp(@Body body: SignUpApi.Body): Response<SignUpApi.Response>
 
     @POST("api/users/signin")
-    fun postSignIn(@Body body: SignInApi.Body): Response<SignInApi.Response>
+    suspend fun postSignIn(@Body body: SignInApi.Body): Response<SignInApi.Response>
 
     @DELETE("api/users/withdrawal")
-    fun deleteWithdraw(): Response<String>
+    suspend fun deleteWithdraw(): Response<String>
 
 }

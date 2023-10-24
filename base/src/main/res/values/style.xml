@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Text_12">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gray_800</item>
+    </style>
+
     <style name="Text_14">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/black_2</item>
+        <item name="android:textColor">@color/gray_800</item>
     </style>
 
     <style name="Text_14_bold">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/black_2</item>
+        <item name="android:textColor">@color/gray_800</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -19,14 +26,14 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/black_2</item>
+        <item name="android:textColor">@color/gray_800</item>
     </style>
 
     <style name="Text_16_bold">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/black_2</item>
+        <item name="android:textColor">@color/gray_800</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -34,14 +41,14 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/black_2</item>
+        <item name="android:textColor">@color/gray_800</item>
     </style>
 
     <style name="Text_18_bold">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/black_2</item>
+        <item name="android:textColor">@color/gray_800</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -49,7 +56,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/black_2</item>
+        <item name="android:textColor">@color/gray_800</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -57,7 +64,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">21sp</item>
-        <item name="android:textColor">@color/black_2</item>
+        <item name="android:textColor">@color/gray_800</item>
     </style>
 
 </resources>

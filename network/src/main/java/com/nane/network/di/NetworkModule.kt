@@ -34,7 +34,6 @@ object NetworkModule {
     @Provides
     @Singleton
     fun providePerfumeService(retrofit: Retrofit): RetrofitPerfumeService {
-        NaneLog.d("create RetrofitPerfumeService")
         return retrofit.create(RetrofitPerfumeService::class.java)
     }
 }

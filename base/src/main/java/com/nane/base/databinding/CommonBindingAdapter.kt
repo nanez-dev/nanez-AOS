@@ -18,7 +18,7 @@ object CommonBindingAdapter {
         clipToOutline = true
         GlideUtil.instance.displayImage(GlideImageLoadData(this, url,
             optionData = GlideEtcOptionData().apply {
-                imageOptionType = listOf(GlideImageOptionType.CENTER_INSIDE, GlideImageOptionType.ROUND)
+                imageOptionType = listOf(GlideImageOptionType.FIT_CENTER, GlideImageOptionType.ROUND)
                 round = roundInt
             })
         )

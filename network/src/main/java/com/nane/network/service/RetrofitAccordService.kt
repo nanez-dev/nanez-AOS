@@ -17,6 +17,6 @@ import retrofit2.http.Query
 interface RetrofitAccordService {
 
     @GET("api/accord")
-    fun getAllAccord(): Response<String>
+    suspend fun getAllAccord(): Response<String>
 
 }

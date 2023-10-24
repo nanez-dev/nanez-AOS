@@ -16,7 +16,8 @@ dependencyResolutionManagement {
 rootProject.name = "nanez"
 include ':app'
 include ':utils'
-include ':home'
 include ':base'
 include ':network'
 include ':buildsrc'
+include ':feature:login'
+include ':feature:home'

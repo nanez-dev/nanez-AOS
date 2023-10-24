@@ -2,17 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menuHome"
-        android:icon="@drawable/selector_heart_icon"
+        android:icon="@drawable/icon_home_vector"
+        android:enabled="true"
+        android:checked="true"
         android:title=""/>
 
     <item
         android:id="@+id/menuStorage"
-        android:icon="@drawable/selector_heart_icon"
+        android:icon="@drawable/icon_home_fav_vector"
+        android:enabled="true"
         android:title="" />
 
     <item
         android:id="@+id/menuMypage"
-        android:icon="@drawable/selector_heart_icon"
+        android:icon="@drawable/icon_home_my_vector"
+        android:enabled="true"
         android:title=""/>
 
 </menu>

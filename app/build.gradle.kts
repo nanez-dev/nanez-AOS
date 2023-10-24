@@ -31,9 +31,10 @@ android {
 
 dependencies {
     implementation(project(":base"))
-    implementation(project(":home"))
     implementation(project(":utils"))
     implementation(project(mapOf("path" to ":network")))
+    implementation(project(":feature:home"))
+    implementation(project(":feature:login"))
 
     implementation(libs.bundles.module.app)
     kapt(libs.bundles.hilt.compile.kapt)
