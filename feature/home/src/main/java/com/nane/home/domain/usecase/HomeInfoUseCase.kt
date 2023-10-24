@@ -24,7 +24,7 @@ class HomeInfoUseCase @Inject constructor(
                     emit(DomainResult.Success(mapper.toDTO(response.data)))
                 }
                 is DataResult.Failed -> {
-                    emit(DomainResult.Failed(response.msg))
+                    emit(DomainResult.Failed(response.msg, response.code))
                 }
                 is DataResult.Error -> {
                     emit(DomainResult.Error(response.exception))

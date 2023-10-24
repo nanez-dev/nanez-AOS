@@ -1,112 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/beige_50">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgLogo"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_marginTop="82dp"
-            android:src="@drawable/img_splash_logo"
-            app:layout_constraintDimensionRatio="100:128"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/editEmail"
-            style="@style/Text_16"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="64dp"
-            android:background="@drawable/shape_white_r20_gray3_s1"
-            android:hint="@string/msg_hint_input_email"
-            android:inputType="textEmailAddress"
-            android:padding="16dp"
-            android:maxLines="1"
-            android:textColorHint="@color/gray_400"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/editPassword"
-            style="@style/Text_16"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/shape_white_r20_gray3_s1"
-            android:hint="@string/msg_hint_input_password"
-            android:inputType="textPassword"
-            android:padding="16dp"
-            android:maxLines="1"
-            android:textColorHint="@color/gray_400"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editEmail" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtError"
-            style="@style/Text_12"
-            android:layout_width="0dp"
-            android:layout_marginTop="8dp"
-            android:gravity="left"
-            android:textColor="@color/red_500"
-            android:visibility="gone"
-            app:layout_constraintLeft_toLeftOf="@id/editPassword"
-            app:layout_constraintRight_toRightOf="@id/editPassword"
-            app:layout_constraintTop_toBottomOf="@id/editPassword" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/btnLogin"
-            style="@style/Text_16_bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/shape_mint_r20"
-            android:foreground="@drawable/ripple_r20"
-            android:gravity="center"
-            android:paddingVertical="16dp"
-            android:text="@string/label_login"
-            android:textColor="@color/white"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtError" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/Text_14"
-            android:layout_marginBottom="12dp"
-            android:text="@string/msg_hint_join"
-            android:textColor="@color/black_3"
-            app:layout_constraintBottom_toTopOf="@+id/btnJoin"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/btnJoin"
-            style="@style/Text_16_bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/shape_beige_r20_mint_s1"
-            android:foreground="@drawable/ripple_r20"
-            android:gravity="center"
-            android:paddingVertical="16dp"
-            android:text="@string/label_join"
-            android:textColor="@color/mint_500"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/beige_50">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgLogo"
+                    android:layout_width="0dp"
+                    android:layout_height="128dp"
+                    android:layout_marginTop="82dp"
+                    android:src="@drawable/img_splash_logo"
+                    app:layout_constraintDimensionRatio="100:128"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/editEmail"
+                    style="@style/Text_16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="64dp"
+                    android:background="@drawable/shape_white_r20_gray3_s1"
+                    android:hint="@string/msg_hint_input_email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:textColorHint="@color/gray_400"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/editPassword"
+                    style="@style/Text_16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_white_r20_gray3_s1"
+                    android:hint="@string/msg_hint_input_password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:textColorHint="@color/gray_400"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editEmail" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtError"
+                    style="@style/Text_12"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="left"
+                    android:textColor="@color/red_500"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="@id/editPassword"
+                    app:layout_constraintRight_toRightOf="@id/editPassword"
+                    app:layout_constraintTop_toBottomOf="@id/editPassword"
+                    tools:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnLogin"
+                    style="@style/Text_16_bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/shape_mint_r20"
+                    android:foreground="@drawable/ripple_r20"
+                    android:gravity="center"
+                    android:paddingVertical="16dp"
+                    android:text="@string/label_login"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/vgJoin"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtError"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintVertical_chainStyle="spread_inside" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/vgJoin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="160dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnLogin">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtJoinGuide"
+                        style="@style/Text_14"
+                        android:layout_marginBottom="12dp"
+                        android:text="@string/msg_hint_join"
+                        android:textColor="@color/black_3"
+                        app:layout_constraintBottom_toTopOf="@+id/btnJoin"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/btnJoin"
+                        style="@style/Text_16_bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="30dp"
+                        android:background="@drawable/shape_beige_r20_mint_s1"
+                        android:foreground="@drawable/ripple_r20"
+                        android:gravity="center"
+                        android:paddingVertical="16dp"
+                        android:text="@string/label_join"
+                        android:textColor="@color/mint_500"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtJoinGuide" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

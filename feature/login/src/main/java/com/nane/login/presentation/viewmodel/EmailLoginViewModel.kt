@@ -7,9 +7,11 @@ import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
 import com.nane.login.domain.usecase.UserLoginInfoUseCase
 import com.nane.login.presentation.data.EmailLoginEventData
+import com.nane.network.api.FailedMessageConst
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.util.Event
+import org.techtown.nanez.utils.util.ResUtils
 import org.techtown.nanez.utils.util.post
 import javax.inject.Inject
 
@@ -33,21 +35,31 @@ class EmailLoginViewModel @Inject constructor(
                             _eventData.post(Event(EmailLoginEventData.LoginSuccess))
                         }
                         is DomainResult.Failed -> {
-
+                            when (result.msg) {
+                                FailedMessageConst.NOT_FOUND_USER -> {
+                                    _eventData.post(Event(EmailLoginEventData.NotFoundLoginInfo))
+                                }
+                                FailedMessageConst.NOT_MATCH_USER -> {
+                                    _eventData.post(Event(EmailLoginEventData.NotMatchLoginInfo))
+                                }
+                                else -> {
+                                    showErrorToast()
+                                }
+                            }
                         }
                         is DomainResult.Error -> {
-
+                            showErrorToast()
                         }
                     }
                 }
             } else {
                 if (email?.isEmpty() == true) {
-                    _eventData.post(Event(EmailLoginEventData.NotInputEmail))
+                    showErrorToast(ResUtils.instance.getString(com.nane.base.R.string.msg_hint_input_email))
                     return@launch
                 }
 
                 if (password?.isEmpty() == true) {
-                    _eventData.post(Event(EmailLoginEventData.NotInputPassword))
+                    showErrorToast(ResUtils.instance.getString(com.nane.base.R.string.msg_hint_input_password))
                     return@launch
                 }
             }

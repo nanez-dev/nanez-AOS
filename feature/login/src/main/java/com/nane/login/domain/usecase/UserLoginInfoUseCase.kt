@@ -8,6 +8,7 @@ import com.nane.login.domain.data.UserLoginDomainDTO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.techtown.nanez.data.api.users.SignInApi
+import org.techtown.nanez.utils.NaneLog
 import javax.inject.Inject
 
 /**
@@ -25,9 +26,10 @@ class UserLoginInfoUseCase @Inject constructor(
                     emit(DomainResult.Success(userDataMapper.toDomainDTO(response.data)))
                 }
                 is DataResult.Failed -> {
-                    emit(DomainResult.Failed(response.msg))
+                    emit(DomainResult.Failed(response.msg, response.code))
                 }
                 is DataResult.Error -> {
+                    NaneLog.e(response.exception)
                     emit(DomainResult.Error(response.exception))
                 }
             }
@@ -44,9 +46,10 @@ class UserLoginInfoUseCase @Inject constructor(
                     emit(DomainResult.Success(domainDto))
                 }
                 is DataResult.Failed -> {
-                    emit(DomainResult.Failed(response.msg))
+                    emit(DomainResult.Failed(response.msg, response.code))
                 }
                 is DataResult.Error -> {
+                    NaneLog.e(response.exception)
                     emit(DomainResult.Error(response.exception))
                 }
             }

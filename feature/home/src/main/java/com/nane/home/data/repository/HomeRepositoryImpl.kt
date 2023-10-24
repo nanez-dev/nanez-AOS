@@ -4,6 +4,7 @@ import com.nane.base.data.DataResult
 import com.nane.home.data.source.IHomeRemoteSource
 import com.nane.home.domain.repository.IHomeRepository
 import com.nane.network.api.home.HomeApi
+import com.nane.network.parser.getParseErrorResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import java.io.IOException
@@ -21,7 +22,8 @@ class HomeRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             emit(DataResult.Success(response.body()))
         } else {
-            emit(DataResult.Failed(response.message()))
+            val failed = getParseErrorResult(response)
+            emit(DataResult.Failed(failed.errorMsg, failed.errorCode))
         }
     }.retry(2) { cause ->
         cause is IOException

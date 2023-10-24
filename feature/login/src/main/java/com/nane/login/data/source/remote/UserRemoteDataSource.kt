@@ -12,7 +12,7 @@ class UserRemoteDataSource @Inject constructor(
     private val userService: RetrofitUserService
 ) {
 
-    fun postLogin(body: SignInApi.Body): Response<SignInApi.Response> {
+    suspend fun postLogin(body: SignInApi.Body): Response<SignInApi.Response> {
         return userService.postSignIn(body)
     }
 }

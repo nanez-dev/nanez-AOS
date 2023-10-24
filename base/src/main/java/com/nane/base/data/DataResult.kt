@@ -8,6 +8,6 @@ import java.lang.Exception
 sealed class DataResult<out R> {
 
     class Success<out T>(val data: T) : DataResult<T>()
-    class Failed(val msg: String?) : DataResult<Nothing>()
+    class Failed(val msg: String?, val code: Int) : DataResult<Nothing>()
     class Error(val exception: Exception) : DataResult<Nothing>()
 }

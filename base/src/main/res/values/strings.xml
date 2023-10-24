@@ -13,4 +13,8 @@
     <string name="msg_hint_join">아직 나네를 시작하지 않으셨나요?</string>
     <string name="msg_hint_input_email">이메일을 입력해주세요</string>
     <string name="msg_hint_input_password">비밀번호를 입력해주세요</string>
+    <string name="msg_error_login_not_match_user">* 일치하는 정보가 없습니다. 아이디 및 비밀번호를 확인해주세요.</string>
+    <string name="msg_error_login_not_match_id_or_passward">* 아이디 또는 비밀번호가 일치하지 않습니다.</string>
+
+    <string name="msg_network_error">네트워크 통신에 실패하였습니다. 잠시 후 다시 시도해주세요.</string>
 </resources>

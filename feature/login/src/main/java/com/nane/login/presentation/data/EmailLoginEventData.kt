@@ -5,8 +5,6 @@ package com.nane.login.presentation.data
  */
 sealed class EmailLoginEventData {
     object LoginSuccess : EmailLoginEventData()
+    object NotFoundLoginInfo: EmailLoginEventData()
     object NotMatchLoginInfo: EmailLoginEventData()
-
-    object NotInputEmail : EmailLoginEventData()
-    object NotInputPassword : EmailLoginEventData()
 }
