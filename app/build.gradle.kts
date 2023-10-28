@@ -35,6 +35,7 @@ dependencies {
     implementation(project(mapOf("path" to ":network")))
     implementation(project(":feature:home"))
     implementation(project(":feature:login"))
+    implementation(project(":feature:join"))
 
     implementation(libs.bundles.module.app)
     kapt(libs.bundles.hilt.compile.kapt)

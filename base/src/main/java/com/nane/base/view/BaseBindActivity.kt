@@ -1,6 +1,7 @@
 package com.nane.base.view
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -14,6 +15,13 @@ abstract class BaseBindActivity<VIEW: ViewDataBinding, VM: ViewModel>(@LayoutRes
 
     abstract fun createViewModel(): VM
     abstract fun initActivity(dataBinding: VIEW, viewModel: VM)
+    abstract fun onActionBackPressed()
+
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            onActionBackPressed()
+        }
+    }
 
     private lateinit var _dataBinding: VIEW
     private lateinit var _viewModel: VM
@@ -34,6 +42,8 @@ abstract class BaseBindActivity<VIEW: ViewDataBinding, VM: ViewModel>(@LayoutRes
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        onBackPressedDispatcher.addCallback(this, callback)
+
         _dataBinding = DataBindingUtil.setContentView(this, layoutRes)
         _viewModel = createViewModel()
 

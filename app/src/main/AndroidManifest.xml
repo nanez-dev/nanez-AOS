@@ -32,70 +32,12 @@
             android:exported="false"/>
 
         <activity
-            android:name=".join.JoinActivity"
+            android:name="com.nane.join.presentation.view.JoinActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Nanez"
             android:windowSoftInputMode="adjustPan"
             android:exported="false"/>
-        <activity
-            android:name=".join.JoinEmailActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Nanez"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinEmailNumActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Nanez"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinPasswordActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Nanez"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinGenderActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Nanez"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinAgeActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Nanez"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinNicknameActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Nanez"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinScentActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Nanez"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false"/>
-        <activity
-            android:name=".join.JoinEventActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Nanez"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false"/>
-
-
 
     </application>
 

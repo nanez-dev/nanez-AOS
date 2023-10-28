@@ -18,7 +18,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/beige_50">
+                android:background="@color/BG_50">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgLogo"
@@ -71,7 +71,7 @@
                     android:layout_width="0dp"
                     android:layout_marginTop="8dp"
                     android:gravity="left"
-                    android:textColor="@color/red_500"
+                    android:textColor="@color/error_500"
                     android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="@id/editPassword"
                     app:layout_constraintRight_toRightOf="@id/editPassword"
@@ -80,12 +80,12 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/btnLogin"
-                    style="@style/Text_16_bold"
+                    style="@style/Body_16_B"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="32dp"
-                    android:background="@drawable/shape_mint_r20"
+                    android:background="@drawable/shape_brand500_r20"
                     android:foreground="@drawable/ripple_r20"
                     android:gravity="center"
                     android:paddingVertical="16dp"
@@ -111,7 +111,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txtJoinGuide"
-                        style="@style/Text_14"
+                        style="@style/Body_14_M"
                         android:layout_marginBottom="12dp"
                         android:text="@string/msg_hint_join"
                         android:textColor="@color/black_3"
@@ -122,17 +122,17 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/btnJoin"
-                        style="@style/Text_16_bold"
+                        style="@style/Body_16_B"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginBottom="30dp"
-                        android:background="@drawable/shape_beige_r20_mint_s1"
+                        android:background="@drawable/shape_bg50_r20_brand500_s1"
                         android:foreground="@drawable/ripple_r20"
                         android:gravity="center"
                         android:paddingVertical="16dp"
                         android:text="@string/label_join"
-                        android:textColor="@color/mint_500"
+                        android:textColor="@color/brand_500"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"

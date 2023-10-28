@@ -22,7 +22,6 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
                 setHomeImg(true)
                 setRightBtn(com.nane.base.R.drawable.icon_search)
                 actionListener = object : ActionbarView.ActionListener {
-                    override fun onClickBack() {}
                     override fun onClickRight() {
                         //임시 로그인 이동 페이지
                         activity?.let {

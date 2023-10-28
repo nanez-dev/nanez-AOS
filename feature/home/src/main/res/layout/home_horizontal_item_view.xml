@@ -37,7 +37,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtBrand"
-            style="@style/Text_14"
+            style="@style/Body_14_M"
             android:layout_marginTop="8dp"
             android:text="@{viewData.brandName}"
             app:layout_constraintHorizontal_bias="0"
@@ -48,7 +48,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtName"
-            style="@style/Text_16_bold"
+            style="@style/Body_16_B"
             android:layout_marginTop="4dp"
             android:text="@{viewData.name}"
             app:layout_constraintHorizontal_bias="0"
@@ -59,7 +59,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtVolume"
-            style="@style/Text_14"
+            style="@style/Body_14_M"
             android:layout_marginTop="4dp"
             android:text="@{viewData.capacity}"
             app:layout_constraintHorizontal_bias="0"
@@ -70,7 +70,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtContent"
-            style="@style/Text_14"
+            style="@style/Body_14_M"
             android:layout_width="0dp"
             android:layout_marginTop="12dp"
             android:ellipsize="end"

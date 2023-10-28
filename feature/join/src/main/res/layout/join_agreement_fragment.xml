@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgIcon"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="76dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_nane_icon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtMainTitle"
+                style="@style/Head_24_B"
+                android:layout_marginTop="20dp"
+                android:text="@string/fmt_msg_join_agreement_main_title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgIcon" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtSubTitle"
+                style="@style/Body_14_M"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/msg_join_agreement_sud_title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtMainTitle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnAllAgree"
+                style="@style/Head_18_B"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/shape_bg50_r12_line50_s1"
+                android:drawableLeft="@drawable/icon_check_vector"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/gray_300"
+                android:foreground="@drawable/ripple_r12"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"
+                android:text="@string/label_all_agree"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtSubTitle" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/vgServiceAgree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnAllAgree">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtServiceAgree"
+                    style="@style/Text_14_bold"
+                    android:layout_width="0dp"
+                    android:layout_marginRight="6dp"
+                    android:drawableLeft="@drawable/icon_check_vector"
+                    android:drawablePadding="12dp"
+                    android:drawableTint="@color/gray_300"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingVertical="14dp"
+                    android:paddingLeft="16dp"
+                    android:text="@string/fmt_label_join_agreement_service"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/txtDetail"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtDetail"
+                    style="@style/Detail_11_M"
+                    android:layout_marginRight="6dp"
+                    android:foreground="@drawable/ripple"
+                    android:padding="6dp"
+                    android:text="@string/label_detail_look"
+                    android:textColor="@color/gray_400"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/txtServiceAgree"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/vgPersonalAgree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vgServiceAgree">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtPersonalAgree"
+                    style="@style/Text_14_bold"
+                    android:layout_width="0dp"
+                    android:layout_marginRight="6dp"
+                    android:drawableLeft="@drawable/icon_check_vector"
+                    android:drawablePadding="12dp"
+                    android:drawableTint="@color/gray_300"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingVertical="14dp"
+                    android:paddingLeft="16dp"
+                    android:text="@string/fmt_label_join_agreement_personal"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/txtDetail2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtDetail2"
+                    style="@style/Detail_11_M"
+                    android:layout_marginRight="6dp"
+                    android:foreground="@drawable/ripple"
+                    android:padding="6dp"
+                    android:text="@string/label_detail_look"
+                    android:textColor="@color/gray_400"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/txtPersonalAgree"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/vgMarketingAgree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vgPersonalAgree">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtMarketingAgree"
+                    style="@style/Text_14_bold"
+                    android:layout_width="0dp"
+                    android:layout_marginRight="6dp"
+                    android:drawableLeft="@drawable/icon_check_vector"
+                    android:drawablePadding="12dp"
+                    android:drawableTint="@color/gray_300"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingVertical="14dp"
+                    android:paddingLeft="16dp"
+                    android:text="@string/label_join_agreement_marketing"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/txtDetail3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtDetail3"
+                    style="@style/Detail_11_M"
+                    android:layout_marginRight="6dp"
+                    android:foreground="@drawable/ripple"
+                    android:padding="6dp"
+                    android:text="@string/label_detail_look"
+                    android:textColor="@color/gray_400"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/txtMarketingAgree"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnDoAgree"
+                style="@style/Body_16_B"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/enable_gray300_brand500_r12"
+                android:foreground="@drawable/ripple_r12"
+                android:enabled="false"
+                android:gravity="center"
+                android:paddingVertical="16dp"
+                android:text="@string/label_do_agree"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vgMarketingAgree"
+                app:layout_constraintVertical_bias="1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

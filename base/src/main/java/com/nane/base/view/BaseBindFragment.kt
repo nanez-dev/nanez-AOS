@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -19,6 +20,12 @@ abstract class BaseBindFragment<VIEW: ViewDataBinding, VM: BaseViewModel>(@Layou
 
     abstract fun createViewModel(): VM
     abstract fun initFragment(dataBinding: VIEW, viewModel: VM)
+
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+
+        }
+    }
 
     private lateinit var _dataBinding: VIEW
     private lateinit var _viewModel: VM

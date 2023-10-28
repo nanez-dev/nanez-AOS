@@ -18,16 +18,11 @@ class ActionbarView @JvmOverloads constructor(context: Context, attr: AttributeS
 
     var actionListener: ActionListener? = null
     interface ActionListener {
-        fun onClickBack()
         fun onClickRight()
     }
 
     init {
         binding.apply {
-            btnBack.setOnClickListener {
-                actionListener?.onClickBack()
-            }
-
             btnRight.setOnClickListener {
                 actionListener?.onClickRight()
             }
@@ -44,6 +39,14 @@ class ActionbarView @JvmOverloads constructor(context: Context, attr: AttributeS
 
     fun setTitle(title: String?) {
         binding.txtTitle.text = title
+    }
+
+    fun setUseBackBtn(onAction: () -> Unit) {
+        binding.btnBack.visibility = View.VISIBLE
+        binding.btnBack.setOnClickListener {
+            onAction.invoke()
+        }
+
     }
 
     fun setRightBtn(@DrawableRes imgRes: Int) {

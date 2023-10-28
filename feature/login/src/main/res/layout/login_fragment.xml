@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/beige_50"
+        android:background="@color/BG_50"
         android:fitsSystemWindows="true">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -47,7 +47,7 @@
                     android:src="@drawable/icon_kakao" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Text_16_bold"
+                    style="@style/Body_16_B"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="14dp"
@@ -57,12 +57,12 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnOther"
-                style="@style/Text_16_bold"
+                style="@style/Body_16_B"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/shape_white_r12_beige2_s1"
+                android:background="@drawable/shape_white_r12_line50_s1"
                 android:foreground="@drawable/ripple_r12"
                 android:gravity="center"
                 android:paddingVertical="14dp"
@@ -84,7 +84,7 @@
                 app:layout_constraintRight_toRightOf="parent">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Text_14"
+                    style="@style/Body_14_M"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="게스트로 시작하기"
@@ -128,7 +128,7 @@
                     android:tint="@color/white"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Text_16_bold"
+                    style="@style/Body_16_B"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="14dp"
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/shape_white_r12_beige2_s1"
+                android:background="@drawable/shape_white_r12_line50_s1"
                 android:foreground="@drawable/ripple_r12"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -155,7 +155,7 @@
                     android:src="@drawable/icon_google" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Text_16_bold"
+                    style="@style/Body_16_B"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="14dp"
@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="40dp"
-                android:background="@drawable/shape_white_r12_beige2_s1"
+                android:background="@drawable/shape_white_r12_line50_s1"
                 android:foreground="@drawable/ripple_r12"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -182,7 +182,7 @@
                     android:src="@drawable/icon_email" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Text_16_bold"
+                    style="@style/Body_16_B"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="14dp"

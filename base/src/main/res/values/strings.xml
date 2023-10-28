@@ -17,4 +17,14 @@
     <string name="msg_error_login_not_match_id_or_passward">* 아이디 또는 비밀번호가 일치하지 않습니다.</string>
 
     <string name="msg_network_error">네트워크 통신에 실패하였습니다. 잠시 후 다시 시도해주세요.</string>
+    
+    
+    <string name="fmt_msg_join_agreement_main_title"><CDATA>안녕하세요, <font color="#65BFC4">나네</font>입니다.</CDATA></string>
+    <string name="msg_join_agreement_sud_title">나네 서비스 이용을 위한\n필수 이용 약관 동의가 필요합니다.</string>
+    <string name="label_all_agree">약관 전체 동의하기</string>
+    <string name="fmt_label_join_agreement_service"><CDATA><font color="#E82323">(필수)</font> 나네 서비스 이용 약관 동의</CDATA></string>
+    <string name="fmt_label_join_agreement_personal"><CDATA><font color="#E82323">(필수)</font> 개인정보 수집/이용 약관 동의</CDATA></string>
+    <string name="label_join_agreement_marketing">(선택) 홍보성 SMS/메일 수신 동의</string>
+    <string name="label_detail_look">보기</string>
+    <string name="label_do_agree">동의합니다</string>
 </resources>

@@ -43,13 +43,13 @@ class LoginActivity : BaseBindActivity<LoginActivityBinding, LoginActViewModel>(
     }
 
 
-    override fun onBackPressed() {
+    override fun onActionBackPressed() {
         supportFragmentManager.also {
             val fragment = it.findFragmentById(dataBinding?.container?.id ?: 0) as? BaseBindFragment<*, *>
             val isFragmentInterceptor = fragment?.onBackPressedInterceptor() ?: false
             if (!isFragmentInterceptor) { // fragment에서 interceptor하지 않았을때만 super.onBackPressed를 하도록 한다.
                 if (it.backStackEntryCount > 1) {
-                    super.onBackPressed()
+                    onBackPressedDispatcher.onBackPressed()
                 } else {
                     finish()
                 }

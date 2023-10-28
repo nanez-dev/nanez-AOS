@@ -5,6 +5,7 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.nane.base.view.BaseBindFragment
+import com.nane.join.presentation.view.JoinActivity
 import com.nane.login.R
 import com.nane.login.databinding.EmailLoginFragmentBinding
 import com.nane.login.presentation.data.EmailLoginEventData
@@ -35,7 +36,10 @@ class EmailLoginFragment : BaseBindFragment<EmailLoginFragmentBinding, EmailLogi
             }
 
             btnJoin.setOnClickListener {
-//                startActivity(Intent(this@EmailLoginActivity, JoinActivity::class.java))
+                activity?.let { act ->
+                    startActivity(JoinActivity.createIntent(act))
+                }
+
             }
 
             editEmail.addTextChangedListener(clearErrorTextWatcher)

@@ -79,8 +79,7 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
     }
 
 
-
-    override fun onBackPressed() {
+    override fun onActionBackPressed() {
         if(System.currentTimeMillis() - waitTime >=1500 ) {
             waitTime = System.currentTimeMillis()
             Toast.makeText(this, "뒤로가기 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
@@ -88,6 +87,5 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
             finish()
         }
     }
-
 
 }
