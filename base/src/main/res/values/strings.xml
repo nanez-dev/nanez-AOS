@@ -27,4 +27,11 @@
     <string name="label_join_agreement_marketing">(선택) 홍보성 SMS/메일 수신 동의</string>
     <string name="label_detail_look">보기</string>
     <string name="label_do_agree">동의합니다</string>
+    <string name="msg_join_email_auth_title">로그인에 사용할\n이메일을 입력해주세요!</string>
+    <string name="msg_join_email_auth_sub_title">아이디로 사용됩니다 :)</string>
+    <string name="msg_join_email_input_auth_hint">인증번호를 입력해주세요.</string>
+    <string name="label_email">이메일</string>
+    <string name="label_send_auth">인증번호 전송</string>
+    <string name="label_resend">재전송</string>
+    <string name="label_do_next">다음으로</string>
 </resources>

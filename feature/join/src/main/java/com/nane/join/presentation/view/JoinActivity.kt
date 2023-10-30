@@ -18,6 +18,9 @@ import org.techtown.nanez.utils.util.eventObserve
  */
 @AndroidEntryPoint
 class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.layout.join_activity) {
+
+    private var index = INDEX_AGREE
+
     override fun createViewModel() = viewModels<JoinActViewModel>().value
 
     override fun initActivity(dataBinding: JoinActivityBinding, viewModel: JoinActViewModel) {
@@ -35,7 +38,20 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
         viewModel.eventData.eventObserve(this) { event ->
             when (event) {
                 is JoinActEventData.MoveNextStep -> {
+                    index++
 
+                    when (index) {
+                        INDEX_AGREE -> {
+                            addFragment(dataBinding.container, tag = "JoinAgreementFragment") {
+                                JoinAgreementFragment()
+                            }
+                        }
+                        INDEX_AUTH -> {
+                            addFragment(dataBinding.container, tag = "JoinEmailAuthFragment") {
+                                JoinEmailAuthFragment()
+                            }
+                        }
+                    }
                 }
                 is JoinActEventData.ChangeProgressView -> {
                     dataBinding.progressView.setProgress(event.progress, true)
@@ -50,6 +66,7 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
             val isFragmentInterceptor = fragment?.onBackPressedInterceptor() ?: false
             if (!isFragmentInterceptor) { // fragment에서 interceptor하지 않았을때만 super.onBackPressed를 하도록 한다.
                 if (it.backStackEntryCount > 1) {
+                    index--
                     viewModel?.postPreStep()
                     onBackPressedDispatcher.onBackPressed()
                 } else {
@@ -61,6 +78,9 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
 
 
     companion object {
+
+        private const val INDEX_AGREE = 1
+        private const val INDEX_AUTH = 2
 
         fun createIntent(context: Context): Intent {
             return Intent(context, JoinActivity::class.java).apply {
