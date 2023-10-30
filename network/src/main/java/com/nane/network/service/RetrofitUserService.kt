@@ -1,5 +1,7 @@
 package com.nane.network.service
 
+import com.nane.network.api.users.JoinEmailAuthApi
+import com.nane.network.api.users.JoinVerifyAuthEmailCodeApi
 import org.techtown.nanez.data.api.users.EmailVerifyApi
 import org.techtown.nanez.data.api.users.SignInApi
 import org.techtown.nanez.data.api.users.SignUpApi
@@ -15,17 +17,17 @@ import retrofit2.http.Query
  */
 interface RetrofitUserService {
 
-    @POST("api/users/email-send")
-    suspend fun postValidationEmailCodeSend(@Body body: ValidationEmailApi.Body): Response<String>
-
-    @POST("api/users/email-verify")
-    suspend fun postEmailVerify(@Body body: EmailVerifyApi.Body): Response<Boolean>
-
     @POST("api/users/nickname-verify?nickname={nickname}")
     suspend fun postNicknameVerify(@Query("nickname") nickname: String): Response<Boolean>
 
     @POST("api/users/signup")
     suspend fun postSignUp(@Body body: SignUpApi.Body): Response<SignUpApi.Response>
+
+    @POST("api/users/email-send")
+    suspend fun postSendAuthEmail(@Body body: JoinEmailAuthApi.Body): Response<Boolean>
+
+    @POST("api/users/email-verify")
+    suspend fun postEmailVerify(@Body body: JoinVerifyAuthEmailCodeApi.Body): Response<Boolean>
 
     @POST("api/users/signin")
     suspend fun postSignIn(@Body body: SignInApi.Body): Response<SignInApi.Response>

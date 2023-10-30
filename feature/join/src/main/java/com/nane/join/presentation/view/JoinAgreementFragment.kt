@@ -4,6 +4,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.nane.base.view.BaseBindFragment
+import com.nane.base.viewmodel.BaseViewModel
 import com.nane.join.R
 import com.nane.join.databinding.JoinAgreementFragmentBinding
 import com.nane.join.presentation.viewmodel.JoinActViewModel
