@@ -1,0 +1,51 @@
+[colors 규칙]
+1. 기본적으로는 피그마에 있는 네이밍을 그대로 가져온다
+2. 만약, 컬러에 알파값이 붙어있으면 위 알파값 value를 참고해서 알파값+컬러값 조합으로 만든 뒤 이름 맨 뒤에 a알파값 을 붙여준다
+     ex) blue_500_a20 -> 블루 500 컬러에 알파 20%가 적용됨
+
+
+[strings 규칙]
+1. label_ => 짧은 단어들
+2. msg_ => 문장들
+3. fmt_ => HTMl 태그같은 특수 태그들이 사용되는 것들
+4. 만약, 해당 string이 특정 화면에서만 쓰인다면
+     => 단어종류(label/msg)_화면이름(home,join등등)_네이밍
+   범용적으로 쓰인다면 (확인,취소 등등)
+     => 단어종류(label/msg)_네이밍
+
+
+[class 규칙]
+1. 인터페이스 앞에는 I를 붙여 구분한다
+   ex) IHomeRemoteSource
+
+2. 인터페이스를 구현하는 구현체는 파일이름 뒤에 Impl를 붙여준다
+   ex) HomeRemoteSourceImpl
+
+3. layout xml파일과 해당 xml과 연결되는 class는 이름을 똑같이 해준다
+   ex) home_fragment.xml / HomeFragment
+
+
+[drawable 규칙]
+1. 리소스 파일
+ - icon_ => 간단한 아이콘 파일들
+ - img_ => 그외 이미지 파일들
+ - 이미지는 png로 받으며 xhdpi / xxhdpi 두가지 파일을 받아서 drawable-xhdpi / drawable-xxhdpi 에 각각 넣어준다
+ - 만약, 동일한 이미지인데 이미지의 색상만 다른경우는 svg 파일을 받은 다음 drawable 폴더에 vector로 변환하여 넣고 코드상에서 tint를 적용하여 색상만 변경한다
+   추가로, vector로 바꾼 파일은 이름 뒤에 _vector를 붙여준다
+     ex) icon_check_vector.xml
+
+2. shape 파일
+ - shape_모양_백그라운드컬러_코너라운딩값_라인컬러_라인굵기 의 형식을 가진다.
+   - 모양 : 모양은 rect 와 oval 이 있으며, rect의 경우는 기본적으로 _모양 부분은 생략하며, 그외는 이름을 표기해준다.
+     ex) shape_oval_~ => oval형식의 shape
+         shape_~ => rect 형식의 shape
+
+   - 백그라운드 컬러 : 해당 shape의 기본 바탕색
+   - 코너 라운딩 값 : shape에 모서리 부분에 대한 r값
+      ex) shape_~_r20_~ => 모서리 전체가 라운딩 20값인 shape
+   - 라인컬러 : shape에 라인이 있는 경우 해당 라인의 컬러
+   - 라인 굵기 : shape에 라인이 있는 경우 해당 라인의 굵기
+
+   ex) shape_bg50_r20_brand500_s1 => rect 모양의 배경색은 bg50이고 전체 모서리는 20값이며 라인이 있고 라인의 색은 brand500 이며 해당 굵기는 1
+       shape_bg50_r10 => rect 모양의 배경색은 bg50이고 전체 모서리는 20값이며 라인은 없음
+
