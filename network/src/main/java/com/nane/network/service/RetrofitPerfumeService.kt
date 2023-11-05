@@ -14,8 +14,6 @@ interface RetrofitPerfumeService {
     @GET("api/perfume/main")
     suspend fun getHomeInfo(): Response<HomeApi.Response>
 
-    // 코루틴 -> suspend fun이라고 명시를 해주어야 함
     @GET("api/perfume/my-list")
     suspend fun getMyList(@Query("btn") type: String?): Response<String>
-
 }
