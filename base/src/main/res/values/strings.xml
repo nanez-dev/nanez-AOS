@@ -35,4 +35,6 @@
     <string name="label_auth_verify">인증 확인</string>
     <string name="label_resend">재전송</string>
     <string name="label_do_next">다음으로</string>
+
+    <string name="msg_storage_nothing">아직 찜한 향수가 없습니다.</string>
 </resources>

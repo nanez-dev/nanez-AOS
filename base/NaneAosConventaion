@@ -31,7 +31,7 @@
  - img_ => 그외 이미지 파일들
  - 이미지는 png로 받으며 xhdpi / xxhdpi 두가지 파일을 받아서 drawable-xhdpi / drawable-xxhdpi 에 각각 넣어준다
  - 만약, 동일한 이미지인데 이미지의 색상만 다른경우는 svg 파일을 받은 다음 drawable 폴더에 vector로 변환하여 넣고 코드상에서 tint를 적용하여 색상만 변경한다
-   추가로, vector로 바꾼 파일은 이름 뒤에 _vector를 붙여준다
+   추가로, vector로 바꾼 파일은 이름 뒤에 _vector를 붙여준다(drawble 폴더 우클릭 후 vertor asset -> xml 파일에서 drawableHint에서 색깔 변경 가능)
      ex) icon_check_vector.xml
 
 2. shape 파일
@@ -47,5 +47,6 @@
    - 라인 굵기 : shape에 라인이 있는 경우 해당 라인의 굵기
 
    ex) shape_bg50_r20_brand500_s1 => rect 모양의 배경색은 bg50이고 전체 모서리는 20값이며 라인이 있고 라인의 색은 brand500 이며 해당 굵기는 1
+        (s : stroke의 약자)
        shape_bg50_r10 => rect 모양의 배경색은 bg50이고 전체 모서리는 20값이며 라인은 없음
 
