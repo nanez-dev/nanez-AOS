@@ -66,15 +66,14 @@ class EmailLoginFragment : BaseBindFragment<EmailLoginFragmentBinding, EmailLogi
             txtError.text = msg
             txtError.visibility = View.VISIBLE
 
-            editEmail.background = ResUtils.getDrawable(context, com.nane.base.R.drawable.shape_white_r20_red500_s1)
-            editPassword.background = ResUtils.getDrawable(context, com.nane.base.R.drawable.shape_white_r20_red500_s1)
+            editEmail.background = ResUtils.getDrawable(context, com.nane.base.R.drawable.shape_white_r20_error500_s1)
+            editPassword.background = ResUtils.getDrawable(context, com.nane.base.R.drawable.shape_white_r20_error500_s1)
         }
     }
 
     private fun clearErrorView() {
         dataBinding?.run {
             txtError.visibility = View.GONE
-
 
             editEmail.background = ResUtils.getDrawable(context, com.nane.base.R.drawable.shape_white_r20_gray3_s1)
             editPassword.background = ResUtils.getDrawable(context, com.nane.base.R.drawable.shape_white_r20_gray3_s1)

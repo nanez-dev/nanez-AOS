@@ -51,6 +51,12 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
                                 JoinEmailAuthFragment()
                             }
                         }
+                        INDEX_PASSWORD -> {
+                            addFragment(dataBinding.container, tag = "JoinPasswordFragment") {
+                                JoinPasswordFragment()
+                            }
+                        }
+                        else -> {}
                     }
                 }
                 is JoinActEventData.ChangeProgressView -> {
@@ -81,6 +87,7 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
 
         private const val INDEX_AGREE = 1
         private const val INDEX_AUTH = 2
+        private const val INDEX_PASSWORD = 3
 
         fun createIntent(context: Context): Intent {
             return Intent(context, JoinActivity::class.java).apply {

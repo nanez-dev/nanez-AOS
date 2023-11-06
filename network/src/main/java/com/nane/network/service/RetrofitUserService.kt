@@ -2,10 +2,8 @@ package com.nane.network.service
 
 import com.nane.network.api.users.JoinEmailAuthApi
 import com.nane.network.api.users.JoinVerifyAuthEmailCodeApi
-import org.techtown.nanez.data.api.users.EmailVerifyApi
 import org.techtown.nanez.data.api.users.SignInApi
-import org.techtown.nanez.data.api.users.SignUpApi
-import org.techtown.nanez.data.api.users.ValidationEmailApi
+import com.nane.network.api.users.SignUpApi
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE

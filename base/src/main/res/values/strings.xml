@@ -7,12 +7,14 @@
     <string name="label_mypage">마이페이지</string>
     <string name="label_login">로그인</string>
     <string name="label_join">회원가입</string>
+    <string name="label_password">비밀번호</string>
 
     <string name="msg_home_search">지금 나에게 맞는 향수를 찾아보세요</string>
 
     <string name="msg_hint_join">아직 나네를 시작하지 않으셨나요?</string>
     <string name="msg_hint_input_email">이메일을 입력해주세요</string>
     <string name="msg_hint_input_password">비밀번호를 입력해주세요</string>
+    <string name="msg_hint_input_password_check">비밀번호를 다시 한 번 입력해주세요.</string>
     <string name="msg_error_login_not_match_user">* 일치하는 정보가 없습니다. 아이디 및 비밀번호를 확인해주세요.</string>
     <string name="msg_error_login_not_match_id_or_passward">* 아이디 또는 비밀번호가 일치하지 않습니다.</string>
 
@@ -35,4 +37,8 @@
     <string name="label_auth_verify">인증 확인</string>
     <string name="label_resend">재전송</string>
     <string name="label_do_next">다음으로</string>
+    <string name="msg_join_password_title">로그인에 사용할\n비밀번호를 입력해주세요!</string>
+    <string name="msg_join_password_sub_title">비밀번호는 영문+숫자 조합의 8~20자리입니다:)</string>
+    <string name="msg_error_not_same_password">* 비밀번호가 일치하지 않습니다.</string>
+    <string name="msg_error_not_patten_password">* 비밀번호는 영문+숫자 조합의 8~20자리입니다.</string>
 </resources>

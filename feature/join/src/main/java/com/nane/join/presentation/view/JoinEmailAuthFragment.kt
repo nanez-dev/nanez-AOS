@@ -92,7 +92,7 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
             }
         }
 
-        viewModel.eventData.eventObserve(viewLifecycleOwner) { event ->
+        viewModel.emailAuthEventData.eventObserve(viewLifecycleOwner) { event ->
             if (!isAdded) {
                 return@eventObserve
             }

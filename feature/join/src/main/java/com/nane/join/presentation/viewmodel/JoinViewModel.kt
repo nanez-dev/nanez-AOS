@@ -7,9 +7,11 @@ import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
 import com.nane.join.domain.usecase.JoinUseCase
 import com.nane.join.presentation.data.JoinEmailAuthEventData
+import com.nane.join.presentation.data.JoinPasswordEventData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.util.Event
+import org.techtown.nanez.utils.util.ResUtils
 import org.techtown.nanez.utils.util.post
 import javax.inject.Inject
 
@@ -21,8 +23,11 @@ class JoinViewModel @Inject constructor(
     private val useCase: JoinUseCase
 ) : BaseViewModel() {
 
-    private val _eventData by lazy { MutableLiveData<Event<JoinEmailAuthEventData>>() }
-    val eventData: LiveData<Event<JoinEmailAuthEventData>> = _eventData
+    private val _emailAuthEventData by lazy { MutableLiveData<Event<JoinEmailAuthEventData>>() }
+    val emailAuthEventData: LiveData<Event<JoinEmailAuthEventData>> = _emailAuthEventData
+
+    private val _passwordEventData by lazy { MutableLiveData<Event<JoinPasswordEventData>>() }
+    val passwordEventData: LiveData<Event<JoinPasswordEventData>> = _passwordEventData
 
 
     fun sendAuthEmail(email: String) {
@@ -30,13 +35,13 @@ class JoinViewModel @Inject constructor(
             useCase.postSendAuthEmail(email).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        _eventData.post(Event(JoinEmailAuthEventData.SendEmailAuthResult(result.data)))
+                        _emailAuthEventData.post(Event(JoinEmailAuthEventData.SendEmailAuthResult(result.data)))
                     }
                     is DomainResult.Error -> {
-                        _eventData.post(Event(JoinEmailAuthEventData.SendEmailAuthResult(false)))
+                        _emailAuthEventData.post(Event(JoinEmailAuthEventData.SendEmailAuthResult(false)))
                     }
                     is DomainResult.Failed -> {
-                        _eventData.post(Event(JoinEmailAuthEventData.SendEmailAuthResult(false)))
+                        _emailAuthEventData.post(Event(JoinEmailAuthEventData.SendEmailAuthResult(false)))
                     }
                 }
             }
@@ -48,17 +53,36 @@ class JoinViewModel @Inject constructor(
             useCase.checkAuthEmailCode(code, email).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        _eventData.post(Event(JoinEmailAuthEventData.VerifyCheck(result.data)))
+                        _emailAuthEventData.post(Event(JoinEmailAuthEventData.VerifyCheck(result.data)))
                     }
                     is DomainResult.Error -> {
-                        _eventData.post(Event(JoinEmailAuthEventData.VerifyCheck(false)))
+                        _emailAuthEventData.post(Event(JoinEmailAuthEventData.VerifyCheck(false)))
                     }
                     is DomainResult.Failed -> {
-                        _eventData.post(Event(JoinEmailAuthEventData.VerifyCheck(false)))
+                        _emailAuthEventData.post(Event(JoinEmailAuthEventData.VerifyCheck(false)))
                     }
                 }
             }
         }
     }
 
+
+    fun checkSamePassword(password: String, passwordCheck: String) {
+        val result = useCase.checkSamePassword(password, passwordCheck)
+        if (!result) {
+            _passwordEventData.post(Event(JoinPasswordEventData.ShowErrorView(ResUtils.instance.getString(com.nane.base.R.string.msg_error_not_same_password))))
+        } else {
+            checkPasswordPatten(password)
+        }
+    }
+
+    private fun checkPasswordPatten(password: String) {
+        val result = useCase.checkPasswordPatten(password)
+        if (!result) {
+            _passwordEventData.post(Event(JoinPasswordEventData.ShowErrorView(ResUtils.instance.getString(com.nane.base.R.string.msg_error_not_patten_password))))
+        } else {
+            _passwordEventData.post(Event(JoinPasswordEventData.ShowErrorView(null)))
+        }
+        _passwordEventData.post(Event(JoinPasswordEventData.EnableNextBtn(result)))
+    }
 }

@@ -6,6 +6,7 @@ import com.nane.join.domain.repo.IJoinRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 /**
@@ -14,6 +15,8 @@ import javax.inject.Inject
 class JoinUseCase @Inject constructor(
     private val repository: IJoinRepository
 ) {
+
+    private val passwordPatten by lazy { "^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,20}\$" }
 
     suspend fun postSendAuthEmail(email: String): Flow<DomainResult<Boolean>> = flow {
         repository.postSendAuthEmail(email).collect { result ->
@@ -46,4 +49,8 @@ class JoinUseCase @Inject constructor(
             }
         }
     }
+
+    fun checkSamePassword(password: String, passwordCheck: String) = password == passwordCheck
+
+    fun checkPasswordPatten(password: String) = Pattern.compile(passwordPatten).matcher(password).matches()
 }

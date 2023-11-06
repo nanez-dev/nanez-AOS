@@ -1,4 +1,4 @@
-package org.techtown.nanez.data.api.users
+package com.nane.network.api.users
 
 import androidx.annotation.Keep
 
