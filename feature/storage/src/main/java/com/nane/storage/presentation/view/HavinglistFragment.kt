@@ -1,4 +1,6 @@
 package com.nane.storage.presentation.view
 
-class HavinglistFragment {
+import androidx.fragment.app.Fragment
+
+class HavinglistFragment : Fragment() {
 }

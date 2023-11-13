@@ -15,5 +15,5 @@ interface RetrofitPerfumeService {
     suspend fun getHomeInfo(): Response<HomeApi.Response>
 
     @GET("api/perfume/my-list")
-    suspend fun getMyList(@Query("btn") type: String?): Response<String>
+    suspend fun getMyList(@Query("btn") type: String?): Response<StorageApi.Response>
 }
