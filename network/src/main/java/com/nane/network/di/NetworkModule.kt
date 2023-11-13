@@ -1,15 +1,14 @@
 package com.nane.network.di
 
+import com.nane.network.service.RetrofitAccordService
+import com.nane.network.service.RetrofitBrandService
+import com.nane.network.service.RetrofitPerfumeService
+import com.nane.network.service.RetrofitUserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import com.nane.network.service.RetrofitAccordService
-import com.nane.network.service.RetrofitPerfumeService
-import com.nane.network.service.RetrofitUserService
-import org.techtown.nanez.utils.NaneLog
 import retrofit2.Retrofit
-import retrofit2.create
 import javax.inject.Singleton
 
 /**
@@ -29,6 +28,12 @@ object NetworkModule {
     @Singleton
     fun provideAccordService(retrofit: Retrofit): RetrofitAccordService {
         return retrofit.create(RetrofitAccordService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBrandService(retrofit: Retrofit): RetrofitBrandService {
+        return retrofit.create(RetrofitBrandService::class.java)
     }
 
     @Provides
