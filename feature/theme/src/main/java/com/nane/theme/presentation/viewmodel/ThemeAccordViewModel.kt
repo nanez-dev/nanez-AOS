@@ -27,22 +27,18 @@ class ThemeAccordViewModel @Inject constructor(
     val allAccordsViewDataList: LiveData<List<AccordViewData>>
         get() = _allAccordsViewDataList
 
-    fun getAccordViewData() {
+    fun getPopularAccordViewData() {
         viewModelScope.launch {
             // 최근 사랑받는 어코드 가져오기
         }
+    }
 
-        // 모든 어코드 가져오기
+    fun getAllAccordViewData() {
         viewModelScope.launch {
             allAccordsUsecase.getAllAccords().collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        _allAccordsViewDataList
-                            .post(
-                                mapper.toViewData(result.data).sortedWith(
-                                    compareBy { it.id }
-                                )
-                            )
+                        _allAccordsViewDataList.post(mapper.toViewData(result.data))
                     }
                     is DomainResult.Failed -> {
 

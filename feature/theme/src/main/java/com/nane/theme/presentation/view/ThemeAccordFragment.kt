@@ -17,15 +17,13 @@ import org.techtown.nanez.utils.util.toDp
 @AndroidEntryPoint
 class ThemeAccordFragment : BaseBindFragment<ThemeAccordFragmentBinding, ThemeAccordViewModel>(R.layout.theme_accord_fragment) {
 
-    private var allAccordsWidth = 0
     private val accordItemWidth = 64.toDp()
     private var spanCount = 5
 
     override fun createViewModel(): ThemeAccordViewModel = viewModels<ThemeAccordViewModel>().value
 
     override fun initFragment(dataBinding: ThemeAccordFragmentBinding, viewModel: ThemeAccordViewModel) {
-        allAccordsWidth = ResUtils.displayMetrics.widthPixels
-        spanCount = allAccordsWidth / accordItemWidth - 1
+        spanCount = ResUtils.displayMetrics.widthPixels / accordItemWidth - 1
 
         dataBinding.apply {
             with(actionBar) {
@@ -39,14 +37,14 @@ class ThemeAccordFragment : BaseBindFragment<ThemeAccordFragmentBinding, ThemeAc
             }
 
             with(rvPopularAccords) {
-                adapter ?: PopularAccordsAdapter {}.apply { adapter = this }
+                adapter ?: PopularAccordsAdapter().apply { adapter = this }
                 layoutManager ?: LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply { layoutManager = this }
-                addItemDecoration(PopularAccordItemDecoration())
+                if (itemDecorationCount == 0) addItemDecoration(PopularAccordItemDecoration())
             }
 
             with(rvAllAccords) {
-                adapter ?: AllAccordsAdapter {}.apply { adapter = this }
-                layoutManager ?: GridLayoutManager(context, spanCount).apply { layoutManager = this }
+                adapter ?: AllAccordsAdapter().apply { adapter = this }
+                if (itemDecorationCount == 0) layoutManager ?: GridLayoutManager(context, spanCount).apply { layoutManager = this }
             }
         }
         
@@ -58,6 +56,7 @@ class ThemeAccordFragment : BaseBindFragment<ThemeAccordFragmentBinding, ThemeAc
             (dataBinding.rvAllAccords.adapter as? AllAccordsAdapter)?.setItemList(it)
         }
 
-        viewModel.getAccordViewData()
+        viewModel.getPopularAccordViewData()
+        viewModel.getAllAccordViewData()
     }
 }

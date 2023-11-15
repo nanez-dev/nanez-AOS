@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.nane.theme.databinding.ThemePopularAccordItemViewBinding
 import com.nane.theme.presentation.data.AccordViewData
 
-class PopularAccordsAdapter(val onItemClick: () -> Unit): Adapter<PopularAccordsAdapter.PopularAccordViewHolder>() {
+class PopularAccordsAdapter : Adapter<PopularAccordsAdapter.PopularAccordViewHolder>() {
 
     private var itemList: List<AccordViewData> = emptyList()
 
@@ -27,8 +27,14 @@ class PopularAccordsAdapter(val onItemClick: () -> Unit): Adapter<PopularAccords
 
     inner class PopularAccordViewHolder(private val binding: ThemePopularAccordItemViewBinding): ViewHolder(binding.root) {
 
-        init {
+    }
 
-        }
+    private var onItemClickListener: ItemClickListener? = null
+    fun setOnItemClickListener(itemClickListener: ItemClickListener) {
+        onItemClickListener = itemClickListener
+    }
+
+    interface ItemClickListener {
+        fun onItemClick()
     }
 }

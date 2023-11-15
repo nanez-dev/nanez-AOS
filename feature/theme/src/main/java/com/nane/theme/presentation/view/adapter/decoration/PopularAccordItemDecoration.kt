@@ -17,13 +17,19 @@ class PopularAccordItemDecoration: RecyclerView.ItemDecoration() {
         val position = parent.getChildAdapterPosition(view)
         val itemCount = state.itemCount
 
-        if (position == 0) {
-            outRect.left = 20.toDp()
-            outRect.right = 8.toDp()
-        } else if (position == itemCount-1) {
-            outRect.right = 20.toDp()
-        } else {
-            outRect.right = 8.toDp()
+        when (position) {
+            0 -> {
+                outRect.left = 20.toDp()
+                outRect.right = 8.toDp()
+            }
+
+            itemCount - 1 -> {
+                outRect.right = 20.toDp()
+            }
+
+            else -> {
+                outRect.right = 8.toDp()
+            }
         }
     }
 }

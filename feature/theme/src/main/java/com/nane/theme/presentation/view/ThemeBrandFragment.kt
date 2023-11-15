@@ -32,15 +32,15 @@ class ThemeBrandFragment : BaseBindFragment<ThemeBrandFragmentBinding, ThemeBran
             }
 
             with(rvPopularBrands) {
-                adapter ?: PopularBrandsAdapter {}.apply { adapter = this }
+                adapter ?: PopularBrandsAdapter().apply { adapter = this }
                 layoutManager ?: LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply { layoutManager = this }
-                addItemDecoration(PopularBrandItemDecoration())
+                if (itemDecorationCount == 0) addItemDecoration(PopularBrandItemDecoration())
             }
 
             with(rvAllBrands) {
                 adapter ?: AllBrandsAdapter {}.apply { adapter = this }
                 layoutManager ?: GridLayoutManager(context, 2).apply { layoutManager = this }
-                addItemDecoration(AllBrandItemDecoration())
+                if (itemDecorationCount == 0) addItemDecoration(AllBrandItemDecoration())
             }
         }
         
@@ -52,6 +52,7 @@ class ThemeBrandFragment : BaseBindFragment<ThemeBrandFragmentBinding, ThemeBran
             (dataBinding.rvAllBrands.adapter as? AllBrandsAdapter)?.setItemList(it)
         }
 
-        viewModel.getBrandViewData()
+        viewModel.getPopularBrandViewData()
+        viewModel.getAllBrandViewData()
     }
 }

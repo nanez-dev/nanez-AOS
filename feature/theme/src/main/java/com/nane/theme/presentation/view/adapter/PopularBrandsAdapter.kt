@@ -8,7 +8,7 @@ import com.nane.theme.BR
 import com.nane.theme.databinding.ThemePopularBrandItemViewBinding
 import com.nane.theme.presentation.data.BrandViewData
 
-class PopularBrandsAdapter(val onItemClick: () -> Unit): Adapter<PopularBrandsAdapter.PopularBrandViewHolder>() {
+class PopularBrandsAdapter : Adapter<PopularBrandsAdapter.PopularBrandViewHolder>() {
 
     private var itemList: List<BrandViewData> = emptyList()
 
@@ -24,12 +24,12 @@ class PopularBrandsAdapter(val onItemClick: () -> Unit): Adapter<PopularBrandsAd
     override fun getItemCount(): Int = itemList.size
 
     override fun onBindViewHolder(holder: PopularBrandViewHolder, position: Int) {
-        holder.onBind(itemList[position])
+        holder.onBind(itemList.getOrNull(position))
     }
 
     inner class PopularBrandViewHolder(private val binding: ThemePopularBrandItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: BrandViewData) {
+        fun onBind(data: BrandViewData?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }
@@ -37,5 +37,14 @@ class PopularBrandsAdapter(val onItemClick: () -> Unit): Adapter<PopularBrandsAd
         init {
 
         }
+    }
+
+    private var onItemClickListener: ItemClickListener? = null
+    fun setOnItemClickListener(itemClickListener: ItemClickListener) {
+        onItemClickListener = itemClickListener
+    }
+
+    interface ItemClickListener {
+        fun onItemClick()
     }
 }

@@ -24,20 +24,23 @@ class AllBrandsAdapter(val onItemClick: () -> Unit): Adapter<AllBrandsAdapter.Br
     override fun getItemCount(): Int = itemList.size
 
     override fun onBindViewHolder(holder: BrandViewHolder, position: Int) {
-        holder.onBind(itemList[position])
+        holder.onBind(itemList.getOrNull(position))
     }
 
     inner class BrandViewHolder(private val binding: ThemeAllBrandItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: BrandViewData) {
+        fun onBind(data: BrandViewData?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }
+    }
 
-        init {
-            binding.imgTheme.setOnClickListener {
-                onItemClick.invoke()
-            }
-        }
+    private var onItemClickListener: ItemClickListener? = null
+    fun setOnItemClickListener(itemClickListener: ItemClickListener) {
+        onItemClickListener = itemClickListener
+    }
+
+    interface ItemClickListener {
+        fun onItemClick()
     }
 }

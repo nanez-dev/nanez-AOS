@@ -29,17 +29,12 @@ class ThemeBrandViewModel @Inject constructor(
     val allBrandsViewDataList: LiveData<List<BrandViewData>>
         get() = _allBrandsViewDataList
 
-    fun getBrandViewData() {
+    fun getPopularBrandViewData() {
         viewModelScope.launch {
             popularBrandsUsecase.getPopularBrands().collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        _popularBrandsViewDataList
-                            .post(
-                                mapper.toViewData(result.data).sortedWith(
-                                    compareBy { it.id }
-                                )
-                            )
+                        _popularBrandsViewDataList.post(mapper.toViewData(result.data))
                     }
                     is DomainResult.Failed -> {
 
@@ -50,23 +45,20 @@ class ThemeBrandViewModel @Inject constructor(
                 }
             }
         }
+    }
 
+    fun getAllBrandViewData() {
         viewModelScope.launch {
             allBrandsUsecase.getAllBrands().collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        _allBrandsViewDataList
-                            .post(
-                                mapper.toViewData(result.data).sortedWith(
-                                    compareBy { it.id }
-                                )
-                            )
+                        _allBrandsViewDataList.post(mapper.toViewData(result.data))
                     }
                     is DomainResult.Failed -> {
 
                     }
                     is DomainResult.Error -> {
-                        
+
                     }
                 }
             }

@@ -8,7 +8,7 @@ import com.nane.theme.BR
 import com.nane.theme.databinding.ThemeAllAccordItemViewBinding
 import com.nane.theme.presentation.data.AccordViewData
 
-class AllAccordsAdapter(val onItemClick: () -> Unit): Adapter<AllAccordsAdapter.AllAccordViewHolder>() {
+class AllAccordsAdapter : Adapter<AllAccordsAdapter.AllAccordViewHolder>() {
 
     private var itemList: List<AccordViewData> = emptyList()
 
@@ -24,18 +24,23 @@ class AllAccordsAdapter(val onItemClick: () -> Unit): Adapter<AllAccordsAdapter.
     override fun getItemCount(): Int = itemList.size
 
     override fun onBindViewHolder(holder: AllAccordViewHolder, position: Int) {
-        holder.onBind(itemList[position])
+        holder.onBind(itemList.getOrNull(position))
     }
 
     inner class AllAccordViewHolder(private val binding: ThemeAllAccordItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: AccordViewData) {
+        fun onBind(data: AccordViewData?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }
+    }
 
-        init {
+    private var onItemClickListener: ItemClickListener? = null
+    fun setOnItemClickListener(itemClickListener: ItemClickListener) {
+        onItemClickListener = itemClickListener
+    }
 
-        }
+    interface ItemClickListener {
+        fun onItemClick()
     }
 }
