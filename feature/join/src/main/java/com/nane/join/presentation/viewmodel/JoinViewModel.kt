@@ -7,6 +7,7 @@ import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
 import com.nane.join.domain.usecase.JoinUseCase
 import com.nane.join.presentation.data.JoinEmailAuthEventData
+import com.nane.join.presentation.data.JoinNickNameEventData
 import com.nane.join.presentation.data.JoinPasswordEventData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -29,6 +30,8 @@ class JoinViewModel @Inject constructor(
     private val _passwordEventData by lazy { MutableLiveData<Event<JoinPasswordEventData>>() }
     val passwordEventData: LiveData<Event<JoinPasswordEventData>> = _passwordEventData
 
+    private val _nickNameEventData by lazy { MutableLiveData<Event<JoinNickNameEventData>>() }
+    val nickNameEventData: LiveData<Event<JoinNickNameEventData>> = _nickNameEventData
 
     fun sendAuthEmail(email: String) {
         viewModelScope.launch {
@@ -56,10 +59,10 @@ class JoinViewModel @Inject constructor(
                         _emailAuthEventData.post(Event(JoinEmailAuthEventData.VerifyCheck(result.data)))
                     }
                     is DomainResult.Error -> {
-                        _emailAuthEventData.post(Event(JoinEmailAuthEventData.VerifyCheck(false)))
+
                     }
                     is DomainResult.Failed -> {
-                        _emailAuthEventData.post(Event(JoinEmailAuthEventData.VerifyCheck(false)))
+
                     }
                 }
             }
@@ -84,5 +87,24 @@ class JoinViewModel @Inject constructor(
             _passwordEventData.post(Event(JoinPasswordEventData.ShowErrorView(null)))
         }
         _passwordEventData.post(Event(JoinPasswordEventData.EnableNextBtn(result)))
+    }
+
+
+    fun checkNickNameVerify(nickName: String) {
+        viewModelScope.launch {
+            useCase.checkNickNameVerify(nickName).collect { result ->
+                when (result) {
+                    is DomainResult.Success -> {
+                        _nickNameEventData.post(Event(JoinNickNameEventData.VerifyResult(result.data)))
+                    }
+                    is DomainResult.Error -> {
+
+                    }
+                    is DomainResult.Failed -> {
+
+                    }
+                }
+            }
+        }
     }
 }

@@ -20,4 +20,8 @@ class JoinRemoteSourceImpl @Inject constructor(
     override suspend fun postCheckAuthEmailCode(body: JoinVerifyAuthEmailCodeApi.Body): Response<Boolean> {
         return userService.postEmailVerify(body)
     }
+
+    override suspend fun postCheckNickNameVerify(nickName: String): Response<Boolean> {
+        return userService.postNicknameVerify(nickName)
+    }
 }

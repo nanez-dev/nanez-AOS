@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nane.base.viewmodel.BaseViewModel
 import com.nane.join.presentation.data.JoinActEventData
+import com.nane.join.presentation.data.JoinUserViewData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.techtown.nanez.utils.util.Event
 import org.techtown.nanez.utils.util.post
@@ -18,6 +19,7 @@ import kotlin.math.max
 class JoinActViewModel @Inject constructor() : BaseViewModel() {
 
     private var totalProgress = 15
+    private val joinUserViewData by lazy { JoinUserViewData() }
 
     private val _eventData by lazy { MutableLiveData<Event<JoinActEventData>>() }
     val eventData: LiveData<Event<JoinActEventData>> = _eventData

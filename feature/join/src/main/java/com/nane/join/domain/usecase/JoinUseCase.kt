@@ -53,4 +53,20 @@ class JoinUseCase @Inject constructor(
     fun checkSamePassword(password: String, passwordCheck: String) = password == passwordCheck
 
     fun checkPasswordPatten(password: String) = Pattern.compile(passwordPatten).matcher(password).matches()
+
+    suspend fun checkNickNameVerify(nickName: String): Flow<DomainResult<Boolean>> = flow {
+        repository.postCheckNickNameVerify(nickName).collect { result ->
+            when (result) {
+                is DataResult.Success -> {
+                    emit(DomainResult.Success(result.data))
+                }
+                is DataResult.Failed -> {
+                    emit(DomainResult.Failed(result.msg, result.code))
+                }
+                is DataResult.Error -> {
+                    emit(DomainResult.Error(result.exception))
+                }
+            }
+        }
+    }
 }

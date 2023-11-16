@@ -56,6 +56,11 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
                                 JoinPasswordFragment()
                             }
                         }
+                        INDEX_NICKNAME -> {
+                            addFragment(dataBinding.container, tag = "JoinNickNameFragment") {
+                                JoinNickNameFragment()
+                            }
+                        }
                         else -> {}
                     }
                 }
@@ -88,6 +93,7 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
         private const val INDEX_AGREE = 1
         private const val INDEX_AUTH = 2
         private const val INDEX_PASSWORD = 3
+        private const val INDEX_NICKNAME = 4
 
         fun createIntent(context: Context): Intent {
             return Intent(context, JoinActivity::class.java).apply {

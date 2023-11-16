@@ -51,4 +51,21 @@ class JoinRepositoryImpl @Inject constructor(
         emit(DataResult.Error(Exception(t)))
     }.flowOn(Dispatchers.IO)
 
+
+    override suspend fun postCheckNickNameVerify(nickName: String): Flow<DataResult<Boolean>> = flow {
+        val response = remoteSource.postCheckNickNameVerify(nickName)
+        if (response.isSuccessful) {
+            response.body()?.let {
+                emit(DataResult.Success(it))
+            } ?: run {
+                emit(DataResult.Success(false))
+            }
+        } else {
+            val failed = getParseErrorResult(response)
+            emit(DataResult.Failed(failed.errorMsg, failed.errorCode))
+        }
+    }.catch { t ->
+        emit(DataResult.Error(Exception(t)))
+    }.flowOn(Dispatchers.IO)
+
 }
