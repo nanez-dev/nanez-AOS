@@ -1,27 +1,26 @@
 package com.nane.storage.presentation.view.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nane.network.api.storage.StorageApi
 import com.nane.storage.R
 import com.nane.storage.BR
 import com.nane.storage.databinding.WishlistRecyclerviewBinding
+import com.nane.storage.presentation.data.StorageViewData
 
-class StorageWishlistAdapter : RecyclerView.Adapter<StorageWishlistAdapter.ViewHolder>() {
+class WishlistAdapter : RecyclerView.Adapter<WishlistAdapter.ViewHolder>() {
 
-    private var dataSet : List<StorageApi.Response> = emptyList()
+    private var dataList : List<StorageViewData.StorageItem> = emptyList()
 
-    fun setItemList(list: List<StorageApi.Response>) {
-        dataSet = list
+    fun setItemList(list: List<StorageViewData.StorageItem>) {
+        dataList = list
         notifyDataSetChanged()
     }
 
     class ViewHolder(private val binding: WishlistRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: StorageApi.Response) {
+        fun bind(item: StorageViewData.StorageItem) {
             binding.apply {
                 setVariable(BR.viewData, item)
                 executePendingBindings()
@@ -41,9 +40,11 @@ class StorageWishlistAdapter : RecyclerView.Adapter<StorageWishlistAdapter.ViewH
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = dataSet[position]
-        holder.bind(item)
+        val item = dataList.getOrNull(position)
+        item?.let {
+            holder.bind(it)
+        }
     }
 
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount() = dataList.size
 }

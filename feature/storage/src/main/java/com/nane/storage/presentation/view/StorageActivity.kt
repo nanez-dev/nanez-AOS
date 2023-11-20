@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.nane.storage.R
+import com.nane.storage.presentation.data.StorageViewType
 
 class StorageActivity : AppCompatActivity() {
     private lateinit var wishlistFragment: WishlistFragment
@@ -17,32 +18,37 @@ class StorageActivity : AppCompatActivity() {
         wishlistFragment = WishlistFragment()
         havinglistFragment = HavinglistFragment()
 
-        supportFragmentManager.beginTransaction().replace(R.id.container, wishlistFragment).commit()
+        switchFragmentByPosition(StorageViewType.STORAGE_WISH_POSITION)
 
         val tabs = findViewById<TabLayout>(R.id.tabs)
-        tabs.addTab(tabs.newTab().setText("위시리스트"))
-        tabs.addTab(tabs.newTab().setText("보유리스트"))
+        tabs.addTab(tabs.newTab().setText(StorageViewType.STORAGE_WISH_TEXT))
+        tabs.addTab(tabs.newTab().setText(StorageViewType.STORAGE_HAVING_TEXT))
 
-        tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val position = tab?.position
-
-                var selected: Fragment = Fragment()
-                when (position) {
-                    0 -> selected = wishlistFragment
-                    1 -> selected = havinglistFragment
-                }
-
-                supportFragmentManager.beginTransaction().replace(R.id.container, selected).commit()
-
+                position?.let { switchFragmentByPosition(it) }
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-
             }
-            override fun onTabReselected(tab: TabLayout.Tab?) {
 
+            override fun onTabReselected(tab: TabLayout.Tab?) {
             }
         })
+    }
 
+    private fun switchFragmentByPosition(position: Int) {
+        val selectedFragment: Fragment = when (position) {
+            StorageViewType.STORAGE_WISH_POSITION -> wishlistFragment
+            StorageViewType.STORAGE_HAVING_POSITION -> havinglistFragment
+            else -> Fragment()
+        }
+
+        showFragment(selectedFragment)
+    }
+
+    private fun showFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
     }
 }

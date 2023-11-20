@@ -10,7 +10,7 @@
         <import type="android.text.TextUtils" />
         <variable
             name="viewData"
-            type="com.nane.network.api.storage.StorageApi.Response" />
+            type="com.nane.storage.presentation.data.StorageViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +20,7 @@
         tools:context=".WishlistFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/Total"
+            android:id="@+id/vgParent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,7 +31,7 @@
             android:layout_margin="30dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/ImageLayout"
+                android:id="@+id/vgImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -41,14 +41,14 @@
                 app:layout_constraintBottom_toTopOf="@id/perfumeInfoLayout">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/perfumeImg"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:img_load="@{viewData.web_image1}"
+                    app:img_load="@{viewData.StorageItem.webImage1}"
                     app:img_round="@{20}"
                     tools:srcCompat="@tools:sample/avatars" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -60,20 +60,19 @@
                 android:orientation="vertical"
                 tools:layout_editor_absoluteY="160dp"
                 android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/ImageLayout"
+                app:layout_constraintTop_toBottomOf="@id/vgImage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent">
 
 
                 <TextView
-                    android:id="@+id/perfumeBrand"
+                    android:id="@+id/txtPerfumeBrand"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:text="@{viewData.title}"
-                    android:textSize="15sp"
+                    style="@style/Body_16_B"
+                    android:text="@{viewData.StorageItem.title}"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/perfumeName"
+                    app:layout_constraintBottom_toTopOf="@+id/txtPerfumeName"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -81,17 +80,16 @@
 
 
                 <TextView
-                    android:id="@+id/perfumeName"
+                    android:id="@+id/txtPerfumeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:text="@{viewData.kor}"
-                    android:textSize="17sp"
+                    android:text="@{viewData.StorageItem.kor}"
+                    style="@style/Text_18"
                     android:layout_marginTop="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/perfumeBrand"
+                    app:layout_constraintTop_toBottomOf="@+id/txtPerfumeBrand"
                     app:layout_constraintVertical_bias="0.0" />
 
 
