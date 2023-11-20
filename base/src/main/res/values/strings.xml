@@ -51,4 +51,11 @@
     <string name="msg_join_select_accord_title">마지막 질문!\n좋아하는 향 있어요?</string>
     <string name="msg_join_select_accrod_sub_title">가장 취향에 맞는 향을 한 가지만 선택해주세요 :)</string>
     <string name="label_skip">건너뛰기</string>
+
+    <string name="label_theme_accord_title">어코드 관</string>
+    <string name="label_theme_brand_title">브랜드 관</string>
+    <string name="label_theme_popular_accords_title">지금, 사랑받고 있는 어코드</string>
+    <string name="label_theme_popular_brands_title">지금, 사랑받고 있는 브랜드</string>
+    <string name="label_theme_all_accords_title">모든 어코드</string>
+    <string name="label_theme_all_brands_title">모든 브랜드</string>
 </resources>

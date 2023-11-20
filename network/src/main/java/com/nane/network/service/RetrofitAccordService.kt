@@ -1,5 +1,6 @@
 package com.nane.network.service
 
+import com.nane.network.api.theme.AccordApi
 import retrofit2.Response
 import retrofit2.http.GET
 
@@ -9,6 +10,6 @@ import retrofit2.http.GET
 interface RetrofitAccordService {
 
     @GET("api/accord")
-    suspend fun getAllAccord(): Response<String>
+    suspend fun getAllAccords(): Response<AccordApi.Accords>
 
 }
