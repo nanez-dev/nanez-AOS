@@ -48,4 +48,7 @@
     <string name="msg_join_nickname_enable">* 사용 가능한 닉네임입니다.</string>
     <string name="msg_join_nickname_disable">* 이미 사용 중인 닉네임입니다.</string>
     <string name="label_name">이름</string>
+    <string name="msg_join_select_accord_title">마지막 질문!\n좋아하는 향 있어요?</string>
+    <string name="msg_join_select_accrod_sub_title">가장 취향에 맞는 향을 한 가지만 선택해주세요 :)</string>
+    <string name="label_skip">건너뛰기</string>
 </resources>

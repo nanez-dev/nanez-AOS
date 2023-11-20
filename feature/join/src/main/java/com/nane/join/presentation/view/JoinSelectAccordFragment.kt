@@ -1,0 +1,62 @@
+package com.nane.join.presentation.view
+
+import android.graphics.Rect
+import android.view.View
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.nane.base.view.BaseBindFragment
+import com.nane.join.R
+import com.nane.join.databinding.JoinSelectAccordFragmentBinding
+import com.nane.join.presentation.view.adapter.JoinSelectAccordAdapter
+import com.nane.join.presentation.viewmodel.JoinActViewModel
+import com.nane.join.presentation.viewmodel.JoinViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import org.techtown.nanez.utils.util.toDp
+
+/**
+ * Created by haul on 11/20/23
+ */
+@AndroidEntryPoint
+class JoinSelectAccordFragment : BaseBindFragment<JoinSelectAccordFragmentBinding, JoinViewModel>(R.layout.join_select_accord_fragment) {
+
+    private val actViewModel: JoinActViewModel by activityViewModels()
+
+    override fun createViewModel() = viewModels<JoinViewModel>().value
+
+    override fun initFragment(dataBinding: JoinSelectAccordFragmentBinding, viewModel: JoinViewModel) {
+        dataBinding.apply {
+            btnDoNext.setOnClickListener {
+                actViewModel.postNextStep()
+            }
+
+            btnSkip.setOnClickListener {
+                actViewModel.postNextStep()
+            }
+
+
+            with(recyclerView) {
+                layoutManager ?: GridLayoutManager(context, 5).apply { layoutManager = this }
+                adapter ?: JoinSelectAccordAdapter().apply { adapter = this }
+
+                if (itemDecorationCount == 0) {
+                    addItemDecoration(object : RecyclerView.ItemDecoration() {
+                        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                            super.getItemOffsets(outRect, view, parent, state)
+                            outRect.top = 8.toDp()
+                            outRect.bottom = 8.toDp()
+                            outRect.left = 8.toDp()
+                            outRect.right = 8.toDp()
+                        }
+                    })
+                }
+            }
+        }
+
+
+
+    }
+
+
+}

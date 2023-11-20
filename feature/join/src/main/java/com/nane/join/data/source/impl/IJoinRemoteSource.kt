@@ -11,4 +11,5 @@ interface IJoinRemoteSource {
     suspend fun postSendAuthEmail(body: JoinEmailAuthApi.Body): Response<Boolean>
     suspend fun postCheckAuthEmailCode(body: JoinVerifyAuthEmailCodeApi.Body): Response<Boolean>
     suspend fun postCheckNickNameVerify(nickName: String): Response<Boolean>
+    suspend fun getAccordList(): Response<>
 }
