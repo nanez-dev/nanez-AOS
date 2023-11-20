@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
 import com.nane.join.domain.usecase.JoinUseCase
+import com.nane.join.presentation.data.JoinAccordViewData
 import com.nane.join.presentation.data.JoinEmailAuthEventData
 import com.nane.join.presentation.data.JoinNickNameEventData
 import com.nane.join.presentation.data.JoinPasswordEventData
@@ -24,6 +25,9 @@ class JoinViewModel @Inject constructor(
     private val useCase: JoinUseCase
 ) : BaseViewModel() {
 
+    private val _accordList by lazy { MutableLiveData<List<JoinAccordViewData>>() }
+    val accordList: LiveData<List<JoinAccordViewData>> = _accordList
+
     private val _emailAuthEventData by lazy { MutableLiveData<Event<JoinEmailAuthEventData>>() }
     val emailAuthEventData: LiveData<Event<JoinEmailAuthEventData>> = _emailAuthEventData
 
@@ -32,6 +36,8 @@ class JoinViewModel @Inject constructor(
 
     private val _nickNameEventData by lazy { MutableLiveData<Event<JoinNickNameEventData>>() }
     val nickNameEventData: LiveData<Event<JoinNickNameEventData>> = _nickNameEventData
+
+
 
     fun sendAuthEmail(email: String) {
         viewModelScope.launch {
@@ -102,6 +108,25 @@ class JoinViewModel @Inject constructor(
                     }
                     is DomainResult.Failed -> {
 
+                    }
+                }
+            }
+        }
+    }
+
+
+    fun getAllAccordList() {
+        viewModelScope.launch {
+            useCase.getAllAccordList().collect { result ->
+                when (result) {
+                    is DomainResult.Success -> {
+                        _accordList.postValue(result.data)
+                    }
+                    is DomainResult.Error -> {
+                        _accordList.postValue(emptyList())
+                    }
+                    is DomainResult.Failed -> {
+                        _accordList.postValue(emptyList())
                     }
                 }
             }

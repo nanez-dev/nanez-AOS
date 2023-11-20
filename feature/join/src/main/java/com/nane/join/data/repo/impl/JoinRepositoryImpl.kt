@@ -1,14 +1,15 @@
 package com.nane.join.data.repo.impl
 
 import com.nane.base.data.DataResult
+import com.nane.join.data.mapper.JoinDataMapper
 import com.nane.join.data.source.impl.IJoinRemoteSource
+import com.nane.join.domain.data.JoinAccordDTO
 import com.nane.join.domain.repo.IJoinRepository
 import com.nane.network.api.users.JoinEmailAuthApi
 import com.nane.network.api.users.JoinVerifyAuthEmailCodeApi
 import com.nane.network.parser.getParseErrorResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
-import java.io.IOException
 import javax.inject.Inject
 
 /**
@@ -16,6 +17,7 @@ import javax.inject.Inject
  */
 class JoinRepositoryImpl @Inject constructor(
     private val remoteSource: IJoinRemoteSource,
+    private val mapper: JoinDataMapper
 ) : IJoinRepository {
 
     override suspend fun postSendAuthEmail(email: String): Flow<DataResult<Boolean>> = flow {
@@ -68,4 +70,20 @@ class JoinRepositoryImpl @Inject constructor(
         emit(DataResult.Error(Exception(t)))
     }.flowOn(Dispatchers.IO)
 
+
+    override suspend fun getAllAccordList(): Flow<DataResult<List<JoinAccordDTO>>> = flow {
+        val response = remoteSource.getAllAccordList()
+        if (response.isSuccessful) {
+            response.body()?.let { result ->
+                emit(DataResult.Success(result.accords?.map { mapper.toAccordDTO(it) } ?: emptyList<JoinAccordDTO>()))
+            } ?: run {
+                emit(DataResult.Success(emptyList<JoinAccordDTO>()))
+            }
+        } else {
+            val failed = getParseErrorResult(response)
+            emit(DataResult.Failed(failed.errorMsg, failed.errorCode))
+        }
+    }.catch { t ->
+        emit(DataResult.Error(Exception(t)))
+    }.flowOn(Dispatchers.IO)
 }

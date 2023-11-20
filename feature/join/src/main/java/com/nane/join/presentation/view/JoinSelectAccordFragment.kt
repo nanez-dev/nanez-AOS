@@ -55,7 +55,11 @@ class JoinSelectAccordFragment : BaseBindFragment<JoinSelectAccordFragmentBindin
         }
 
 
+        viewModel.accordList.observe(viewLifecycleOwner) { list ->
+            (dataBinding.recyclerView.adapter as? JoinSelectAccordAdapter)?.setDataList(list)
+        }
 
+        viewModel.getAllAccordList()
     }
 
 
