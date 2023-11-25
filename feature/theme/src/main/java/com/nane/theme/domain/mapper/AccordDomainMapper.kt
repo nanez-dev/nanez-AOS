@@ -10,9 +10,9 @@ class AccordDomainMapper @Inject constructor() {
         return dto.itemList
             .map {
                 AccordViewData(
-                    engTitle = it.engTitle,
-                    korTitle = it.korTitle,
-                    imageUrl = it.imageUrl,
+                    engTitle = it.engName,
+                    korTitle = it.korName,
+                    imageUrl = it.imgUrl,
                     id = it.id
                 )
             }

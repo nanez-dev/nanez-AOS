@@ -11,4 +11,7 @@ interface IThemeRepository {
 
     suspend fun getPopularBrands(): Flow<DataResult<BrandApi.Brands?>>
     suspend fun getAllBrands(): Flow<DataResult<BrandApi.Brands?>>
+
+    suspend fun getAccordDetail(id: Int): Flow<DataResult<AccordApi.AccordDetail?>>
+    suspend fun getBrandDetail(brandId: Int, limit: Int): Flow<DataResult<BrandApi.BrandDetail?>>
 }

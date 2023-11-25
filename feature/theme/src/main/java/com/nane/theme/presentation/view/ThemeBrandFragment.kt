@@ -1,5 +1,6 @@
 package com.nane.theme.presentation.view
 
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ThemeBrandFragment : BaseBindFragment<ThemeBrandFragmentBinding, ThemeBrandViewModel>(R.layout.theme_brand_fragment) {
+
+    private val brandDetailFragment = ThemeBrandDetailFragment()
 
     override fun createViewModel(): ThemeBrandViewModel = viewModels<ThemeBrandViewModel>().value
 
@@ -38,9 +41,22 @@ class ThemeBrandFragment : BaseBindFragment<ThemeBrandFragmentBinding, ThemeBran
             }
 
             with(rvAllBrands) {
-                adapter ?: AllBrandsAdapter {}.apply { adapter = this }
+                adapter ?: AllBrandsAdapter().apply { adapter = this }
                 layoutManager ?: GridLayoutManager(context, 2).apply { layoutManager = this }
                 if (itemDecorationCount == 0) addItemDecoration(AllBrandItemDecoration())
+                (adapter as AllBrandsAdapter).setOnItemClickListener(
+                    object: AllBrandsAdapter.ItemClickListener {
+                        override fun onItemClick(idx: Int) {
+                            val args = Bundle()
+                            args.putInt(ThemeBrandDetailFragment.BRAND_ID, idx)
+                            brandDetailFragment.arguments = args
+                            parentFragmentManager
+                                .beginTransaction()
+                                .replace(android.R.id.content, brandDetailFragment)
+                                .commit()
+                        }
+                    }
+                )
             }
         }
         

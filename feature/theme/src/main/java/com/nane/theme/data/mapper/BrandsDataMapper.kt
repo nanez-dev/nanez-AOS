@@ -10,9 +10,9 @@ class BrandsDataMapper @Inject constructor() {
         return BrandsDomainDTO(
             itemList = apiData?.brands?.map {
                 BrandDTO(
-                    engTitle = it.engTitle,
-                    korTitle = it.korTitle,
-                    imageUrl = it.imageUrl,
+                    engName = it.engName,
+                    korName = it.korName,
+                    brandImgUrl = it.imgUrl,
                     id = it.id
                 ) } ?: emptyList()
         )

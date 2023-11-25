@@ -5,8 +5,8 @@ data class BrandsDomainDTO(
 )
 
 data class BrandDTO(
-    val engTitle: String?,
-    val korTitle: String?,
-    val imageUrl: String?,
+    val engName: String?,
+    val korName: String?,
+    val brandImgUrl: String?,
     val id: Int
 )

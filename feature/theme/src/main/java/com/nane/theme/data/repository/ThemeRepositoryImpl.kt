@@ -78,4 +78,37 @@ class ThemeRepositoryImpl @Inject constructor(
         }.catch { t ->
             emit(DataResult.Error(Exception(t)))
         }.flowOn(Dispatchers.IO)
+
+    override suspend fun getAccordDetail(id: Int): Flow<DataResult<AccordApi.AccordDetail?>>
+        = flow {
+            val response = remoteDataSource.getAccordDetail(id = id)
+            if (response.isSuccessful) {
+                emit(DataResult.Success(response.body()))
+            } else {
+                val failed = getParseErrorResult(response)
+                emit(DataResult.Failed(failed.errorMsg, failed.errorCode))
+            }
+        }.retry(2) { cause ->
+            cause is IOException
+        }.catch { t ->
+            emit(DataResult.Error(Exception(t)))
+        }.flowOn(Dispatchers.IO)
+
+    override suspend fun getBrandDetail(
+        brandId: Int,
+        limit: Int
+    ): Flow<DataResult<BrandApi.BrandDetail?>>
+        = flow {
+            val response = remoteDataSource.getBrandDetail(brandId = brandId, limit = limit)
+            if (response.isSuccessful) {
+                emit(DataResult.Success(response.body()))
+            } else {
+                val failed = getParseErrorResult(response)
+                emit(DataResult.Failed(failed.errorMsg, failed.errorCode))
+            }
+        }.retry(2) { cause ->
+            cause is IOException
+        }.catch { t ->
+            emit(DataResult.Error(Exception(t)))
+        }.flowOn(Dispatchers.IO)
 }

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="14dp"
+        android:paddingBottom="16dp"
+        android:paddingHorizontal="16dp"
+        android:background="@drawable/shape_bg50_r12_line50_s1">
+
+        <ImageView
+            android:id="@+id/imgItem"
+            android:background="@drawable/shape_white_r12_line50_s1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/nanez_icon"
+            app:layout_constraintDimensionRatio="100:100"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtBrandName"
+            style="@style/Body_14_R"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintLeft_toLeftOf="@id/imgStar"
+            app:layout_constraintBottom_toTopOf="@id/txtItemName"
+            android:text="엑스 니힐로"
+            tools:text="@{}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtItemName"
+            style="@style/Body_16_B"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintLeft_toLeftOf="@id/imgStar"
+            app:layout_constraintBottom_toTopOf="@id/txtItemRating"
+            android:text="아이리스 포르셀라나"
+            tools:text="@{}" />
+
+        <ImageView
+            android:id="@+id/imgStar"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="12dp"
+            app:layout_constraintTop_toTopOf="@id/txtItemRating"
+            app:layout_constraintLeft_toRightOf="@id/imgItem"
+            app:layout_constraintBottom_toBottomOf="@id/imgItem" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtItemRating"
+            style="@style/Body_14_R"
+            android:layout_marginLeft="2dp"
+            app:layout_constraintLeft_toRightOf="@id/imgStar"
+            app:layout_constraintBottom_toBottomOf="@id/imgItem"
+            android:text="4.82(44)"
+            tools:text="@{}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtItemDescription"
+            style="@style/Body_14_R"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="@id/imgItem"
+            app:layout_constraintTop_toBottomOf="@id/imgItem"
+            android:text="화이트 프리지아 부케향에 이제 막 익은 배의 신선함을 입히고 호박, 파 추출물을 사용하여 산뜻한 향기를 가지고 있습니다."
+            tools:text="@{}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtItemPrice"
+            style="@style/Head_18_B"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/imgItem"
+            app:layout_constraintTop_toBottomOf="@id/txtItemDescription"
+            android:text="99,000원"
+            tools:text="@{}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtItemPriceSub"
+            style="@style/Body_14_R"
+            android:layout_marginLeft="4dp"
+            app:layout_constraintLeft_toRightOf="@id/txtItemPrice"
+            app:layout_constraintBottom_toBottomOf="@id/txtItemPrice"
+            android:text="104,900원"
+            tools:text="@{}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

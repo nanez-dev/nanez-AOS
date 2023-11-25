@@ -28,4 +28,8 @@ class ThemeRemoteSourceImpl @Inject constructor(
     override suspend fun getPopularBrands(): Response<BrandApi.Brands> {
         return brandService.getPopularBrands()
     }
+
+    override suspend fun getBrandDetail(brandId: Int, limit: Int): Response<BrandApi.BrandDetail> {
+        return brandService.getBrandDetail(brandId = brandId, limit = limit)
+    }
 }

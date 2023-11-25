@@ -10,9 +10,9 @@ class AccordsDataMapper @Inject constructor() {
         return AccordsDomainDTO(
             itemList = apiData?.accords?.map {
                 AccordDTO(
-                    engTitle = it.engTitle,
-                    korTitle = it.korTitle,
-                    imageUrl = it.imageUrl,
+                    engName = it.engName,
+                    korName = it.korName,
+                    imgUrl = it.imageUrl,
                     code = it.code,
                     id = it.id
                 ) } ?: emptyList()

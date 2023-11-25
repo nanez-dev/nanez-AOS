@@ -11,4 +11,6 @@ interface IThemeRemoteSource {
    suspend fun getPopularBrands(): Response<BrandApi.Brands>
    suspend fun getAllBrands(): Response<BrandApi.Brands>
 
+   suspend fun getAccordDetail(id: Int): Response<AccordApi.AccordDetail>
+   suspend fun getBrandDetail(brandId: Int, limit: Int): Response<BrandApi.BrandDetail>
 }

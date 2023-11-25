@@ -5,9 +5,9 @@ data class AccordsDomainDTO(
 )
 
 data class AccordDTO(
-    val engTitle: String?,
-    val korTitle: String?,
-    val imageUrl: String?,
+    val engName: String?,
+    val korName: String?,
+    val imgUrl: String?,
     val code: Int,
     val id: Int
 )

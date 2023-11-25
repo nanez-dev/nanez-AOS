@@ -10,9 +10,9 @@ class BrandDomainMapper @Inject constructor() {
         return dto.itemList
             .map {
                 BrandViewData(
-                    engTitle = it.engTitle,
-                    korTitle = it.korTitle,
-                    imageUrl = it.imageUrl,
+                    engTitle = it.engName,
+                    korTitle = it.korName,
+                    imageUrl = it.brandImgUrl,
                     id = it.id
                 )
             }
