@@ -7,6 +7,13 @@
     <string name="label_mypage">마이페이지</string>
     <string name="label_login">로그인</string>
     <string name="label_join">회원가입</string>
+    <string name="label_profile">내 정보</string>
+    <string name="label_profile_customer_center">고객센터</string>
+    <string name="label_profile_notice">공지사항</string>
+    <string name="label_profile_product_registration_request">제품등록요청</string>
+    <string name="label_profile_report">신고하기</string>
+    <string name="label_profile_terms_of_use">서비스이용약관</string>
+    <string name="label_profile_privacy_policy">개인정보처리방침</string>
 
     <string name="msg_home_search">지금 나에게 맞는 향수를 찾아보세요</string>
 
@@ -37,4 +44,6 @@
     <string name="label_do_next">다음으로</string>
 
     <string name="msg_storage_nothing">아직 찜한 향수가 없습니다.</string>
+    <string name="msg_profile_auth_title">로그인 후 이용하실 수 있습니다</string>
+    <string name="msg_profile_auth_sub_title">로그인 하시면 더 많은 정보를 살펴 보실 수 있습니다</string>
 </resources>
