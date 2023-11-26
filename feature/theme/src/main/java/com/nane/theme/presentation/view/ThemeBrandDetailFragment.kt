@@ -44,7 +44,7 @@ class ThemeBrandDetailFragment : BaseBindFragment<ThemeBrandDetailFragmentBindin
             if (itemDecorationCount == 0) addItemDecoration(RelatedBrandPerfumeItemDecoration())
         }
 
-        viewModel.brandDetailData.observe(viewLifecycleOwner) {
+        viewModel.brandItem.observe(viewLifecycleOwner) {
             dataBinding.viewData = it
             (dataBinding.relatedItemsRecyclerView.adapter as? RelatedBrandPerfumesAdapter)?.setItemList(it.relatedPerfumes)
         }
