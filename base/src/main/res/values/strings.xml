@@ -37,4 +37,12 @@
     <string name="label_do_next">다음으로</string>
 
     <string name="msg_storage_nothing">아직 찜한 향수가 없습니다.</string>
+
+    <string name="label_theme_accord_title">어코드 관</string>
+    <string name="label_theme_brand_title">브랜드 관</string>
+    <string name="label_theme_popular_accords_title">지금, 사랑받고 있는 어코드</string>
+    <string name="label_theme_popular_brands_title">지금, 사랑받고 있는 브랜드</string>
+    <string name="label_theme_all_accords_title">모든 어코드</string>
+    <string name="label_theme_all_brands_title">모든 브랜드</string>
+
 </resources>
