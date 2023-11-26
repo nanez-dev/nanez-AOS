@@ -28,12 +28,12 @@ class BrandDetailDomainMapper @Inject constructor() {
                 id = dto.detail.id,
                 brandId = dto.detail.brandId
             ),
-            relativePerfumes = dto.relativePerfumes?.map {
+            relatedPerfumes = dto.relativePerfumes?.map {
                 BrandPerfumeViewData(
                     id = it.id,
                     brand = if (it.brand == null) null else BrandViewData(
-                        engTitle = it.brand.engName,
-                        korTitle = it.brand.korName,
+                        engName = it.brand.engName,
+                        korName = it.brand.korName,
                         imageUrl = it.brand.brandImgUrl,
                         id = it.brand.id
                     ),

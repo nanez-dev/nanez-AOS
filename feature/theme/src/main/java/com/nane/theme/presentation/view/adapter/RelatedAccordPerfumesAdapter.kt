@@ -5,34 +5,36 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.nane.theme.BR
-import com.nane.theme.databinding.ThemeAllAccordItemViewBinding
-import com.nane.theme.presentation.data.AccordItemViewData
-import com.nane.theme.presentation.data.AccordViewData
+import com.nane.theme.databinding.ThemeRelatedAccordItemViewBinding
+import com.nane.theme.presentation.data.AccordPerfumeViewData
+import org.techtown.nanez.utils.util.toPrice
 
-class AllAccordsAdapter : Adapter<AllAccordsAdapter.AllAccordViewHolder>() {
+class RelatedAccordPerfumesAdapter(): Adapter<RelatedAccordPerfumesAdapter.BrandViewHolder>() {
 
-    private var itemList: List<AccordItemViewData> = emptyList()
+    private var itemList: List<AccordPerfumeViewData> = emptyList()
 
-    fun setItemList(list: List<AccordItemViewData>) {
+    fun setItemList(list: List<AccordPerfumeViewData>) {
         itemList = list
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllAccordViewHolder {
-        return AllAccordViewHolder(ThemeAllAccordItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrandViewHolder {
+        return BrandViewHolder(ThemeRelatedAccordItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int = itemList.size
 
-    override fun onBindViewHolder(holder: AllAccordViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BrandViewHolder, position: Int) {
         holder.onBind(itemList.getOrNull(position))
     }
 
-    inner class AllAccordViewHolder(private val binding: ThemeAllAccordItemViewBinding): ViewHolder(binding.root) {
+    inner class BrandViewHolder(private val binding: ThemeRelatedAccordItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: AccordItemViewData?) {
+        fun onBind(data: AccordPerfumeViewData?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
+            if (data == null) return
+            binding.txtItemPrice.text = data.price.toPrice()
         }
 
         init {

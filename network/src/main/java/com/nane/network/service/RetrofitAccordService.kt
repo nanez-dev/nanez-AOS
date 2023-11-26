@@ -12,7 +12,7 @@ import retrofit2.http.Query
  */
 interface RetrofitAccordService {
 
-    @GET("api/accord")
+    @GET("api/accord/exhibition")
     suspend fun getAllAccords(): Response<AccordApi.Accords>
 
     @GET("api/accord/{id}/exhibition")

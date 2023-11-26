@@ -8,11 +8,21 @@ import javax.inject.Inject
 class AccordsDataMapper @Inject constructor() {
     fun toDTO(apiData: AccordApi.Accords?): AccordsDomainDTO {
         return AccordsDomainDTO(
-            itemList = apiData?.accords?.map {
+            popularAccords = apiData?.popularAccords?.map {
                 AccordDTO(
                     engName = it.engName,
                     korName = it.korName,
-                    imgUrl = it.imageUrl,
+                    imgUrl = it.imgUrl,
+                    description = it.description,
+                    code = it.code,
+                    id = it.id
+                )
+            } ?: emptyList(),
+            allAccords = apiData?.accords?.map {
+                AccordDTO(
+                    engName = it.engName,
+                    korName = it.korName,
+                    imgUrl = it.imgUrl,
                     code = it.code,
                     id = it.id
                 ) } ?: emptyList()

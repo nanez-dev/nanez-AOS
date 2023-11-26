@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import org.techtown.nanez.utils.util.toDp
 
-class RelatedBrandPerfumeItemDecoration: RecyclerView.ItemDecoration() {
+class RelatedAccordPerfumeItemDecoration: RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,

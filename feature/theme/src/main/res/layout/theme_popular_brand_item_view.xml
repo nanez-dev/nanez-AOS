@@ -38,7 +38,7 @@
             android:layout_marginLeft="8dp"
             app:layout_constraintLeft_toRightOf="@+id/imgBrand"
             app:layout_constraintTop_toTopOf="@+id/imgBrand"
-            tools:text="@{viewData.engTitle}" />
+            tools:text="@{viewData.engName}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtBrandTitleKorean"
@@ -46,7 +46,7 @@
             android:layout_marginLeft="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/imgBrand"
             app:layout_constraintLeft_toRightOf="@+id/imgBrand"
-            tools:text="@{viewData.korTitle}" />
+            tools:text="@{viewData.korName}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtBrandDescription"

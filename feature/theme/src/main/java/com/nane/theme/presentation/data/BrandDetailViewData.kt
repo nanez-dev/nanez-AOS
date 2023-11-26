@@ -6,7 +6,7 @@ data class BrandDetailViewData(
     val korTitle: String?,
     val imgUrl: String?,
     val detail: BrandDetailBaseViewData?,
-    val relativePerfumes: List<BrandPerfumeViewData>
+    val relatedPerfumes: List<BrandPerfumeViewData>
 )
 
 data class BrandDetailBaseViewData(

@@ -1,18 +1,14 @@
 package com.nane.theme.presentation.view
 
-import android.content.Intent
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nane.base.view.BaseBindFragment
 import com.nane.theme.R
-import com.nane.theme.databinding.ThemeAccordDetailFragmentBinding
 import com.nane.theme.databinding.ThemeBrandDetailFragmentBinding
-import com.nane.theme.presentation.view.adapter.PopularBrandsAdapter
 import com.nane.theme.presentation.view.adapter.RelatedBrandPerfumesAdapter
 import com.nane.theme.presentation.view.adapter.decoration.RelatedBrandPerfumeItemDecoration
 import com.nane.theme.presentation.viewmodel.ThemeBrandDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import org.techtown.nanez.utils.NaneLog
 
 @AndroidEntryPoint
 class ThemeBrandDetailFragment : BaseBindFragment<ThemeBrandDetailFragmentBinding, ThemeBrandDetailViewModel>(R.layout.theme_brand_detail_fragment) {
@@ -50,7 +46,7 @@ class ThemeBrandDetailFragment : BaseBindFragment<ThemeBrandDetailFragmentBindin
 
         viewModel.brandDetailData.observe(viewLifecycleOwner) {
             dataBinding.viewData = it
-            (dataBinding.relatedItemsRecyclerView.adapter as RelatedBrandPerfumesAdapter).setItemList(it.relativePerfumes)
+            (dataBinding.relatedItemsRecyclerView.adapter as? RelatedBrandPerfumesAdapter)?.setItemList(it.relatedPerfumes)
         }
 
         viewModel.getBrandDetailData(brandId, 4)

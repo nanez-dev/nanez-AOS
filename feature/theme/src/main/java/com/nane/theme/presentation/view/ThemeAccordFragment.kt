@@ -1,5 +1,6 @@
 package com.nane.theme.presentation.view
 
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,8 @@ import org.techtown.nanez.utils.util.toDp
 
 @AndroidEntryPoint
 class ThemeAccordFragment : BaseBindFragment<ThemeAccordFragmentBinding, ThemeAccordViewModel>(R.layout.theme_accord_fragment) {
+
+    private val accordDetailFragment = ThemeAccordDetailFragment()
 
     private val accordItemWidth = 64.toDp()
     private var spanCount = 5
@@ -45,18 +48,30 @@ class ThemeAccordFragment : BaseBindFragment<ThemeAccordFragmentBinding, ThemeAc
             with(rvAllAccords) {
                 adapter ?: AllAccordsAdapter().apply { adapter = this }
                 if (itemDecorationCount == 0) layoutManager ?: GridLayoutManager(context, spanCount).apply { layoutManager = this }
+                (adapter as AllAccordsAdapter).setOnItemClickListener(
+                    object: AllAccordsAdapter.ItemClickListener {
+                        override fun onItemClick(idx: Int) {
+                            val args = Bundle()
+                            args.putInt(ThemeAccordDetailFragment.ACCORD_ID, idx)
+                            accordDetailFragment.arguments = args
+                            parentFragmentManager
+                                .beginTransaction()
+                                .replace(android.R.id.content, accordDetailFragment)
+                                .commit()
+                        }
+                    }
+                )
             }
         }
         
-        viewModel.popularAccordsViewDataList.observe(viewLifecycleOwner) {
-            // popularAccords 리사이클러뷰 갱신
+        viewModel.popularAccordItemViewDataList.observe(viewLifecycleOwner) {
+            (dataBinding.rvPopularAccords.adapter as? PopularAccordsAdapter)?.setItemList(it)
         }
 
-        viewModel.allAccordsViewDataList.observe(viewLifecycleOwner) {
+        viewModel.allAccordItemViewDataList.observe(viewLifecycleOwner) {
             (dataBinding.rvAllAccords.adapter as? AllAccordsAdapter)?.setItemList(it)
         }
 
-        viewModel.getPopularAccordViewData()
-        viewModel.getAllAccordViewData()
+        viewModel.getAccordViewData()
     }
 }

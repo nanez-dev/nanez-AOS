@@ -29,6 +29,10 @@ class ThemeRemoteSourceImpl @Inject constructor(
         return brandService.getPopularBrands()
     }
 
+    override suspend fun getAccordDetail(id: Int): Response<AccordApi.AccordDetail> {
+        return accordService.getAccordDetail(id)
+    }
+
     override suspend fun getBrandDetail(brandId: Int, limit: Int): Response<BrandApi.BrandDetail> {
         return brandService.getBrandDetail(brandId = brandId, limit = limit)
     }

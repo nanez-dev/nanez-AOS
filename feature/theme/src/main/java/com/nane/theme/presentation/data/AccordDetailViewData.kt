@@ -1,14 +1,15 @@
-package com.nane.theme.domain.data
+package com.nane.theme.presentation.data
 
-data class AccordDetailDomainDTO(
-    val accord: AccordDTO?,
-    val relatedPerfumes: List<AccordPerfume>?
+data class AccordDetailViewData(
+    val accordItemViewData: AccordItemViewData?,
+    val relatedPerfumes: List<AccordPerfumeViewData>
 )
-data class AccordPerfume(
+
+data class AccordPerfumeViewData(
     val korName: String?,
     val engName: String?,
     val id: Int,
-    val brand: BrandDTO?,
+    val brand: BrandViewData?,
     val brandId: Int,
     val isSingle: Boolean,
     val imgUrl: String?,
