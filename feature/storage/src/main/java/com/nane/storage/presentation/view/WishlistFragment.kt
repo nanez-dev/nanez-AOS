@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.nane.storage.R
 import com.nane.storage.databinding.WishlistFragmentBinding
 import com.nane.storage.presentation.data.StorageViewType
-import com.nane.storage.presentation.view.adapter.WishlistAdapter
+import com.nane.storage.presentation.view.adapter.WishListAdapter
 import com.nane.storage.presentation.viewmodel.WishListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,14 +18,13 @@ class WishlistFragment : BaseBindFragment<WishlistFragmentBinding, WishListViewM
     override fun initFragment(dataBinding: WishlistFragmentBinding, viewModel: WishListViewModel) {
         dataBinding.apply {
             with(wishlistRecyclerView) {
-                adapter ?: WishlistAdapter().apply { adapter = this }
-//                layoutManager ?: LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false).apply { layoutManager = this }
+                adapter ?: WishListAdapter().apply { adapter = this }
                 layoutManager ?: GridLayoutManager(context, 2).apply { layoutManager = this }
             }
         }
 
         viewModel.wishList.observe(viewLifecycleOwner) {
-            (dataBinding.wishlistRecyclerView.adapter as? WishlistAdapter)?.setItemList(it)
+            (dataBinding.wishlistRecyclerView.adapter as? WishListAdapter)?.setItemList(it)
         }
 
         viewModel.getMyList(type = StorageViewType.STORAGE_WISH_TYPE)

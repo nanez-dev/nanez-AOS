@@ -1,6 +1,6 @@
 package com.nane.storage.domain.data
 
-data class WishListDomainDTO(
+data class StorageDomainDTO(
     val kor: String?,
     val isSingle: Boolean,
     val image: String?,

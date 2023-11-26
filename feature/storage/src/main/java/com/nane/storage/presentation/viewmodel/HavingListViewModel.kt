@@ -12,11 +12,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WishListViewModel @Inject constructor(
+class HavingListViewModel @Inject constructor(
     private val storageUseCase: StorageUseCase
 ) : BaseViewModel() {
-    private val _wishList by lazy { MutableLiveData<List<StorageViewData.StorageItem>>() }
-    val wishList: LiveData<List<StorageViewData.StorageItem>> = _wishList
+    private val _havingList by lazy { MutableLiveData<List<StorageViewData.StorageItem>>() }
+    val havingList: LiveData<List<StorageViewData.StorageItem>> = _havingList
 
     fun getMyList(type: String?) {
         viewModelScope.launch {
@@ -27,7 +27,7 @@ class WishListViewModel @Inject constructor(
                         StorageViewData.StorageItem.fromApiModel(it)
                     }
                     if (storageItem != null) {
-                        _wishList.postValue(listOf(storageItem))
+                        _havingList.postValue(listOf(storageItem))
                     }
                 }
                 is DomainResult.Failed -> {}

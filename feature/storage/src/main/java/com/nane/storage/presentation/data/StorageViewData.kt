@@ -1,6 +1,6 @@
 package com.nane.storage.presentation.data
 
-import com.nane.storage.domain.data.WishListDomainDTO
+import com.nane.storage.domain.data.StorageDomainDTO
 
 sealed class StorageViewData {
 
@@ -28,7 +28,7 @@ sealed class StorageViewData {
             val kor: String?
         ) {
             companion object {
-                fun fromApiModel(apiResponse: WishListDomainDTO.WishListBrandDTO): BrandItem {
+                fun fromApiModel(apiResponse: StorageDomainDTO.WishListBrandDTO): BrandItem {
                     return BrandItem(
                         apiResponse.id,
                         apiResponse.image,
@@ -40,7 +40,7 @@ sealed class StorageViewData {
         }
 
         companion object {
-            fun fromApiModel(apiResponse: WishListDomainDTO): StorageItem {
+            fun fromApiModel(apiResponse: StorageDomainDTO): StorageItem {
                 return StorageItem(
                     apiResponse.kor,
                     apiResponse.isSingle,

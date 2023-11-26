@@ -3,14 +3,14 @@ package com.nane.storage.domain.usecase
 import com.nane.base.data.DataResult
 import com.nane.base.data.DomainResult
 import com.nane.network.api.storage.StorageApi
-import com.nane.storage.data.repository.IWishListRepository
-import com.nane.storage.domain.data.WishListDomainDTO
+import com.nane.storage.data.repository.IStorageRepository
+import com.nane.storage.domain.data.StorageDomainDTO
 import javax.inject.Inject
 
-class WishListUseCase @Inject constructor(
-    private val repository: IWishListRepository
+class StorageUseCase @Inject constructor(
+    private val repository: IStorageRepository
 ) {
-    suspend fun getMyList(type: String?): DomainResult<WishListDomainDTO> {
+    suspend fun getMyList(type: String?): DomainResult<StorageDomainDTO> {
         val dataResult = repository.getMyList(type)
         return when (dataResult) {
             is DataResult.Success -> {
@@ -26,9 +26,9 @@ class WishListUseCase @Inject constructor(
         }
     }
 
-    private fun convertToWishListDomainDTO(response: StorageApi.Response?): WishListDomainDTO? {
+    private fun convertToWishListDomainDTO(response: StorageApi.Response?): StorageDomainDTO? {
         return response?.let {
-            WishListDomainDTO(
+            StorageDomainDTO(
                 kor = it.kor,
                 isSingle = it.is_single,
                 image = it.image,
@@ -43,7 +43,7 @@ class WishListUseCase @Inject constructor(
                 title = it.title,
                 subtitle = it.subtitle,
                 brand = it.brand?.let { brand ->
-                    WishListDomainDTO.WishListBrandDTO(
+                    StorageDomainDTO.WishListBrandDTO(
                         id = brand.id,
                         image = brand.image,
                         eng = brand.eng,

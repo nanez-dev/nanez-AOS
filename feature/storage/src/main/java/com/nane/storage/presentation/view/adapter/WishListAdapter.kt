@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.nane.network.api.storage.StorageApi
 import com.nane.storage.R
 import com.nane.storage.BR
 import com.nane.storage.databinding.WishlistRecyclerviewBinding
 import com.nane.storage.presentation.data.StorageViewData
 
-class WishlistAdapter : RecyclerView.Adapter<WishlistAdapter.ViewHolder>() {
+class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
 
     private var dataList : List<StorageViewData.StorageItem> = emptyList()
 
