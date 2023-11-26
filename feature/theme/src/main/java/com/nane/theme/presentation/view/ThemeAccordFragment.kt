@@ -43,11 +43,24 @@ class ThemeAccordFragment : BaseBindFragment<ThemeAccordFragmentBinding, ThemeAc
                 adapter ?: PopularAccordsAdapter().apply { adapter = this }
                 layoutManager ?: LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply { layoutManager = this }
                 if (itemDecorationCount == 0) addItemDecoration(PopularAccordItemDecoration())
+                (adapter as PopularAccordsAdapter).setOnItemClickListener(
+                    object: PopularAccordsAdapter.ItemClickListener {
+                        override fun onItemClick(idx: Int) {
+                            val args = Bundle()
+                            args.putInt(ThemeAccordDetailFragment.ACCORD_ID, idx)
+                            accordDetailFragment.arguments = args
+                            parentFragmentManager
+                                .beginTransaction()
+                                .replace(android.R.id.content, accordDetailFragment)
+                                .commit()
+                        }
+                    }
+                )
             }
 
             with(rvAllAccords) {
                 adapter ?: AllAccordsAdapter().apply { adapter = this }
-                if (itemDecorationCount == 0) layoutManager ?: GridLayoutManager(context, spanCount).apply { layoutManager = this }
+                layoutManager ?: GridLayoutManager(context, spanCount).apply { layoutManager = this }
                 (adapter as AllAccordsAdapter).setOnItemClickListener(
                     object: AllAccordsAdapter.ItemClickListener {
                         override fun onItemClick(idx: Int) {

@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="com.nane.theme.presentation.data.AccordDetailViewData" />
+            type="com.nane.theme.presentation.data.AccordItemViewData" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -46,7 +46,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="24dp"
-                app:img_load="@{viewData.accordItemViewData.imgUrl}"
+                app:img_load="@{viewData.imgUrl}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgAccordThumbnail" />
@@ -79,7 +79,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtAccordDetailDescription"
-                tools:text="@{viewData.accordItemViewData.korName + ` 대표 향수`}" />
+                tools:text="@{viewData.korName + ` 대표 향수`}" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/relatedItemsRecyclerView"

@@ -11,7 +11,6 @@ import com.nane.theme.presentation.data.BrandDetailViewData
 import com.nane.theme.presentation.data.BrandPerfumeViewData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.techtown.nanez.utils.NaneLog
 import org.techtown.nanez.utils.util.post
 import javax.inject.Inject
 
@@ -21,20 +20,20 @@ class ThemeBrandDetailViewModel @Inject constructor(
     private val mapper: BrandDetailDomainMapper
 ) : BaseViewModel() {
 
-    private val _brandDetailData by lazy { MutableLiveData<BrandDetailViewData>() }
-    val brandDetailData: LiveData<BrandDetailViewData>
-        get() = _brandDetailData
+    private val _brandItem by lazy { MutableLiveData<BrandDetailViewData>() }
+    val brandItem: LiveData<BrandDetailViewData>
+        get() = _brandItem
 
-//    private val _relativePerfumes by lazy { MutableLiveData<List<BrandPerfumeViewData>>() }
-//    val relativePerfumes: LiveData<List<BrandPerfumeViewData>>
-//        get() = _relativePerfumes
+    private val _relatedPerfumes by lazy { MutableLiveData<List<BrandPerfumeViewData>>() }
+    val relatedPerfumes: LiveData<List<BrandPerfumeViewData>>
+        get() = _relatedPerfumes
 
     fun getBrandDetailData(brandId: Int, limit: Int) {
         viewModelScope.launch {
             brandDetailUsecase.getBrandDetail(brandId = brandId, limit = limit).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        _brandDetailData.post(mapper.toViewData(result.data))
+                        _brandItem.post(mapper.toViewData(result.data))
                     }
                     is DomainResult.Failed -> {
 

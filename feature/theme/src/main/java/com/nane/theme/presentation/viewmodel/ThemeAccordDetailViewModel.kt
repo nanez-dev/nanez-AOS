@@ -8,6 +8,8 @@ import com.nane.base.viewmodel.BaseViewModel
 import com.nane.theme.domain.mapper.AccordDetailDomainMapper
 import com.nane.theme.domain.usecase.AccordDetailUsecase
 import com.nane.theme.presentation.data.AccordDetailViewData
+import com.nane.theme.presentation.data.AccordItemViewData
+import com.nane.theme.presentation.data.AccordPerfumeViewData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.NaneLog
@@ -20,20 +22,21 @@ class ThemeAccordDetailViewModel @Inject constructor(
     private val mapper: AccordDetailDomainMapper
 ) : BaseViewModel() {
 
-    private val _accordDetailData by lazy { MutableLiveData<AccordDetailViewData>() }
-    val accordDetailData: LiveData<AccordDetailViewData>
-        get() = _accordDetailData
+    private val _accordItem by lazy { MutableLiveData<AccordItemViewData>() }
+    val accordItem: LiveData<AccordItemViewData>
+        get() = _accordItem
 
-//    private val _relativePerfumes by lazy { MutableLiveData<List<BrandPerfumeViewData>>() }
-//    val relativePerfumes: LiveData<List<BrandPerfumeViewData>>
-//        get() = _relativePerfumes
+    private val _relatedPerfumes by lazy { MutableLiveData<List<AccordPerfumeViewData>>() }
+    val relatedPerfume: LiveData<List<AccordPerfumeViewData>>
+        get() = _relatedPerfumes
 
     fun getAccordDetail(id: Int) {
         viewModelScope.launch {
             accordDetailUsecase.getAccordDetail(id = id).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        _accordDetailData.post(mapper.toViewData(result.data))
+                        _accordItem.post(mapper.toViewData(result.data).accordItemViewData)
+                        _relatedPerfumes.post(mapper.toViewData(result.data).relatedPerfumes)
                     }
                     is DomainResult.Failed -> {
 

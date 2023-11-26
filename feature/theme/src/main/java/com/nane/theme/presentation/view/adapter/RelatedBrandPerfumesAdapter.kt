@@ -1,5 +1,6 @@
 package com.nane.theme.presentation.view.adapter
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -44,6 +45,7 @@ class RelatedBrandPerfumesAdapter(): Adapter<RelatedBrandPerfumesAdapter.BrandVi
             binding.root.setOnClickListener {
                 onItemClickListener?.onItemClick(itemList.getOrNull(adapterPosition)?.id ?: -1)
             }
+            binding.txtItemPriceSub.paintFlags = binding.txtItemPriceSub.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         }
     }
 

@@ -45,9 +45,11 @@ class ThemeAccordDetailFragment : BaseBindFragment<ThemeAccordDetailFragmentBind
             if (itemDecorationCount == 0) addItemDecoration(RelatedAccordPerfumeItemDecoration())
         }
 
-        viewModel.accordDetailData.observe(viewLifecycleOwner) {
+        viewModel.accordItem.observe(viewLifecycleOwner) {
             dataBinding.viewData = it
-            (dataBinding.relatedItemsRecyclerView.adapter as? RelatedAccordPerfumesAdapter)?.setItemList(it.relatedPerfumes)
+        }
+        viewModel.relatedPerfume.observe(viewLifecycleOwner) {
+            (dataBinding.relatedItemsRecyclerView.adapter as? RelatedAccordPerfumesAdapter)?.setItemList(it)
         }
 
         viewModel.getAccordDetail(accordId)
