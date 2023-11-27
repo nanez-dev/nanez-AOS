@@ -24,8 +24,12 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
     override fun createViewModel() = viewModels<JoinActViewModel>().value
 
     override fun initActivity(dataBinding: JoinActivityBinding, viewModel: JoinActViewModel) {
-        addFragment(dataBinding.container, tag = "JoinAgreementFragment") {
-            JoinAgreementFragment()
+//        addFragment(dataBinding.container, tag = "JoinAgreementFragment") {
+//            JoinAgreementFragment()
+//        }
+
+        addFragment(dataBinding.container, tag = "JoinEventCodeFragment") {
+            JoinEventCodeFragment()
         }
 
         dataBinding.apply {
@@ -66,6 +70,11 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
                                 JoinSelectAccordFragment()
                             }
                         }
+                        INDEX_EVENT_CODE -> {
+                            addFragment(dataBinding.container, tag = "JoinEventCodeFragment") {
+                                JoinEventCodeFragment()
+                            }
+                        }
                         else -> {}
                     }
                 }
@@ -100,6 +109,7 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
         private const val INDEX_PASSWORD = 3
         private const val INDEX_NICKNAME = 4
         private const val INDEX_SELECT_ACCORD = 5
+        private const val INDEX_EVENT_CODE = 6
 
         fun createIntent(context: Context): Intent {
             return Intent(context, JoinActivity::class.java).apply {

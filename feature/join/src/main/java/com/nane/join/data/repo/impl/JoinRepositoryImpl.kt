@@ -71,6 +71,23 @@ class JoinRepositoryImpl @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
 
+    override suspend fun postCheckEventCodeVerify(code: String): Flow<DataResult<Boolean>> = flow {
+        val response = remoteSource.postCheckEventCodeVerify(code)
+        if (response.isSuccessful) {
+            response.body()?.let {
+                emit(DataResult.Success(it))
+            } ?: run {
+                emit(DataResult.Success(false))
+            }
+        } else {
+            val failed = getParseErrorResult(response)
+            emit(DataResult.Failed(failed.errorMsg, failed.errorCode))
+        }
+    }.catch { t ->
+        emit(DataResult.Error(Exception(t)))
+    }.flowOn(Dispatchers.IO)
+
+
     override suspend fun getAllAccordList(): Flow<DataResult<List<JoinAccordDTO>>> = flow {
         val response = remoteSource.getAllAccordList()
         if (response.isSuccessful) {

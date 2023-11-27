@@ -2,11 +2,9 @@ package com.nane.join.domain.usecase
 
 import com.nane.base.data.DataResult
 import com.nane.base.data.DomainResult
-import com.nane.join.domain.mapper.JoinDomainMapper
+import com.nane.join.domain.data.JoinAccordDTO
 import com.nane.join.domain.repo.IJoinRepository
-import com.nane.join.presentation.data.JoinAccordViewData
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import java.util.regex.Pattern
 import javax.inject.Inject
@@ -15,8 +13,7 @@ import javax.inject.Inject
  * Created by haul on 10/30/23
  */
 class JoinUseCase @Inject constructor(
-    private val repository: IJoinRepository,
-    private val mapper: JoinDomainMapper
+    private val repository: IJoinRepository
 ) {
 
     private val passwordPatten by lazy { "^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,20}\$" }
@@ -73,11 +70,27 @@ class JoinUseCase @Inject constructor(
         }
     }
 
-    suspend fun getAllAccordList(): Flow<DomainResult<List<JoinAccordViewData>>> = flow {
+    suspend fun checkEventCodeVerify(code: String): Flow<DomainResult<Boolean>> = flow {
+        repository.postCheckEventCodeVerify(code).collect { result ->
+            when (result) {
+                is DataResult.Success -> {
+                    emit(DomainResult.Success(result.data))
+                }
+                is DataResult.Failed -> {
+                    emit(DomainResult.Failed(result.msg, result.code))
+                }
+                is DataResult.Error -> {
+                    emit(DomainResult.Error(result.exception))
+                }
+            }
+        }
+    }
+
+    suspend fun getAllAccordList(): Flow<DomainResult<List<JoinAccordDTO>>> = flow {
         repository.getAllAccordList().collect {  result ->
             when (result) {
                 is DataResult.Success -> {
-                    emit(DomainResult.Success(result.data.map { mapper.toAccordViewData(it) }))
+                    emit(DomainResult.Success(result.data))
                 }
                 is DataResult.Failed -> {
                     emit(DomainResult.Failed(result.msg, result.code))

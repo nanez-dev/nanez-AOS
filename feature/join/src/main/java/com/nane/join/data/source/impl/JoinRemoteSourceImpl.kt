@@ -28,6 +28,10 @@ class JoinRemoteSourceImpl @Inject constructor(
         return userService.postNicknameVerify(nickName)
     }
 
+    override suspend fun postCheckEventCodeVerify(code: String): Response<Boolean> {
+        return userService.postNicknameVerify(code)
+    }
+
     override suspend fun getAllAccordList(): Response<AccordApi.Accords> {
         return accordService.getAllAccords()
     }

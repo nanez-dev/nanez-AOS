@@ -27,6 +27,6 @@ sealed class JoinEmailAuthEventData {
 }
 
 
-sealed class JoinSelectAccordEventData {
-
+sealed class JoinEventCodeEventData {
+    data class VerifyResult(val isEnable: Boolean) : JoinEventCodeEventData()
 }

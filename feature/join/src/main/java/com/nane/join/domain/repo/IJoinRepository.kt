@@ -11,5 +11,6 @@ interface IJoinRepository {
     suspend fun postSendAuthEmail(email: String): Flow<DataResult<Boolean>>
     suspend fun postCheckAuthEmailCode(code: String, email: String): Flow<DataResult<Boolean>>
     suspend fun postCheckNickNameVerify(nickName: String): Flow<DataResult<Boolean>>
+    suspend fun postCheckEventCodeVerify(code: String): Flow<DataResult<Boolean>>
     suspend fun getAllAccordList(): Flow<DataResult<List<JoinAccordDTO>>>
 }

@@ -8,6 +8,7 @@
     <string name="label_login">로그인</string>
     <string name="label_join">회원가입</string>
     <string name="label_password">비밀번호</string>
+    <string name="label_confirm">확인</string>
     <string name="label_duplicate_check">중복 확인</string>
 
     <string name="msg_home_search">지금 나에게 맞는 향수를 찾아보세요</string>
@@ -51,6 +52,11 @@
     <string name="msg_join_select_accord_title">마지막 질문!\n좋아하는 향 있어요?</string>
     <string name="msg_join_select_accrod_sub_title">가장 취향에 맞는 향을 한 가지만 선택해주세요 :)</string>
     <string name="label_skip">건너뛰기</string>
+    <string name="msg_join_event_code_title">특별 이벤트 코드를\n입력해주세요!</string>
+    <string name="msg_join_event_code_sub_title">가입 완료 시 자동으로 이벤트 참여 완료!</string>
+    <string name="label_event_code">이벤트 코드</string>
+    <string name="msg_join_event_code_hint">이벤트 코드를 입력해주세요.</string>
+    <string name="msg_join_event_code_complete">* 쿠폰이 등록되었습니다.</string>
 
     <string name="label_theme_accord_title">어코드 관</string>
     <string name="label_theme_brand_title">브랜드 관</string>
