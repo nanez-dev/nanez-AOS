@@ -38,7 +38,7 @@ inline fun <T> LiveData<Event<T>>.eventObserve(
     return wrappedObserver
 }
 
-fun <T : Fragment> AppCompatActivity.addFragment(container: ViewGroup, saveInstanceState: Bundle? = null, tag: String, arguments: Bundle? = null, newFragment: (() -> T?)?): T? {
+fun <T : Fragment> AppCompatActivity.addFragment(container: ViewGroup, saveInstanceState: Bundle? = null, tag: String, arguments: Bundle? = null, isNeedBackStack: Boolean = false, newFragment: (() -> T?)?): T? {
     var fragment: T? = null
 
     saveInstanceState?.let {
@@ -68,7 +68,16 @@ fun <T : Fragment> AppCompatActivity.addFragment(container: ViewGroup, saveInsta
         }
     }
     fragment?.let {
-        supportFragmentManager.beginTransaction().replace(container.id, it, tag).commitAllowingStateLoss()
+        if (isNeedBackStack) {
+            supportFragmentManager.beginTransaction()
+                .addToBackStack(tag)
+                .replace(container.id, it, tag)
+                .commitAllowingStateLoss()
+        } else {
+            supportFragmentManager.beginTransaction()
+                .replace(container.id, it, tag)
+                .commitAllowingStateLoss()
+        }
     }
     return fragment
 }
