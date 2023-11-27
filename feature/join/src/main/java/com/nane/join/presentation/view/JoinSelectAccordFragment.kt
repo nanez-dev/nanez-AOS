@@ -32,24 +32,21 @@ class JoinSelectAccordFragment : BaseBindFragment<JoinSelectAccordFragmentBindin
             }
 
             btnSkip.setOnClickListener {
+                actViewModel.updateAccordId(-1)
                 actViewModel.postNextStep()
             }
 
 
             with(recyclerView) {
                 layoutManager ?: GridLayoutManager(context, 5).apply { layoutManager = this }
-                adapter ?: JoinSelectAccordAdapter().apply { adapter = this }
-
-                if (itemDecorationCount == 0) {
-                    addItemDecoration(object : RecyclerView.ItemDecoration() {
-                        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-                            super.getItemOffsets(outRect, view, parent, state)
-                            outRect.top = 8.toDp()
-                            outRect.bottom = 8.toDp()
-                            outRect.left = 8.toDp()
-                            outRect.right = 8.toDp()
+                adapter ?: JoinSelectAccordAdapter().apply {
+                    userActionsListener = object : JoinSelectAccordAdapter.UserActionsListener {
+                        override fun onSelectAccord(targetId: Int) {
+                            dataBinding.btnDoNext.isEnabled = targetId >= 0
+                            actViewModel.updateAccordId(targetId)
                         }
-                    })
+                    }
+                    adapter = this
                 }
             }
         }

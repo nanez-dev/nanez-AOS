@@ -20,14 +20,24 @@ class JoinSelectAccordAdapter : RecyclerView.Adapter<JoinSelectAccordAdapter.Joi
         notifyDataSetChanged()
     }
 
-    fun getSelectAccordId() = dataList?.find { it.isSelected }?.id ?: -1
+    var userActionsListener: UserActionsListener? = null
+    interface UserActionsListener {
+        fun onSelectAccord(targetId: Int)
+    }
 
+    private fun changeSelectTarget(target: JoinAccordViewData) {
+        var selectId = -1
 
-    private fun changeSelectTarget(targetId: Int) {
         dataList?.forEach {
-            it.isSelected = it.id == targetId
+            if (it.id == target.id) {
+                it.isSelected = target.isSelected
+                selectId = if (it.isSelected) it.id else -1
+            } else {
+                it.isSelected = false
+            }
         }
-        notifyDataSetChanged()
+        userActionsListener?.onSelectAccord(selectId)
+        notifyItemRangeChanged(0, dataList?.size ?: 0, dataList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JoinSelectAccordViewHolder {
@@ -47,12 +57,13 @@ class JoinSelectAccordAdapter : RecyclerView.Adapter<JoinSelectAccordAdapter.Joi
 
         private var data: JoinAccordViewData? = null
 
-
         init {
             binding.apply {
-                vgParent.setOnClickListener {
-                    data?.isSelected = !(data?.isSelected ?: false)
-                    changeSelectTarget(data?.id ?: -1)
+                vgParent.setOnClickListener { view ->
+                    data?.let {
+                        it.isSelected = !it.isSelected
+                        changeSelectTarget(it)
+                    }
                 }
             }
         }

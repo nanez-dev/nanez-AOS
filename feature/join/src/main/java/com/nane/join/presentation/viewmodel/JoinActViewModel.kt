@@ -24,7 +24,9 @@ class JoinActViewModel @Inject constructor() : BaseViewModel() {
     private val _eventData by lazy { MutableLiveData<Event<JoinActEventData>>() }
     val eventData: LiveData<Event<JoinActEventData>> = _eventData
 
-
+    fun updateAccordId(targetId: Int) {
+        joinUserViewData.accordId = targetId
+    }
 
     fun postNextStep() {
         totalProgress = min(totalProgress + 15, 100)
