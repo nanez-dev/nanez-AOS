@@ -1,8 +1,10 @@
 package com.nane.join.data.source.impl
 
+import com.nane.join.data.source.IJoinRemoteSource
 import com.nane.network.api.theme.AccordApi
 import com.nane.network.api.users.JoinEmailAuthApi
 import com.nane.network.api.users.JoinVerifyAuthEmailCodeApi
+import com.nane.network.api.users.SignUpApi
 import com.nane.network.service.RetrofitAccordService
 import com.nane.network.service.RetrofitUserService
 import retrofit2.Response
@@ -15,6 +17,10 @@ class JoinRemoteSourceImpl @Inject constructor(
     private val userService: RetrofitUserService,
     private val accordService: RetrofitAccordService
 ): IJoinRemoteSource {
+
+    override suspend fun postSignUp(body: SignUpApi.Body): Response<SignUpApi.Response> {
+        return userService.postSignUp(body)
+    }
 
     override suspend fun postSendAuthEmail(body: JoinEmailAuthApi.Body): Response<Boolean> {
         return userService.postSendAuthEmail(body)

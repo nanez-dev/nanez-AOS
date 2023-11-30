@@ -24,6 +24,8 @@ class JoinPasswordFragment @Inject constructor() : BaseBindFragment<JoinPassword
 
     private val actViewModel: JoinActViewModel by activityViewModels()
 
+    private var authCompletePassword = ""
+
     override fun createViewModel() = viewModels<JoinViewModel>().value
 
     override fun initFragment(dataBinding: JoinPasswordFragmentBinding, viewModel: JoinViewModel) {
@@ -32,6 +34,8 @@ class JoinPasswordFragment @Inject constructor() : BaseBindFragment<JoinPassword
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun afterTextChanged(p0: Editable?) {
+                    dataBinding.btnDoNext.isEnabled = false
+
                     val password = editPassword.text.toString()
                     val checkPassword = editPasswordCheck.text.toString()
 
@@ -42,7 +46,7 @@ class JoinPasswordFragment @Inject constructor() : BaseBindFragment<JoinPassword
             })
 
             btnDoNext.setOnClickListener {
-                actViewModel.postNextStep()
+                actViewModel.updatePassword(authCompletePassword)
             }
         }
 
@@ -50,6 +54,11 @@ class JoinPasswordFragment @Inject constructor() : BaseBindFragment<JoinPassword
             when (event) {
                 is JoinPasswordEventData.EnableNextBtn -> {
                     dataBinding.btnDoNext.isEnabled = event.isEnable
+                    authCompletePassword = if (event.isEnable) {
+                        dataBinding.editPassword.text.toString()
+                    } else {
+                        ""
+                    }
                 }
                 is JoinPasswordEventData.ShowErrorView -> {
                     dataBinding.run {

@@ -47,6 +47,7 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
 
     private var isSendAuth = false
     private var isCheckAuth = false
+    private var authCompleteEmail = ""
 
     override fun createViewModel() = viewModels<JoinViewModel>().value
 
@@ -60,7 +61,7 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
                     if (isSendAuth) {
                         return
                     }
-
+                    dataBinding.btnDoNext.isEnabled = false
                     dataBinding.btnSendAuth.isEnabled = p0?.toString()?.isNotEmpty() == true
                 }
             })
@@ -88,7 +89,7 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
             }
 
             btnDoNext.setOnClickListener {
-                actViewModel.postNextStep()
+                actViewModel.updateEmail(authCompleteEmail)
             }
         }
 
@@ -116,8 +117,11 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
                     dataBinding.btnDoNext.isEnabled = isCheckAuth
 
                     if (isCheckAuth) {
+                        authCompleteEmail = dataBinding.editEmail.text.toString()
                         dataBinding.btnSendAuth.isEnabled = false
                         authTimer.cancel()
+                    } else {
+                        authCompleteEmail = ""
                     }
                 }
             }

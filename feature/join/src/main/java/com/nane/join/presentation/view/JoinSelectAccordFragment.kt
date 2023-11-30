@@ -23,17 +23,18 @@ class JoinSelectAccordFragment : BaseBindFragment<JoinSelectAccordFragmentBindin
 
     private val actViewModel: JoinActViewModel by activityViewModels()
 
+    private var selectAccordId = -1
+
     override fun createViewModel() = viewModels<JoinViewModel>().value
 
     override fun initFragment(dataBinding: JoinSelectAccordFragmentBinding, viewModel: JoinViewModel) {
         dataBinding.apply {
             btnDoNext.setOnClickListener {
-                actViewModel.postNextStep()
+                actViewModel.updateAccordId(selectAccordId)
             }
 
             btnSkip.setOnClickListener {
                 actViewModel.updateAccordId(-1)
-                actViewModel.postNextStep()
             }
 
 
@@ -43,7 +44,7 @@ class JoinSelectAccordFragment : BaseBindFragment<JoinSelectAccordFragmentBindin
                     userActionsListener = object : JoinSelectAccordAdapter.UserActionsListener {
                         override fun onSelectAccord(targetId: Int) {
                             dataBinding.btnDoNext.isEnabled = targetId >= 0
-                            actViewModel.updateAccordId(targetId)
+                            selectAccordId = targetId
                         }
                     }
                     adapter = this

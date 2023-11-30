@@ -5,7 +5,7 @@ package com.nane.join.presentation.data
  */
 sealed class JoinActEventData {
     object MoveNextStep : JoinActEventData()
-
+    object SuccessSignUp : JoinActEventData()
     data class ChangeProgressView(val progress: Int) : JoinActEventData()
 }
 

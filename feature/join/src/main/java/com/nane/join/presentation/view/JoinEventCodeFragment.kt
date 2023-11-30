@@ -22,16 +22,20 @@ class JoinEventCodeFragment : BaseBindFragment<JoinEventCodeFragmentBinding, Joi
 
     private val actViewModel: JoinActViewModel by activityViewModels()
 
+    private var authCompleteCode: String? = null
+
     override fun createViewModel() = viewModels<JoinViewModel>().value
 
     override fun initFragment(dataBinding: JoinEventCodeFragmentBinding, viewModel: JoinViewModel) {
         dataBinding.apply {
             btnSignUp.setOnClickListener {
-
+                actViewModel.updateEventCode(authCompleteCode)
+                actViewModel.postSignUp()
             }
 
             btnSkip.setOnClickListener {
-
+                actViewModel.updateEventCode(null)
+                actViewModel.postSignUp()
             }
 
             btnConfirm.setOnClickListener {
@@ -56,6 +60,11 @@ class JoinEventCodeFragment : BaseBindFragment<JoinEventCodeFragmentBinding, Joi
                 is JoinEventCodeEventData.VerifyResult -> {
                     dataBinding.btnSignUp.isEnabled = event.isEnable
                     dataBinding.txtCheckResult.visibility = if (event.isEnable) View.VISIBLE else View.GONE
+                    authCompleteCode = if (event.isEnable) {
+                        dataBinding.editEventCode.text.toString()
+                    } else {
+                        null
+                    }
                 }
             }
         }

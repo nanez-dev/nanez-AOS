@@ -50,9 +50,8 @@ class JoinNickNameFragment : BaseBindFragment<JoinNicknameFragmentBinding, JoinV
                 }
             }
 
-
             btnDoNext.setOnClickListener {
-                actViewModel.postNextStep()
+                actViewModel.updateNickName(checkNickName)
             }
         }
 

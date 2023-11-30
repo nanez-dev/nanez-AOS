@@ -15,7 +15,7 @@ import retrofit2.http.Query
  */
 interface RetrofitUserService {
 
-    @POST("api/users/nickname-verify?nickname={nickname}")
+    @POST("api/users/nickname-verify")
     suspend fun postNicknameVerify(@Query("nickname") nickname: String): Response<Boolean>
 
     @POST("api/users/signup")

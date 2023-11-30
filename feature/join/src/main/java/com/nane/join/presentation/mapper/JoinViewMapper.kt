@@ -1,7 +1,9 @@
 package com.nane.join.presentation.mapper
 
 import com.nane.join.domain.data.JoinAccordDTO
+import com.nane.join.domain.data.JoinSignUpDTO
 import com.nane.join.presentation.data.JoinAccordViewData
+import com.nane.join.presentation.data.JoinUserViewData
 import javax.inject.Inject
 
 /**
@@ -15,6 +17,17 @@ class JoinViewMapper @Inject constructor() {
             name = data.name,
             imgUrl = data.imgUrl,
             isSelected = false
+        )
+    }
+
+    fun toSignUpDto(data: JoinUserViewData): JoinSignUpDTO {
+        return JoinSignUpDTO(
+            nickname = data.nickName,
+            email = data.email,
+            password = data.password,
+            isAccepted = data.isAccepted,
+            referCode = data.referCode,
+            accordId = data.accordId
         )
     }
 }

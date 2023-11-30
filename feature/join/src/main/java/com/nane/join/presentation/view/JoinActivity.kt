@@ -77,6 +77,9 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
                 is JoinActEventData.ChangeProgressView -> {
                     dataBinding.progressView.setProgress(event.progress, true)
                 }
+                is JoinActEventData.SuccessSignUp -> {
+                    finish()
+                }
             }
         }
     }
