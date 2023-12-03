@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
-import com.nane.theme.domain.mapper.AccordDetailDomainMapper
+import com.nane.theme.presentation.mapper.AccordDetailDomainMapper
 import com.nane.theme.domain.usecase.AccordDetailUsecase
 import com.nane.theme.presentation.data.AccordDetailViewData
 import com.nane.theme.presentation.data.AccordItemViewData

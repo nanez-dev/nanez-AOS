@@ -41,6 +41,7 @@
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toTopOf="@id/txtItemName"
             app:layout_constraintLeft_toLeftOf="@id/imgStar"
+            android:ellipsize="end"
             tools:text="@{viewData.brand.korName}" />
 
         <androidx.appcompat.widget.AppCompatTextView

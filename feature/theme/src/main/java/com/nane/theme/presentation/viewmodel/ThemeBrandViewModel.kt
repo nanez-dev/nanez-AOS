@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
-import com.nane.theme.domain.mapper.BrandDomainMapper
+import com.nane.theme.presentation.mapper.BrandDomainMapper
 import com.nane.theme.domain.usecase.AllBrandsUsecase
 import com.nane.theme.domain.usecase.PopularBrandsUsecase
 import com.nane.theme.presentation.data.BrandViewData

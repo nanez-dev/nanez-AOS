@@ -6,7 +6,7 @@ import com.nane.theme.data.mapper.BrandDetailDataMapper
 import com.nane.theme.data.mapper.BrandsDataMapper
 import com.nane.theme.domain.data.BrandDetailDomainDTO
 import com.nane.theme.domain.data.BrandsDomainDTO
-import com.nane.theme.domain.mapper.BrandDetailDomainMapper
+import com.nane.theme.presentation.mapper.BrandDetailDomainMapper
 import com.nane.theme.domain.repository.IThemeRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
