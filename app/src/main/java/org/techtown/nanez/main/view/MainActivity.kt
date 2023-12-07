@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.nane.base.view.BaseBindActivity
 import com.nane.home.presentation.view.HomeFragment
+import com.nane.theme.presentation.view.ThemeAccordDetailFragment
+import com.nane.theme.presentation.view.ThemeAccordFragment
+import com.nane.theme.presentation.view.ThemeBrandFragment
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.ProfileFragment
 import org.techtown.nanez.R
@@ -46,12 +49,14 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
                     }
                     R.id.menuMypage -> {
                         addFragment(frameLayout, tag = "ProfileFragment") {
-                            ProfileFragment()
+//                            ProfileFragment()
+                            ThemeAccordFragment()
                         }
                     }
                     R.id.menuStorage -> {
                         addFragment(frameLayout, tag = "StorageFragment") {
-                            StorageFragment()
+//                            StorageFragment()
+                            ThemeBrandFragment()
                         }
                     }
                 }
