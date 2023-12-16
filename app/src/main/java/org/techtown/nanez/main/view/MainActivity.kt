@@ -1,5 +1,6 @@
 package org.techtown.nanez.main.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
@@ -9,9 +10,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.nane.base.view.BaseBindActivity
 import com.nane.home.presentation.view.HomeFragment
-import com.nane.theme.presentation.view.ThemeAccordDetailFragment
-import com.nane.theme.presentation.view.ThemeAccordFragment
-import com.nane.theme.presentation.view.ThemeBrandFragment
+import com.nane.theme.presentation.view.ThemeAccordActivity
+import com.nane.theme.presentation.view.ThemeBrandActivity
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.ProfileFragment
 import org.techtown.nanez.R
@@ -48,16 +48,16 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
                         }
                     }
                     R.id.menuMypage -> {
-                        addFragment(frameLayout, tag = "ProfileFragment") {
+//                        addFragment(frameLayout, tag = "ProfileFragment") {
 //                            ProfileFragment()
-                            ThemeAccordFragment()
-                        }
+//                        }
+                        startActivity(Intent(this@MainActivity, ThemeAccordActivity::class.java))
                     }
                     R.id.menuStorage -> {
-                        addFragment(frameLayout, tag = "StorageFragment") {
+//                        addFragment(frameLayout, tag = "StorageFragment") {
 //                            StorageFragment()
-                            ThemeBrandFragment()
-                        }
+//                        }
+                        startActivity(Intent(this@MainActivity, ThemeBrandActivity::class.java))
                     }
                 }
                 true

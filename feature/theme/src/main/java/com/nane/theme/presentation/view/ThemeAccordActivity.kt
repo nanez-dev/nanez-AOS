@@ -1,12 +1,12 @@
 package com.nane.theme.presentation.view
 
 import android.os.Bundle
-import androidx.fragment.app.viewModels
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nane.base.view.BaseBindFragment
+import com.nane.base.view.BaseBindActivity
 import com.nane.theme.R
-import com.nane.theme.databinding.ThemeAccordFragmentBinding
+import com.nane.theme.databinding.ThemeAccordActivityBinding
 import com.nane.theme.presentation.view.adapter.AllAccordsAdapter
 import com.nane.theme.presentation.view.adapter.PopularAccordsAdapter
 import com.nane.theme.presentation.view.adapter.decoration.PopularAccordItemDecoration
@@ -16,7 +16,7 @@ import org.techtown.nanez.utils.util.ResUtils
 import org.techtown.nanez.utils.util.toDp
 
 @AndroidEntryPoint
-class ThemeAccordFragment : BaseBindFragment<ThemeAccordFragmentBinding, ThemeAccordViewModel>(R.layout.theme_accord_fragment) {
+class ThemeAccordActivity : BaseBindActivity<ThemeAccordActivityBinding, ThemeAccordViewModel>(R.layout.theme_accord_activity) {
 
     private val accordDetailFragment = ThemeAccordDetailFragment()
 
@@ -25,7 +25,14 @@ class ThemeAccordFragment : BaseBindFragment<ThemeAccordFragmentBinding, ThemeAc
 
     override fun createViewModel(): ThemeAccordViewModel = viewModels<ThemeAccordViewModel>().value
 
-    override fun initFragment(dataBinding: ThemeAccordFragmentBinding, viewModel: ThemeAccordViewModel) {
+    override fun onActionBackPressed() {
+
+    }
+
+    override fun initActivity(
+        dataBinding: ThemeAccordActivityBinding,
+        viewModel: ThemeAccordViewModel
+    ) {
         spanCount = ResUtils.displayMetrics.widthPixels / accordItemWidth - 1
 
         dataBinding.apply {
@@ -49,7 +56,7 @@ class ThemeAccordFragment : BaseBindFragment<ThemeAccordFragmentBinding, ThemeAc
                             val args = Bundle()
                             args.putInt(ThemeAccordDetailFragment.ACCORD_ID, idx)
                             accordDetailFragment.arguments = args
-                            parentFragmentManager
+                            supportFragmentManager
                                 .beginTransaction()
                                 .replace(android.R.id.content, accordDetailFragment)
                                 .commit()
@@ -67,7 +74,7 @@ class ThemeAccordFragment : BaseBindFragment<ThemeAccordFragmentBinding, ThemeAc
                             val args = Bundle()
                             args.putInt(ThemeAccordDetailFragment.ACCORD_ID, idx)
                             accordDetailFragment.arguments = args
-                            parentFragmentManager
+                            supportFragmentManager
                                 .beginTransaction()
                                 .replace(android.R.id.content, accordDetailFragment)
                                 .commit()
@@ -76,12 +83,12 @@ class ThemeAccordFragment : BaseBindFragment<ThemeAccordFragmentBinding, ThemeAc
                 )
             }
         }
-        
-        viewModel.popularAccordItemViewDataList.observe(viewLifecycleOwner) {
+
+        viewModel.popularAccordItemViewDataList.observe(this) {
             (dataBinding.rvPopularAccords.adapter as? PopularAccordsAdapter)?.setItemList(it)
         }
 
-        viewModel.allAccordItemViewDataList.observe(viewLifecycleOwner) {
+        viewModel.allAccordItemViewDataList.observe(this) {
             (dataBinding.rvAllAccords.adapter as? AllAccordsAdapter)?.setItemList(it)
         }
 
