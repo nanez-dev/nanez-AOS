@@ -13,18 +13,23 @@ class AccordsDataMapper @Inject constructor() {
                     engName = it.engName,
                     korName = it.korName,
                     imgUrl = it.imgUrl,
-                    description = it.description,
+                    korDescriptionBody = it.description,
                     code = it.code,
-                    id = it.id
+                    id = it.id,
                 )
             } ?: emptyList(),
             allAccords = apiData?.accords?.map {
                 AccordDTO(
                     engName = it.engName,
-                    korName = it.korName,
-                    imgUrl = it.imgUrl,
                     code = it.code,
-                    id = it.id
+                    engDescriptionTitle = it.engDescriptionTitle,
+                    korDescriptionTitle = it.korDescriptionTitle,
+                    imgUrl = it.imgUrl,
+                    relatedImgUrl = it.relatedImgUrl,
+                    id = it.id,
+                    korName = it.korName,
+                    engDescriptionBody = it.engDescriptionBody,
+                    korDescriptionBody = it.korDescriptionBody
                 ) } ?: emptyList()
         )
     }

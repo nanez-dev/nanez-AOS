@@ -14,8 +14,11 @@ class AccordDomainMapper @Inject constructor() {
                     engName = it.engName,
                     korName = it.korName,
                     imgUrl = it.imgUrl,
-                    description = it.description,
-                    id = it.id
+                    id = it.id,
+                    korDescriptionTitle = it.korDescriptionTitle,
+                    korDescriptionBody = it.korDescriptionBody,
+                    code = it.code,
+                    relatedImgUrl = it.relatedImgUrl
                 )
             },
             allAccords = dto.allAccords.map {
@@ -24,6 +27,10 @@ class AccordDomainMapper @Inject constructor() {
                     korName = it.korName,
                     imgUrl = it.imgUrl,
                     id = it.id,
+                    korDescriptionTitle = it.korDescriptionTitle,
+                    korDescriptionBody = it.korDescriptionBody,
+                    code = it.code,
+                    relatedImgUrl = it.relatedImgUrl
                 )
             }
         )

@@ -6,50 +6,28 @@ import com.google.gson.annotations.SerializedName
 @Keep
 class BrandApi {
 
+    @Keep
     data class Brands(
+        @SerializedName("popular_brands") val popularBrands: List<BrandItem>?,
         val brands: List<BrandItem>?
     )
 
     @Keep
     data class BrandItem(
         val id: Int,
-        @SerializedName("eng") val engName: String,
         @SerializedName("kor") val korName: String,
-        @SerializedName("image") val imgUrl: String
-    )
-
-    data class BrandDetail(
-        val id: Int,
+        @SerializedName("eng_desc_body") val engDescriptionBody: String,
+        @SerializedName("kor_desc_body") val korDescriptionBody: String,
+        @SerializedName("rel_image") val relatedImgUrl: String,
         @SerializedName("eng") val engName: String,
-        @SerializedName("kor") val korName: String,
-        @SerializedName("image") val brandImgUrl: String,
-        val detail: Detail,
-        @SerializedName("relative_perfumes") val relativePerfumes: List<RelativePerfume>?
-    )
-
-    @Keep
-    data class Detail(
-        @SerializedName("top_title") val topTitle: String,
-        @SerializedName("top_subtitle") val topSubTitle: String,
-        @SerializedName("bottom_title") val bottomTitle: String,
-        @SerializedName("bottom_subtitle") val bottomSubTitle: String,
-        @SerializedName("image1") val imageUrl1: String,
-        @SerializedName("image2") val imageUrl2: String,
-        @SerializedName("image3") val imageUrl3: String,
-        @SerializedName("image4") val imageUrl4: String,
-        @SerializedName("image5") val imageUrl5: String,
-        val id: Int,
-        val brandId: Int,
-    )
-
-    @Keep
-    data class RelativePerfume(
-        val id: Int,
-        val brand: BrandItem,
-        @SerializedName("eng") val engName: String,
-        @SerializedName("kor") val korName: String,
+        @SerializedName("eng_desc_title") val engDescriptionTitle: String,
+        @SerializedName("kor_desc_title") val korDescriptionTitle: String,
         @SerializedName("image") val imgUrl: String,
-        val capacity: Int,
-        val price: Int
+    )
+
+    @Keep
+    data class BrandDetail(
+        @SerializedName("brand") val brandItem: BrandItem,
+        @SerializedName("related_perfumes") val relatedPerfumes: List<AccordApi.RelatedPerfume>?
     )
 }

@@ -9,13 +9,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class AllBrandsUsecase @Inject constructor(
+class BrandsUsecase @Inject constructor(
     private val repository: IThemeRepository,
     private val mapper: BrandsDataMapper
 ) {
 
     suspend fun getAllBrands(): Flow<DomainResult<BrandsDomainDTO>> = flow {
-        repository.getAllBrands().collect { response ->
+        repository.getBrands().collect { response ->
             when (response) {
                 is DataResult.Success -> {
                     emit(DomainResult.Success(mapper.toDTO(response.data)))

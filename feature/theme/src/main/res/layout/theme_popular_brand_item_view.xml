@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="com.nane.theme.presentation.data.BrandViewData" />
+            type="com.nane.theme.presentation.data.BrandItemViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/nanez_icon"
-            app:img_load="@{viewData.imageUrl}"
+            app:img_load="@{viewData.imgUrl}"
             app:layout_constraintDimensionRatio="65:36"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +61,7 @@
             android:ellipsize="end"
             android:letterSpacing="-0.025"
             android:maxLines="3"
-            android:text="조 말론 런던은 영국에 뿌리를 둔 것을 자부심으로 여깁니다. 한 폭의 그림 같은 마을부터 구불구불한 언덕"
+            tools:text="@{viewData.korDescriptionBody}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/imgBrand"
             app:layout_constraintTop_toBottomOf="@id/imgBrand" />

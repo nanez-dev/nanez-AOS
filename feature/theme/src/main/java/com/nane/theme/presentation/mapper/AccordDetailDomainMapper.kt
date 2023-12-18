@@ -3,8 +3,8 @@ package com.nane.theme.presentation.mapper
 import com.nane.theme.domain.data.AccordDetailDomainDTO
 import com.nane.theme.presentation.data.AccordDetailViewData
 import com.nane.theme.presentation.data.AccordItemViewData
-import com.nane.theme.presentation.data.AccordPerfumeViewData
-import com.nane.theme.presentation.data.BrandViewData
+import com.nane.theme.presentation.data.BrandItemViewData
+import com.nane.theme.presentation.data.PerfumeViewData
 import javax.inject.Inject
 
 class AccordDetailDomainMapper @Inject constructor() {
@@ -15,18 +15,29 @@ class AccordDetailDomainMapper @Inject constructor() {
                 engName = dto.accord.engName,
                 korName = dto.accord.korName,
                 imgUrl = dto.accord.imgUrl,
-                id = dto.accord.id
+                id = dto.accord.id,
+                engDescriptionTitle = dto.accord.engDescriptionTitle,
+                korDescriptionTitle = dto.accord.korDescriptionTitle,
+                engDescriptionBody = dto.accord.engDescriptionBody,
+                korDescriptionBody = dto.accord.korDescriptionBody,
+                code = dto.accord.code,
+                relatedImgUrl = dto.accord.relatedImgUrl
             ) else null,
             relatedPerfumes = dto.relatedPerfumes?.map {
-                AccordPerfumeViewData(
+                PerfumeViewData(
                     korName = it.korName,
                     engName = it.engName,
                     id = it.id,
-                    brand = if (it.brand != null) BrandViewData(
-                        engName = it.brand.engName,
+                    brand = if (it.brand != null) BrandItemViewData(
+                        id = it.brand.id,
                         korName = it.brand.korName,
-                        imageUrl = it.brand.brandImgUrl,
-                        id = it.brand.id
+                        engDescriptionBody = it.brand.engDescriptionBody,
+                        korDescriptionBody = it.brand.korDescriptionBody,
+                        relatedImgUrl = it.brand.relatedImgUrl,
+                        engName = it.brand.engName,
+                        engDescriptionTitle = it.brand.engDescriptionTitle,
+                        korDescriptionTitle = it.brand.korDescriptionTitle,
+                        imgUrl = it.brand.imgUrl
                     ) else null,
                     brandId = it.brandId,
                     isSingle = it.isSingle,
@@ -37,7 +48,8 @@ class AccordDetailDomainMapper @Inject constructor() {
                     densityId = it.densityId,
                     price = it.price,
                     title = it.title,
-                    description = it.description
+                    description = it.description,
+                    rating = it.rating
                 )
             } ?: emptyList()
         )

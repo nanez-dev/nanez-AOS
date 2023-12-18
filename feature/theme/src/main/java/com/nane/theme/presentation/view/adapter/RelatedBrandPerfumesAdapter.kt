@@ -6,18 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.nane.theme.BR
-import com.nane.theme.databinding.ThemeAllBrandItemViewBinding
 import com.nane.theme.databinding.ThemeRelatedBrandItemViewBinding
-import com.nane.theme.presentation.data.BrandPerfumeViewData
-import com.nane.theme.presentation.data.BrandViewData
+import com.nane.theme.presentation.data.PerfumeViewData
 import org.techtown.nanez.utils.util.toPrice
-import java.text.DecimalFormat
 
-class RelatedBrandPerfumesAdapter(): Adapter<RelatedBrandPerfumesAdapter.BrandViewHolder>() {
+class RelatedBrandPerfumesAdapter : Adapter<RelatedBrandPerfumesAdapter.BrandViewHolder>() {
 
-    private var itemList: List<BrandPerfumeViewData> = emptyList()
+    private var itemList: List<PerfumeViewData> = emptyList()
 
-    fun setItemList(list: List<BrandPerfumeViewData>) {
+    fun setItemList(list: List<PerfumeViewData>) {
         itemList = list
         notifyDataSetChanged()
     }
@@ -34,7 +31,7 @@ class RelatedBrandPerfumesAdapter(): Adapter<RelatedBrandPerfumesAdapter.BrandVi
 
     inner class BrandViewHolder(private val binding: ThemeRelatedBrandItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: BrandPerfumeViewData?) {
+        fun onBind(data: PerfumeViewData?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
             if (data == null) return

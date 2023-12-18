@@ -9,6 +9,11 @@ data class AccordItemViewData(
     val engName: String?,
     val korName: String?,
     val imgUrl: String?,
-    val description: String? = null,
-    val id: Int
+    val engDescriptionTitle: String? = null,
+    val korDescriptionTitle: String?,
+    val engDescriptionBody: String? = null,
+    val korDescriptionBody: String?,
+    val id: Int,
+    val code: Int,
+    val relatedImgUrl: String?
 )

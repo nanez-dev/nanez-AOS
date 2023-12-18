@@ -64,7 +64,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/imgAccord"
             app:layout_constraintTop_toBottomOf="@id/imgAccord"
-            tools:text="@{viewData.description}" />
+            tools:text="@{viewData.korDescriptionBody}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

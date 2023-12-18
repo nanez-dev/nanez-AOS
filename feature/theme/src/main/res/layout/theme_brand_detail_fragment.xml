@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="com.nane.theme.presentation.data.BrandDetailViewData" />
+            type="com.nane.theme.presentation.data.BrandItemViewData" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -30,18 +30,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imgBrandThumbnail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                app:img_round="@{12}"
-                app:layout_constraintDimensionRatio="170:170"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/actionBar" />
-
-            <ImageView
                 android:id="@+id/imgBrand"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -50,7 +38,7 @@
                 app:img_round="@{12}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgBrandThumbnail" />
+                app:layout_constraintTop_toBottomOf="@+id/actionBar" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtBrandDetailTitle"
@@ -59,7 +47,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imgBrand"
-                tools:text="@{viewData.korTitle}" />
+                tools:text="@{viewData.korDescriptionTitle}" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtBrandDetailDescription"
@@ -73,16 +61,16 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtBrandDetailTitle"
-                tools:text="@{}" />
+                tools:text="@{viewData.korDescriptionBody}" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtRelatedItemsTitle"
                 style="@style/Text_20_bold"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="52dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtBrandDetailDescription"
-                tools:text="@{viewData.korTitle + ` 대표 향수`}" />
+                tools:text="@{viewData.korName + ` 대표 향수`}" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/relatedItemsRecyclerView"

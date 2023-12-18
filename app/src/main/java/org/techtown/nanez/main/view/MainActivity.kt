@@ -48,16 +48,14 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
                         }
                     }
                     R.id.menuMypage -> {
-//                        addFragment(frameLayout, tag = "ProfileFragment") {
-//                            ProfileFragment()
-//                        }
-                        startActivity(Intent(this@MainActivity, ThemeAccordActivity::class.java))
+                        addFragment(frameLayout, tag = "ProfileFragment") {
+                            ProfileFragment()
+                        }
                     }
                     R.id.menuStorage -> {
-//                        addFragment(frameLayout, tag = "StorageFragment") {
-//                            StorageFragment()
-//                        }
-                        startActivity(Intent(this@MainActivity, ThemeBrandActivity::class.java))
+                        addFragment(frameLayout, tag = "StorageFragment") {
+                            StorageFragment()
+                        }
                     }
                 }
                 true

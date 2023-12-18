@@ -13,27 +13,19 @@ class ThemeRemoteSourceImpl @Inject constructor(
     private val brandService: RetrofitBrandService
 ): IThemeRemoteSource {
 
-    override suspend fun getPopularAccords(): Response<AccordApi.Accords> {
-        TODO("Not yet implemented")
+    override suspend fun getAccords(): Response<AccordApi.Accords> {
+        return accordService.getAccords()
     }
 
-    override suspend fun getAllAccords(): Response<AccordApi.Accords> {
-        return accordService.getAllAccords()
-    }
-
-    override suspend fun getAllBrands(): Response<BrandApi.Brands> {
-        return brandService.getAllBrands()
-    }
-
-    override suspend fun getPopularBrands(): Response<BrandApi.Brands> {
-        return brandService.getPopularBrands()
+    override suspend fun getBrands(): Response<BrandApi.Brands> {
+        return brandService.getBrands()
     }
 
     override suspend fun getAccordDetail(id: Int): Response<AccordApi.AccordDetail> {
-        return accordService.getAccordDetail(id)
+        return accordService.getAccordDetail(id = id)
     }
 
-    override suspend fun getBrandDetail(brandId: Int, limit: Int): Response<BrandApi.BrandDetail> {
-        return brandService.getBrandDetail(brandId = brandId, limit = limit)
+    override suspend fun getBrandDetail(brandId: Int): Response<BrandApi.BrandDetail> {
+        return brandService.getBrandDetail(brandId = brandId)
     }
 }

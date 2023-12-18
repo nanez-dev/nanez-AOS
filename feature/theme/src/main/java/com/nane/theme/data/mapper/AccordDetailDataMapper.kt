@@ -3,9 +3,8 @@ package com.nane.theme.data.mapper
 import com.nane.network.api.theme.AccordApi
 import com.nane.theme.domain.data.AccordDTO
 import com.nane.theme.domain.data.AccordDetailDomainDTO
-import com.nane.theme.domain.data.AccordPerfume
 import com.nane.theme.domain.data.BrandDTO
-import org.techtown.nanez.utils.NaneLog
+import com.nane.theme.domain.data.PerfumeDomainDTO
 import javax.inject.Inject
 
 class AccordDetailDataMapper @Inject constructor() {
@@ -17,17 +16,25 @@ class AccordDetailDataMapper @Inject constructor() {
                 imgUrl = apiData.accordItem.imgUrl,
                 code = apiData.accordItem.code,
                 id = apiData.accordItem.id,
+                korDescriptionTitle = apiData.accordItem.korDescriptionTitle,
+                korDescriptionBody = apiData.accordItem.korDescriptionBody,
+                relatedImgUrl = apiData.accordItem.relatedImgUrl
             ) else null,
-            relatedPerfumes = apiData?.relativePerfumes?.map {
-                AccordPerfume(
+            relatedPerfumes = apiData?.relatedPerfumes?.map {
+                PerfumeDomainDTO(
                     korName = it.korName,
                     engName = it.engName,
                     id = it.id,
                     brand = BrandDTO(
                         id = it.brand.id,
-                        engName = it.brand.engName,
                         korName = it.brand.korName,
-                        brandImgUrl = it.brand.imgUrl
+                        engDescriptionBody = it.brand.engDescriptionBody,
+                        korDescriptionBody = it.brand.korDescriptionBody,
+                        relatedImgUrl = it.brand.relatedImgUrl,
+                        engName = it.brand.engName,
+                        engDescriptionTitle = it.brand.engDescriptionTitle,
+                        korDescriptionTitle = it.brand.korDescriptionTitle,
+                        imgUrl = it.brand.imgUrl
                     ),
                     brandId = it.brandId,
                     isSingle = it.isSingle,
@@ -38,7 +45,8 @@ class AccordDetailDataMapper @Inject constructor() {
                     densityId = it.densityId,
                     price = it.price,
                     title = it.title,
-                    description = it.description
+                    description = it.description,
+                    rating = it.rating
                 )
             } ?: emptyList()
         )

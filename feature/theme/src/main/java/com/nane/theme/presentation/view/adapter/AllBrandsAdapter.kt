@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.nane.theme.BR
 import com.nane.theme.databinding.ThemeAllBrandItemViewBinding
-import com.nane.theme.presentation.data.BrandViewData
+import com.nane.theme.presentation.data.BrandItemViewData
 
 class AllBrandsAdapter : Adapter<AllBrandsAdapter.BrandViewHolder>() {
 
-    private var itemList: List<BrandViewData> = emptyList()
+    private var itemList: List<BrandItemViewData> = emptyList()
 
-    fun setItemList(list: List<BrandViewData>) {
+    fun setItemList(list: List<BrandItemViewData>) {
         itemList = list
         notifyDataSetChanged()
     }
@@ -29,7 +29,7 @@ class AllBrandsAdapter : Adapter<AllBrandsAdapter.BrandViewHolder>() {
 
     inner class BrandViewHolder(private val binding: ThemeAllBrandItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: BrandViewData?) {
+        fun onBind(data: BrandItemViewData?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

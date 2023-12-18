@@ -6,10 +6,14 @@ data class AccordsDomainDTO(
 )
 
 data class AccordDTO(
-    val engName: String?,
-    val korName: String?,
-    val imgUrl: String?,
-    val description: String? = null,
+    val engName: String? = null,
     val code: Int,
-    val id: Int
+    val engDescriptionTitle: String? = null,
+    val korDescriptionTitle: String? = null,
+    val imgUrl: String? = null,
+    val relatedImgUrl: String? = null,
+    val id: Int,
+    val korName: String? = null,
+    val engDescriptionBody: String? = null,
+    val korDescriptionBody: String? = null
 )

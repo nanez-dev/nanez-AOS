@@ -11,15 +11,11 @@ import retrofit2.http.Query
  */
 interface RetrofitBrandService {
 
-    @GET("api/brand/popular")
-    suspend fun getPopularBrands(): Response<BrandApi.Brands>
+    @GET("api/brand/exhibition")
+    suspend fun getBrands(): Response<BrandApi.Brands>
 
-    @GET("api/brand")
-    suspend fun getAllBrands(): Response<BrandApi.Brands>
-
-    @GET("api/brand/{id}")
+    @GET("api/brand/{id}/exhibition")
     suspend fun getBrandDetail(
-        @Path(value = "id") brandId: Int,
-        @Query(value = "limit") limit: Int
+        @Path(value = "id") brandId: Int
     ): Response<BrandApi.BrandDetail>
 }

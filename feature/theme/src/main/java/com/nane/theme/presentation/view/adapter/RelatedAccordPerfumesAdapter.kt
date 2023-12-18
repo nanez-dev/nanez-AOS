@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.nane.theme.BR
 import com.nane.theme.databinding.ThemeRelatedAccordItemViewBinding
-import com.nane.theme.presentation.data.AccordPerfumeViewData
+import com.nane.theme.presentation.data.PerfumeViewData
 import org.techtown.nanez.utils.util.toPrice
 
 class RelatedAccordPerfumesAdapter(): Adapter<RelatedAccordPerfumesAdapter.BrandViewHolder>() {
 
-    private var itemList: List<AccordPerfumeViewData> = emptyList()
+    private var itemList: List<PerfumeViewData> = emptyList()
 
-    fun setItemList(list: List<AccordPerfumeViewData>) {
+    fun setItemList(list: List<PerfumeViewData>) {
         itemList = list
         notifyDataSetChanged()
     }
@@ -31,7 +31,7 @@ class RelatedAccordPerfumesAdapter(): Adapter<RelatedAccordPerfumesAdapter.Brand
 
     inner class BrandViewHolder(private val binding: ThemeRelatedAccordItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: AccordPerfumeViewData?) {
+        fun onBind(data: PerfumeViewData?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
             if (data == null) return

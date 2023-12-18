@@ -9,7 +9,6 @@ import com.nane.theme.presentation.view.adapter.RelatedAccordPerfumesAdapter
 import com.nane.theme.presentation.view.adapter.decoration.RelatedAccordPerfumeItemDecoration
 import com.nane.theme.presentation.viewmodel.ThemeAccordDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import org.techtown.nanez.utils.NaneLog
 
 @AndroidEntryPoint
 class ThemeAccordDetailFragment : BaseBindFragment<ThemeAccordDetailFragmentBinding, ThemeAccordDetailViewModel>(R.layout.theme_accord_detail_fragment) {

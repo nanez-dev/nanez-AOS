@@ -71,7 +71,6 @@ class ThemeBrandActivity : BaseBindActivity<ThemeBrandActivityBinding, ThemeBran
             (dataBinding.rvAllBrands.adapter as? AllBrandsAdapter)?.setItemList(it)
         }
 
-        viewModel.getPopularBrandViewData()
-        viewModel.getAllBrandViewData()
+        viewModel.getBrandViewData()
     }
 }
