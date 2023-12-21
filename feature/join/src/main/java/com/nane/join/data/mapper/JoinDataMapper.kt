@@ -26,7 +26,9 @@ class JoinDataMapper @Inject constructor() {
             password = data.password,
             refer_code = data.referCode,
             is_accepted = data.isAccepted,
-            accord_id = data.accordId
+            accord_id = data.accordId,
+            profile_image = null,
+            gender = "-"
         )
     }
 }

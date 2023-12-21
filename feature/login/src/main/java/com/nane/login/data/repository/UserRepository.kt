@@ -8,6 +8,7 @@ import com.nane.network.parser.getParseErrorResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import org.techtown.nanez.data.api.users.SignInApi
+import org.techtown.nanez.utils.session.SessionManager
 import java.io.IOException
 import javax.inject.Inject
 
@@ -49,6 +50,8 @@ class UserRepository @Inject constructor(
 
 
     suspend fun saveLoginInfo(dto: UserLoginDTO) {
+        SessionManager.instance.saveEmail(dto.userEmail ?: "")
+        SessionManager.instance.saveToken(dto.accessToken ?: "", dto.refreshToken ?: "")
         localDataSource.saveUserLoginInfo(dto)
     }
 }

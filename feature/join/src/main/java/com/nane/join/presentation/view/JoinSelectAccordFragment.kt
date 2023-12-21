@@ -39,7 +39,7 @@ class JoinSelectAccordFragment : BaseBindFragment<JoinSelectAccordFragmentBindin
 
 
             with(recyclerView) {
-                layoutManager ?: GridLayoutManager(context, 5).apply { layoutManager = this }
+                layoutManager ?: GridLayoutManager(context, SPAN_COUNT).apply { layoutManager = this }
                 adapter ?: JoinSelectAccordAdapter().apply {
                     userActionsListener = object : JoinSelectAccordAdapter.UserActionsListener {
                         override fun onSelectAccord(targetId: Int) {
@@ -60,5 +60,9 @@ class JoinSelectAccordFragment : BaseBindFragment<JoinSelectAccordFragmentBindin
         viewModel.getAllAccordList()
     }
 
+
+    companion object {
+        private const val SPAN_COUNT = 5
+    }
 
 }

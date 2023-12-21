@@ -7,6 +7,19 @@ import androidx.annotation.Keep
  */
 @Keep
 class SignUpApi {
+    /**
+     * {
+     *   "nickname": "test_minho",
+     *   "email": "test_minho@gmail.com",
+     *   "password": "string",
+     *   "gender": "-",
+     *   "age_group": null,
+     *   "refer_code": "string",
+     *   "accord_id": 1,
+     *   "is_accepted": true,
+     *   "profile_image": null
+     * }
+     */
 
     @Keep
     data class Body(
@@ -16,6 +29,8 @@ class SignUpApi {
         val refer_code: String?,
         val accord_id: Int,
         val is_accepted: Boolean,
+        val profile_image: String?,
+        val gender: String?,
     )
 
     @Keep

@@ -12,6 +12,7 @@ import com.nane.join.presentation.data.JoinPasswordEventData
 import com.nane.join.presentation.viewmodel.JoinActViewModel
 import com.nane.join.presentation.viewmodel.JoinViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import org.techtown.nanez.utils.NaneLog
 import org.techtown.nanez.utils.util.ResUtils
 import org.techtown.nanez.utils.util.eventObserve
 import javax.inject.Inject
@@ -62,7 +63,7 @@ class JoinPasswordFragment @Inject constructor() : BaseBindFragment<JoinPassword
                 }
                 is JoinPasswordEventData.ShowErrorView -> {
                     dataBinding.run {
-                        txtError.visibility = if (event.errorText?.isEmpty() == true) View.GONE else View.VISIBLE
+                        txtError.visibility = if (event.errorText.isNullOrEmpty()) View.GONE else View.VISIBLE
                         txtError.text = event.errorText
                         if (txtError.visibility == View.VISIBLE) {
                             editPassword.background = ResUtils.getDrawable(context, com.nane.base.R.drawable.shape_bg50_r12_error500_s1)

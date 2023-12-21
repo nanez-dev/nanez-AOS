@@ -39,7 +39,6 @@ class EmailLoginFragment : BaseBindFragment<EmailLoginFragmentBinding, EmailLogi
                 activity?.let { act ->
                     startActivity(JoinActivity.createIntent(act))
                 }
-
             }
 
             editEmail.addTextChangedListener(clearErrorTextWatcher)
