@@ -1,6 +1,7 @@
 plugins {
     id("convention.nane.module.base")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
 }
 
 android {

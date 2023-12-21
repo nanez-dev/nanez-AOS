@@ -39,7 +39,8 @@ class EmailLoginViewModel @Inject constructor(
                                 FailedMessageConst.NOT_FOUND_USER -> {
                                     _eventData.post(Event(EmailLoginEventData.NotFoundLoginInfo))
                                 }
-                                FailedMessageConst.NOT_MATCH_USER -> {
+                                FailedMessageConst.NOT_MATCH_USER,
+                                FailedMessageConst.INVALID_PASSWORD -> {
                                     _eventData.post(Event(EmailLoginEventData.NotMatchLoginInfo))
                                 }
                                 else -> {

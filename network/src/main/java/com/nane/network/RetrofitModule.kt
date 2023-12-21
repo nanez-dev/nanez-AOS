@@ -38,6 +38,7 @@ object RetrofitModule {
             .readTimeout(RETROFIT_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(RETROFIT_TIMEOUT, TimeUnit.SECONDS)
             .cookieJar(JavaNetCookieJar(CookieManager().apply { setCookiePolicy(CookiePolicy.ACCEPT_ALL) }))
+            .addNetworkInterceptor(RetrofitHeaderInterceptor())
             .addNetworkInterceptor(logInterceptor())
             .build()
     }
@@ -80,7 +81,12 @@ object RetrofitModule {
                     msg.startsWith("x-request-id") or
                     msg.startsWith("vary") or
                     msg.startsWith("set-cookie") or
-                    msg.startsWith("x-amz-cf") -> {
+                    msg.startsWith("x-amz-cf") or
+                    msg.startsWith("Accept-Encoding") or
+                    msg.startsWith("Host") or
+                    msg.startsWith("Connection") or
+                    msg.startsWith("User-Agent") or
+                    msg.startsWith("server") -> {
                     return
                 }
             }
