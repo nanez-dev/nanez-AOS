@@ -37,6 +37,7 @@ dependencies {
     implementation(project(":feature:login"))
     implementation(project(":feature:join"))
     implementation(project(":feature:theme"))
+    implementation(project(":feature:search"))
 
     implementation(libs.bundles.module.app)
     kapt(libs.bundles.hilt.compile.kapt)
