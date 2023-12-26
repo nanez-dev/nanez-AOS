@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="com.nane.theme.presentation.data.BrandViewData" />
+            type="com.nane.theme.presentation.data.BrandItemViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:paddingVertical="11dp"
-            app:img_load="@{viewData.imageUrl}"
+            app:img_load="@{viewData.imgUrl}"
             app:layout_constraintDimensionRatio="164:88"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -40,7 +40,7 @@
             app:layout_constraintTop_toBottomOf="@id/imgTheme"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            tools:text="@{viewData.korTitle}" />
+            tools:text="@{viewData.korName}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

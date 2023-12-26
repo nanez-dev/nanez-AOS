@@ -19,9 +19,9 @@ class ThemeRepositoryImpl @Inject constructor(
     private val remoteDataSource: IThemeRemoteSource
 ) : IThemeRepository {
 
-    override suspend fun getPopularAccords(): Flow<DataResult<AccordApi.Accords?>>
+    override suspend fun getAccords(): Flow<DataResult<AccordApi.Accords?>>
         = flow {
-            val response = remoteDataSource.getPopularAccords()
+            val response = remoteDataSource.getAccords()
             if (response.isSuccessful) {
                 emit(DataResult.Success(response.body()))
             } else {
@@ -34,9 +34,9 @@ class ThemeRepositoryImpl @Inject constructor(
             emit(DataResult.Error(Exception(t)))
         }.flowOn(Dispatchers.IO)
 
-    override suspend fun getAllAccords(): Flow<DataResult<AccordApi.Accords?>>
+    override suspend fun getBrands(): Flow<DataResult<BrandApi.Brands?>>
         = flow {
-            val response = remoteDataSource.getAllAccords()
+            val response = remoteDataSource.getBrands()
             if (response.isSuccessful) {
                 emit(DataResult.Success(response.body()))
             } else {
@@ -49,9 +49,9 @@ class ThemeRepositoryImpl @Inject constructor(
             emit(DataResult.Error(Exception(t)))
         }.flowOn(Dispatchers.IO)
 
-    override suspend fun getAllBrands(): Flow<DataResult<BrandApi.Brands?>>
+    override suspend fun getAccordDetail(id: Int): Flow<DataResult<AccordApi.AccordDetail?>>
         = flow {
-            val response = remoteDataSource.getAllBrands()
+            val response = remoteDataSource.getAccordDetail(id = id)
             if (response.isSuccessful) {
                 emit(DataResult.Success(response.body()))
             } else {
@@ -64,9 +64,11 @@ class ThemeRepositoryImpl @Inject constructor(
             emit(DataResult.Error(Exception(t)))
         }.flowOn(Dispatchers.IO)
 
-    override suspend fun getPopularBrands(): Flow<DataResult<BrandApi.Brands?>>
+    override suspend fun getBrandDetail(
+        brandId: Int
+    ): Flow<DataResult<BrandApi.BrandDetail?>>
         = flow {
-            val response = remoteDataSource.getPopularBrands()
+            val response = remoteDataSource.getBrandDetail(brandId = brandId)
             if (response.isSuccessful) {
                 emit(DataResult.Success(response.body()))
             } else {

@@ -8,12 +8,30 @@ import javax.inject.Inject
 class BrandsDataMapper @Inject constructor() {
     fun toDTO(apiData: BrandApi.Brands?): BrandsDomainDTO {
         return BrandsDomainDTO(
-            itemList = apiData?.brands?.map {
+            popularBrands = apiData?.popularBrands?.map {
                 BrandDTO(
-                    engTitle = it.engTitle,
-                    korTitle = it.korTitle,
-                    imageUrl = it.imageUrl,
-                    id = it.id
+                    engName = it.engName,
+                    korName = it.korName,
+                    id = it.id,
+                    engDescriptionBody = it.engDescriptionBody,
+                    korDescriptionBody = it.korDescriptionBody,
+                    relatedImgUrl = it.relatedImgUrl,
+                    engDescriptionTitle = it.engDescriptionTitle,
+                    korDescriptionTitle = it.korDescriptionTitle,
+                    imgUrl = it.imgUrl
+                )
+            } ?: emptyList(),
+            allBrands = apiData?.brands?.map {
+                BrandDTO(
+                    engName = it.engName,
+                    korName = it.korName,
+                    id = it.id,
+                    engDescriptionBody = it.engDescriptionBody,
+                    korDescriptionBody = it.korDescriptionBody,
+                    relatedImgUrl = it.relatedImgUrl,
+                    engDescriptionTitle = it.engDescriptionTitle,
+                    korDescriptionTitle = it.korDescriptionTitle,
+                    imgUrl = it.imgUrl
                 ) } ?: emptyList()
         )
     }

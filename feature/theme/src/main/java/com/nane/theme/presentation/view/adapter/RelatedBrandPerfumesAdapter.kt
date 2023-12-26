@@ -1,24 +1,26 @@
 package com.nane.theme.presentation.view.adapter
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.nane.theme.BR
-import com.nane.theme.databinding.ThemeAllBrandItemViewBinding
-import com.nane.theme.presentation.data.BrandItemViewData
+import com.nane.theme.databinding.ThemeRelatedBrandItemViewBinding
+import com.nane.theme.presentation.data.PerfumeViewData
+import org.techtown.nanez.utils.util.toPrice
 
-class AllBrandsAdapter : Adapter<AllBrandsAdapter.BrandViewHolder>() {
+class RelatedBrandPerfumesAdapter : Adapter<RelatedBrandPerfumesAdapter.BrandViewHolder>() {
 
-    private var itemList: List<BrandItemViewData> = emptyList()
+    private var itemList: List<PerfumeViewData> = emptyList()
 
-    fun setItemList(list: List<BrandItemViewData>) {
+    fun setItemList(list: List<PerfumeViewData>) {
         itemList = list
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrandViewHolder {
-        return BrandViewHolder(ThemeAllBrandItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return BrandViewHolder(ThemeRelatedBrandItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int = itemList.size
@@ -27,17 +29,20 @@ class AllBrandsAdapter : Adapter<AllBrandsAdapter.BrandViewHolder>() {
         holder.onBind(itemList.getOrNull(position))
     }
 
-    inner class BrandViewHolder(private val binding: ThemeAllBrandItemViewBinding): ViewHolder(binding.root) {
+    inner class BrandViewHolder(private val binding: ThemeRelatedBrandItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: BrandItemViewData?) {
+        fun onBind(data: PerfumeViewData?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
+            if (data == null) return
+            binding.txtItemPrice.text = data.price.toPrice()
         }
 
         init {
             binding.root.setOnClickListener {
                 onItemClickListener?.onItemClick(itemList.getOrNull(adapterPosition)?.id ?: -1)
             }
+            binding.txtItemPriceSub.paintFlags = binding.txtItemPriceSub.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         }
     }
 

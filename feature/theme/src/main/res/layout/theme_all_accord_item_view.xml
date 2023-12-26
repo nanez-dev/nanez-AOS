@@ -11,11 +11,11 @@
 
         <variable
             name="viewData"
-            type="com.nane.theme.presentation.data.AccordViewData" />
+            type="com.nane.theme.presentation.data.AccordItemViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
 
@@ -25,9 +25,10 @@
             android:layout_height="48dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            app:img_load="@{viewData.imageUrl}"
+            app:img_load="@{viewData.imgUrl}"
             app:img_round="@{20}"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -37,7 +38,7 @@
             app:layout_constraintTop_toBottomOf="@id/imgAccord"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            tools:text="@{viewData.korTitle}" />
+            tools:text="@{viewData.korName}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
