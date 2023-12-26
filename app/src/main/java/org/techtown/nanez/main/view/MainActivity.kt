@@ -1,6 +1,5 @@
 package org.techtown.nanez.main.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
@@ -10,8 +9,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.nane.base.view.BaseBindActivity
 import com.nane.home.presentation.view.HomeFragment
-import com.nane.theme.presentation.view.ThemeAccordActivity
-import com.nane.theme.presentation.view.ThemeBrandActivity
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.ProfileFragment
 import org.techtown.nanez.R
