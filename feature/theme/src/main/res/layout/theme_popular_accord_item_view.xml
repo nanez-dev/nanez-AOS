@@ -8,6 +8,10 @@
         <import type="android.view.View" />
 
         <import type="android.text.TextUtils" />
+
+        <variable
+            name="viewData"
+            type="com.nane.theme.presentation.data.AccordItemViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +27,7 @@
             android:adjustViewBounds="true"
             android:padding="1dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/nanez_icon"
+            app:img_load="@{viewData.imgUrl}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,30 +36,35 @@
             style="@style/Detail_11_M"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="1dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintLeft_toRightOf="@+id/imgAccord"
-            app:layout_constraintTop_toTopOf="@+id/imgAccord"
-            tools:text="Citrus" />
+            app:layout_constraintTop_toTopOf="@+id/imgAccord" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtAccordTitleKorean"
             style="@style/Body_16_B"
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="1dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="@+id/imgAccord"
             app:layout_constraintLeft_toRightOf="@+id/imgAccord"
-            tools:text="시트러스" />
+            tools:text="@{viewData.korName}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtAccordDescription"
             style="@style/Body_14_M"
             android:layout_width="188dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:letterSpacing="-0.025"
             android:maxLines="3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/imgAccord"
             app:layout_constraintTop_toBottomOf="@id/imgAccord"
-            tools:text="시트러스는 호불호 없이 많은 이에게 사랑받는 어코드입니다. 가볍고 청량한 느낌이 있어 S/S 시즌에" />
+            tools:text="@{viewData.korDescriptionBody}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

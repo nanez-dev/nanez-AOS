@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.nane.theme.BR
 import com.nane.theme.databinding.ThemeAllAccordItemViewBinding
+import com.nane.theme.presentation.data.AccordItemViewData
 import com.nane.theme.presentation.data.AccordViewData
 
 class AllAccordsAdapter : Adapter<AllAccordsAdapter.AllAccordViewHolder>() {
 
-    private var itemList: List<AccordViewData> = emptyList()
+    private var itemList: List<AccordItemViewData> = emptyList()
 
-    fun setItemList(list: List<AccordViewData>) {
+    fun setItemList(list: List<AccordItemViewData>) {
         itemList = list
         notifyDataSetChanged()
     }
@@ -29,9 +30,15 @@ class AllAccordsAdapter : Adapter<AllAccordsAdapter.AllAccordViewHolder>() {
 
     inner class AllAccordViewHolder(private val binding: ThemeAllAccordItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: AccordViewData?) {
+        fun onBind(data: AccordItemViewData?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
+        }
+
+        init {
+            binding.root.setOnClickListener {
+                onItemClickListener?.onItemClick(itemList.getOrNull(adapterPosition)?.id ?: -1)
+            }
         }
     }
 
@@ -41,6 +48,6 @@ class AllAccordsAdapter : Adapter<AllAccordsAdapter.AllAccordViewHolder>() {
     }
 
     interface ItemClickListener {
-        fun onItemClick()
+        fun onItemClick(idx: Int)
     }
 }

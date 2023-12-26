@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="com.nane.theme.presentation.data.BrandViewData" />
+            type="com.nane.theme.presentation.data.BrandItemViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,8 +26,8 @@
             android:layout_height="36dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            app:img_load="@{viewData.imageUrl}"
             android:src="@drawable/nanez_icon"
+            app:img_load="@{viewData.imgUrl}"
             app:layout_constraintDimensionRatio="65:36"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,28 +36,35 @@
             android:id="@+id/txtBrandTitleEnglish"
             style="@style/Detail_11_M"
             android:layout_marginLeft="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintLeft_toRightOf="@+id/imgBrand"
             app:layout_constraintTop_toTopOf="@+id/imgBrand"
-            tools:text="@{viewData.engTitle}" />
+            tools:text="@{viewData.engName}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtBrandTitleKorean"
             style="@style/Body_16_B"
             android:layout_marginLeft="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="@+id/imgBrand"
             app:layout_constraintLeft_toRightOf="@+id/imgBrand"
-            tools:text="@{viewData.korTitle}" />
+            tools:text="@{viewData.korName}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtBrandDescription"
             style="@style/Body_14_M"
+            android:layout_width="188dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:letterSpacing="-0.025"
             android:maxLines="3"
+            tools:text="@{viewData.korDescriptionBody}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/imgBrand"
-            app:layout_constraintTop_toBottomOf="@id/imgBrand"
-            android:text="조 말론 런던은 영국에 뿌리를 둔 것을 자부심으로 여깁니다. 한 폭의 그림 같은 마을부터 구불구불한 언덕" />
+            app:layout_constraintTop_toBottomOf="@id/imgBrand" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
