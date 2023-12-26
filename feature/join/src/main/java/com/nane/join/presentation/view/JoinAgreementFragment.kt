@@ -54,7 +54,7 @@ class JoinAgreementFragment : BaseBindFragment<JoinAgreementFragmentBinding, Joi
             }
 
             btnDoAgree.setOnClickListener {
-                actViewModel.postNextStep()
+                actViewModel.updateMarketingAgree(txtMarketingAgree.isSelected)
             }
         }
     }

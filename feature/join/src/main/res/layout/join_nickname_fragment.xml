@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -26,7 +27,7 @@
                     android:id="@+id/txtMainTitle"
                     style="@style/Head_24_B"
                     android:layout_marginTop="60dp"
-                    android:text="@string/msg_join_email_auth_title"
+                    android:text="@string/msg_join_nickname_title"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -36,7 +37,7 @@
                     android:id="@+id/txtSubTitle"
                     style="@style/Body_14_R"
                     android:layout_marginTop="8dp"
-                    android:text="@string/msg_join_email_auth_sub_title"
+                    android:text="@string/msg_join_nickname_sub_title"
                     android:textColor="@color/gray_400"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtMainTitle" />
@@ -45,18 +46,18 @@
                     android:id="@+id/txtInputTitle"
                     style="@style/Body_16_B"
                     android:layout_marginTop="40dp"
-                    android:text="@string/label_email"
+                    android:text="@string/label_name"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtSubTitle" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/editEmail"
+                    android:id="@+id/editNickName"
                     style="@style/Text_16"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/shape_bg50_r12_line50_s1"
-                    android:hint="@string/msg_hint_input_email"
+                    android:hint="@string/msg_hint_input_nickname"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:padding="16dp"
@@ -65,48 +66,20 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtInputTitle" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/vgInputAuth"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtCheckResult"
+                    style="@style/Detail_11_M"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_bg50_r12_line50_s1"
+                    android:gravity="left"
+                    android:textColor="@color/error_500"
                     android:visibility="gone"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editEmail"
-                    tools:visibility="visible">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/editEmailAuth"
-                        style="@style/Text_16"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="@string/msg_join_email_input_auth_hint"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:padding="16dp"
-                        android:textColorHint="@color/gray_400"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toLeftOf="@+id/txtTime"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtTime"
-                        style="@style/Detail_11_M"
-                        android:layout_marginRight="16dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toRightOf="@id/editEmailAuth"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="02:49" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintLeft_toLeftOf="@id/editNickName"
+                    app:layout_constraintRight_toRightOf="@id/editNickName"
+                    app:layout_constraintTop_toBottomOf="@id/editNickName" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/btnSendAuth"
+                    android:id="@+id/btnDuplicateCheck"
                     style="@style/Body_16_B"
                     android:layout_width="0dp"
                     android:layout_marginTop="16dp"
@@ -115,28 +88,11 @@
                     android:foreground="@drawable/ripple_r12"
                     android:gravity="center"
                     android:paddingVertical="16dp"
-                    android:text="@string/label_send_auth"
+                    android:text="@string/label_duplicate_check"
                     android:textColor="@color/white"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/vgInputAuth" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/btnReSendAuth"
-                    style="@style/Body_16_B"
-                    android:layout_width="0dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_white_r12_brand500_s1"
-                    android:foreground="@drawable/ripple_r12"
-                    android:gravity="center"
-                    android:paddingVertical="16dp"
-                    android:text="@string/label_resend"
-                    android:textColor="@color/brand_500"
-                    android:visibility="gone"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnSendAuth"
-                    tools:visibility="visible" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtCheckResult" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/btnDoNext"
@@ -154,7 +110,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnReSendAuth"
+                    app:layout_constraintTop_toBottomOf="@+id/btnDuplicateCheck"
                     app:layout_constraintVertical_bias="1" />
 
 

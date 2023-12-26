@@ -9,7 +9,7 @@ import javax.inject.Inject
 /**
  * Created by iseungjun on 2023/08/17
  */
-class UserLocalDataSource @Inject constructor(){
+class UserLocalDataSource @Inject constructor() {
 
     suspend fun getUserLoginInfo(): UserLoginDTO {
         val email = NanezDataStore.getInstance().getValue(NanezDataConst.KEY_USER_EMAIL, NanezDataStore.ValueType.StringValue("")).firstOrNull()

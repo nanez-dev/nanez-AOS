@@ -26,9 +26,9 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
     private val actViewModel: JoinActViewModel by activityViewModels()
 
     private val authTimer by lazy {
-        object : CountDownTimer(3 * 60 * 1000, 1000) {
+        object : CountDownTimer(AUTH_TIME, AUTH_INTERVAL) {
             override fun onTick(p0: Long) {
-                val time = p0 / 1000
+                val time = p0 / AUTH_INTERVAL
 
                 val minute = format("%02d", time / 60)
                 val sec = format("%02d", time % 60)
@@ -47,6 +47,7 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
 
     private var isSendAuth = false
     private var isCheckAuth = false
+    private var authCompleteEmail = ""
 
     override fun createViewModel() = viewModels<JoinViewModel>().value
 
@@ -60,7 +61,7 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
                     if (isSendAuth) {
                         return
                     }
-
+                    dataBinding.btnDoNext.isEnabled = false
                     dataBinding.btnSendAuth.isEnabled = p0?.toString()?.isNotEmpty() == true
                 }
             })
@@ -88,11 +89,11 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
             }
 
             btnDoNext.setOnClickListener {
-                actViewModel.postNextStep()
+                actViewModel.updateEmail(authCompleteEmail)
             }
         }
 
-        viewModel.eventData.eventObserve(viewLifecycleOwner) { event ->
+        viewModel.emailAuthEventData.eventObserve(viewLifecycleOwner) { event ->
             if (!isAdded) {
                 return@eventObserve
             }
@@ -116,8 +117,11 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
                     dataBinding.btnDoNext.isEnabled = isCheckAuth
 
                     if (isCheckAuth) {
+                        authCompleteEmail = dataBinding.editEmail.text.toString()
                         dataBinding.btnSendAuth.isEnabled = false
                         authTimer.cancel()
+                    } else {
+                        authCompleteEmail = ""
                     }
                 }
             }
@@ -156,5 +160,11 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
                 }
             }
         }
+    }
+
+
+    companion object {
+        private const val AUTH_TIME = 3 * 60 * 1000L
+        private const val AUTH_INTERVAL = 1000L
     }
 }
