@@ -9,6 +9,7 @@ import com.nane.home.databinding.HomeFragmentBinding
 import com.nane.home.presentation.viewmodel.HomeViewModel
 import com.nane.home.presentation.view.adapter.HomeMainAdapter
 import com.nane.home.presentation.view.adapter.decoration.HomeMainItemDecoration
+import com.nane.search.presentation.view.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +27,11 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
                         //임시 로그인 이동 페이지
                         activity?.let {
 //                            startActivity(LoginActivity.createIntent(it))
+                        }
+
+
+                        activity?.let {
+                            startActivity(SearchActivity.createIntent(it))
                         }
                     }
                 }

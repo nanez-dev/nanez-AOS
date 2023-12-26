@@ -14,8 +14,8 @@ class JoinDataMapper @Inject constructor() {
     fun toAccordDTO(data: AccordApi.AccordItem): JoinAccordDTO {
         return JoinAccordDTO(
             id = data.id,
-            name = data.korTitle,
-            imgUrl = data.imageUrl
+            name = data.korName,
+            imgUrl = data.imgUrl
         )
     }
 

@@ -13,6 +13,7 @@ dependencies {
     implementation(project(":network"))
 
     implementation(libs.bundles.module.home)
+    implementation(project(mapOf("path" to ":feature:search")))
     kapt(libs.bundles.hilt.compile.kapt)
 }
 

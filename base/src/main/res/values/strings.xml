@@ -64,4 +64,6 @@
     <string name="label_theme_popular_brands_title">지금, 사랑받고 있는 브랜드</string>
     <string name="label_theme_all_accords_title">모든 어코드</string>
     <string name="label_theme_all_brands_title">모든 브랜드</string>
+
+    <string name="msg_search_word_recommendation">이런 검색어는 어떠세요?</string>
 </resources>

@@ -39,6 +39,6 @@ class JoinRemoteSourceImpl @Inject constructor(
     }
 
     override suspend fun getAllAccordList(): Response<AccordApi.Accords> {
-        return accordService.getAllAccords()
+        return accordService.getAccords()
     }
 }

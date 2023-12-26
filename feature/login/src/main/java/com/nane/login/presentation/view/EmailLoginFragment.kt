@@ -74,8 +74,8 @@ class EmailLoginFragment : BaseBindFragment<EmailLoginFragmentBinding, EmailLogi
         dataBinding?.run {
             txtError.visibility = View.GONE
 
-            editEmail.background = ResUtils.getDrawable(context, com.nane.base.R.drawable.shape_white_r20_gray3_s1)
-            editPassword.background = ResUtils.getDrawable(context, com.nane.base.R.drawable.shape_white_r20_gray3_s1)
+            editEmail.background = ResUtils.getDrawable(context, com.nane.base.R.drawable.shape_white_r20_line100_s1)
+            editPassword.background = ResUtils.getDrawable(context, com.nane.base.R.drawable.shape_white_r20_line100_s1)
         }
     }
 }
