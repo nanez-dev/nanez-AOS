@@ -17,7 +17,7 @@ class JoinUseCase @Inject constructor(
     private val repository: IJoinRepository
 ) {
 
-    private val passwordPatten by lazy { "^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,20}\$" }
+    private val passwordPattern by lazy { "^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,20}\$" }
 
     suspend fun postSignUp(signUpDTO: JoinSignUpDTO): Flow<DomainResult<Boolean>> = flow {
         repository.postSignUp(signUpDTO).collect { result ->
@@ -70,7 +70,7 @@ class JoinUseCase @Inject constructor(
 
     fun checkSamePassword(password: String, passwordCheck: String) = password == passwordCheck
 
-    fun checkPasswordPatten(password: String) = Pattern.compile(passwordPatten).matcher(password).matches()
+    fun checkPasswordPatten(password: String) = Pattern.compile(passwordPattern).matcher(password).matches()
 
     suspend fun checkNickNameVerify(nickName: String): Flow<DomainResult<Boolean>> = flow {
         repository.postCheckNickNameVerify(nickName).collect { result ->

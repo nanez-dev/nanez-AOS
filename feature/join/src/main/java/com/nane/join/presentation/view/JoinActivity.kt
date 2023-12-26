@@ -24,7 +24,7 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
     override fun createViewModel() = viewModels<JoinActViewModel>().value
 
     override fun initActivity(dataBinding: JoinActivityBinding, viewModel: JoinActViewModel) {
-        addFragment(dataBinding.container, tag = "JoinAgreementFragment", isNeedBackStack = true) {
+        addFragment(dataBinding.container, tag = "JoinAgreementFragment", isBackStackEnabled = true) {
             JoinAgreementFragment()
         }
 
@@ -42,32 +42,32 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
 
                     when (index) {
                         INDEX_AGREE -> {
-                            addFragment(dataBinding.container, tag = "JoinAgreementFragment", isNeedBackStack = true) {
+                            addFragment(dataBinding.container, tag = "JoinAgreementFragment", isBackStackEnabled = true) {
                                 JoinAgreementFragment()
                             }
                         }
                         INDEX_AUTH -> {
-                            addFragment(dataBinding.container, tag = "JoinEmailAuthFragment", isNeedBackStack = true) {
+                            addFragment(dataBinding.container, tag = "JoinEmailAuthFragment", isBackStackEnabled = true) {
                                 JoinEmailAuthFragment()
                             }
                         }
                         INDEX_PASSWORD -> {
-                            addFragment(dataBinding.container, tag = "JoinPasswordFragment", isNeedBackStack = true) {
+                            addFragment(dataBinding.container, tag = "JoinPasswordFragment", isBackStackEnabled = true) {
                                 JoinPasswordFragment()
                             }
                         }
                         INDEX_NICKNAME -> {
-                            addFragment(dataBinding.container, tag = "JoinNickNameFragment", isNeedBackStack = true) {
+                            addFragment(dataBinding.container, tag = "JoinNickNameFragment", isBackStackEnabled = true) {
                                 JoinNickNameFragment()
                             }
                         }
                         INDEX_SELECT_ACCORD -> {
-                            addFragment(dataBinding.container, tag = "JoinSelectAccordFragment", isNeedBackStack = true) {
+                            addFragment(dataBinding.container, tag = "JoinSelectAccordFragment", isBackStackEnabled = true) {
                                 JoinSelectAccordFragment()
                             }
                         }
                         INDEX_EVENT_CODE -> {
-                            addFragment(dataBinding.container, tag = "JoinEventCodeFragment", isNeedBackStack = true) {
+                            addFragment(dataBinding.container, tag = "JoinEventCodeFragment", isBackStackEnabled = true) {
                                 JoinEventCodeFragment()
                             }
                         }

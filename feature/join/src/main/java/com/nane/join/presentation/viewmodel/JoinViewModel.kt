@@ -122,7 +122,7 @@ class JoinViewModel @Inject constructor(
             useCase.checkEventCodeVerify(code).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        _eventCodeEventData.post(Event(JoinEventCodeEventData.VerifyResult(result.data)))
+                        _eventCodeEventData.post(Event(JoinEventCodeEventData.VerifyResult(result.data, code)))
                     }
                     is DomainResult.Error -> {
 
