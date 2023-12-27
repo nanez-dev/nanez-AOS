@@ -28,5 +28,5 @@ sealed class JoinEmailAuthEventData {
 
 
 sealed class JoinEventCodeEventData {
-    data class VerifyResult(val isEnable: Boolean) : JoinEventCodeEventData()
+    data class VerifyResult(val isEnable: Boolean, val code: String?) : JoinEventCodeEventData()
 }
