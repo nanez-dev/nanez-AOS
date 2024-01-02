@@ -24,7 +24,7 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
     override fun createViewModel() = viewModels<JoinActViewModel>().value
 
     override fun initActivity(dataBinding: JoinActivityBinding, viewModel: JoinActViewModel) {
-        addFragment(dataBinding.container, tag = "JoinAgreementFragment") {
+        addFragment(dataBinding.container, tag = "JoinAgreementFragment", isBackStackEnabled = true) {
             JoinAgreementFragment()
         }
 
@@ -42,19 +42,43 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
 
                     when (index) {
                         INDEX_AGREE -> {
-                            addFragment(dataBinding.container, tag = "JoinAgreementFragment") {
+                            addFragment(dataBinding.container, tag = "JoinAgreementFragment", isBackStackEnabled = true) {
                                 JoinAgreementFragment()
                             }
                         }
                         INDEX_AUTH -> {
-                            addFragment(dataBinding.container, tag = "JoinEmailAuthFragment") {
+                            addFragment(dataBinding.container, tag = "JoinEmailAuthFragment", isBackStackEnabled = true) {
                                 JoinEmailAuthFragment()
                             }
                         }
+                        INDEX_PASSWORD -> {
+                            addFragment(dataBinding.container, tag = "JoinPasswordFragment", isBackStackEnabled = true) {
+                                JoinPasswordFragment()
+                            }
+                        }
+                        INDEX_NICKNAME -> {
+                            addFragment(dataBinding.container, tag = "JoinNickNameFragment", isBackStackEnabled = true) {
+                                JoinNickNameFragment()
+                            }
+                        }
+                        INDEX_SELECT_ACCORD -> {
+                            addFragment(dataBinding.container, tag = "JoinSelectAccordFragment", isBackStackEnabled = true) {
+                                JoinSelectAccordFragment()
+                            }
+                        }
+                        INDEX_EVENT_CODE -> {
+                            addFragment(dataBinding.container, tag = "JoinEventCodeFragment", isBackStackEnabled = true) {
+                                JoinEventCodeFragment()
+                            }
+                        }
+                        else -> {}
                     }
                 }
                 is JoinActEventData.ChangeProgressView -> {
                     dataBinding.progressView.setProgress(event.progress, true)
+                }
+                is JoinActEventData.SuccessSignUp -> {
+                    finish()
                 }
             }
         }
@@ -68,7 +92,7 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
                 if (it.backStackEntryCount > 1) {
                     index--
                     viewModel?.postPreStep()
-                    onBackPressedDispatcher.onBackPressed()
+                    it.popBackStack()
                 } else {
                     finish()
                 }
@@ -81,6 +105,10 @@ class JoinActivity : BaseBindActivity<JoinActivityBinding, JoinActViewModel>(R.l
 
         private const val INDEX_AGREE = 1
         private const val INDEX_AUTH = 2
+        private const val INDEX_PASSWORD = 3
+        private const val INDEX_NICKNAME = 4
+        private const val INDEX_SELECT_ACCORD = 5
+        private const val INDEX_EVENT_CODE = 6
 
         fun createIntent(context: Context): Intent {
             return Intent(context, JoinActivity::class.java).apply {

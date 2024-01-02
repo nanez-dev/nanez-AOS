@@ -29,6 +29,7 @@ class ActionbarView @JvmOverloads constructor(context: Context, attr: AttributeS
 
             mainImg.visibility = View.GONE
             btnRight.visibility = View.GONE
+            txtTitle.visibility = View.VISIBLE
         }
     }
 

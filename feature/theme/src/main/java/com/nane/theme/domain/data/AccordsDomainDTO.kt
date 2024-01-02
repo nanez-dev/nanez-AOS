@@ -1,13 +1,19 @@
 package com.nane.theme.domain.data
 
 data class AccordsDomainDTO(
-    val itemList: List<AccordDTO>
+    val popularAccords: List<AccordDTO>,
+    val allAccords: List<AccordDTO>
 )
 
 data class AccordDTO(
-    val engTitle: String?,
-    val korTitle: String?,
-    val imageUrl: String?,
+    val engName: String? = null,
     val code: Int,
-    val id: Int
+    val engDescriptionTitle: String? = null,
+    val korDescriptionTitle: String? = null,
+    val imgUrl: String? = null,
+    val relatedImgUrl: String? = null,
+    val id: Int,
+    val korName: String? = null,
+    val engDescriptionBody: String? = null,
+    val korDescriptionBody: String? = null
 )

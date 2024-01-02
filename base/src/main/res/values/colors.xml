@@ -112,6 +112,7 @@
 
     <color name="black">#FF000000</color>
     <color name="black_3">#666666</color>
+    <color name="black_4">#111111</color>
 
     <color name="gray_400">#999999</color>
     <color name="gray_800">#333333</color>
@@ -129,6 +130,6 @@
 
     <color name="error_500">#E82323</color>
     
-    <color name="blue_500">#43A0F5</color>
-    <color name="blue_500_a20">#3343A0F5</color>
+    <color name="info_500">#43A0F5</color>
+    <color name="info_500_a20">#3343A0F5</color>
 </resources>

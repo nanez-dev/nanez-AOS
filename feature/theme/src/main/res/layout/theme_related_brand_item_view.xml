@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="viewData"
+            type="com.nane.theme.presentation.data.PerfumeViewData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bg50_r12_line50_s1"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/imgItem"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/shape_white_r12_line50_s1"
+            android:scaleType="fitCenter"
+            app:img_load="@{viewData.imgUrl}"
+            app:img_round="@{12}"
+            app:layout_constraintDimensionRatio="100:100"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtBrandName"
+            style="@style/Body_14_R"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintBottom_toTopOf="@id/txtItemName"
+            app:layout_constraintLeft_toLeftOf="@id/imgStar"
+            tools:text="@{viewData.brand.korName}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtItemName"
+            style="@style/Body_16_B"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/txtItemRating"
+            app:layout_constraintLeft_toLeftOf="@id/imgStar"
+            tools:text="@{viewData.korName}" />
+
+        <!--        선명한 별 아이콘 필요-->
+        <ImageView
+            android:id="@+id/imgStar"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/img_star"
+            app:layout_constraintBottom_toBottomOf="@id/imgItem"
+            app:layout_constraintLeft_toRightOf="@id/imgItem"
+            app:layout_constraintTop_toTopOf="@id/txtItemRating" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtItemRating"
+            style="@style/Body_14_R"
+            android:layout_marginLeft="2dp"
+            app:layout_constraintBottom_toBottomOf="@id/imgItem"
+            app:layout_constraintLeft_toRightOf="@id/imgStar"
+            tools:text="@{String.valueOf(viewData.rating)}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtItemDescription"
+            style="@style/Body_14_R"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="@id/imgItem"
+            app:layout_constraintTop_toBottomOf="@id/imgItem"
+            tools:text="@{viewData.description}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtItemPrice"
+            style="@style/Head_18_B"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/imgItem"
+            app:layout_constraintTop_toBottomOf="@id/txtItemDescription"/>
+
+<!--        정가 API 필요-->
+<!--        취소선 표시 필요-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtItemPriceSub"
+            style="@style/Body_14_R"
+            android:layout_marginLeft="4dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/txtItemPrice"
+            app:layout_constraintLeft_toRightOf="@id/txtItemPrice"
+            tools:text="@{}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
