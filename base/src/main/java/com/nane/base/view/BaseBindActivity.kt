@@ -23,6 +23,8 @@ abstract class BaseBindActivity<VIEW: ViewDataBinding, VM: ViewModel>(@LayoutRes
         }
     }
 
+    private val loadingDialog by lazy { LoadingDialog(this) }
+
     private lateinit var _dataBinding: VIEW
     private lateinit var _viewModel: VM
 
@@ -53,6 +55,14 @@ abstract class BaseBindActivity<VIEW: ViewDataBinding, VM: ViewModel>(@LayoutRes
 
         if (::_dataBinding.isInitialized && ::_viewModel.isInitialized) {
             initActivity(_dataBinding, _viewModel)
+        }
+    }
+
+    fun showLoading(isShow: Boolean) {
+        if (isShow) {
+            loadingDialog.showLoading()
+        } else {
+            loadingDialog.hideLoading()
         }
     }
 }
