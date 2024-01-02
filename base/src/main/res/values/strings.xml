@@ -11,6 +11,8 @@
     <string name="label_confirm">확인</string>
     <string name="label_duplicate_check">중복 확인</string>
     <string name="label_profile">내 정보</string>
+    <string name="label_profile_having">보유리스트</string>
+    <string name="label_profile_wish">위시리스트</string>
     <string name="label_profile_customer_center">고객센터</string>
     <string name="label_profile_notice">공지사항</string>
     <string name="label_profile_product_registration_request">제품등록요청</string>
