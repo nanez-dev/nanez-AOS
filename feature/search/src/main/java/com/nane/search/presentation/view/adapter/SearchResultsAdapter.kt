@@ -3,38 +3,62 @@ package com.nane.search.presentation.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.nane.search.databinding.SearchResultItemViewBinding
-import com.nane.search.presentation.data.SearchResultItemViewData
+import com.nane.search.databinding.SearchNoResultItemViewBinding
+import com.nane.search.databinding.SearchPerfumeListItemViewBinding
+import com.nane.search.databinding.SearchRecommendationListItemViewBinding
+import com.nane.search.presentation.data.SearchViewData
+import com.nane.search.presentation.data.SearchViewType
+import com.nane.search.presentation.view.AbsSearchViewHolder
+import com.nane.search.presentation.view.NoResultViewHolder
+import com.nane.search.presentation.view.RecommendationListViewHolder
+import com.nane.search.presentation.view.SearchPerfumeListViewHolder
 
-class SearchResultsAdapter: RecyclerView.Adapter<SearchResultsAdapter.SearchResultViewHolder>() {
+class SearchResultsAdapter: RecyclerView.Adapter<AbsSearchViewHolder<*>>() {
 
-    private var itemList: List<SearchResultItemViewData> = emptyList()
+    private var itemList: List<SearchViewData> = emptyList()
 
-    fun setItemList(list: List<SearchResultItemViewData>) {
+    fun setItemList(list: List<SearchViewData>) {
         itemList = list
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultViewHolder {
-        return SearchResultViewHolder(SearchResultItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbsSearchViewHolder<*> {
+        return when (viewType) {
+            SearchViewType.SEARCH_PERFUMES -> {
+                SearchPerfumeListViewHolder(SearchPerfumeListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            }
+            SearchViewType.SEARCH_RECOMMENDATIONS -> {
+                RecommendationListViewHolder(SearchRecommendationListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            }
+            else -> {
+                NoResultViewHolder(SearchNoResultItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            }
+        }
     }
 
     override fun getItemCount(): Int = itemList.size
 
-    override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
+    override fun getItemViewType(position: Int): Int {
+        return itemList[position].viewType
     }
 
-    inner class SearchResultViewHolder(private val binding: SearchResultItemViewBinding): ViewHolder(binding.root) {
-
-    }
-
-    private var onItemClickListener: ItemClickListener? = null
-    fun setOnItemClickListener(itemClickListener: ItemClickListener) {
-        onItemClickListener = itemClickListener
-    }
-
-    interface ItemClickListener {
-        fun onItemClick(idx: Int)
+    override fun onBindViewHolder(holder: AbsSearchViewHolder<*>, position: Int) {
+        when(holder) {
+            is RecommendationListViewHolder -> {
+                (itemList[position] as? SearchViewData.RecommendationListViewType)?.let {
+                    holder.onBind(it)
+                }
+            }
+            is SearchPerfumeListViewHolder -> {
+                (itemList[position] as? SearchViewData.SearchPerfumeListViewType)?.let {
+                    holder.onBind(it)
+                }
+            }
+            is NoResultViewHolder -> {
+                (itemList[position] as? SearchViewData.NoResultsViewType)?.let {
+                    holder.onBind(it)
+                }
+            }
+        }
     }
 }

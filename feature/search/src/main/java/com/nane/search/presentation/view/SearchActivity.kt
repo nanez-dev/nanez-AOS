@@ -2,16 +2,19 @@ package com.nane.search.presentation.view
 
 import android.content.Context
 import android.content.Intent
+import android.view.KeyEvent
 import androidx.activity.viewModels
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nane.base.view.BaseBindActivity
-import com.nane.base.view.BaseBindFragment
 import com.nane.search.R
 import com.nane.search.databinding.SearchActivityBinding
+import com.nane.search.presentation.data.SearchViewData
+import com.nane.search.presentation.view.adapter.SearchResultsAdapter
+import com.nane.search.presentation.view.adapter.decoration.SearchResultItemDecoration
 import com.nane.search.presentation.viewmodel.SearchViewModel
-import org.techtown.nanez.utils.util.addFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(R.layout.search_activity) {
 
     override fun createViewModel(): SearchViewModel = viewModels<SearchViewModel>().value
@@ -32,25 +35,50 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
                 }
             }
 
+            with(editSearch) {
+                requestFocus()
+                setOnKeyListener { _, keyCode, event ->
+                    if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                        btnSearch.performClick()
+                        true
+                    } else false
+                }
+            }
+
             with(btnSearch) {
                 setOnClickListener {
-                    if (editSearch.text.toString().isEmpty()) return@setOnClickListener
+                    val currentSearchWord = editSearch.text.toString()
+                    
+                    // 아무것도 검색하지 않은 경우, 검색어가 이전과 같은 경우 API 호출 무시
+                    if (currentSearchWord.isEmpty() || currentSearchWord == viewModel.searchWord) return@setOnClickListener
                     if (!editSearch.isFocused) {
                         editSearch.isFocusable = true
                         return@setOnClickListener
                     }
 
-                    viewModel.searchWith(editSearch.text.toString())
-                    if (supportFragmentManager.backStackEntryCount > 1) return@setOnClickListener
-
-                    addFragment(
-                        container = searchResultContainer,
-                        tag = "SearchResultFragment",
-                        isNeedBackStack = true
-                    ) {
-                        SearchResultFragment()
-                    }
+                    viewModel.searchWith(currentSearchWord)
                 }
+            }
+
+            with(dataBinding.rvSearchResults) {
+                adapter ?: SearchResultsAdapter().apply { adapter = this }
+                layoutManager ?: LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false).apply { layoutManager = this }
+
+                if (itemDecorationCount == 0) addItemDecoration(SearchResultItemDecoration())
+            }
+
+            viewModel.recommendedSearchWords.observe(this@SearchActivity) {
+
+            }
+
+            viewModel.searchResult.observe(this@SearchActivity) {
+                val result = if (it.list.isEmpty()) {
+                    listOf(SearchViewData.NoResultsViewType)
+                } else {
+                    listOf(viewModel.recommendedSearchWords.value ?: SearchViewData.RecommendationListViewType(), it)
+                }
+                (dataBinding.rvSearchResults.adapter as SearchResultsAdapter)
+                    .setItemList(result)
             }
         }
     }

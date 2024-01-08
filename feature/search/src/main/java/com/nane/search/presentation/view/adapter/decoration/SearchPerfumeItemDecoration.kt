@@ -3,10 +3,9 @@ package com.nane.search.presentation.view.adapter.decoration
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.nane.search.presentation.data.SearchViewType
 import org.techtown.nanez.utils.util.toDp
 
-class SearchResultItemDecoration: RecyclerView.ItemDecoration() {
+class SearchPerfumeItemDecoration: RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
@@ -16,14 +15,13 @@ class SearchResultItemDecoration: RecyclerView.ItemDecoration() {
         super.getItemOffsets(outRect, view, parent, state)
 
         val position = parent.getChildAdapterPosition(view)
-        when (parent.adapter?.getItemViewType(position)) {
-            SearchViewType.SEARCH_RECOMMENDATIONS -> {
-                outRect.top = 16.toDp()
-            }
-            SearchViewType.SEARCH_PERFUMES -> {
-                outRect.top = 24.toDp()
-                outRect.bottom = 42.toDp()
-            }
+
+        if (position%2 == 0) {
+            outRect.left = 20.toDp()
+            outRect.right = (3.5).toDp()
+        } else {
+            outRect.left = (3.5).toDp()
+            outRect.right = 20.toDp()
         }
     }
 }

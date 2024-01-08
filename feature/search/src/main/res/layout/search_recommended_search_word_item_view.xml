@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="com.nane.search.presentation.data.SearchResultItemViewData" />
+            type="com.nane.search.presentation.data.SearchViewData.RecommendationListViewType.RecommendedSearchWordItemViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@{viewData.word}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

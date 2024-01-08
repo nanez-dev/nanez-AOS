@@ -4,29 +4,34 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.nane.search.databinding.SearchResultItemViewBinding
-import com.nane.search.presentation.data.SearchResultItemViewData
+import com.nane.search.databinding.SearchRecommendedSearchWordItemViewBinding
+import com.nane.search.presentation.data.SearchViewData
+import com.nane.theme.BR
 
-class RecommendedSearchWordAdapter: RecyclerView.Adapter<RecommendedSearchWordAdapter.SearchResultViewHolder>() {
+class RecommendedSearchWordAdapter: RecyclerView.Adapter<RecommendedSearchWordAdapter.RecommendedWordViewHolder>() {
 
-    private var itemList: List<SearchResultItemViewData> = emptyList()
+    private var itemList: List<SearchViewData.RecommendationListViewType.RecommendedSearchWordItemViewData> = emptyList()
 
-    fun setItemList(list: List<SearchResultItemViewData>) {
-        itemList = list
+    fun setItemList(item: SearchViewData.RecommendationListViewType) {
+        itemList = item.list
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultViewHolder {
-        return SearchResultViewHolder(SearchResultItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendedWordViewHolder {
+        return RecommendedWordViewHolder(SearchRecommendedSearchWordItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int = itemList.size
 
-    override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecommendedWordViewHolder, position: Int) {
+        holder.onBind(itemList.getOrNull(position))
     }
 
-    inner class SearchResultViewHolder(private val binding: SearchResultItemViewBinding): ViewHolder(binding.root) {
-
+    inner class RecommendedWordViewHolder(private val binding: SearchRecommendedSearchWordItemViewBinding): ViewHolder(binding.root) {
+        fun onBind(data: SearchViewData.RecommendationListViewType.RecommendedSearchWordItemViewData?) {
+            binding.setVariable(BR.viewData, data)
+            binding.executePendingBindings()
+        }
     }
 
     private var onItemClickListener: ItemClickListener? = null

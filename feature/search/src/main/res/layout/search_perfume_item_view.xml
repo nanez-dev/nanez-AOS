@@ -11,21 +11,26 @@
 
         <variable
             name="viewData"
-            type="com.nane.search.presentation.data.SearchResultItemViewData" />
+            type="com.nane.search.presentation.data.SearchViewData.SearchPerfumeListViewType.SearchPerfumeViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:paddingVertical="14dp">
 
         <ImageView
             android:id="@+id/imgPerfume"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/shape_white_r12_line100_s1"
+            android:foreground="@drawable/ripple"
             app:img_load="@{viewData.imgUrl}"
+            app:img_round="@{12}"
+            android:padding="1dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:layout_constraintDimensionRatio="164:164"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,9 +41,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            tools:text="@{viewData.brandName}"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imgPerfume" />
+            app:layout_constraintTop_toBottomOf="@id/imgPerfume"
+            tools:text="@{viewData.brandName}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtPerfumeName"
@@ -46,9 +53,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            tools:text="@{viewData.perfumeName}"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtBrandName" />
+            app:layout_constraintTop_toBottomOf="@id/txtBrandName"
+            tools:text="@{viewData.perfumeName}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
