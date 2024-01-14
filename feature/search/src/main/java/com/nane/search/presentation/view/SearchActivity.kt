@@ -3,16 +3,16 @@ package com.nane.search.presentation.view
 import android.content.Context
 import android.content.Intent
 import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.nane.base.view.BaseBindActivity
 import com.nane.search.R
 import com.nane.search.databinding.SearchActivityBinding
-import com.nane.search.presentation.data.SearchViewData
-import com.nane.search.presentation.view.adapter.SearchResultsAdapter
-import com.nane.search.presentation.view.adapter.decoration.SearchResultItemDecoration
 import com.nane.search.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import org.techtown.nanez.utils.util.addFragment
+
 
 @AndroidEntryPoint
 class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(R.layout.search_activity) {
@@ -57,30 +57,44 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
                     }
 
                     viewModel.searchWith(currentSearchWord)
+                    hideImeServiceFrom(editSearch)
                 }
             }
 
-            with(dataBinding.rvSearchResults) {
-                adapter ?: SearchResultsAdapter().apply { adapter = this }
-                layoutManager ?: LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false).apply { layoutManager = this }
+            viewModel.isLoading.observe(this@SearchActivity) {}
 
-                if (itemDecorationCount == 0) addItemDecoration(SearchResultItemDecoration())
-            }
+            viewModel.searchResults.observe(this@SearchActivity) {
+                if (it.size <= 1) { // 검색결과 없음 Fragment Inflate
+                    println("검색 결과 없음")
+                    addFragment(
+                        container = dataBinding.searchResultsContainer,
+                        saveInstanceState = null,
+                        tag = "NO_RESULT",
+                        arguments = null,
+                        isBackStackEnabled = false
+                    ) {
+                        SearchNoResultFragment()
+                    }
+                } else { // 검색결과 있음 Fragment Inflate
 
-            viewModel.recommendedSearchWords.observe(this@SearchActivity) {
-
-            }
-
-            viewModel.searchResult.observe(this@SearchActivity) {
-                val result = if (it.list.isEmpty()) {
-                    listOf(SearchViewData.NoResultsViewType)
-                } else {
-                    listOf(viewModel.recommendedSearchWords.value ?: SearchViewData.RecommendationListViewType(), it)
+                    if (supportFragmentManager.backStackEntryCount >= 1) return@observe
+                    addFragment(
+                        container = dataBinding.searchResultsContainer,
+                        saveInstanceState = null,
+                        tag = "RESULT",
+                        arguments = null,
+                        isBackStackEnabled = false
+                    ) {
+                        SearchResultsFragment()
+                    }
                 }
-                (dataBinding.rvSearchResults.adapter as SearchResultsAdapter)
-                    .setItemList(result)
             }
         }
+    }
+
+    private fun hideImeServiceFrom(view: View) {
+        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     companion object {

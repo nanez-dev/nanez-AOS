@@ -11,13 +11,12 @@
 
         <variable
             name="viewData"
-            type="com.nane.search.presentation.data.SearchViewData.SearchPerfumeListViewType.SearchPerfumeViewData" />
+            type="com.nane.search.presentation.data.SearchResultViewData.SearchPerfumeViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="14dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imgPerfume"

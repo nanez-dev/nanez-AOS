@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.nane.search.databinding.SearchRecommendedSearchWordItemViewBinding
-import com.nane.search.presentation.data.SearchViewData
+import com.nane.search.presentation.data.SearchResultViewData
 import com.nane.theme.BR
 
 class RecommendedSearchWordAdapter: RecyclerView.Adapter<RecommendedSearchWordAdapter.RecommendedWordViewHolder>() {
 
-    private var itemList: List<SearchViewData.RecommendationListViewType.RecommendedSearchWordItemViewData> = emptyList()
+    private var itemList: List<String> = emptyList()
 
-    fun setItemList(item: SearchViewData.RecommendationListViewType) {
-        itemList = item.list
+    fun setItemList(item: List<String>) {
+        itemList = item
         notifyDataSetChanged()
     }
 
@@ -28,9 +28,11 @@ class RecommendedSearchWordAdapter: RecyclerView.Adapter<RecommendedSearchWordAd
     }
 
     inner class RecommendedWordViewHolder(private val binding: SearchRecommendedSearchWordItemViewBinding): ViewHolder(binding.root) {
-        fun onBind(data: SearchViewData.RecommendationListViewType.RecommendedSearchWordItemViewData?) {
+        fun onBind(data: String?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
+
+            binding.txtRecommendedSearchWord.text = itemList.getOrNull(adapterPosition) ?: ""
         }
     }
 

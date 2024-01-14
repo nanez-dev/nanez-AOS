@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.nane.search.databinding.SearchPerfumeItemViewBinding
-import com.nane.search.presentation.data.SearchViewData
+import com.nane.search.presentation.data.SearchResultViewData
 import com.nane.theme.BR
 
 class SearchPerfumeAdapter: RecyclerView.Adapter<SearchPerfumeAdapter.SearchPerfumeViewHolder>() {
 
-    private var itemList: List<SearchViewData.SearchPerfumeListViewType.SearchPerfumeViewData> = emptyList()
+    private var itemList: List<SearchResultViewData.SearchPerfumeViewData> = emptyList()
 
-    fun setItemList(item: SearchViewData.SearchPerfumeListViewType) {
-        itemList = item.list
+    fun setItemList(item: List<SearchResultViewData.SearchPerfumeViewData>) {
+        itemList = item
         notifyDataSetChanged()
     }
 
@@ -25,10 +25,11 @@ class SearchPerfumeAdapter: RecyclerView.Adapter<SearchPerfumeAdapter.SearchPerf
 
     override fun onBindViewHolder(holder: SearchPerfumeViewHolder, position: Int) {
         holder.onBind(itemList.getOrNull(position))
+        println("Bind Position at $position")
     }
 
     inner class SearchPerfumeViewHolder(private val binding: SearchPerfumeItemViewBinding): ViewHolder(binding.root) {
-        fun onBind(data: SearchViewData.SearchPerfumeListViewType.SearchPerfumeViewData?) {
+        fun onBind(data: SearchResultViewData.SearchPerfumeViewData?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

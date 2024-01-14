@@ -17,12 +17,23 @@ class SearchResultItemDecoration: RecyclerView.ItemDecoration() {
 
         val position = parent.getChildAdapterPosition(view)
         when (parent.adapter?.getItemViewType(position)) {
-            SearchViewType.SEARCH_RECOMMENDATIONS -> {
-                outRect.top = 16.toDp()
+            SearchViewType.RECOMMENDATION_TYPE -> {
+                outRect.bottom = 24.toDp()
             }
-            SearchViewType.SEARCH_PERFUMES -> {
-                outRect.top = 24.toDp()
-                outRect.bottom = 42.toDp()
+            else -> {
+                if (position%2 == 1) {
+                    outRect.left = 20.toDp()
+                    outRect.right = (3.5).toDp()
+                    if (position <= (parent.adapter?.itemCount?.minus(2) ?: 0)) {
+                        outRect.bottom = 16.toDp()
+                    }
+                } else {
+                    outRect.left = (3.5).toDp()
+                    outRect.right = 20.toDp()
+                    if (position <= (parent.adapter?.itemCount?.minus(2) ?: 0)) {
+                        outRect.bottom = 16.toDp()
+                    }
+                }
             }
         }
     }

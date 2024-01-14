@@ -67,4 +67,8 @@
 
     <string name="msg_search_word_recommendation">이런 검색어는 어떠세요?</string>
     <string name="msg_no_search_result">검색 결과가 없습니다.</string>
+    <string name="label_search_monthly_picked_perfume">이달의 향수</string>
+    <string name="label_search_coming_of_age_day">성년의 날</string>
+    <string name="label_search_nanez">나네</string>
+    <string name="label_search_discounted_perfume">할인 향수</string>
 </resources>
