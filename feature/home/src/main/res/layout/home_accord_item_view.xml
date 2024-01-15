@@ -16,16 +16,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:foreground="@drawable/ripple">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgAccord"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/shape_white_r20_gray3_s1"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:padding="1dp"
+            android:padding="13dp"
             app:img_load="@{viewData.imgUrl}"
             app:img_round="@{20}"
             app:layout_constraintDimensionRatio="110:110"

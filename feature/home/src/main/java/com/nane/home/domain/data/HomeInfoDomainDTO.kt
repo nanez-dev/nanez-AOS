@@ -37,6 +37,7 @@ data class HomeBrandDTO(
     val itemList: List<HomeBrandItemDTO> = emptyList(),
 ) {
     data class HomeBrandItemDTO(
+        val id: Int,
         val name: String?,
         val imgUrl: String?,
     )
@@ -47,6 +48,7 @@ data class HomeAccordDTO(
     val itemList: List<HomeAccordItemDTO> = emptyList(),
 ) {
     data class HomeAccordItemDTO(
+        val id: Int,
         val name: String?,
         val imgUrl: String?,
     )

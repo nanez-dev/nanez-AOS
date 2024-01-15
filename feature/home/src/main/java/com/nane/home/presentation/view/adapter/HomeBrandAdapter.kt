@@ -13,6 +13,7 @@ import com.nane.home.presentation.data.HomeViewData
 class HomeBrandAdapter : RecyclerView.Adapter<HomeBrandAdapter.HomeBrandItemViewHolder>() {
 
     private var itemList: List<HomeViewData.Brand.BrandItem> = emptyList()
+    var onItemClick: ((Int) -> Unit)? = null
 
     fun setItemList(list: List<HomeViewData.Brand.BrandItem>) {
         itemList = list
@@ -30,8 +31,16 @@ class HomeBrandAdapter : RecyclerView.Adapter<HomeBrandAdapter.HomeBrandItemView
     override fun getItemCount() = itemList.size
 
     inner class HomeBrandItemViewHolder(private val binding: HomeBrandItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
+        private var brandId = -1
+
+        init {
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(brandId)
+            }
+        }
 
         fun onBind(data: HomeViewData.Brand.BrandItem) {
+            brandId = data.id
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

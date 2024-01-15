@@ -45,7 +45,7 @@ class HomeDataMapper @Inject constructor() {
         return HomeBrandDTO(
             title = apiData?.title,
             itemList = apiData?.list?.map {
-                HomeBrandDTO.HomeBrandItemDTO(imgUrl = it.image, name = it.name)
+                HomeBrandDTO.HomeBrandItemDTO(id = it.id, imgUrl = it.image, name = it.name)
             } ?: emptyList()
         )
     }
@@ -54,7 +54,7 @@ class HomeDataMapper @Inject constructor() {
         return HomeAccordDTO(
             title = apiData?.title,
             itemList = apiData?.list?.map {
-                HomeAccordDTO.HomeAccordItemDTO(imgUrl = it.image, name = it.name)
+                HomeAccordDTO.HomeAccordItemDTO(id = it.id, imgUrl = it.image, name = it.name)
             } ?: emptyList()
         )
     }

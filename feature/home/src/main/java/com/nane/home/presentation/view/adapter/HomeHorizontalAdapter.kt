@@ -13,6 +13,7 @@ import com.nane.home.presentation.data.PerfumeItemViewData
 class HomeHorizontalAdapter : RecyclerView.Adapter<HomeHorizontalAdapter.HomeHorizontalViewHolder>() {
 
     private var itemList: List<PerfumeItemViewData> = emptyList()
+    var onItemClick: ((PerfumeItemViewData?) -> Unit)? = null
 
     fun setItemList(list: List<PerfumeItemViewData>) {
         itemList = list
@@ -32,11 +33,16 @@ class HomeHorizontalAdapter : RecyclerView.Adapter<HomeHorizontalAdapter.HomeHor
 
     inner class HomeHorizontalViewHolder(private val binding: HomeHorizontalItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
+        private var data: PerfumeItemViewData? = null
+
         init {
-            binding.vgParent.setOnClickListener {  }
+            binding.vgParent.setOnClickListener {
+                onItemClick?.invoke(data)
+            }
         }
 
         fun onBind(data: PerfumeItemViewData) {
+            this.data = data
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

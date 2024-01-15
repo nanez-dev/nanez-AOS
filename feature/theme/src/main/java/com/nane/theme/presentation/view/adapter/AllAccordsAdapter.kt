@@ -30,15 +30,15 @@ class AllAccordsAdapter : Adapter<AllAccordsAdapter.AllAccordViewHolder>() {
 
     inner class AllAccordViewHolder(private val binding: ThemeAllAccordItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: AccordItemViewData?) {
-            binding.setVariable(BR.viewData, data)
-            binding.executePendingBindings()
-        }
-
         init {
             binding.root.setOnClickListener {
                 onItemClickListener?.onItemClick(itemList.getOrNull(adapterPosition)?.id ?: -1)
             }
+        }
+
+        fun onBind(data: AccordItemViewData?) {
+            binding.setVariable(BR.viewData, data)
+            binding.executePendingBindings()
         }
     }
 

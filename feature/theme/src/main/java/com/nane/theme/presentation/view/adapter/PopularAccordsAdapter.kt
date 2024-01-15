@@ -30,17 +30,18 @@ class PopularAccordsAdapter : Adapter<PopularAccordsAdapter.PopularAccordViewHol
     }
 
     inner class PopularAccordViewHolder(private val binding: ThemePopularAccordItemViewBinding): ViewHolder(binding.root) {
-        fun onBind(data: AccordItemViewData?) {
-            binding.setVariable(BR.viewData, data)
-            binding.executePendingBindings()
-            if (data == null) return
-            binding.txtAccordTitleEnglish.text = data.engName?.toFirstUpperCase()
-        }
 
         init {
             binding.root.setOnClickListener {
                 onItemClickListener?.onItemClick(itemList.getOrNull(adapterPosition)?.id ?: -1)
             }
+        }
+
+        fun onBind(data: AccordItemViewData?) {
+            binding.setVariable(BR.viewData, data)
+            binding.executePendingBindings()
+            if (data == null) return
+            binding.txtAccordTitleEnglish.text = data.engName?.toFirstUpperCase()
         }
     }
 

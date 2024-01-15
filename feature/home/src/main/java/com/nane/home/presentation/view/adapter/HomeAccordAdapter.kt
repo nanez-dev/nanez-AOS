@@ -13,6 +13,7 @@ import com.nane.home.presentation.data.HomeViewData
 class HomeAccordAdapter : RecyclerView.Adapter<HomeAccordAdapter.HomeAccordItemViewHolder>() {
 
     private var itemList: List<HomeViewData.Accord.AccordItem> = emptyList()
+    var onItemClick: ((Int) -> Unit)? = null
 
     fun setItemList(list: List<HomeViewData.Accord.AccordItem>) {
         itemList = list
@@ -30,8 +31,18 @@ class HomeAccordAdapter : RecyclerView.Adapter<HomeAccordAdapter.HomeAccordItemV
     override fun getItemCount() = itemList.size
 
     inner class HomeAccordItemViewHolder(private val binding: HomeAccordItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
+        private var accordId = -1
+
+        init {
+            binding.apply {
+                root.setOnClickListener {
+                    onItemClick?.invoke(accordId)
+                }
+            }
+        }
 
         fun onBind(data: HomeViewData.Accord.AccordItem) {
+            accordId = data.id
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

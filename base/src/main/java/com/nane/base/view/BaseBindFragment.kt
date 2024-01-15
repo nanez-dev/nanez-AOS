@@ -48,7 +48,7 @@ abstract class BaseBindFragment<VIEW: ViewDataBinding, VM: BaseViewModel>(@Layou
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        _dataBinding = DataBindingUtil.inflate<VIEW>(inflater, layoutRes, container, false)
+        _dataBinding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
         _viewModel = createViewModel()
 
         _dataBinding.apply {
@@ -58,6 +58,11 @@ abstract class BaseBindFragment<VIEW: ViewDataBinding, VM: BaseViewModel>(@Layou
         _viewModel.showToast.eventObserve(viewLifecycleOwner) {
             showToast(it)
         }
+
+        _viewModel.showLoading.eventObserve(viewLifecycleOwner) {
+            showLoading(it)
+        }
+
         return _dataBinding.root
     }
 
@@ -74,9 +79,13 @@ abstract class BaseBindFragment<VIEW: ViewDataBinding, VM: BaseViewModel>(@Layou
         }
     }
 
-    protected fun showToast(msg: String?) {
+    private fun showToast(msg: String?) {
         if (msg?.isNotEmpty() == true) {
             Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun showLoading(isShow: Boolean) {
+        (activity as? BaseBindActivity<*, *>)?.showLoading(isShow)
     }
 }

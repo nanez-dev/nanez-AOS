@@ -13,6 +13,7 @@ import com.nane.home.presentation.data.PerfumeItemViewData
 class HomeRecommendPerfumeAdapter : RecyclerView.Adapter<HomeRecommendPerfumeAdapter.HomeRecommendPerfumeItemViewHolder>() {
 
     private var itemList: List<PerfumeItemViewData> = emptyList()
+    var onItemClick: ((PerfumeItemViewData?) -> Unit)? = null
 
     fun setItemList(list: List<PerfumeItemViewData>) {
         itemList = list
@@ -32,7 +33,16 @@ class HomeRecommendPerfumeAdapter : RecyclerView.Adapter<HomeRecommendPerfumeAda
 
     inner class HomeRecommendPerfumeItemViewHolder(private val binding: HomeRecommendPerfumeItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
+        private var data: PerfumeItemViewData? = null
+
+        init {
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(data)
+            }
+        }
+
         fun onBind(data: PerfumeItemViewData) {
+            this.data = data
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

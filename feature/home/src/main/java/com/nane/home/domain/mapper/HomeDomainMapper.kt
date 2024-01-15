@@ -73,6 +73,7 @@ class HomeDomainMapper @Inject constructor() {
             title = dto.title,
             itemList = dto.itemList.map {
                 HomeViewData.Brand.BrandItem(
+                    id = it.id,
                     imgUrl = it.imgUrl,
                     brandName = it.name
                 )
@@ -85,6 +86,7 @@ class HomeDomainMapper @Inject constructor() {
             title = dto.title,
             itemList = dto.itemList.map {
                 HomeViewData.Accord.AccordItem(
+                    id = it.id,
                     imgUrl = it.imgUrl,
                     accordName = it.name
                 )
