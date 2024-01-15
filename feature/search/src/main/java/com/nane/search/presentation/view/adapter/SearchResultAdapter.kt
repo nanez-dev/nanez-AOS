@@ -34,8 +34,21 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
 
     override fun onBindViewHolder(holder: AbsSearchResultViewHolder<*>, position: Int) {
         when (holder) {
-            is RecommendedSearchWordListViewHolder -> holder.onBind(itemList.getOrNull(position) as SearchResultViewData.RecommendedSearchWordListItemViewData)
-            is SearchPerfumeViewHolder -> holder.onBind(itemList.getOrNull(position) as SearchResultViewData.SearchPerfumeViewData)
+            is RecommendedSearchWordListViewHolder -> {
+                holder.onBind(itemList.getOrNull(position) as SearchResultViewData.RecommendedSearchWordListItemViewData)
+            }
+            is SearchPerfumeViewHolder -> {
+                holder.onBind(itemList.getOrNull(position) as SearchResultViewData.SearchPerfumeViewData)
+            }
         }
+    }
+
+    private var onItemClickListener: ItemClickListener? = null
+    fun setOnItemClickListener(itemClickListener: ItemClickListener) {
+        onItemClickListener = itemClickListener
+    }
+
+    interface ItemClickListener {
+        fun onItemClick(idx: Int)
     }
 }

@@ -51,6 +51,7 @@ class SearchViewModel @Inject constructor(
                 when (result) {
                     is DomainResult.Success -> {
                         val loadedItemsSize = result.data.perfumes?.size ?: 0
+                        perfumes.clear()
                         perfumes.addAll(mapper.toViewData(result.data))
 
                         val resultViewData = mutableListOf<SearchResultViewData>().apply {

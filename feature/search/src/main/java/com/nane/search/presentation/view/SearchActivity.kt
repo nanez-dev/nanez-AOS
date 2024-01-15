@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import com.nane.base.view.BaseBindActivity
 import com.nane.search.R
 import com.nane.search.databinding.SearchActivityBinding
+import com.nane.search.presentation.data.SearchResultViewData
 import com.nane.search.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.utils.util.addFragment
@@ -63,9 +64,12 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
 
             viewModel.isLoading.observe(this@SearchActivity) {}
 
-            viewModel.searchResults.observe(this@SearchActivity) {
-                if (it.size <= 1) { // 검색결과 없음 Fragment Inflate
-                    println("검색 결과 없음")
+            viewModel.searchResults.observe(this@SearchActivity) { results ->
+                val havePerfumeResult = results
+                    .filterIsInstance<SearchResultViewData.SearchPerfumeViewData>()
+                    .isEmpty()
+
+                if (havePerfumeResult) { // 검색결과 없음 Fragment Inflate
                     addFragment(
                         container = dataBinding.searchResultsContainer,
                         saveInstanceState = null,
@@ -77,7 +81,6 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
                     }
                 } else { // 검색결과 있음 Fragment Inflate
 
-                    if (supportFragmentManager.backStackEntryCount >= 1) return@observe
                     addFragment(
                         container = dataBinding.searchResultsContainer,
                         saveInstanceState = null,

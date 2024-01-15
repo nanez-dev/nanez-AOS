@@ -7,12 +7,14 @@ import com.nane.search.databinding.SearchPerfumeItemViewBinding
 import com.nane.search.databinding.SearchRecommendedSearchWordListItemViewBinding
 import com.nane.search.presentation.data.SearchResultViewData
 import com.nane.search.presentation.view.adapter.RecommendedSearchWordAdapter
+import com.nane.search.presentation.view.adapter.SearchResultAdapter
 import com.nane.search.presentation.view.adapter.decoration.RecommendedSearchWordItemDecoration
 import com.nane.theme.BR
 
 class RecommendedSearchWordListViewHolder(
     private val binding: SearchRecommendedSearchWordListItemViewBinding
 ): AbsSearchResultViewHolder<SearchResultViewData.RecommendedSearchWordListItemViewData>(binding.root) {
+
     override fun onBind(data: SearchResultViewData.RecommendedSearchWordListItemViewData) {
         with(binding.rvRecommendedSearchWords) {
             adapter ?: RecommendedSearchWordAdapter().apply { adapter = this }
@@ -27,9 +29,21 @@ class RecommendedSearchWordListViewHolder(
 class SearchPerfumeViewHolder(
     private val binding: SearchPerfumeItemViewBinding
 ): AbsSearchResultViewHolder<SearchResultViewData.SearchPerfumeViewData>(binding.root) {
+
     override fun onBind(data: SearchResultViewData.SearchPerfumeViewData) {
         binding.setVariable(BR.viewData, data)
         binding.executePendingBindings()
+    }
+
+    init {
+        binding.root.setOnClickListener {
+            onItemClickListener?.onItemClick(adapterPosition)
+        }
+    }
+
+    private var onItemClickListener: SearchResultAdapter.ItemClickListener? = null
+    fun setOnItemClickListener(listener: SearchResultAdapter.ItemClickListener) {
+        this.onItemClickListener = listener
     }
 }
 
