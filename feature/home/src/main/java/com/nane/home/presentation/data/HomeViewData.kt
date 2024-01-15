@@ -41,6 +41,7 @@ sealed class HomeViewData(@HomeViewType var viewType: Int) {
     ) : HomeViewData(HomeViewType.HOME_BRAND_TYPE) {
 
         data class BrandItem(
+            val id: Int,
             val imgUrl: String?,
             val brandName: String?
         )
@@ -53,6 +54,7 @@ sealed class HomeViewData(@HomeViewType var viewType: Int) {
     ) : HomeViewData(HomeViewType.HOME_ACCORD_TYPE) {
 
         data class AccordItem(
+            val id: Int,
             val imgUrl: String?,
             val accordName: String?
         )

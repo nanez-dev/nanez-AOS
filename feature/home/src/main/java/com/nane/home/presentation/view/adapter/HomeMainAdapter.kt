@@ -10,6 +10,7 @@ import com.nane.home.databinding.HomePagerItemViewBinding
 import com.nane.home.databinding.HomeTitleItemViewBinding
 import com.nane.home.presentation.data.HomeViewData
 import com.nane.home.presentation.data.HomeViewType
+import com.nane.home.presentation.data.PerfumeItemViewData
 
 /**
  * Created by iseungjun on 2023/08/19
@@ -17,6 +18,15 @@ import com.nane.home.presentation.data.HomeViewType
 class HomeMainAdapter : RecyclerView.Adapter<AbsHomeViewHolder<*>>() {
 
     private var dataList = listOf<HomeViewData>()
+
+    var listener: UserActionListener? = null
+    interface UserActionListener {
+        fun onClickAccord(accordId: Int)
+        fun onClickBrand(brandId: Int)
+        fun onClickBannerView(moveToUrl: String?)
+        fun onClickPerfume(data: PerfumeItemViewData?)
+        fun onClickMore(@HomeViewType moreType: Int)
+    }
 
     fun setDataList(data: List<HomeViewData>) {
         dataList = data
@@ -26,22 +36,22 @@ class HomeMainAdapter : RecyclerView.Adapter<AbsHomeViewHolder<*>>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbsHomeViewHolder<*> {
         return when(viewType) {
             HomeViewType.HOME_PAGER_TYPE -> {
-                HomePagerViewHolder(HomePagerItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                HomePagerViewHolder(HomePagerItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false), listener)
             }
             HomeViewType.HOME_TITLE_TYPE -> {
                 HomeTitleViewHolder(HomeTitleItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
             HomeViewType.HOME_HORI_LIST_TYPE -> {
-                HomeHorizontalViewHolder(HomeListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                HomeHorizontalViewHolder(HomeListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false), listener)
             }
             HomeViewType.HOME_RECOMMEND_TYPE -> {
-                HomeRecommendPerfumeViewHolder(HomeListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                HomeRecommendPerfumeViewHolder(HomeListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false), listener)
             }
             HomeViewType.HOME_BRAND_TYPE -> {
-                HomeBrandViewHolder(HomeListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                HomeBrandViewHolder(HomeListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false), listener)
             }
             HomeViewType.HOME_ACCORD_TYPE -> {
-                HomeAccordViewHolder(HomeListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                HomeAccordViewHolder(HomeListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false), listener)
             }
             else -> HomeEmptyViewHolder(View(parent.context))
         }

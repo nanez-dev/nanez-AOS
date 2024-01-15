@@ -37,7 +37,9 @@ class LoadingDialog(context: Context) : Dialog(context) {
             return
         }
 
-        binding.lottieView.cancelAnimation()
+        binding.lottieView.postDelayed({
+            binding.lottieView.cancelAnimation()
+        }, 1000)
         dismiss()
     }
 }

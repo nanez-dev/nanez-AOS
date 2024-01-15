@@ -29,18 +29,22 @@ class ThemeAccordViewModel @Inject constructor(
 
     fun getAccordViewData() {
         viewModelScope.launch {
+            showLoading(true)
             accordsUsecase.getAllAccords().collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
                         val viewData = mapper.toViewData(result.data)
                         _popularAccordItemViewDataList.post(viewData.popularAccords)
                         _allAccordItemViewDataList.post(viewData.allAccords)
+                        showLoading(false)
                     }
                     is DomainResult.Failed -> {
-
+                        showErrorToast()
+                        showLoading(false)
                     }
                     is DomainResult.Error -> {
-                        
+                        showErrorToast()
+                        showLoading(false)
                     }
                 }
             }

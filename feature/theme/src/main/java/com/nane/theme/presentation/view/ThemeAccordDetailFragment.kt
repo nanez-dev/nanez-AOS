@@ -1,8 +1,10 @@
 package com.nane.theme.presentation.view
 
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nane.base.view.BaseBindFragment
+import com.nane.theme.BR
 import com.nane.theme.R
 import com.nane.theme.databinding.ThemeAccordDetailFragmentBinding
 import com.nane.theme.presentation.view.adapter.RelatedAccordPerfumesAdapter
@@ -20,17 +22,6 @@ class ThemeAccordDetailFragment : BaseBindFragment<ThemeAccordDetailFragmentBind
     override fun initFragment(dataBinding: ThemeAccordDetailFragmentBinding, viewModel: ThemeAccordDetailViewModel) {
         accordId = arguments?.getInt(ACCORD_ID) ?: -1
 
-        dataBinding.apply {
-            with(actionBar) {
-                setUseBackBtn {
-                     parentFragmentManager
-                         .beginTransaction()
-                         .remove(this@ThemeAccordDetailFragment)
-                         .commit()
-                }
-            }
-        }
-
         with(dataBinding.relatedItemsRecyclerView) {
             adapter ?: RelatedAccordPerfumesAdapter().apply { adapter = this }
             layoutManager ?: LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false).apply { layoutManager = this }
@@ -45,8 +36,9 @@ class ThemeAccordDetailFragment : BaseBindFragment<ThemeAccordDetailFragmentBind
         }
 
         viewModel.accordItem.observe(viewLifecycleOwner) {
-            dataBinding.viewData = it
+            dataBinding.setVariable(BR.viewData, it)
         }
+
         viewModel.relatedPerfume.observe(viewLifecycleOwner) {
             (dataBinding.relatedItemsRecyclerView.adapter as? RelatedAccordPerfumesAdapter)?.setItemList(it)
         }
@@ -56,5 +48,11 @@ class ThemeAccordDetailFragment : BaseBindFragment<ThemeAccordDetailFragmentBind
 
     companion object {
         const val ACCORD_ID = "accord_id"
+
+        fun createArgument(accordId: Int): Bundle {
+            return Bundle().apply {
+                putInt(ACCORD_ID, accordId)
+            }
+        }
     }
 }

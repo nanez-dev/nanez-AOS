@@ -13,10 +13,8 @@ import com.nane.home.databinding.HomeListItemViewBinding
 import com.nane.home.databinding.HomePagerItemViewBinding
 import com.nane.home.databinding.HomeTitleItemViewBinding
 import com.nane.home.presentation.data.HomeViewData
-import com.nane.home.presentation.view.adapter.HomeAccordAdapter
-import com.nane.home.presentation.view.adapter.HomeBrandAdapter
-import com.nane.home.presentation.view.adapter.HomeHorizontalAdapter
-import com.nane.home.presentation.view.adapter.HomeRecommendPerfumeAdapter
+import com.nane.home.presentation.data.HomeViewType
+import com.nane.home.presentation.view.adapter.*
 import com.nane.home.presentation.view.adapter.decoration.HomeGridItemDecoration
 import com.nane.home.presentation.view.adapter.decoration.HomeHorizontalItemDecoration
 import org.techtown.nanez.utils.util.GlideImageLoadData
@@ -28,7 +26,8 @@ import org.techtown.nanez.utils.util.toDp
  */
 
 class HomePagerViewHolder(
-    private val binding: HomePagerItemViewBinding
+    private val binding: HomePagerItemViewBinding,
+    private val listener: HomeMainAdapter.UserActionListener?,
 ) : AbsHomeViewHolder<HomeViewData.Banner>(binding.root) {
 
     init {
@@ -56,6 +55,9 @@ class HomePagerViewHolder(
             val imageView = ImageView(container.context).apply {
                 scaleType = ImageView.ScaleType.FIT_XY
                 layoutParams ?: LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+                setOnClickListener {
+                    listener?.onClickBannerView(imgUrlList.getOrNull(position)?.link)
+                }
             }
             GlideUtil.instance.displayImage(GlideImageLoadData(imageView, imageUrl = imgUrlList.getOrNull(position)?.imgUrl))
             container.addView(imageView)
@@ -85,7 +87,8 @@ class HomeTitleViewHolder(
 
 
 class HomeHorizontalViewHolder(
-    private val binding: HomeListItemViewBinding
+    private val binding: HomeListItemViewBinding,
+    private val listener: HomeMainAdapter.UserActionListener?,
 ) : AbsHomeViewHolder<HomeViewData.SpecialPerfume>(binding.root) {
 
     init {
@@ -95,6 +98,7 @@ class HomeHorizontalViewHolder(
             }
 
             adapter ?: HomeHorizontalAdapter().apply {
+                onItemClick = { listener?.onClickPerfume(it) }
                 adapter = this
             }
 
@@ -113,7 +117,8 @@ class HomeHorizontalViewHolder(
 
 
 class HomeRecommendPerfumeViewHolder(
-    private val binding: HomeListItemViewBinding
+    private val binding: HomeListItemViewBinding,
+    private val listener: HomeMainAdapter.UserActionListener?,
 ) : AbsHomeViewHolder<HomeViewData.RecommondPerfume>(binding.root) {
 
     init {
@@ -125,52 +130,49 @@ class HomeRecommendPerfumeViewHolder(
             }
 
             adapter ?: HomeRecommendPerfumeAdapter().apply {
+                onItemClick = { listener?.onClickPerfume(it) }
                 adapter = this
             }
 
             if (itemDecorationCount == 0) {
-                addItemDecoration(
-                    HomeGridItemDecoration(
-                        spanCount = 2,
-                        spacing = 12.toDp(),
-                        horizontalMargin = 16.toDp()
-                    )
-                )
+                addItemDecoration(HomeGridItemDecoration(spanCount = 2, spacing = 12.toDp(), horizontalMargin = 16.toDp()))
             }
         }
     }
 
     override fun onBind(data: HomeViewData.RecommondPerfume) {
         binding.txtTitle.text = data.title
-        binding.btnMore.visibility = View.VISIBLE
+        binding.btnMore.visibility = View.GONE
         (binding.recyclerView.adapter as? HomeRecommendPerfumeAdapter)?.setItemList(data.itemList)
     }
 }
 
 
 class HomeBrandViewHolder(
-    private val binding: HomeListItemViewBinding
+    private val binding: HomeListItemViewBinding,
+    private val listener: HomeMainAdapter.UserActionListener?,
 ) : AbsHomeViewHolder<HomeViewData.Brand>(binding.root) {
 
     init {
-        binding.recyclerView.apply {
-            isNestedScrollingEnabled = false
-            layoutManager ?: GridLayoutManager(context, 2).apply {
-                layoutManager = this
+        binding.apply {
+            with(recyclerView) {
+                isNestedScrollingEnabled = false
+                layoutManager ?: GridLayoutManager(context, 2).apply {
+                    layoutManager = this
+                }
+
+                adapter ?: HomeBrandAdapter().apply {
+                    onItemClick = { listener?.onClickBrand(it) }
+                    adapter = this
+                }
+
+                if (itemDecorationCount == 0) {
+                    addItemDecoration(HomeGridItemDecoration(spanCount = 2, spacing = 12.toDp(), horizontalMargin = 16.toDp()))
+                }
             }
 
-            adapter ?: HomeBrandAdapter().apply {
-                adapter = this
-            }
-
-            if (itemDecorationCount == 0) {
-                addItemDecoration(
-                    HomeGridItemDecoration(
-                        spanCount = 2,
-                        spacing = 12.toDp(),
-                        horizontalMargin = 16.toDp()
-                    )
-                )
+            btnMore.setOnClickListener {
+                listener?.onClickMore(HomeViewType.HOME_BRAND_TYPE)
             }
         }
     }
@@ -184,28 +186,30 @@ class HomeBrandViewHolder(
 
 
 class HomeAccordViewHolder(
-    private val binding: HomeListItemViewBinding
+    private val binding: HomeListItemViewBinding,
+    private val listener: HomeMainAdapter.UserActionListener?,
 ) : AbsHomeViewHolder<HomeViewData.Accord>(binding.root) {
 
     init {
-        binding.recyclerView.apply {
-            isNestedScrollingEnabled = false
-            layoutManager ?: GridLayoutManager(context, 3).apply {
-                layoutManager = this
+        binding.apply {
+            with(recyclerView) {
+                isNestedScrollingEnabled = false
+                layoutManager ?: GridLayoutManager(context, 3).apply {
+                    layoutManager = this
+                }
+
+                adapter ?: HomeAccordAdapter().apply {
+                    onItemClick = { listener?.onClickAccord(it) }
+                    adapter = this
+                }
+
+                if (itemDecorationCount == 0) {
+                    addItemDecoration(HomeGridItemDecoration(spanCount = 3, spacing = 12.toDp(), horizontalMargin = 16.toDp()))
+                }
             }
 
-            adapter ?: HomeAccordAdapter().apply {
-                adapter = this
-            }
-
-            if (itemDecorationCount == 0) {
-                addItemDecoration(
-                    HomeGridItemDecoration(
-                        spanCount = 3,
-                        spacing = 12.toDp(),
-                        horizontalMargin = 16.toDp()
-                    )
-                )
+            btnMore.setOnClickListener {
+                listener?.onClickMore(HomeViewType.HOME_ACCORD_TYPE)
             }
         }
     }

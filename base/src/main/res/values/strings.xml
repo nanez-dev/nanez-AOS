@@ -10,6 +10,7 @@
     <string name="label_password">비밀번호</string>
     <string name="label_confirm">확인</string>
     <string name="label_duplicate_check">중복 확인</string>
+    <string name="label_more">더보기</string>
 
     <string name="msg_home_search">지금 나에게 맞는 향수를 찾아보세요</string>
 
@@ -64,4 +65,5 @@
     <string name="label_theme_popular_brands_title">지금, 사랑받고 있는 브랜드</string>
     <string name="label_theme_all_accords_title">모든 어코드</string>
     <string name="label_theme_all_brands_title">모든 브랜드</string>
+    <string name="label_theme_related_title">%s 대표 향수</string>
 </resources>
