@@ -36,17 +36,15 @@ class ThemeAccordViewModel @Inject constructor(
                         val viewData = mapper.toViewData(result.data)
                         _popularAccordItemViewDataList.post(viewData.popularAccords)
                         _allAccordItemViewDataList.post(viewData.allAccords)
-                        showLoading(false)
                     }
                     is DomainResult.Failed -> {
                         showErrorToast()
-                        showLoading(false)
                     }
                     is DomainResult.Error -> {
                         showErrorToast()
-                        showLoading(false)
                     }
                 }
+                showLoading(false)
             }
         }
     }

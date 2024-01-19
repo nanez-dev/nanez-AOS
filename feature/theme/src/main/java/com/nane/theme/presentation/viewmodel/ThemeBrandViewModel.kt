@@ -9,6 +9,7 @@ import com.nane.theme.presentation.mapper.BrandDomainMapper
 import com.nane.theme.domain.usecase.BrandsUsecase
 import com.nane.theme.presentation.data.BrandItemViewData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.util.post
 import javax.inject.Inject
@@ -29,6 +30,7 @@ class ThemeBrandViewModel @Inject constructor(
 
     fun getBrandViewData() {
         viewModelScope.launch {
+            showLoading(true)
             brandsUsecase.getAllBrands().collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
@@ -37,12 +39,13 @@ class ThemeBrandViewModel @Inject constructor(
                         _allBrandsViewDataList.post(viewData.allBrands)
                     }
                     is DomainResult.Failed -> {
-
+                        showErrorToast()
                     }
                     is DomainResult.Error -> {
-
+                        showErrorToast()
                     }
                 }
+                showLoading(false)
             }
         }
     }
