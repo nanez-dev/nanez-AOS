@@ -35,7 +35,9 @@ class PopularBrandsAdapter : Adapter<PopularBrandsAdapter.PopularBrandViewHolder
         }
 
         init {
-
+            binding.root.setOnClickListener {
+                onItemClickListener?.onItemClick(adapterPosition)
+            }
         }
     }
 
@@ -45,6 +47,6 @@ class PopularBrandsAdapter : Adapter<PopularBrandsAdapter.PopularBrandViewHolder
     }
 
     interface ItemClickListener {
-        fun onItemClick()
+        fun onItemClick(idx: Int)
     }
 }

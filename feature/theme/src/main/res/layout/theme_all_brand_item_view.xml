@@ -16,12 +16,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:foreground="@drawable/ripple"
+        android:padding="8dp">
 
-<!--        background style 정의 필요 / #E8EAF0 색상의 1dp stroke, 12dp corner round -->
         <ImageView
             android:id="@+id/imgTheme"
-            android:background="@drawable/shape_white_r12_line50_s1"
+            android:background="@drawable/shape_white_r12_line100_s1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:adjustViewBounds="true"

@@ -2,7 +2,6 @@ package com.nane.theme.presentation.view
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -25,20 +24,20 @@ class ThemeAccordActivity : BaseBindActivity<ThemeAccordActivityBinding, ThemeAc
     private val accordItemWidth = 64.toDp()
     private var spanCount = 5
 
-    // 상세로 바로 이동한 경우는 뒤로가기시 전체 종료 시킴
-    private var isMoveToDetail = false
+    private var isDirectlyNavigatedToDetail = false
 
     override fun createViewModel(): ThemeAccordViewModel = viewModels<ThemeAccordViewModel>().value
 
+    // 상세 화면으로 바로 이동한 경우는 뒤로가기 시 액티비티 종료
     override fun onActionBackPressed() {
         supportFragmentManager.also {
             val fragment = it.findFragmentById(dataBinding?.container?.id ?: 0) as? BaseBindFragment<*, *>
-            if (isMoveToDetail || fragment == null) {
+            if (isDirectlyNavigatedToDetail || fragment == null) {
                 finish()
             } else {
                 it.popBackStack()
                 it.beginTransaction().remove(fragment).commit()
-                visibleDetailView(false)
+                setDetailFragmentVisibility(false)
             }
         }
     }
@@ -62,7 +61,7 @@ class ThemeAccordActivity : BaseBindActivity<ThemeAccordActivityBinding, ThemeAc
                             addFragment(dataBinding.container, tag = "ThemeAccordDetailFragment", arguments = ThemeAccordDetailFragment.createArgument(idx)) {
                                 ThemeAccordDetailFragment()
                             }
-                            visibleDetailView(true)
+                            setDetailFragmentVisibility(true)
                         }
                     }
                 )
@@ -77,7 +76,7 @@ class ThemeAccordActivity : BaseBindActivity<ThemeAccordActivityBinding, ThemeAc
                             addFragment(dataBinding.container, tag = "ThemeAccordDetailFragment", arguments = ThemeAccordDetailFragment.createArgument(idx)) {
                                 ThemeAccordDetailFragment()
                             }
-                            visibleDetailView(true)
+                            setDetailFragmentVisibility(true)
                         }
                     }
                 )
@@ -94,20 +93,19 @@ class ThemeAccordActivity : BaseBindActivity<ThemeAccordActivityBinding, ThemeAc
 
         val accordId = intent?.getIntExtra(ThemeAccordDetailFragment.ACCORD_ID, -1) ?: -1
         if (accordId > 0) {
-            isMoveToDetail = true
-            visibleDetailView(true)
+            isDirectlyNavigatedToDetail = true
+            setDetailFragmentVisibility(true)
             addFragment(dataBinding.container, tag = "ThemeAccordDetailFragment", arguments = ThemeAccordDetailFragment.createArgument(accordId)) {
                 ThemeAccordDetailFragment()
             }
         } else {
-            isMoveToDetail = false
-            visibleDetailView(false)
+            isDirectlyNavigatedToDetail = false
+            setDetailFragmentVisibility(false)
             viewModel.getAccordViewData()
         }
     }
 
-
-    private fun visibleDetailView(isVisible: Boolean) {
+    private fun setDetailFragmentVisibility(isVisible: Boolean) {
         if (isVisible) {
             dataBinding?.container?.visibility = View.VISIBLE
             dataBinding?.vgMain?.visibility = View.GONE
