@@ -27,9 +27,9 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/editSearch"
             android:layout_width="0dp"
-            android:layout_height="24dp"
+            android:layout_height="52dp"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="14dp"
+            android:paddingVertical="14dp"
             android:background="@null"
             android:imeOptions="actionGo"
             android:maxLines="1"

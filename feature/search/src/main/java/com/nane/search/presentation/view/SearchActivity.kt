@@ -67,28 +67,29 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
             viewModel.searchResults.observe(this@SearchActivity) { results ->
                 val havePerfumeResult = results
                     .filterIsInstance<SearchResultViewData.SearchPerfumeViewData>()
-                    .isEmpty()
+                    .isNotEmpty()
 
-                if (havePerfumeResult) { // 검색결과 없음 Fragment Inflate
+                if (havePerfumeResult) { // 검색결과 있을 경우 Fragment Inflate
+                    if (supportFragmentManager.fragments.any { it.tag == TAG_RESULT }) return@observe
                     addFragment(
                         container = dataBinding.searchResultsContainer,
                         saveInstanceState = null,
-                        tag = "NO_RESULT",
-                        arguments = null,
-                        isBackStackEnabled = false
-                    ) {
-                        SearchNoResultFragment()
-                    }
-                } else { // 검색결과 있음 Fragment Inflate
-
-                    addFragment(
-                        container = dataBinding.searchResultsContainer,
-                        saveInstanceState = null,
-                        tag = "RESULT",
+                        tag = TAG_RESULT,
                         arguments = null,
                         isBackStackEnabled = false
                     ) {
                         SearchResultsFragment()
+                    }
+                } else { // 검색결과 없을 경우 Fragment Inflate
+                    if (supportFragmentManager.fragments.any { it.tag == TAG_NO_RESULT }) return@observe
+                    addFragment(
+                        container = dataBinding.searchResultsContainer,
+                        saveInstanceState = null,
+                        tag = TAG_NO_RESULT,
+                        arguments = null,
+                        isBackStackEnabled = false
+                    ) {
+                        SearchNoResultFragment()
                     }
                 }
             }
@@ -101,6 +102,9 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
     }
 
     companion object {
+
+        private const val TAG_RESULT = "RESULT"
+        private const val TAG_NO_RESULT = "NO_RESULT"
 
         fun createIntent(context: Context): Intent {
             return Intent(context, SearchActivity::class.java).apply {

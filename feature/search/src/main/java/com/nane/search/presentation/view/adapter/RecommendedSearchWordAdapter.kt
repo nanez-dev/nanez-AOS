@@ -38,19 +38,15 @@ class RecommendedSearchWordAdapter: RecyclerView.Adapter<RecommendedSearchWordAd
         init {
             binding.txtRecommendedSearchWord.apply {
                 setOnClickListener {
-                    onItemClickListener?.onItemClick(adapterPosition)
+                    onSearchWordClickListener?.onSearchWordClick(adapterPosition)
                 }
                 clipToOutline = true
             }
         }
     }
 
-    private var onItemClickListener: ItemClickListener? = null
-    fun setOnItemClickListener(itemClickListener: ItemClickListener) {
-        onItemClickListener = itemClickListener
-    }
-
-    interface ItemClickListener {
-        fun onItemClick(idx: Int)
+    private var onSearchWordClickListener: SearchResultAdapter.SearchResultClickListener? = null
+    fun setOnItemClickListener(itemClickListener: SearchResultAdapter.SearchResultClickListener?) {
+        onSearchWordClickListener = itemClickListener
     }
 }

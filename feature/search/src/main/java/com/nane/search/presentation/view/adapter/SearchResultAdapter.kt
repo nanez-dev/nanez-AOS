@@ -2,20 +2,22 @@ package com.nane.search.presentation.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.nane.search.BR
 import com.nane.search.databinding.SearchPerfumeItemViewBinding
 import com.nane.search.databinding.SearchRecommendedSearchWordListItemViewBinding
 import com.nane.search.presentation.data.SearchResultViewData
 import com.nane.search.presentation.data.SearchViewType
 import com.nane.search.presentation.view.AbsSearchResultViewHolder
-import com.nane.search.presentation.view.RecommendedSearchWordListViewHolder
-import com.nane.search.presentation.view.SearchPerfumeViewHolder
+import com.nane.search.presentation.view.adapter.decoration.RecommendedSearchWordItemDecoration
 
 class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() {
 
     private var itemList: List<SearchResultViewData> = listOf()
     fun setItemList(list: List<SearchResultViewData>) {
         itemList = list
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbsSearchResultViewHolder<*> {
@@ -29,7 +31,7 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
     override fun getItemCount(): Int = itemList.size
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == 0) SearchViewType.RECOMMENDATION_TYPE else SearchViewType.PERFUME_TYPE
+        return itemList.getOrNull(position)?.viewType ?: 0
     }
 
     override fun onBindViewHolder(holder: AbsSearchResultViewHolder<*>, position: Int) {
@@ -43,12 +45,48 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
         }
     }
 
-    private var onItemClickListener: ItemClickListener? = null
-    fun setOnItemClickListener(itemClickListener: ItemClickListener) {
-        onItemClickListener = itemClickListener
+    private var onSearchResultClickListener: SearchResultClickListener? = null
+    fun setOnSearchResultClickListener(itemClickListener: SearchResultClickListener) {
+        onSearchResultClickListener = itemClickListener
     }
 
-    interface ItemClickListener {
-        fun onItemClick(idx: Int)
+    interface SearchResultClickListener {
+        fun onSearchWordClick(idx: Int)
+
+        fun onPerfumeClick(idx: Int)
+    }
+
+    inner class RecommendedSearchWordListViewHolder(
+        private val binding: SearchRecommendedSearchWordListItemViewBinding
+    ): AbsSearchResultViewHolder<SearchResultViewData.RecommendedSearchWordListItemViewData>(binding.root) {
+
+        override fun onBind(data: SearchResultViewData.RecommendedSearchWordListItemViewData) {
+            with(binding.rvRecommendedSearchWords) {
+                adapter ?: RecommendedSearchWordAdapter().apply { adapter = this }
+                (adapter as RecommendedSearchWordAdapter).apply {
+                    setItemList(data.wordList)
+                    setOnItemClickListener(onSearchResultClickListener)
+                }
+                layoutManager ?: LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false).apply { layoutManager = this }
+
+                if (itemDecorationCount == 0) addItemDecoration(RecommendedSearchWordItemDecoration())
+            }
+        }
+    }
+
+    inner class SearchPerfumeViewHolder(
+        private val binding: SearchPerfumeItemViewBinding
+    ): AbsSearchResultViewHolder<SearchResultViewData.SearchPerfumeViewData>(binding.root) {
+
+        override fun onBind(data: SearchResultViewData.SearchPerfumeViewData) {
+            binding.setVariable(BR.viewData, data)
+            binding.executePendingBindings()
+        }
+
+        init {
+            binding.root.setOnClickListener {
+                onSearchResultClickListener?.onPerfumeClick(adapterPosition)
+            }
+        }
     }
 }
