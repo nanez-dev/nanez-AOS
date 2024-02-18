@@ -22,53 +22,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/actionBar" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/vgMain"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAccordItems"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/white"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/actionBar">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txtPopularAccordsTitle"
-                style="@style/Text_20_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="@string/label_theme_popular_accords_title"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPopularAccords"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/txtPopularAccordsTitle" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txtAllAccordsTitle"
-                style="@style/Text_20_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="52dp"
-                android:text="@string/label_theme_all_accords_title"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvPopularAccords" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvAllAccords"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtAllAccordsTitle" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actionBar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

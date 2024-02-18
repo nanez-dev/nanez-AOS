@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="com.nane.theme.presentation.data.BrandItemViewData" />
+            type="com.nane.theme.presentation.data.BrandViewData.AllBrandItemViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

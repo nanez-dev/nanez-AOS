@@ -7,21 +7,27 @@ import javax.inject.Inject
 
 class BrandDomainMapper @Inject constructor() {
 
-    fun toViewData(dto: BrandsDomainDTO): BrandViewData {
-        return BrandViewData(
-            popularBrands = dto.popularBrands.map {
-                BrandItemViewData(
-                    id = it.id,
-                    korName = it.korName,
-                    korDescriptionTitle = it.korDescriptionTitle,
-                    korDescriptionBody = it.korDescriptionBody,
-                    imgUrl = it.imgUrl,
-                    relatedImgUrl = it.relatedImgUrl,
-                    engName = it.engName
-                )
-            },
-            allBrands = dto.allBrands.map {
-                BrandItemViewData(
+    fun toViewData(dto: BrandsDomainDTO): List<BrandViewData> {
+        val viewDataList = mutableListOf<BrandViewData>()
+        viewDataList.add(
+            BrandViewData.PopularBrandItemListViewData(
+                brandItemList = dto.popularBrands.map {
+                    BrandItemViewData(
+                        id = it.id,
+                        korName = it.korName,
+                        korDescriptionTitle = it.korDescriptionTitle,
+                        korDescriptionBody = it.korDescriptionBody,
+                        imgUrl = it.imgUrl,
+                        relatedImgUrl = it.relatedImgUrl,
+                        engName = it.engName
+                    )
+                }
+            )
+        )
+        viewDataList.add(BrandViewData.BrandTitleViewData)
+        viewDataList.addAll(
+            dto.allBrands.map {
+                BrandViewData.AllBrandItemViewData(
                     id = it.id,
                     korName = it.korName,
                     korDescriptionTitle = it.korDescriptionTitle,
@@ -32,5 +38,6 @@ class BrandDomainMapper @Inject constructor() {
                 )
             }
         )
+        return viewDataList
     }
 }

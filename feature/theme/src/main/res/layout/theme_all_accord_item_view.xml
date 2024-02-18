@@ -11,7 +11,7 @@
 
         <variable
             name="viewData"
-            type="com.nane.theme.presentation.data.AccordItemViewData" />
+            type="com.nane.theme.presentation.data.AccordViewData.AllAccordItemViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

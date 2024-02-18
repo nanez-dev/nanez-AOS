@@ -8,7 +8,7 @@ import com.nane.theme.BR
 import com.nane.theme.databinding.ThemePopularBrandItemViewBinding
 import com.nane.theme.presentation.data.BrandItemViewData
 
-class PopularBrandsAdapter : Adapter<PopularBrandsAdapter.PopularBrandViewHolder>() {
+class PopularBrandsAdapter : Adapter<PopularBrandsAdapter.PopularBrandItemViewHolder>() {
 
     private var itemList: List<BrandItemViewData> = emptyList()
 
@@ -17,17 +17,17 @@ class PopularBrandsAdapter : Adapter<PopularBrandsAdapter.PopularBrandViewHolder
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularBrandViewHolder {
-        return PopularBrandViewHolder(ThemePopularBrandItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularBrandItemViewHolder {
+        return PopularBrandItemViewHolder(ThemePopularBrandItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int = itemList.size
 
-    override fun onBindViewHolder(holder: PopularBrandViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PopularBrandItemViewHolder, position: Int) {
         holder.onBind(itemList.getOrNull(position))
     }
 
-    inner class PopularBrandViewHolder(private val binding: ThemePopularBrandItemViewBinding): ViewHolder(binding.root) {
+    inner class PopularBrandItemViewHolder(private val binding: ThemePopularBrandItemViewBinding): ViewHolder(binding.root) {
 
         fun onBind(data: BrandItemViewData?) {
             binding.setVariable(BR.viewData, data)
@@ -36,17 +36,13 @@ class PopularBrandsAdapter : Adapter<PopularBrandsAdapter.PopularBrandViewHolder
 
         init {
             binding.root.setOnClickListener {
-                onItemClickListener?.onItemClick(adapterPosition)
+                onItemClickListener?.onPopularBrandItemClick(itemList.getOrNull(adapterPosition)?.id ?: -1)
             }
         }
     }
 
-    private var onItemClickListener: ItemClickListener? = null
-    fun setOnItemClickListener(itemClickListener: ItemClickListener) {
+    private var onItemClickListener: BrandAdapter.BrandItemClickListener? = null
+    fun setOnItemClickListener(itemClickListener: BrandAdapter.BrandItemClickListener?) {
         onItemClickListener = itemClickListener
-    }
-
-    interface ItemClickListener {
-        fun onItemClick(idx: Int)
     }
 }
