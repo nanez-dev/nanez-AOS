@@ -85,4 +85,6 @@
     <string name="label_theme_related_title">%s 대표 향수</string>
 
     <string name="msg_profile_name_content">%s님, 안녕하세요</string>
+    <string name="msg_empty_storage_having_list">아직 보유한 향수가 없습니다.</string>
+    <string name="msg_empty_storage_wish_list">아직 찜한 향수가 없습니다.</string>
 </resources>

@@ -18,19 +18,8 @@ class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class ViewHolder(private val binding: WishListRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: StorageViewData.StorageItem) {
-            binding.apply {
-                setVariable(BR.viewData, item)
-                executePendingBindings()
-            }
-        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding: WishListRecyclerviewBinding = DataBindingUtil.inflate(inflater, R.layout.wish_list_recyclerview, parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(WishListRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -41,4 +30,16 @@ class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
     }
 
     override fun getItemCount() = dataList.size
+
+
+
+    inner class ViewHolder(private val binding: WishListRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: StorageViewData.StorageItem) {
+            binding.apply {
+                setVariable(BR.viewData, item)
+                executePendingBindings()
+            }
+        }
+    }
 }

@@ -10,11 +10,10 @@ import javax.inject.Inject
 class StorageUseCase @Inject constructor(
     private val repository: IStorageRepository
 ) {
-    suspend fun getMyList(type: String?): DomainResult<StorageDomainDTO> {
+    suspend fun getMyList(type: String?): DomainResult<List<StorageDomainDTO>> {
         return when (val dataResult = repository.getMyList(type)) {
             is DataResult.Success -> {
-                val wishListDomainDTO = convertToWishListDomainDTO(dataResult.data)
-                DomainResult.Success(wishListDomainDTO!!)
+                DomainResult.Success(dataResult.data?.map { convertToWishListDomainDTO(it) } ?: emptyList())
             }
             is DataResult.Failed -> {
                 DomainResult.Failed(dataResult.msg, dataResult.code)
@@ -25,8 +24,8 @@ class StorageUseCase @Inject constructor(
         }
     }
 
-    private fun convertToWishListDomainDTO(response: StorageApi.Response?): StorageDomainDTO? {
-        return response?.let {
+    private fun convertToWishListDomainDTO(response: StorageApi.Response): StorageDomainDTO {
+        return response.let {
             StorageDomainDTO(
                 kor = it.kor,
                 isSingle = it.is_single,

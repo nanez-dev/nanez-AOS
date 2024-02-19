@@ -4,5 +4,5 @@ import com.nane.base.data.DataResult
 import com.nane.network.api.storage.StorageApi
 
 interface IStorageRepository {
-    suspend fun getMyList(type: String?): DataResult<StorageApi.Response?>
+    suspend fun getMyList(type: String?): DataResult<List<StorageApi.Response>?>
 }

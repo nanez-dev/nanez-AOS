@@ -10,9 +10,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.nane.base.view.BaseBindActivity
 import com.nane.home.presentation.view.HomeFragment
 import com.nane.profile.presentation.view.ProfileFragment
+import com.nane.storage.presentation.view.StorageFragment
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.R
-import org.techtown.nanez.StorageFragment
 import org.techtown.nanez.databinding.MainActivityBinding
 import org.techtown.nanez.main.viewmodel.MainViewModel
 import org.techtown.nanez.utils.util.addFragment

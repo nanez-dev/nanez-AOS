@@ -10,7 +10,7 @@ import javax.inject.Inject
 class StorageRepositoryImpl @Inject constructor(
     private val remoteSource: IStorageRemoteSource
 ) : IStorageRepository {
-    override suspend fun getMyList(type: String?): DataResult<StorageApi.Response?> {
+    override suspend fun getMyList(type: String?): DataResult<List<StorageApi.Response>?> {
         val response = remoteSource.getMyList(type)
         return if (response.isSuccessful) {
             DataResult.Success(response.body())

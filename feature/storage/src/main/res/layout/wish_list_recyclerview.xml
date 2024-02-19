@@ -10,7 +10,7 @@
         <import type="android.text.TextUtils" />
         <variable
             name="viewData"
-            type="com.nane.storage.presentation.data.StorageViewData" />
+            type="com.nane.storage.presentation.data.StorageViewData.StorageItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +48,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:img_load="@{viewData.StorageItem.webImage1}"
+                    app:img_load="@{viewData.webImage1}"
                     app:img_round="@{20}"
                     tools:srcCompat="@tools:sample/avatars" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Body_16_B"
-                    android:text="@{viewData.StorageItem.title}"
+                    android:text="@{viewData.title}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/txtPerfumeName"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -83,7 +83,7 @@
                     android:id="@+id/txtPerfumeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{viewData.StorageItem.kor}"
+                    android:text="@{viewData.kor}"
                     style="@style/Text_18"
                     android:layout_marginTop="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"

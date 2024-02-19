@@ -18,19 +18,8 @@ class HavingListAdapter : RecyclerView.Adapter<HavingListAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class ViewHolder(private val binding: HavingListRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: StorageViewData.StorageItem) {
-            binding.apply {
-                setVariable(BR.viewData, item)
-                executePendingBindings()
-            }
-        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding: HavingListRecyclerviewBinding = DataBindingUtil.inflate(inflater, R.layout.having_list_recyclerview, parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(HavingListRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -41,4 +30,15 @@ class HavingListAdapter : RecyclerView.Adapter<HavingListAdapter.ViewHolder>() {
     }
 
     override fun getItemCount() = dataList.size
+
+
+
+    inner class ViewHolder(private val binding: HavingListRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: StorageViewData.StorageItem) {
+            binding.apply {
+                setVariable(BR.viewData, item)
+                executePendingBindings()
+            }
+        }
+    }
 }

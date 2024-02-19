@@ -15,6 +15,7 @@ import javax.inject.Inject
 class HavingListViewModel @Inject constructor(
     private val storageUseCase: StorageUseCase
 ) : BaseViewModel() {
+
     private val _havingList by lazy { MutableLiveData<List<StorageViewData.StorageItem>>() }
     val havingList: LiveData<List<StorageViewData.StorageItem>> = _havingList
 
@@ -22,16 +23,14 @@ class HavingListViewModel @Inject constructor(
         viewModelScope.launch {
             when (val domainResult = storageUseCase.getMyList(type)) {
                 is DomainResult.Success -> {
-
-                    val storageItem = domainResult.data?.let {
-                        StorageViewData.StorageItem.fromApiModel(it)
-                    }
-                    if (storageItem != null) {
-                        _havingList.postValue(listOf(storageItem))
-                    }
+                    _havingList.postValue(domainResult.data.map { StorageViewData.StorageItem.fromApiModel(it) })
                 }
-                is DomainResult.Failed -> {}
-                is DomainResult.Error -> {}
+                is DomainResult.Failed -> {
+                    _havingList.postValue(emptyList())
+                }
+                is DomainResult.Error -> {
+                    _havingList.postValue(emptyList())
+                }
             }
         }
     }
