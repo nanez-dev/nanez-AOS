@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtMyInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_profile"
+            style="@style/Head_18_B"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/txtLoginGuide"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/txtLoginGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_profile_auth_title"
+            style="@style/Text_20_bold"
+            app:layout_constraintTop_toBottomOf="@id/txtMyInfo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="60dp"/>
+
+        <TextView
+            android:id="@+id/txtMoreInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_profile_auth_sub_title"
+            style="@style/Body_14_R"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtLoginGuide"
+            app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+            android:layout_marginTop="8dp"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnLogin"
+            style="@style/Body_16_B"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="120dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/shape_brand500_r20"
+            android:foreground="@drawable/ripple_r20"
+            android:gravity="center"
+            android:paddingVertical="16dp"
+            android:text="@string/label_login"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtMoreInfo"
+            app:layout_constraintBottom_toTopOf="@+id/txtCustomerCenter"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <TextView
+            android:id="@+id/txtCustomerCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_profile_customer_center"
+            app:layout_constraintTop_toBottomOf="@id/btnLogin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/txtNotice"
+            style="@style/Text_20_bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="60dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <TextView
+            android:id="@+id/txtNotice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_profile_notice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCustomerCenter"
+            app:layout_constraintBottom_toTopOf="@+id/view_line1"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Text_16"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="35dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <View
+            android:id="@+id/view_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtNotice"
+            app:layout_constraintBottom_toTopOf="@+id/txtProductRegistrationRequest"
+            android:background="@color/gray_300"/>
+
+        <TextView
+            android:id="@+id/txtProductRegistrationRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_profile_product_registration_request"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_line1"
+            app:layout_constraintBottom_toTopOf="@+id/view_line2"
+            style="@style/Text_16"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <View
+            android:id="@+id/view_line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/txtReport"
+            app:layout_constraintTop_toBottomOf="@+id/txtProductRegistrationRequest"
+            android:background="@color/gray_300"/>
+
+        <TextView
+            android:id="@+id/txtReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_profile_report"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_line2"
+            app:layout_constraintBottom_toTopOf="@+id/view_line3"
+            style="@style/Text_16"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <View
+            android:id="@+id/view_line3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtReport"
+            app:layout_constraintBottom_toTopOf="@+id/txtTermsOfUse"
+            android:background="@color/gray_300"/>
+
+        <TextView
+            android:id="@+id/txtTermsOfUse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_profile_terms_of_use"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_line3"
+            app:layout_constraintBottom_toTopOf="@+id/view_line4"
+            style="@style/Text_16"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <View
+            android:id="@+id/view_line4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtTermsOfUse"
+            app:layout_constraintBottom_toTopOf="@+id/txtPrivacyPolicy"
+            android:background="@color/gray_300"/>
+
+        <TextView
+            android:id="@+id/txtPrivacyPolicy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_profile_privacy_policy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_line4"
+            style="@style/Text_16"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
