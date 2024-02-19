@@ -1,8 +1,10 @@
 package com.nane.theme.presentation.view
 
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nane.base.view.BaseBindFragment
+import com.nane.theme.BR
 import com.nane.theme.R
 import com.nane.theme.databinding.ThemeBrandDetailFragmentBinding
 import com.nane.theme.presentation.view.adapter.RelatedBrandPerfumesAdapter
@@ -20,17 +22,6 @@ class ThemeBrandDetailFragment : BaseBindFragment<ThemeBrandDetailFragmentBindin
     override fun initFragment(dataBinding: ThemeBrandDetailFragmentBinding, viewModel: ThemeBrandDetailViewModel) {
         brandId = arguments?.getInt(BRAND_ID) ?: -1
 
-        dataBinding.apply {
-            with(actionBar) {
-                setUseBackBtn {
-                     parentFragmentManager
-                         .beginTransaction()
-                         .remove(this@ThemeBrandDetailFragment)
-                         .commit()
-                }
-            }
-        }
-
         with(dataBinding.relatedItemsRecyclerView) {
             adapter ?: RelatedBrandPerfumesAdapter().apply { adapter = this }
             layoutManager ?: LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false).apply { layoutManager = this }
@@ -45,8 +36,7 @@ class ThemeBrandDetailFragment : BaseBindFragment<ThemeBrandDetailFragmentBindin
         }
 
         viewModel.brandItem.observe(viewLifecycleOwner) {
-            dataBinding.viewData = it
-
+            dataBinding.setVariable(BR.viewData, it)
         }
 
         viewModel.relatedPerfumes.observe(viewLifecycleOwner) {
@@ -58,5 +48,11 @@ class ThemeBrandDetailFragment : BaseBindFragment<ThemeBrandDetailFragmentBindin
 
     companion object {
         const val BRAND_ID = "brand_id"
+
+        fun createArgument(brandId: Int): Bundle {
+            return Bundle().apply {
+                putInt(BRAND_ID, brandId)
+            }
+        }
     }
 }

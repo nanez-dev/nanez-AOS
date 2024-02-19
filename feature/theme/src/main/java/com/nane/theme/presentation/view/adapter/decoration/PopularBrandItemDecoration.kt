@@ -20,15 +20,17 @@ class PopularBrandItemDecoration: RecyclerView.ItemDecoration() {
         when (position) {
             0 -> {
                 outRect.left = 20.toDp()
-                outRect.right = 8.toDp()
+                outRect.right = 4.toDp()
             }
 
             itemCount - 1 -> {
+                outRect.left = 4.toDp()
                 outRect.right = 20.toDp()
             }
 
             else -> {
-                outRect.right = 8.toDp()
+                outRect.left = 4.toDp()
+                outRect.right = 4.toDp()
             }
         }
     }

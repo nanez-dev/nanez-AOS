@@ -17,6 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:foreground="@drawable/ripple_r12"
         android:background="@drawable/shape_bg50_r12_line50_s1"
         android:padding="16dp">
 

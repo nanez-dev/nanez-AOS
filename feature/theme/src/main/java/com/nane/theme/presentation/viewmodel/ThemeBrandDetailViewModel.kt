@@ -30,6 +30,7 @@ class ThemeBrandDetailViewModel @Inject constructor(
 
     fun getBrandDetailData(brandId: Int, limit: Int) {
         viewModelScope.launch {
+            showLoading(true)
             brandDetailUsecase.getBrandDetail(brandId = brandId).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
@@ -38,12 +39,13 @@ class ThemeBrandDetailViewModel @Inject constructor(
                         _relatedPerfumes.post(viewData.relatedPerfumes)
                     }
                     is DomainResult.Failed -> {
-
+                        showErrorToast()
                     }
                     is DomainResult.Error -> {
-
+                        showErrorToast()
                     }
                 }
+                showLoading(false)
             }
         }
     }

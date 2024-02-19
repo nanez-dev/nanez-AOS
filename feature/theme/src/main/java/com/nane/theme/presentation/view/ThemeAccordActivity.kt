@@ -2,18 +2,15 @@ package com.nane.theme.presentation.view
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.nane.base.view.BaseBindActivity
 import com.nane.base.view.BaseBindFragment
 import com.nane.theme.R
 import com.nane.theme.databinding.ThemeAccordActivityBinding
-import com.nane.theme.presentation.view.adapter.AllAccordsAdapter
-import com.nane.theme.presentation.view.adapter.PopularAccordsAdapter
-import com.nane.theme.presentation.view.adapter.decoration.PopularAccordItemDecoration
+import com.nane.theme.presentation.data.AccordViewType
+import com.nane.theme.presentation.view.adapter.AccordAdapter
 import com.nane.theme.presentation.viewmodel.ThemeAccordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.utils.util.ResUtils
@@ -25,20 +22,20 @@ class ThemeAccordActivity : BaseBindActivity<ThemeAccordActivityBinding, ThemeAc
     private val accordItemWidth = 64.toDp()
     private var spanCount = 5
 
-    // 상세로 바로 이동한 경우는 뒤로가기시 전체 종료 시킴
-    private var isMoveToDetail = false
+    private var isDirectlyNavigatedToDetail = false
 
     override fun createViewModel(): ThemeAccordViewModel = viewModels<ThemeAccordViewModel>().value
 
+    // 상세 화면으로 바로 이동한 경우는 뒤로가기 시 액티비티 종료
     override fun onActionBackPressed() {
         supportFragmentManager.also {
             val fragment = it.findFragmentById(dataBinding?.container?.id ?: 0) as? BaseBindFragment<*, *>
-            if (isMoveToDetail || fragment == null) {
+            if (isDirectlyNavigatedToDetail || fragment == null) {
                 finish()
             } else {
                 it.popBackStack()
                 it.beginTransaction().remove(fragment).commit()
-                visibleDetailView(false)
+                setDetailFragmentVisibility(false)
             }
         }
     }
@@ -52,72 +49,73 @@ class ThemeAccordActivity : BaseBindActivity<ThemeAccordActivityBinding, ThemeAc
                 setUseBackBtn { onActionBackPressed() }
             }
 
-            with(rvPopularAccords) {
-                adapter ?: PopularAccordsAdapter().apply { adapter = this }
-                layoutManager ?: LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply { layoutManager = this }
-                if (itemDecorationCount == 0) addItemDecoration(PopularAccordItemDecoration())
-                (adapter as PopularAccordsAdapter).setOnItemClickListener(
-                    object: PopularAccordsAdapter.ItemClickListener {
-                        override fun onItemClick(idx: Int) {
-                            addFragment(dataBinding.container, tag = "ThemeAccordDetailFragment", arguments = ThemeAccordDetailFragment.createArgument(idx)) {
-                                ThemeAccordDetailFragment()
+            with(rvAccordItems) {
+                adapter ?: AccordAdapter().apply { adapter = this }
+                layoutManager ?: GridLayoutManager(context, spanCount).apply {
+                    spanSizeLookup = object: GridLayoutManager.SpanSizeLookup() {
+                        override fun getSpanSize(position: Int): Int {
+                            return when ((adapter as AccordAdapter).getItemViewType(position)) {
+                                AccordViewType.ALL_ACCORD_ITEM_TYPE -> 1
+                                else -> spanCount
                             }
-                            visibleDetailView(true)
                         }
                     }
-                )
-            }
 
-            with(rvAllAccords) {
-                adapter ?: AllAccordsAdapter().apply { adapter = this }
-                layoutManager ?: GridLayoutManager(context, spanCount).apply { layoutManager = this }
-                (adapter as AllAccordsAdapter).setOnItemClickListener(
-                    object: AllAccordsAdapter.ItemClickListener {
-                        override fun onItemClick(idx: Int) {
-                            addFragment(dataBinding.container, tag = "ThemeAccordDetailFragment", arguments = ThemeAccordDetailFragment.createArgument(idx)) {
+                    layoutManager = this
+                }
+
+                (adapter as AccordAdapter).setOnAccordItemClickListener(
+                    object: AccordAdapter.AccordItemClickListener {
+
+                        override fun onPopularAccordItemClick(itemId: Int) {
+                            addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeAccordDetailFragment.createArgument(itemId)) {
                                 ThemeAccordDetailFragment()
                             }
-                            visibleDetailView(true)
+                            setDetailFragmentVisibility(true)
+                        }
+
+                        override fun onAllAccordItemClick(itemId: Int) {
+                            addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeAccordDetailFragment.createArgument(itemId)) {
+                                ThemeAccordDetailFragment()
+                            }
+                            setDetailFragmentVisibility(true)
                         }
                     }
                 )
             }
         }
 
-        viewModel.popularAccordItemViewDataList.observe(this) {
-            (dataBinding.rvPopularAccords.adapter as? PopularAccordsAdapter)?.setItemList(it)
-        }
-
-        viewModel.allAccordItemViewDataList.observe(this) {
-            (dataBinding.rvAllAccords.adapter as? AllAccordsAdapter)?.setItemList(it)
+        viewModel.accordItemViewDataList.observe(this) {
+            (dataBinding.rvAccordItems.adapter as? AccordAdapter)?.setItemList(it)
         }
 
         val accordId = intent?.getIntExtra(ThemeAccordDetailFragment.ACCORD_ID, -1) ?: -1
         if (accordId > 0) {
-            isMoveToDetail = true
-            visibleDetailView(true)
-            addFragment(dataBinding.container, tag = "ThemeAccordDetailFragment", arguments = ThemeAccordDetailFragment.createArgument(accordId)) {
+            isDirectlyNavigatedToDetail = true
+            setDetailFragmentVisibility(true)
+            addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeAccordDetailFragment.createArgument(accordId)) {
                 ThemeAccordDetailFragment()
             }
         } else {
-            isMoveToDetail = false
-            visibleDetailView(false)
+            isDirectlyNavigatedToDetail = false
+            setDetailFragmentVisibility(false)
             viewModel.getAccordViewData()
         }
     }
 
-
-    private fun visibleDetailView(isVisible: Boolean) {
+    private fun setDetailFragmentVisibility(isVisible: Boolean) {
         if (isVisible) {
             dataBinding?.container?.visibility = View.VISIBLE
-            dataBinding?.vgMain?.visibility = View.GONE
+            dataBinding?.rvAccordItems?.visibility = View.GONE
         } else {
             dataBinding?.container?.visibility = View.GONE
-            dataBinding?.vgMain?.visibility = View.VISIBLE
+            dataBinding?.rvAccordItems?.visibility = View.VISIBLE
         }
     }
 
     companion object {
+        private const val TAG_FRAGMENT = "ThemeAccordDetailFragment"
+
         fun createIntent(context: Context, accordId: Int): Intent {
             return Intent(context, ThemeAccordActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)

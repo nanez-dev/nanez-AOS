@@ -37,17 +37,15 @@ class ThemeAccordDetailViewModel @Inject constructor(
                         val viewData = mapper.toViewData(result.data)
                         _accordItem.post(viewData.accordItemViewData)
                         _relatedPerfumes.post(viewData.relatedPerfumes)
-                        showLoading(false)
                     }
                     is DomainResult.Failed -> {
                         showErrorToast()
-                        showLoading(false)
                     }
                     is DomainResult.Error -> {
                         showErrorToast()
-                        showLoading(false)
                     }
                 }
+                showLoading(false)
             }
         }
     }

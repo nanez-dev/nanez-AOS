@@ -11,35 +11,36 @@
 
         <variable
             name="viewData"
-            type="com.nane.theme.presentation.data.BrandItemViewData" />
+            type="com.nane.theme.presentation.data.BrandViewData.AllBrandItemViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="8dp">
 
-<!--        background style 정의 필요 / #E8EAF0 색상의 1dp stroke, 12dp corner round -->
         <ImageView
             android:id="@+id/imgTheme"
-            android:background="@drawable/shape_white_r12_line50_s1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
+            android:background="@drawable/shape_white_r12_line100_s1"
+            android:foreground="@drawable/ripple"
             android:paddingVertical="11dp"
+            android:scaleType="fitCenter"
             app:img_load="@{viewData.imgUrl}"
             app:layout_constraintDimensionRatio="164:88"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtThemeTitle"
             style="@style/Body_14_M"
             android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@id/imgTheme"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgTheme"
             tools:text="@{viewData.korName}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
