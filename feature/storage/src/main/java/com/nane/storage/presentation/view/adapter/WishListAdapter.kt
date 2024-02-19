@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.nane.storage.R
 import com.nane.storage.BR
-import com.nane.storage.databinding.WishlistRecyclerviewBinding
+import com.nane.storage.R
+import com.nane.storage.databinding.WishListRecyclerviewBinding
 import com.nane.storage.presentation.data.StorageViewData
 
 class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
@@ -18,7 +18,7 @@ class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class ViewHolder(private val binding: WishlistRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: WishListRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: StorageViewData.StorageItem) {
             binding.apply {
                 setVariable(BR.viewData, item)
@@ -29,12 +29,7 @@ class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding: WishlistRecyclerviewBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.wishlist_recyclerview,
-            parent,
-            false
-        )
+        val binding: WishListRecyclerviewBinding = DataBindingUtil.inflate(inflater, R.layout.wish_list_recyclerview, parent, false)
         return ViewHolder(binding)
     }
 

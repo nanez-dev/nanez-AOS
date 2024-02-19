@@ -8,15 +8,15 @@ import com.nane.storage.R
 import com.nane.storage.presentation.data.StorageViewType
 
 class StorageActivity : AppCompatActivity() {
-    private lateinit var wishlistFragment: WishlistFragment
-    private lateinit var havinglistFragment: HavinglistFragment
+    private lateinit var wishlistFragment: WishListFragment
+    private lateinit var havinglistFragment: HavingListFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.storage_activity)
 
-        wishlistFragment = WishlistFragment()
-        havinglistFragment = HavinglistFragment()
+        wishlistFragment = WishListFragment()
+        havinglistFragment = HavingListFragment()
 
         switchFragmentByPosition(StorageViewType.STORAGE_WISH_POSITION)
 

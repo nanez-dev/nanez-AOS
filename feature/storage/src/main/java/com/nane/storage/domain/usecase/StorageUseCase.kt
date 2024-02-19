@@ -11,8 +11,7 @@ class StorageUseCase @Inject constructor(
     private val repository: IStorageRepository
 ) {
     suspend fun getMyList(type: String?): DomainResult<StorageDomainDTO> {
-        val dataResult = repository.getMyList(type)
-        return when (dataResult) {
+        return when (val dataResult = repository.getMyList(type)) {
             is DataResult.Success -> {
                 val wishListDomainDTO = convertToWishListDomainDTO(dataResult.data)
                 DomainResult.Success(wishListDomainDTO!!)

@@ -7,25 +7,27 @@ import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
 import com.nane.storage.domain.usecase.StorageUseCase
 import com.nane.storage.presentation.data.StorageViewData
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
+/**
+ * Created by haul on 11/4/23
+ */
 class WishListViewModel @Inject constructor(
-    private val storageUseCase: StorageUseCase
+    private val useCase: StorageUseCase
 ) : BaseViewModel() {
+
     private val _wishList by lazy { MutableLiveData<List<StorageViewData.StorageItem>>() }
     val wishList: LiveData<List<StorageViewData.StorageItem>> = _wishList
 
     fun getMyList(type: String?) {
         viewModelScope.launch {
-            when (val domainResult = storageUseCase.getMyList(type)) {
+            when (val domainResult = useCase.getMyList(type)) {
                 is DomainResult.Success -> {
-
                     val storageItem = domainResult.data?.let {
                         StorageViewData.StorageItem.fromApiModel(it)
                     }
+
                     if (storageItem != null) {
                         _wishList.postValue(listOf(storageItem))
                     }
@@ -35,4 +37,5 @@ class WishListViewModel @Inject constructor(
             }
         }
     }
+
 }

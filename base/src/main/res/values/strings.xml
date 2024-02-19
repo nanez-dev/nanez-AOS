@@ -84,4 +84,5 @@
 
     <string name="label_theme_related_title">%s 대표 향수</string>
 
+    <string name="msg_profile_name_content">%s님, 안녕하세요</string>
 </resources>
