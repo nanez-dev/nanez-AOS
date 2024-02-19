@@ -22,4 +22,4 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Nanez_buildSrc"
+rootProject.name = "nanez_buildSrc"

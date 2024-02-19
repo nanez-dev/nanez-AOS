@@ -16,3 +16,7 @@ buildscript {
 plugins {
     alias(libs.plugins.hilt) apply false
 }
+
+allprojects {
+    group = AppConfig.appPackage
+}
