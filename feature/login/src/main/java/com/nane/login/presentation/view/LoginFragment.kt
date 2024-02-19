@@ -34,11 +34,6 @@ class LoginFragment : BaseBindFragment<LoginFragmentBinding, LoginViewModel>(R.l
                 actViewModel.onEventAction(LoginActEventData.StartGuestMode)
             }
 
-            btnOther.setOnClickListener {
-                vgLoginMainGroup.visibility = View.GONE
-                vgLoginMainGroup2.visibility = View.VISIBLE
-            }
-
             vgEmail.setOnClickListener {
                 actViewModel.onEventAction(LoginActEventData.MoveEmailLogin)
             }
@@ -47,7 +42,6 @@ class LoginFragment : BaseBindFragment<LoginFragmentBinding, LoginViewModel>(R.l
 
     override fun onBackPressedInterceptor(): Boolean {
         if (dataBinding?.vgLoginMainGroup?.visibility != View.VISIBLE) {
-            dataBinding?.vgLoginMainGroup2?.visibility = View.GONE
             dataBinding?.vgLoginMainGroup?.visibility = View.VISIBLE
         } else {
             isBackPressedInterceptor = false

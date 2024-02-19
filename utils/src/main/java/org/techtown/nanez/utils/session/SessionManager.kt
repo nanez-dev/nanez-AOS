@@ -27,6 +27,10 @@ class SessionManager private constructor() {
 
     fun getAccessToken() = accessToken
 
+    fun getUserEmail(): String? {
+        return userEmail
+    }
+
 
     fun logOut() {
         userEmail = null

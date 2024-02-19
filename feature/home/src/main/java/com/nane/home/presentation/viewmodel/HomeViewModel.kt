@@ -28,19 +28,22 @@ class HomeViewModel @Inject constructor(
 
     fun getMainData() {
         viewModelScope.launch {
+            showLoading(true)
             homeInfoUseCase.getHomeInfo().collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
                         _viewDataList.post(mapper.toViewData(result.data))
+                        showLoading(false)
                     }
                     is DomainResult.Failed -> {
-
+                        showLoading(false)
                     }
                     is DomainResult.Error -> {
-
+                        showLoading(false)
                     }
                 }
             }
+
         }
     }
 }

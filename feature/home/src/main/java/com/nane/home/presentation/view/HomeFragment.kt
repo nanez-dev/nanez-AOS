@@ -6,10 +6,12 @@ import com.nane.base.view.ActionbarView
 import com.nane.base.view.BaseBindFragment
 import com.nane.home.R
 import com.nane.home.databinding.HomeFragmentBinding
+import com.nane.home.presentation.data.HomeViewType
+import com.nane.home.presentation.data.PerfumeItemViewData
 import com.nane.home.presentation.viewmodel.HomeViewModel
 import com.nane.home.presentation.view.adapter.HomeMainAdapter
 import com.nane.home.presentation.view.adapter.decoration.HomeMainItemDecoration
-import com.nane.search.presentation.view.SearchActivity
+import com.nane.theme.presentation.view.ThemeAccordActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,21 +26,43 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
                 setRightBtn(com.nane.base.R.drawable.icon_search)
                 actionListener = object : ActionbarView.ActionListener {
                     override fun onClickRight() {
-                        //임시 로그인 이동 페이지
-                        activity?.let {
-//                            startActivity(LoginActivity.createIntent(it))
-                        }
 
-
-                        activity?.let {
-                            startActivity(SearchActivity.createIntent(it))
-                        }
                     }
                 }
             }
 
             with(homeRecyclerView) {
-                adapter ?: HomeMainAdapter().apply { adapter = this }
+                adapter ?: HomeMainAdapter().apply {
+                    listener = object : HomeMainAdapter.UserActionListener {
+                        override fun onClickAccord(accordId: Int) {
+                            moveToAccord(accordId)
+                        }
+
+                        override fun onClickBrand(brandId: Int) {
+
+                        }
+
+                        override fun onClickBannerView(moveToUrl: String?) {
+
+                        }
+
+                        override fun onClickPerfume(data: PerfumeItemViewData?) {
+
+                        }
+
+                        override fun onClickMore(@HomeViewType moreType: Int) {
+                            when (moreType) {
+                                HomeViewType.HOME_BRAND_TYPE -> {
+
+                                }
+                                HomeViewType.HOME_ACCORD_TYPE -> {
+                                    moveToAccord(0)
+                                }
+                            }
+                        }
+                    }
+                    adapter = this
+                }
                 layoutManager ?: LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false).apply { layoutManager = this }
 
                 if (itemDecorationCount == 0) {
@@ -53,6 +77,12 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
         }
 
         viewModel.getMainData()
+    }
+
+    private fun moveToAccord(accordId: Int) {
+        activity?.let {
+            it.startActivity(ThemeAccordActivity.createIntent(it, accordId))
+        }
     }
 
 }

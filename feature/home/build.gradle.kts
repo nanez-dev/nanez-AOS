@@ -11,6 +11,7 @@ dependencies {
     implementation(project(":base"))
     implementation(project(":utils"))
     implementation(project(":network"))
+    implementation(project(":feature:theme"))
 
     implementation(libs.bundles.module.home)
     implementation(project(mapOf("path" to ":feature:search")))

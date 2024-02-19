@@ -79,6 +79,7 @@ class HomeApi {
 
     @Keep
     data class BrandItem(
+        val id: Int,
         @SerializedName("kor")
         val name: String?,
         val image: String?,
@@ -86,6 +87,7 @@ class HomeApi {
 
     @Keep
     data class AccordItem(
+        val id: Int,
         @SerializedName("kor")
         val name: String?,
         val image: String?,

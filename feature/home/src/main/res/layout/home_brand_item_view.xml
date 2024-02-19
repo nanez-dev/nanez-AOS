@@ -19,16 +19,18 @@
         android:layout_height="wrap_content"
         android:foreground="@drawable/ripple">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgBrand"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/shape_white_r20_line100_s1"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:padding="1dp"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="10dp"
             app:img_load="@{viewData.imgUrl}"
             app:img_round="@{20}"
+            tools:src="@tools:sample/avatars"
             app:layout_constraintDimensionRatio="172:88"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

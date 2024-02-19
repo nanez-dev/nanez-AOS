@@ -1,6 +1,7 @@
 package com.nane.network.service
 
 import com.nane.network.api.home.HomeApi
+import com.nane.network.api.storage.StorageApi
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -14,5 +15,5 @@ interface RetrofitPerfumeService {
     suspend fun getHomeInfo(): Response<HomeApi.Response>
 
     @GET("api/perfume/my-list")
-    suspend fun getMyList(@Query("btn") type: String?): Response<String>
+    suspend fun getMyList(@Query("btn") type: String?): Response<List<StorageApi.Response>>
 }

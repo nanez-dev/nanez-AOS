@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.nane.theme.BR
 import com.nane.theme.databinding.ThemePopularAccordItemViewBinding
 import com.nane.theme.presentation.data.AccordItemViewData
-import com.nane.theme.presentation.data.AccordViewData
 import org.techtown.nanez.utils.util.toFirstUpperCase
 
 class PopularAccordsAdapter : Adapter<PopularAccordsAdapter.PopularAccordViewHolder>() {
@@ -30,26 +29,23 @@ class PopularAccordsAdapter : Adapter<PopularAccordsAdapter.PopularAccordViewHol
     }
 
     inner class PopularAccordViewHolder(private val binding: ThemePopularAccordItemViewBinding): ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                onItemClickListener?.onPopularAccordItemClick(itemList.getOrNull(adapterPosition)?.id ?: -1)
+            }
+        }
+
         fun onBind(data: AccordItemViewData?) {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
             if (data == null) return
             binding.txtAccordTitleEnglish.text = data.engName?.toFirstUpperCase()
         }
-
-        init {
-            binding.root.setOnClickListener {
-                onItemClickListener?.onItemClick(itemList.getOrNull(adapterPosition)?.id ?: -1)
-            }
-        }
     }
 
-    private var onItemClickListener: ItemClickListener? = null
-    fun setOnItemClickListener(itemClickListener: ItemClickListener) {
+    private var onItemClickListener: AccordAdapter.AccordItemClickListener? = null
+    fun setOnItemClickListener(itemClickListener: AccordAdapter.AccordItemClickListener?) {
         onItemClickListener = itemClickListener
-    }
-
-    interface ItemClickListener {
-        fun onItemClick(idx: Int)
     }
 }

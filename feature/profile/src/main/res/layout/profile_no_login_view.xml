@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <merge
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+        <TextView
+            android:id="@+id/txtLoginGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_profile_auth_title"
+            style="@style/Text_20_bold"
+            android:layout_marginTop="52dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtMoreInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_profile_auth_sub_title"
+            style="@style/Body_14_R"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtLoginGuide"
+            app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnLogin"
+            style="@style/Body_16_B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/shape_brand500_r12"
+            android:foreground="@drawable/ripple_r12"
+            android:gravity="center"
+            android:paddingVertical="16dp"
+            android:paddingHorizontal="55dp"
+            android:text="@string/label_login"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtMoreInfo"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    </merge>
+
+</layout>

@@ -118,12 +118,14 @@
     <color name="gray_800">#333333</color>
     <color name="gray_2">#424242</color>
     <color name="gray_300">#DBDBDB</color>
-    <color name="line_100">#EFEFEF</color>
+    <!-- line_100으로 변경 필요-->
+    <color name="gray_3">#EFEFEF</color>
 
     <color name="brand_500">#65BFC4</color>
 
     <color name="BG_50">#FDFCF9</color>
     <color name="line_50">#F6F4EC</color>
+    <color name="line_100">#EFEFEF</color>
 
     <color name="kakao_bg">#FEE500</color>
     <color name="naver_bg">#01C73C</color>

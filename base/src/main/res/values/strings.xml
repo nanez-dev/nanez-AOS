@@ -11,6 +11,18 @@
     <string name="label_confirm">확인</string>
     <string name="label_duplicate_check">중복 확인</string>
 
+    <string name="label_profile">내 정보</string>
+    <string name="label_profile_having">보유리스트</string>
+    <string name="label_profile_wish">위시리스트</string>
+    <string name="label_profile_customer_center">고객센터</string>
+    <string name="label_profile_notice">공지사항</string>
+    <string name="label_profile_product_registration_request">제품등록요청</string>
+    <string name="label_profile_report">신고하기</string>
+    <string name="label_profile_terms_of_use">서비스이용약관</string>
+    <string name="label_profile_privacy_policy">개인정보처리방침</string>
+
+    <string name="label_more">더보기</string>
+
     <string name="msg_home_search">지금 나에게 맞는 향수를 찾아보세요</string>
 
     <string name="msg_hint_join">아직 나네를 시작하지 않으셨나요?</string>
@@ -22,7 +34,10 @@
     <string name="msg_error_login_not_match_id_or_passward">* 아이디 또는 비밀번호가 일치하지 않습니다.</string>
 
     <string name="msg_network_error">네트워크 통신에 실패하였습니다. 잠시 후 다시 시도해주세요.</string>
-    
+
+    <string name="label_login_email">이메일로 시작하기</string>
+    <string name="label_login_kakao">카카오로 시작하기</string>
+    <string name="label_login_guest">게스트로 시작하기</string>
     
     <string name="fmt_msg_join_agreement_main_title"><CDATA>안녕하세요, <font color="#65BFC4">나네</font>입니다.</CDATA></string>
     <string name="msg_join_agreement_sud_title">나네 서비스 이용을 위한\n필수 이용 약관 동의가 필요합니다.</string>
@@ -65,10 +80,14 @@
     <string name="label_theme_all_accords_title">모든 어코드</string>
     <string name="label_theme_all_brands_title">모든 브랜드</string>
 
-    <string name="msg_search_word_recommendation">이런 검색어는 어떠세요?</string>
-    <string name="msg_no_search_result">검색 결과가 없습니다.</string>
-    <string name="label_search_monthly_picked_perfume">이달의 향수</string>
-    <string name="label_search_coming_of_age_day">성년의 날</string>
-    <string name="label_search_nanez">나네</string>
-    <string name="label_search_discounted_perfume">할인 향수</string>
+
+    <string name="msg_storage_nothing">아직 찜한 향수가 없습니다.</string>
+    <string name="msg_profile_auth_title">로그인 후 이용하실 수 있습니다</string>
+    <string name="msg_profile_auth_sub_title">로그인 하시면 더 많은 정보를 살펴 보실 수 있습니다</string>
+
+    <string name="label_theme_related_title">%s 대표 향수</string>
+
+    <string name="msg_profile_name_content">%s님, 안녕하세요</string>
+    <string name="msg_empty_storage_having_list">아직 보유한 향수가 없습니다.</string>
+    <string name="msg_empty_storage_wish_list">아직 찜한 향수가 없습니다.</string>
 </resources>

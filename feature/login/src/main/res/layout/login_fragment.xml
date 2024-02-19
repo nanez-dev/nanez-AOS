@@ -38,7 +38,7 @@
                 android:foreground="@drawable/ripple_r12"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/btnOther">
+                app:layout_constraintBottom_toTopOf="@+id/vgEmail">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="24dp"
@@ -51,23 +51,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="14dp"
-                    android:text="카카오로 시작하기" />
+                    android:text="@string/label_login_kakao" />
             </LinearLayout>
 
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/btnOther"
-                style="@style/Body_16_B"
+            <LinearLayout
+                android:id="@+id/vgEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/shape_white_r12_line50_s1"
                 android:foreground="@drawable/ripple_r12"
                 android:gravity="center"
-                android:paddingVertical="14dp"
-                android:text="다른 방법으로 로그인하기"
-                app:layout_constraintBottom_toTopOf="@+id/vgGuest" />
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/vgGuest">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="4dp"
+                    android:scaleType="center"
+                    android:src="@drawable/icon_email_vec" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body_16_B"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="14dp"
+                    android:text="@string/label_login_email" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/vgGuest"
@@ -87,7 +101,7 @@
                     style="@style/Body_14_M"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="게스트로 시작하기"
+                    android:text="@string/label_login_guest"
                     android:textColor="@color/gray_400" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -95,98 +109,6 @@
                     android:layout_height="18dp"
                     android:src="@drawable/icon_right_arrow"
                     android:tint="@color/gray_400" />
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/vgLoginMainGroup2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
-
-            <LinearLayout
-                android:id="@+id/vgNaver"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/shape_naver_r12"
-                android:foreground="@drawable/ripple_r12"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/vgGoogle">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="4dp"
-                    android:src="@drawable/icon_naver"
-                    android:tint="@color/white"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Body_16_B"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="14dp"
-                    android:textColor="@color/white"
-                    android:text="네이버로 시작하기" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/vgGoogle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/shape_white_r12_line50_s1"
-                android:foreground="@drawable/ripple_r12"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/vgEmail">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="4dp"
-                    android:src="@drawable/icon_google" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Body_16_B"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="14dp"
-                    android:text="구글로 시작하기" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/vgEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="40dp"
-                android:background="@drawable/shape_white_r12_line50_s1"
-                android:foreground="@drawable/ripple_r12"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="4dp"
-                    android:src="@drawable/icon_email" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/Body_16_B"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="14dp"
-                    android:text="이메일로 시작하기" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

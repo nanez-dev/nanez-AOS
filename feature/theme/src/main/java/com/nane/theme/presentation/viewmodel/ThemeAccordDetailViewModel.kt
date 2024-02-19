@@ -30,6 +30,7 @@ class ThemeAccordDetailViewModel @Inject constructor(
 
     fun getAccordDetail(id: Int) {
         viewModelScope.launch {
+            showLoading(true)
             accordDetailUsecase.getAccordDetail(id = id).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
@@ -38,12 +39,13 @@ class ThemeAccordDetailViewModel @Inject constructor(
                         _relatedPerfumes.post(viewData.relatedPerfumes)
                     }
                     is DomainResult.Failed -> {
-
+                        showErrorToast()
                     }
                     is DomainResult.Error -> {
-
+                        showErrorToast()
                     }
                 }
+                showLoading(false)
             }
         }
     }
