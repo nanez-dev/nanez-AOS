@@ -1,6 +1,8 @@
 package com.nane.profile.presentation.view
 
+import android.app.Activity
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import com.nane.base.view.BaseBindFragment
 import com.nane.base.viewmodel.BaseViewModel
@@ -20,22 +22,26 @@ class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, BaseViewModel>(
         dataBinding.run {
             actionBar.setTitle(getString(com.nane.base.R.string.label_profile))
 
-            if (SessionManager.instance.isLoginCheck()) {
-                profileLoginView.visibility = View.VISIBLE
-                profileNotLoginView.visibility = View.GONE
-
-                initLoginView(profileLoginView)
-            } else {
-                profileNotLoginView.visibility = View.VISIBLE
-                profileLoginView.visibility = View.GONE
-
-                initNotLoginView(profileNotLoginView)
-            }
-
             initHelpCenterView(this)
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        dataBinding?.let {
+            if (SessionManager.instance.isLoginCheck()) {
+                it.profileLoginView.visibility = View.VISIBLE
+                it.profileNotLoginView.visibility = View.GONE
+
+                initLoginView(it.profileLoginView)
+            } else {
+                it.profileNotLoginView.visibility = View.VISIBLE
+                it.profileLoginView.visibility = View.GONE
+
+                initNotLoginView(it.profileNotLoginView)
+            }
+        }
+    }
 
     private fun initLoginView(loginView: ProfileLoginView) {
         loginView.run {

@@ -54,10 +54,10 @@
                 style="@style/Head_20_B"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="52dp"
                 android:text="@string/label_profile_customer_center"
-                app:layout_constraintBottom_toTopOf="@id/txtNotice"
+                app:layout_constraintBottom_toTopOf="@id/btnNotice"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,7 +66,7 @@
                 style="@style/Body_16_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="16dp"
                 android:foreground="@drawable/ripple"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="15dp"

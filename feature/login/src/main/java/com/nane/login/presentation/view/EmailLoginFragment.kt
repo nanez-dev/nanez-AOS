@@ -1,5 +1,6 @@
 package com.nane.login.presentation.view
 
+import android.app.Activity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -48,7 +49,10 @@ class EmailLoginFragment : BaseBindFragment<EmailLoginFragmentBinding, EmailLogi
         viewModel.eventData.eventObserve(this) { event ->
             when (event) {
                 is EmailLoginEventData.LoginSuccess -> {
-
+                    activity?.let {
+                        it.setResult(Activity.RESULT_OK)
+                        it.finish()
+                    }
                 }
                 is EmailLoginEventData.NotFoundLoginInfo -> {
                     errorTextView(ResUtils.instance.getString(com.nane.base.R.string.msg_error_login_not_match_user))
