@@ -11,9 +11,9 @@ class SearchRemoteSourceImpl @Inject constructor(
 ): ISearchRemoteSource {
     override suspend fun getPerfumes(
         query: String,
-        loadPosition: Int,
+        loadPage: Int,
         loadSize: Int
     ): Response<SearchApi.Perfumes> {
-        return searchService.getPerfumes(query = query, loadPosition = loadPosition, loadSize = loadSize)
+        return searchService.getPerfumes(query = query, loadPage = loadPage, loadSize = loadSize)
     }
 }

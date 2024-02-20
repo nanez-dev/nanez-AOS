@@ -19,7 +19,7 @@ class SearchViewModel @Inject constructor(
     private val mapper: PerfumesMapper
 ) : BaseViewModel() {
 
-    private var loadPosition: Int = 1
+    private var loadPage: Int = 1
     private var isLastItemLoaded: Boolean = false
 
     var searchWord: String = ""
@@ -40,12 +40,12 @@ class SearchViewModel @Inject constructor(
         if (word == searchWord) return
 
         viewModelScope.launch {
-            _isLoading.post(true)
+            showLoading(true)
+            initializeSearchResult()
             searchWord = word
-            loadPosition = 1
             perfumesUsecase.getPerfumes(
                 query = searchWord,
-                loadPosition = loadPosition,
+                loadPage = loadPage,
                 loadSize = ITEM_LOAD_SIZE
             ).collect { result ->
                 when (result) {
@@ -64,29 +64,31 @@ class SearchViewModel @Inject constructor(
                         if (loadedItemsSize < ITEM_LOAD_SIZE) {
                             isLastItemLoaded = true
                         }
-                        loadPosition += loadedItemsSize
-                        _isLoading.post(false)
+                        loadPage ++
+                        showLoading(false)
                     }
 
                     is DomainResult.Failed -> {
-                        _isLoading.post(false)
+                        showLoading(false)
                     }
 
                     is DomainResult.Error -> {
-                        _isLoading.post(false)
+                        showLoading(false)
                     }
                 }
             }
         }
     }
 
-    fun getMorePerfumes() {
+    fun loadMorePerfumes() {
         if (isLastItemLoaded) return
+        if (showLoading.value?.peekContent() == true) return
 
         viewModelScope.launch {
+            showLoading(true)
             perfumesUsecase.getPerfumes(
                 query = searchWord,
-                loadPosition = loadPosition,
+                loadPage = loadPage,
                 loadSize = ITEM_LOAD_SIZE
             ).collect { result ->
                 when (result) {
@@ -98,7 +100,7 @@ class SearchViewModel @Inject constructor(
 
                         val resultViewData = mutableListOf<SearchResultViewData>().apply {
                             add(recommendedSearchWords)
-                            addAll(mapper.toViewData(result.data))
+                            addAll(perfumes)
                         }
                         _searchResults.post(resultViewData)
 
@@ -106,28 +108,37 @@ class SearchViewModel @Inject constructor(
                         if (loadedItemsSize < ITEM_LOAD_SIZE) {
                             isLastItemLoaded = true
                         }
-                        loadPosition += loadedItemsSize
+                        loadPage ++
+                        showLoading(false)
                     }
 
                     is DomainResult.Failed -> {
+                        showLoading(false)
 
                     }
 
                     is DomainResult.Error -> {
-
+                        showLoading(false)
                     }
                 }
             }
         }
     }
 
+    private fun initializeSearchResult() {
+        isLastItemLoaded = false
+        loadPage = 0
+    }
+
     init {
         // 검색어 추천 기능 하드코딩
         val recommendedWordList = listOf("이달의 향수", "성년의 날", "나네", "할인 향수")
         recommendedSearchWords.wordList = recommendedWordList
+
+        initializeSearchResult()
     }
 
     companion object {
-        private const val ITEM_LOAD_SIZE = 10
+        private const val ITEM_LOAD_SIZE = 15
     }
 }

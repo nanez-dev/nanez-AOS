@@ -2,10 +2,11 @@ package com.nane.search.presentation.view
 
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.nane.base.view.BaseBindFragment
 import com.nane.search.R
 import com.nane.search.databinding.SearchResultsFragmentBinding
-import com.nane.search.presentation.data.SearchResultViewData
 import com.nane.search.presentation.data.SearchViewType
 import com.nane.search.presentation.view.adapter.SearchResultAdapter
 import com.nane.search.presentation.view.adapter.decoration.SearchResultItemDecoration
@@ -29,8 +30,8 @@ class SearchResultsFragment : BaseBindFragment<SearchResultsFragmentBinding, Sea
 
             }
 
-            override fun onPerfumeClick(idx: Int) {
-
+            override fun onPerfumeClick(itemId: Int) {
+                
             }
         }
         dataBinding.apply {
@@ -49,6 +50,18 @@ class SearchResultsFragment : BaseBindFragment<SearchResultsFragmentBinding, Sea
                     layoutManager = this
                 }
                 if (itemDecorationCount == 0) addItemDecoration(SearchResultItemDecoration())
+                addOnScrollListener(
+                    object: OnScrollListener() {
+                        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                            if (dy <= 0) return
+
+                            val lastItemPosition = (layoutManager as GridLayoutManager).findLastVisibleItemPosition()
+                            if (lastItemPosition >= ((viewModel.searchResults.value?.lastIndex ?: 10) - 1)) {
+                                viewModel.loadMorePerfumes()
+                            }
+                        }
+                    }
+                )
             }
         }
 

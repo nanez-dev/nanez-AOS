@@ -5,5 +5,5 @@ import com.nane.network.api.search.SearchApi
 import kotlinx.coroutines.flow.Flow
 
 interface ISearchRepository {
-    suspend fun getPerfumes(query: String, loadPosition: Int, loadSize: Int): Flow<DataResult<SearchApi.Perfumes?>>
+    suspend fun getPerfumes(query: String, loadPage: Int, loadSize: Int): Flow<DataResult<SearchApi.Perfumes?>>
 }

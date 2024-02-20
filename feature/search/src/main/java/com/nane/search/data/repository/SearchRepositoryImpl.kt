@@ -20,10 +20,10 @@ class SearchRepositoryImpl @Inject constructor(
 
     override suspend fun getPerfumes(
         query: String,
-        loadPosition: Int,
+        loadPage: Int,
         loadSize: Int
     ): Flow<DataResult<SearchApi.Perfumes?>> = flow {
-        val response = remoteDataSource.getPerfumes(query = query, loadPosition = loadPosition, loadSize = loadSize)
+        val response = remoteDataSource.getPerfumes(query = query, loadPage = loadPage, loadSize = loadSize)
         if (response.isSuccessful) {
             emit(DataResult.Success(response.body()))
         } else {

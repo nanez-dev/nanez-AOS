@@ -10,7 +10,7 @@ interface RetrofitSearchService {
     @GET("api/perfume")
     suspend fun getPerfumes(
         @Query(value = "name") query: String,
-        @Query(value = "offset") loadPosition: Int,
+        @Query(value = "offset") loadPage: Int,
         @Query(value = "limit") loadSize: Int
     ): Response<SearchApi.Perfumes>
 }

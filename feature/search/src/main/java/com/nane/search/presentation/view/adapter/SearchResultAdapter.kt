@@ -53,7 +53,7 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
     interface SearchResultClickListener {
         fun onSearchWordClick(idx: Int)
 
-        fun onPerfumeClick(idx: Int)
+        fun onPerfumeClick(itemId: Int)
     }
 
     inner class RecommendedSearchWordListViewHolder(
@@ -85,7 +85,9 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
 
         init {
             binding.root.setOnClickListener {
-                onSearchResultClickListener?.onPerfumeClick(adapterPosition)
+                onSearchResultClickListener?.onPerfumeClick(
+                    (itemList.getOrNull(adapterPosition) as SearchResultViewData.SearchPerfumeViewData).id
+                )
             }
         }
     }

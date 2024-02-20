@@ -13,8 +13,8 @@ class PerfumesUsecase @Inject constructor(
     private val repository: ISearchRepository,
     private val mapper: PerfumesDataMapper
 ) {
-    suspend fun getPerfumes(query: String, loadPosition: Int, loadSize: Int): Flow<DomainResult<PerfumesDomainDTO>> = flow {
-        repository.getPerfumes(query, loadPosition, loadSize).collect { response ->
+    suspend fun getPerfumes(query: String, loadPage: Int, loadSize: Int): Flow<DomainResult<PerfumesDomainDTO>> = flow {
+        repository.getPerfumes(query, loadPage, loadSize).collect { response ->
             when (response) {
                 is DataResult.Success -> {
                     emit(DomainResult.Success(mapper.toDTO(response.data)))
