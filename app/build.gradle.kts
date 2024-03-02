@@ -1,7 +1,7 @@
-import GradleBuildScript.gitBranch
+import AppConfigScript.bindingConfigs
 import AppConfigScript.buildTypeConfigs
 import AppConfigScript.etcOptionsConfigs
-import AppConfigScript.bindingConfigs
+import GradleBuildScript.gitBranch
 
 plugins {
     kotlin("kapt")

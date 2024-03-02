@@ -8,9 +8,9 @@ import com.nane.home.R
 import com.nane.home.databinding.HomeFragmentBinding
 import com.nane.home.presentation.data.HomeViewType
 import com.nane.home.presentation.data.PerfumeItemViewData
-import com.nane.home.presentation.viewmodel.HomeViewModel
 import com.nane.home.presentation.view.adapter.HomeMainAdapter
 import com.nane.home.presentation.view.adapter.decoration.HomeMainItemDecoration
+import com.nane.home.presentation.viewmodel.HomeViewModel
 import com.nane.theme.presentation.view.ThemeAccordActivity
 import com.nane.theme.presentation.view.ThemeBrandActivity
 import dagger.hilt.android.AndroidEntryPoint

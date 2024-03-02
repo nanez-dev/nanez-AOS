@@ -4,13 +4,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.nane.home.presentation.view.*
 import com.nane.home.databinding.HomeListItemViewBinding
 import com.nane.home.databinding.HomePagerItemViewBinding
 import com.nane.home.databinding.HomeTitleItemViewBinding
 import com.nane.home.presentation.data.HomeViewData
 import com.nane.home.presentation.data.HomeViewType
 import com.nane.home.presentation.data.PerfumeItemViewData
+import com.nane.home.presentation.view.AbsHomeViewHolder
+import com.nane.home.presentation.view.HomeAccordViewHolder
+import com.nane.home.presentation.view.HomeBrandViewHolder
+import com.nane.home.presentation.view.HomeEmptyViewHolder
+import com.nane.home.presentation.view.HomeHorizontalViewHolder
+import com.nane.home.presentation.view.HomePagerViewHolder
+import com.nane.home.presentation.view.HomeRecommendPerfumeViewHolder
+import com.nane.home.presentation.view.HomeTitleViewHolder
 
 /**
  * Created by iseungjun on 2023/08/19

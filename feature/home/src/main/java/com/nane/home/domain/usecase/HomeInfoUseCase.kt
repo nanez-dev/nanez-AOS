@@ -2,8 +2,6 @@ package com.nane.home.domain.usecase
 
 import com.nane.base.data.DataResult
 import com.nane.base.data.DomainResult
-import com.nane.home.data.mapper.HomeDataMapper
-import com.nane.home.domain.data.HomeInfoDomainDTO
 import com.nane.home.domain.mapper.HomeDomainMapper
 import com.nane.home.domain.repository.IHomeRepository
 import com.nane.home.presentation.data.HomeViewData

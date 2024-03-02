@@ -2,9 +2,7 @@ package com.nane.login.domain.usecase
 
 import com.nane.base.data.DataResult
 import com.nane.base.data.DomainResult
-import com.nane.login.data.mapper.UserDataMapper
 import com.nane.login.data.repository.IUserRepository
-import com.nane.login.data.repository.impl.UserRepository
 import com.nane.login.domain.data.UserLoginDomainDTO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

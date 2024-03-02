@@ -1,11 +1,8 @@
 package com.nane.join.presentation.view
 
-import android.graphics.Rect
-import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.nane.base.view.BaseBindFragment
 import com.nane.join.R
 import com.nane.join.databinding.JoinSelectAccordFragmentBinding
@@ -13,7 +10,6 @@ import com.nane.join.presentation.view.adapter.JoinSelectAccordAdapter
 import com.nane.join.presentation.viewmodel.JoinActViewModel
 import com.nane.join.presentation.viewmodel.JoinViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import org.techtown.nanez.utils.util.toDp
 
 /**
  * Created by haul on 11/20/23

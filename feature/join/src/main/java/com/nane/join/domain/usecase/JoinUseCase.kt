@@ -2,7 +2,6 @@ package com.nane.join.domain.usecase
 
 import com.nane.base.data.DataResult
 import com.nane.base.data.DomainResult
-import com.nane.join.domain.data.JoinAccordDTO
 import com.nane.join.domain.data.JoinSignUpDTO
 import com.nane.join.domain.mapper.JoinDomainMapper
 import com.nane.join.domain.repo.IJoinRepository

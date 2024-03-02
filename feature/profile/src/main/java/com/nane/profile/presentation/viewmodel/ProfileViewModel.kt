@@ -7,7 +7,6 @@ import com.nane.base.viewmodel.BaseViewModel
 import com.nane.profile.domain.usecase.ProfileUseCase
 import com.nane.profile.presentation.data.ProfileLoginViewData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.util.post
 import javax.inject.Inject

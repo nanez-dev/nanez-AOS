@@ -1,7 +1,6 @@
 package com.nane.profile.data.repo.impl
 
 import com.nane.base.data.DataResult
-import com.nane.network.api.users.ProfileApi
 import com.nane.network.parser.getParseErrorResult
 import com.nane.profile.data.mapper.ProfileDataMapper
 import com.nane.profile.data.repo.IProfileRepository
@@ -13,7 +12,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.retry
-import org.techtown.nanez.utils.session.SessionManager
 import java.io.IOException
 import javax.inject.Inject
 

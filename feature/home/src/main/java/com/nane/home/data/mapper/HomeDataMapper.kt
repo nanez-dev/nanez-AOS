@@ -1,6 +1,13 @@
 package com.nane.home.data.mapper
 
-import com.nane.home.domain.data.*
+import com.nane.home.domain.data.HomeAccordDTO
+import com.nane.home.domain.data.HomeBrandDTO
+import com.nane.home.domain.data.HomeInfoDomainDTO
+import com.nane.home.domain.data.HomeMainTitleDTO
+import com.nane.home.domain.data.HomePerfumeDTO
+import com.nane.home.domain.data.HomeRecommendPerfumeDTO
+import com.nane.home.domain.data.HomeSpecialPerfumeDTO
+import com.nane.home.domain.data.HomeTopBannerDTO
 import com.nane.network.api.home.HomeApi
 import javax.inject.Inject
 

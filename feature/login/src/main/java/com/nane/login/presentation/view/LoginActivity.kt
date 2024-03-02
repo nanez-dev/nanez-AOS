@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.activity.viewModels
 import com.nane.base.view.BaseBindActivity
 import com.nane.base.view.BaseBindFragment
-import com.nane.base.viewmodel.BaseViewModel
 import com.nane.login.R
 import com.nane.login.databinding.LoginActivityBinding
 import com.nane.login.presentation.data.LoginActEventData

@@ -1,7 +1,6 @@
 package com.nane.storage.data.repository.Impl
 
 import com.nane.base.data.DataResult
-import com.nane.network.api.storage.StorageApi
 import com.nane.network.parser.getParseErrorResult
 import com.nane.storage.data.mapper.StorageDataMapper
 import com.nane.storage.data.repository.IStorageRepository

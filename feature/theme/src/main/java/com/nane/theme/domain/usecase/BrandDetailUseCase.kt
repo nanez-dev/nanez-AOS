@@ -2,8 +2,6 @@ package com.nane.theme.domain.usecase
 
 import com.nane.base.data.DataResult
 import com.nane.base.data.DomainResult
-import com.nane.theme.data.mapper.BrandDataMapper
-import com.nane.theme.domain.data.BrandDetailDomainDTO
 import com.nane.theme.domain.repository.IThemeRepository
 import com.nane.theme.presentation.data.BrandDetailViewData
 import com.nane.theme.presentation.mapper.BrandDomainMapper

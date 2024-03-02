@@ -1,8 +1,6 @@
 package com.nane.theme.domain.repository
 
 import com.nane.base.data.DataResult
-import com.nane.network.api.theme.AccordApi
-import com.nane.network.api.theme.BrandApi
 import com.nane.theme.domain.data.AccordDetailDomainDTO
 import com.nane.theme.domain.data.AccordsDomainDTO
 import com.nane.theme.domain.data.BrandDetailDomainDTO

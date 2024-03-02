@@ -6,8 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
 import com.nane.join.domain.usecase.JoinUseCase
-import com.nane.join.presentation.data.*
-import com.nane.join.domain.mapper.JoinDomainMapper
+import com.nane.join.presentation.data.JoinAccordViewData
+import com.nane.join.presentation.data.JoinEmailAuthEventData
+import com.nane.join.presentation.data.JoinEventCodeEventData
+import com.nane.join.presentation.data.JoinNickNameEventData
+import com.nane.join.presentation.data.JoinPasswordEventData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.util.Event
