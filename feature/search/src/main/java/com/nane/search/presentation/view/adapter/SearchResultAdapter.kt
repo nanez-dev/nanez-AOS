@@ -37,10 +37,14 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
     override fun onBindViewHolder(holder: AbsSearchResultViewHolder<*>, position: Int) {
         when (holder) {
             is RecommendedSearchWordListViewHolder -> {
-                holder.onBind(itemList.getOrNull(position) as SearchResultViewData.RecommendedSearchWordListItemViewData)
+                holder.onBind(
+                    data = itemList.getOrNull(position) as? SearchResultViewData.RecommendedSearchWordListItemViewData
+                )
             }
             is SearchPerfumeViewHolder -> {
-                holder.onBind(itemList.getOrNull(position) as SearchResultViewData.SearchPerfumeViewData)
+                holder.onBind(
+                    data = itemList.getOrNull(position) as? SearchResultViewData.SearchPerfumeViewData
+                )
             }
         }
     }
@@ -60,12 +64,14 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
         private val binding: SearchRecommendedSearchWordListItemViewBinding
     ): AbsSearchResultViewHolder<SearchResultViewData.RecommendedSearchWordListItemViewData>(binding.root) {
 
-        override fun onBind(data: SearchResultViewData.RecommendedSearchWordListItemViewData) {
+        override fun onBind(data: SearchResultViewData.RecommendedSearchWordListItemViewData?) {
+            data ?: return
+
             with(binding.rvRecommendedSearchWords) {
-                adapter ?: RecommendedSearchWordAdapter().apply { adapter = this }
-                (adapter as RecommendedSearchWordAdapter).apply {
+                adapter ?: RecommendedSearchWordAdapter().apply {
                     setItemList(data.wordList)
                     setOnItemClickListener(onSearchResultClickListener)
+                    adapter = this
                 }
                 layoutManager ?: LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false).apply { layoutManager = this }
 
@@ -78,7 +84,9 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
         private val binding: SearchPerfumeItemViewBinding
     ): AbsSearchResultViewHolder<SearchResultViewData.SearchPerfumeViewData>(binding.root) {
 
-        override fun onBind(data: SearchResultViewData.SearchPerfumeViewData) {
+        override fun onBind(data: SearchResultViewData.SearchPerfumeViewData?) {
+            data ?: return
+
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

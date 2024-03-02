@@ -1,8 +1,8 @@
 package com.nane.search.presentation.data
 
-sealed class SearchResultViewData(@SearchViewType var viewType: Int) {
+sealed class SearchResultViewData(@SearchViewType val viewType: Int) {
     data class RecommendedSearchWordListItemViewData(
-        var wordList: List<String>
+        val wordList: List<String>
     ): SearchResultViewData(SearchViewType.RECOMMENDATION_TYPE)
 
     data class SearchPerfumeViewData(

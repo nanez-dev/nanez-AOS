@@ -19,21 +19,25 @@ class PerfumesDataMapper @Inject constructor() {
             perfumes = apiData?.perfumes?.map {
                 PerfumeDTO(
                     id = it.id,
-                    brand = if (it.brand != null) BrandDTO(
-                        id = it.brand!!.id,
-                        korName = it.brand!!.korName,
-                        engName = it.brand!!.engName,
-                        imgUrl = it.brand!!.imgUrl,
-                        engDescriptionBody = null,
-                        korDescriptionBody = null,
-                        relatedImgUrl = null,
-                        engDescriptionTitle = null,
-                        korDescriptionTitle = null
-                    ) else null,
-                    density = if (it.density != null) Density(
-                        id = it.density!!.id,
-                        name = it.density!!.name,
-                    ) else null,
+                    brand = it.brand?.let { brand ->
+                        BrandDTO(
+                            id = brand.id,
+                            korName = brand.korName,
+                            engName = brand.engName,
+                            imgUrl = brand.imgUrl,
+                            engDescriptionBody = null,
+                            korDescriptionBody = null,
+                            relatedImgUrl = null,
+                            engDescriptionTitle = null,
+                            korDescriptionTitle = null
+                        )
+                    },
+                    density = it.density?.let { density ->
+                        Density(
+                            id = density.id,
+                            name = density.name,
+                        )
+                    },
                     korName = it.korName,
                     engName = it.engName,
                     imgUrl = it.imgUrl,
@@ -47,13 +51,15 @@ class PerfumesDataMapper @Inject constructor() {
                             id = perfumeAccord.id,
                             accordId = perfumeAccord.accordId,
                             perfumeId = perfumeAccord.perfumeId,
-                            accord = if (perfumeAccord.accord != null) Accord(
-                                engName = perfumeAccord.accord!!.engName,
-                                korName = perfumeAccord.accord!!.korName,
-                                imgUrl = perfumeAccord.accord!!.imgUrl,
-                                code = perfumeAccord.accord!!.code,
-                                id = perfumeAccord.accord!!.id
-                            ) else null
+                            accord = perfumeAccord.accord?.let { accord ->
+                                Accord(
+                                    engName = accord.engName,
+                                    korName = accord.korName,
+                                    imgUrl = accord.imgUrl,
+                                    code = accord.code,
+                                    id = accord.id
+                                )
+                            }
                         )
                     } ?: emptyList(),
                     perfumeNotes = it.perfumeNotes?.map { perfumeNote ->
@@ -62,15 +68,17 @@ class PerfumesDataMapper @Inject constructor() {
                             perfumeId = perfumeNote.perfumeId,
                             noteId = perfumeNote.noteId,
                             type = perfumeNote.type,
-                            note = if (perfumeNote.note != null) Note(
-                                noteCategoryId = perfumeNote.note!!.noteCategoryId,
-                                code = perfumeNote.note!!.code,
-                                engName = perfumeNote.note!!.engName,
-                                korName = perfumeNote.note!!.korName,
-                                imgUrl = perfumeNote.note!!.imgUrl,
-                                illustrationUrl = perfumeNote.note!!.illustrationUrl,
-                                id = perfumeNote.note!!.id,
-                            ) else null,
+                            note = perfumeNote.note?.let { note ->
+                                Note(
+                                    noteCategoryId = note.noteCategoryId,
+                                    code = note.code,
+                                    engName = note.engName,
+                                    korName = note.korName,
+                                    imgUrl = note.imgUrl,
+                                    illustrationUrl = note.illustrationUrl,
+                                    id = note.id,
+                                )
+                             },
                         )
                     } ?: emptyList(),
                     perfumeTags = it.perfumeTags?.map { perfumeTag ->
@@ -78,12 +86,14 @@ class PerfumesDataMapper @Inject constructor() {
                             id = perfumeTag.id,
                             perfumeId = perfumeTag.perfumeId,
                             tagId = perfumeTag.tagId,
-                            tag = if (perfumeTag.tag != null) Tag(
-                                tagCategoryId = perfumeTag.tag!!.tagCategoryId,
-                                code = perfumeTag.tag!!.code,
-                                name = perfumeTag.tag!!.name,
-                                id = perfumeTag.tag!!.id
-                            ) else null
+                            tag = perfumeTag.tag?.let { tag ->
+                                Tag(
+                                    tagCategoryId = tag.tagCategoryId,
+                                    code = tag.code,
+                                    name = tag.name,
+                                    id = tag.id
+                                )
+                            }
                         )
                     } ?: emptyList(),
                     webImageUrl1 = it.webImageUrl1,

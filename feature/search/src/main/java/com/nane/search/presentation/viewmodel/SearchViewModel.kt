@@ -25,7 +25,7 @@ class SearchViewModel @Inject constructor(
     var searchWord: String = ""
         private set
 
-    private val _isLoading by lazy { MutableLiveData<Boolean>(false) }
+    private val _isLoading by lazy { MutableLiveData(false) }
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
@@ -33,7 +33,11 @@ class SearchViewModel @Inject constructor(
     val searchResults: LiveData<List<SearchResultViewData>>
         get() = _searchResults
 
-    private val recommendedSearchWords by lazy { SearchResultViewData.RecommendedSearchWordListItemViewData(listOf()) }
+    private val recommendedSearchWords by lazy {
+        SearchResultViewData.RecommendedSearchWordListItemViewData(
+            listOf("이달의 향수", "성년의 날", "나네", "할인 향수")
+        )
+    }
     private val perfumes by lazy { mutableListOf<SearchResultViewData.SearchPerfumeViewData>() }
 
     fun searchWith(word: String) {
@@ -128,14 +132,6 @@ class SearchViewModel @Inject constructor(
     private fun initializeSearchResult() {
         isLastItemLoaded = false
         loadPage = 0
-    }
-
-    init {
-        // 검색어 추천 기능 하드코딩
-        val recommendedWordList = listOf("이달의 향수", "성년의 날", "나네", "할인 향수")
-        recommendedSearchWords.wordList = recommendedWordList
-
-        initializeSearchResult()
     }
 
     companion object {

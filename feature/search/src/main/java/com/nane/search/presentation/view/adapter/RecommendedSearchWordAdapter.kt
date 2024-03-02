@@ -29,10 +29,12 @@ class RecommendedSearchWordAdapter: RecyclerView.Adapter<RecommendedSearchWordAd
 
     inner class RecommendedWordViewHolder(private val binding: SearchRecommendedSearchWordItemViewBinding): ViewHolder(binding.root) {
         fun onBind(data: String?) {
+            data ?: return
+
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
 
-            binding.txtRecommendedSearchWord.text = itemList.getOrNull(adapterPosition) ?: ""
+            binding.txtRecommendedSearchWord.text = data
         }
 
         init {
