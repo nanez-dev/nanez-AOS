@@ -16,3 +16,8 @@ data class BrandDTO(
     val korDescriptionTitle: String?,
     val imgUrl: String?
 )
+
+data class BrandDetailDomainDTO(
+    val brand: BrandDTO?,
+    val relatedPerfumes: List<PerfumeDomainDTO>?
+)

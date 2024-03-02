@@ -23,7 +23,7 @@ class HavingListViewModel @Inject constructor(
         viewModelScope.launch {
             when (val domainResult = storageUseCase.getMyList(type)) {
                 is DomainResult.Success -> {
-                    _havingList.postValue(domainResult.data.map { StorageViewData.StorageItem.fromApiModel(it) })
+                    _havingList.postValue(domainResult.data)
                 }
                 is DomainResult.Failed -> {
                     _havingList.postValue(emptyList())

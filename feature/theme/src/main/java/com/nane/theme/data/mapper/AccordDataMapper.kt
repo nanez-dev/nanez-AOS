@@ -3,12 +3,42 @@ package com.nane.theme.data.mapper
 import com.nane.network.api.theme.AccordApi
 import com.nane.theme.domain.data.AccordDTO
 import com.nane.theme.domain.data.AccordDetailDomainDTO
+import com.nane.theme.domain.data.AccordsDomainDTO
 import com.nane.theme.domain.data.BrandDTO
 import com.nane.theme.domain.data.PerfumeDomainDTO
 import javax.inject.Inject
 
-class AccordDetailDataMapper @Inject constructor() {
-    fun toDTO(apiData: AccordApi.AccordDetail?): AccordDetailDomainDTO {
+class AccordDataMapper @Inject constructor() {
+
+    fun toDTO(apiData: AccordApi.Accords?): AccordsDomainDTO {
+        return AccordsDomainDTO(
+            popularAccords = apiData?.popularAccords?.map {
+                AccordDTO(
+                    engName = it.engName,
+                    korName = it.korName,
+                    imgUrl = it.imgUrl,
+                    korDescriptionBody = it.description,
+                    code = it.code,
+                    id = it.id,
+                )
+            } ?: emptyList(),
+            allAccords = apiData?.accords?.map {
+                AccordDTO(
+                    engName = it.engName,
+                    code = it.code,
+                    engDescriptionTitle = it.engDescriptionTitle,
+                    korDescriptionTitle = it.korDescriptionTitle,
+                    imgUrl = it.imgUrl,
+                    relatedImgUrl = it.relatedImgUrl,
+                    id = it.id,
+                    korName = it.korName,
+                    engDescriptionBody = it.engDescriptionBody,
+                    korDescriptionBody = it.korDescriptionBody
+                ) } ?: emptyList()
+        )
+    }
+
+    fun toDetailDTO(apiData: AccordApi.AccordDetail?): AccordDetailDomainDTO {
         return AccordDetailDomainDTO(
             accord = if (apiData?.accordItem != null) AccordDTO(
                 engName = apiData.accordItem.engName,

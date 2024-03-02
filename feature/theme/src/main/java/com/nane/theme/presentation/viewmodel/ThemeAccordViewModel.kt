@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
-import com.nane.theme.domain.usecase.AccordsUsecase
+import com.nane.theme.domain.usecase.AccordsUseCase
 import com.nane.theme.presentation.data.AccordViewData
 import com.nane.theme.presentation.mapper.AccordDomainMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,8 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ThemeAccordViewModel @Inject constructor(
-    private val accordsUsecase: AccordsUsecase,
-    private val mapper: AccordDomainMapper
+    private val accordsUseCase: AccordsUseCase,
 ) : BaseViewModel() {
 
     private val _accordItemViewDataList by lazy{ MutableLiveData<List<AccordViewData>>() }
@@ -26,11 +25,10 @@ class ThemeAccordViewModel @Inject constructor(
     fun getAccordViewData() {
         viewModelScope.launch {
             showLoading(true)
-            accordsUsecase.getAllAccords().collect { result ->
+            accordsUseCase.getAllAccords().collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        val viewData = mapper.toViewData(result.data)
-                        _accordItemViewDataList.post(viewData)
+                        _accordItemViewDataList.post(result.data)
                     }
                     is DomainResult.Failed -> {
                         showErrorToast()

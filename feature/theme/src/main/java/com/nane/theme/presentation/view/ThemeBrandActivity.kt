@@ -1,5 +1,7 @@
 package com.nane.theme.presentation.view
 
+import android.content.Context
+import android.content.Intent
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -109,5 +111,12 @@ class ThemeBrandActivity : BaseBindActivity<ThemeBrandActivityBinding, ThemeBran
 
     companion object {
         private const val TAG_FRAGMENT ="ThemeBrandDetailFragment"
+
+        fun createIntent(context: Context, brandId: Int): Intent {
+            return Intent(context, ThemeBrandActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                putExtra(ThemeBrandDetailFragment.BRAND_ID, brandId)
+            }
+        }
     }
 }

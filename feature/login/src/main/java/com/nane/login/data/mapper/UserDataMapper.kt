@@ -1,6 +1,6 @@
 package com.nane.login.data.mapper
 
-import com.nane.login.data.data.UserLoginDTO
+import com.nane.login.data.data.UserLoginData
 import com.nane.login.domain.data.UserLoginDomainDTO
 import org.techtown.nanez.data.api.users.SignInApi
 import javax.inject.Inject
@@ -10,8 +10,8 @@ import javax.inject.Inject
  */
 class UserDataMapper @Inject constructor(){
 
-    fun toDataDTO(domain: UserLoginDomainDTO): UserLoginDTO {
-        return UserLoginDTO(
+    fun toData(domain: UserLoginDomainDTO): UserLoginData {
+        return UserLoginData(
             userEmail = domain.email,
             userPassword = domain.passWord,
             accessToken = domain.accessToken,
@@ -19,7 +19,7 @@ class UserDataMapper @Inject constructor(){
         )
     }
 
-    fun toDomainDTO(dto: UserLoginDTO): UserLoginDomainDTO {
+    fun toDomainDTO(dto: UserLoginData): UserLoginDomainDTO {
         return UserLoginDomainDTO(
             email = dto.userEmail,
             passWord = dto.userPassword,

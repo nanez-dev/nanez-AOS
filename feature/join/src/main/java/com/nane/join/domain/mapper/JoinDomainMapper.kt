@@ -1,4 +1,4 @@
-package com.nane.join.presentation.mapper
+package com.nane.join.domain.mapper
 
 import com.nane.join.domain.data.JoinAccordDTO
 import com.nane.join.domain.data.JoinSignUpDTO
@@ -9,7 +9,7 @@ import javax.inject.Inject
 /**
  * Created by haul on 11/20/23
  */
-class JoinViewMapper @Inject constructor() {
+class JoinDomainMapper @Inject constructor() {
 
     fun toAccordViewData(data: JoinAccordDTO): JoinAccordViewData {
         return JoinAccordViewData(

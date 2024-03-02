@@ -21,140 +21,156 @@
             android:background="@color/line_100"
             app:layout_constraintBottom_toBottomOf="@+id/actionBar" />
 
-        <FrameLayout
-            android:id="@+id/vgLoginStatusView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:isScrollContainer="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/actionBar">
 
-            <com.nane.profile.presentation.view.ProfileLoginView
-                android:id="@+id/profileLoginView"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:visibility="visible" />
+                android:layout_height="wrap_content">
 
-            <com.nane.profile.presentation.view.ProfileNoLoginView
-                android:id="@+id/profileNotLoginView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:visibility="visible" />
-        </FrameLayout>
+                <FrameLayout
+                    android:id="@+id/vgLoginStatusView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.nane.profile.presentation.view.ProfileLoginView
+                        android:id="@+id/profileLoginView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <com.nane.profile.presentation.view.ProfileNoLoginView
+                        android:id="@+id/profileNotLoginView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+                </FrameLayout>
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/vgLoginStatusView"
-            android:background="@color/white">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/vgLoginStatusView">
 
-            <TextView
-                android:id="@+id/txtTitle"
-                style="@style/Head_20_B"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="52dp"
-                android:text="@string/label_profile_customer_center"
-                app:layout_constraintBottom_toTopOf="@id/btnNotice"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/txtTitle"
+                        style="@style/Head_20_B"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="52dp"
+                        android:text="@string/label_profile_customer_center"
+                        app:layout_constraintBottom_toTopOf="@id/btnNotice"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/btnNotice"
-                style="@style/Body_16_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:foreground="@drawable/ripple"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="15dp"
-                android:text="@string/label_profile_notice"
-                app:layout_constraintBottom_toTopOf="@+id/lineView1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+                    <TextView
+                        android:id="@+id/btnNotice"
+                        style="@style/Body_16_M"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:foreground="@drawable/ripple"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="15dp"
+                        android:text="@string/label_profile_notice"
+                        app:layout_constraintBottom_toTopOf="@+id/lineView1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
-            <View
-                android:id="@+id/lineView1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray_300"
-                app:layout_constraintBottom_toTopOf="@+id/btnProductRegistrationRequest"
-                app:layout_constraintTop_toBottomOf="@+id/btnNotice" />
+                    <View
+                        android:id="@+id/lineView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_300"
+                        app:layout_constraintBottom_toTopOf="@+id/btnProductRegistrationRequest"
+                        app:layout_constraintTop_toBottomOf="@+id/btnNotice" />
 
-            <TextView
-                android:id="@+id/btnProductRegistrationRequest"
-                style="@style/Body_16_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="@drawable/ripple"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="15dp"
-                android:text="@string/label_profile_product_registration_request"
-                app:layout_constraintBottom_toTopOf="@+id/lineView2"
-                app:layout_constraintTop_toBottomOf="@+id/lineView1" />
+                    <TextView
+                        android:id="@+id/btnProductRegistrationRequest"
+                        style="@style/Body_16_M"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:foreground="@drawable/ripple"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="15dp"
+                        android:text="@string/label_profile_product_registration_request"
+                        app:layout_constraintBottom_toTopOf="@+id/lineView2"
+                        app:layout_constraintTop_toBottomOf="@+id/lineView1" />
 
-            <View
-                android:id="@+id/lineView2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray_300"
-                app:layout_constraintBottom_toTopOf="@+id/btnReport"
-                app:layout_constraintTop_toBottomOf="@+id/btnProductRegistrationRequest" />
+                    <View
+                        android:id="@+id/lineView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_300"
+                        app:layout_constraintBottom_toTopOf="@+id/btnReport"
+                        app:layout_constraintTop_toBottomOf="@+id/btnProductRegistrationRequest" />
 
-            <TextView
-                android:id="@+id/btnReport"
-                style="@style/Body_16_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="@drawable/ripple"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="15dp"
-                android:text="@string/label_profile_report"
-                app:layout_constraintBottom_toTopOf="@+id/lineView3"
-                app:layout_constraintTop_toBottomOf="@+id/lineView2" />
+                    <TextView
+                        android:id="@+id/btnReport"
+                        style="@style/Body_16_M"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:foreground="@drawable/ripple"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="15dp"
+                        android:text="@string/label_profile_report"
+                        app:layout_constraintBottom_toTopOf="@+id/lineView3"
+                        app:layout_constraintTop_toBottomOf="@+id/lineView2" />
 
-            <View
-                android:id="@+id/lineView3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray_300"
-                app:layout_constraintBottom_toTopOf="@+id/btnTermsOfUse"
-                app:layout_constraintTop_toBottomOf="@+id/btnReport" />
+                    <View
+                        android:id="@+id/lineView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_300"
+                        app:layout_constraintBottom_toTopOf="@+id/btnTermsOfUse"
+                        app:layout_constraintTop_toBottomOf="@+id/btnReport" />
 
-            <TextView
-                android:id="@+id/btnTermsOfUse"
-                style="@style/Body_16_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="@drawable/ripple"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="15dp"
-                android:text="@string/label_profile_terms_of_use"
-                app:layout_constraintBottom_toTopOf="@+id/lineView4"
-                app:layout_constraintTop_toBottomOf="@+id/lineView3" />
+                    <TextView
+                        android:id="@+id/btnTermsOfUse"
+                        style="@style/Body_16_M"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:foreground="@drawable/ripple"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="15dp"
+                        android:text="@string/label_profile_terms_of_use"
+                        app:layout_constraintBottom_toTopOf="@+id/lineView4"
+                        app:layout_constraintTop_toBottomOf="@+id/lineView3" />
 
-            <View
-                android:id="@+id/lineView4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray_300"
-                app:layout_constraintBottom_toTopOf="@+id/btnPrivacyPolicy"
-                app:layout_constraintTop_toBottomOf="@+id/btnTermsOfUse" />
+                    <View
+                        android:id="@+id/lineView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_300"
+                        app:layout_constraintBottom_toTopOf="@+id/btnPrivacyPolicy"
+                        app:layout_constraintTop_toBottomOf="@+id/btnTermsOfUse" />
 
-            <TextView
-                android:id="@+id/btnPrivacyPolicy"
-                style="@style/Body_16_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="@drawable/ripple"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="15dp"
-                android:text="@string/label_profile_privacy_policy"
-                app:layout_constraintTop_toBottomOf="@+id/lineView4" />
+                    <TextView
+                        android:id="@+id/btnPrivacyPolicy"
+                        style="@style/Body_16_M"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:foreground="@drawable/ripple"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="15dp"
+                        android:text="@string/label_profile_privacy_policy"
+                        app:layout_constraintTop_toBottomOf="@+id/lineView4" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

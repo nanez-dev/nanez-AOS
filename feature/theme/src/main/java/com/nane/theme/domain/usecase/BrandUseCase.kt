@@ -2,23 +2,25 @@ package com.nane.theme.domain.usecase
 
 import com.nane.base.data.DataResult
 import com.nane.base.data.DomainResult
-import com.nane.theme.data.mapper.AccordDetailDataMapper
-import com.nane.theme.domain.data.AccordDetailDomainDTO
+import com.nane.theme.data.mapper.BrandDataMapper
+import com.nane.theme.domain.data.BrandsDomainDTO
 import com.nane.theme.domain.repository.IThemeRepository
+import com.nane.theme.presentation.data.BrandViewData
+import com.nane.theme.presentation.mapper.BrandDomainMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class AccordDetailUsecase @Inject constructor(
+class BrandUseCase @Inject constructor(
     private val repository: IThemeRepository,
-    private val mapper: AccordDetailDataMapper
+    private val mapper: BrandDomainMapper
 ) {
 
-    suspend fun getAccordDetail(id: Int): Flow<DomainResult<AccordDetailDomainDTO>> = flow {
-        repository.getAccordDetail(id = id).collect { response ->
+    suspend fun getAllBrands(): Flow<DomainResult<List<BrandViewData>>> = flow {
+        repository.getBrands().collect { response ->
             when (response) {
                 is DataResult.Success -> {
-                    emit(DomainResult.Success(mapper.toDTO(response.data)))
+                    emit(DomainResult.Success(mapper.toViewData(response.data)))
                 }
                 is DataResult.Failed -> {
                     emit(DomainResult.Failed(response.msg, response.code))

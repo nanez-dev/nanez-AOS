@@ -26,7 +26,7 @@ class WishListViewModel @Inject constructor(
         viewModelScope.launch {
             when (val domainResult = storageUseCase.getMyList(type)) {
                 is DomainResult.Success -> {
-                    _wishList.postValue(domainResult.data.map { StorageViewData.StorageItem.fromApiModel(it) })
+                    _wishList.postValue(domainResult.data)
                 }
                 is DomainResult.Failed -> {
                     _wishList.postValue(emptyList())

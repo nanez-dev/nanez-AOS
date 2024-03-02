@@ -19,7 +19,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val homeInfoUseCase: HomeInfoUseCase,
-    private val mapper: HomeDomainMapper,
 ): BaseViewModel() {
 
     private val _viewDataList by lazy { MutableLiveData<List<HomeViewData>>() }
@@ -32,7 +31,7 @@ class HomeViewModel @Inject constructor(
             homeInfoUseCase.getHomeInfo().collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        _viewDataList.post(mapper.toViewData(result.data))
+                        _viewDataList.post(result.data)
                         showLoading(false)
                     }
                     is DomainResult.Failed -> {

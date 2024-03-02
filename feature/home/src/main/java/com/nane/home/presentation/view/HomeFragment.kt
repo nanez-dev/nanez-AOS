@@ -12,6 +12,7 @@ import com.nane.home.presentation.viewmodel.HomeViewModel
 import com.nane.home.presentation.view.adapter.HomeMainAdapter
 import com.nane.home.presentation.view.adapter.decoration.HomeMainItemDecoration
 import com.nane.theme.presentation.view.ThemeAccordActivity
+import com.nane.theme.presentation.view.ThemeBrandActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,7 +40,7 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
                         }
 
                         override fun onClickBrand(brandId: Int) {
-
+                            moveToBrand(brandId)
                         }
 
                         override fun onClickBannerView(moveToUrl: String?) {
@@ -53,7 +54,7 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
                         override fun onClickMore(@HomeViewType moreType: Int) {
                             when (moreType) {
                                 HomeViewType.HOME_BRAND_TYPE -> {
-
+                                    moveToBrand(0)
                                 }
                                 HomeViewType.HOME_ACCORD_TYPE -> {
                                     moveToAccord(0)
@@ -85,4 +86,9 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
         }
     }
 
+    private fun moveToBrand(brandId: Int) {
+        activity?.let {
+            it.startActivity(ThemeBrandActivity.createIntent(it, brandId))
+        }
+    }
 }

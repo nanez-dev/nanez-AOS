@@ -34,3 +34,10 @@ data class AccordItemViewData(
     val code: Int,
     val relatedImgUrl: String?
 )
+
+
+
+data class AccordDetailViewData(
+    val accordItemViewData: AccordItemViewData?,
+    val relatedPerfumes: List<PerfumeViewData>
+)

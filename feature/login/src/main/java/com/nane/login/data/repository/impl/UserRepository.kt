@@ -1,9 +1,12 @@
-package com.nane.login.data.repository
+package com.nane.login.data.repository.impl
 
 import com.nane.base.data.DataResult
-import com.nane.login.data.data.UserLoginDTO
-import com.nane.login.data.source.local.UserLocalDataSource
-import com.nane.login.data.source.remote.UserRemoteDataSource
+import com.nane.login.data.data.UserLoginData
+import com.nane.login.data.mapper.UserDataMapper
+import com.nane.login.data.repository.IUserRepository
+import com.nane.login.data.source.IUserLocalDataSource
+import com.nane.login.data.source.IUserRemoteDataSource
+import com.nane.login.domain.data.UserLoginDomainDTO
 import com.nane.network.parser.getParseErrorResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -16,14 +19,15 @@ import javax.inject.Inject
  * Created by iseungjun on 2023/08/17
  */
 class UserRepository @Inject constructor(
-    private val localDataSource: UserLocalDataSource,
-    private val remoteDataSource: UserRemoteDataSource
-){
+    private val localDataSource: IUserLocalDataSource,
+    private val remoteDataSource: IUserRemoteDataSource,
+    private val mapper: UserDataMapper,
+) : IUserRepository {
 
-    suspend fun getUserLoginInfo(): Flow<DataResult<UserLoginDTO>> = flow {
+    override suspend fun getUserLoginInfo(): Flow<DataResult<UserLoginDomainDTO>> = flow {
         val info = localDataSource.getUserLoginInfo()
         if (info.userEmail?.isNotEmpty() == true && info.userPassword?.isNotEmpty() == true){
-            emit(DataResult.Success(info))
+            emit(DataResult.Success(mapper.toDomainDTO(info)))
         } else {
             emit(DataResult.Failed("", 0))
         }
@@ -34,10 +38,12 @@ class UserRepository @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
 
-    suspend fun postLogin(body: SignInApi.Body): Flow<DataResult<SignInApi.Response?>> = flow {
+    override suspend fun postLogin(body: SignInApi.Body): Flow<DataResult<UserLoginDomainDTO>> = flow {
         val response = remoteDataSource.postLogin(body)
         if (response.isSuccessful) {
-            emit(DataResult.Success(response.body()))
+            val domainDto = mapper.toDomainDTO(body.email, body.password, response.body())
+            saveLoginInfo(domainDto)
+            emit(DataResult.Success(domainDto))
         } else {
             val failed = getParseErrorResult(response)
             emit(DataResult.Failed(failed.errorMsg, failed.errorCode))
@@ -49,9 +55,9 @@ class UserRepository @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
 
-    suspend fun saveLoginInfo(dto: UserLoginDTO) {
-        SessionManager.instance.saveEmail(dto.userEmail ?: "")
+    override suspend fun saveLoginInfo(dto: UserLoginDomainDTO) {
+        SessionManager.instance.saveEmail(dto.email ?: "")
         SessionManager.instance.saveToken(dto.accessToken ?: "", dto.refreshToken ?: "")
-        localDataSource.saveUserLoginInfo(dto)
+        localDataSource.saveUserLoginInfo(mapper.toData(dto))
     }
 }
