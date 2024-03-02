@@ -16,8 +16,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imgTheme"
@@ -27,9 +26,10 @@
             android:background="@drawable/shape_white_r12_line100_s1"
             android:foreground="@drawable/ripple"
             android:paddingVertical="11dp"
+            android:paddingHorizontal="22dp"
             android:scaleType="fitCenter"
             app:img_load="@{viewData.imgUrl}"
-            app:layout_constraintDimensionRatio="164:88"
+            app:layout_constraintDimensionRatio="120:66"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

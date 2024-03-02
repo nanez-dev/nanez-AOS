@@ -5,7 +5,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:splitMotionEvents="false">
 
         <com.nane.base.view.ActionbarView
             android:id="@+id/actionBar"
@@ -18,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/white"
+            android:splitMotionEvents="false"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/actionBar" />
@@ -26,6 +28,7 @@
             android:id="@+id/rvAccordItems"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:splitMotionEvents="false"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/actionBar" />
