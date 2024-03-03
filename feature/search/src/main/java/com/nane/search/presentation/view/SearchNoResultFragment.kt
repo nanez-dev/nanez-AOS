@@ -1,5 +1,6 @@
 package com.nane.search.presentation.view
 
+import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.nane.base.view.BaseBindFragment
 import com.nane.search.R
@@ -18,5 +19,9 @@ class SearchNoResultFragment : BaseBindFragment<SearchNoResultFragmentBinding, S
     override fun initFragment(
         dataBinding: SearchNoResultFragmentBinding,
         viewModel: SearchViewModel
-    ) {}
+    ) {
+        viewModel.initialized.observe(viewLifecycleOwner) {
+            dataBinding.vgNoResult.visibility = if (it) View.VISIBLE else View.GONE
+        }
+    }
 }

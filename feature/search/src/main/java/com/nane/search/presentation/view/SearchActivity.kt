@@ -28,7 +28,21 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
         dataBinding: SearchActivityBinding,
         viewModel: SearchViewModel
     ) {
+        val noResultFragment = SearchNoResultFragment()
+
         dataBinding.apply {
+            if (supportFragmentManager.fragments.isEmpty()) {
+                addFragment(
+                    container = this.searchResultsContainer,
+                    saveInstanceState = null,
+                    tag = TAG_NO_RESULT,
+                    arguments = null,
+                    isBackStackEnabled = false
+                ) {
+                    noResultFragment
+                }
+            }
+
 
             with(btnBack) {
                 setOnClickListener {
@@ -49,7 +63,7 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
             with(btnSearch) {
                 setOnClickListener {
                     val currentSearchWord = editSearch.text.toString()
-                    
+
                     // 아무것도 검색하지 않은 경우, 검색어가 이전과 같은 경우 API 호출 무시
                     if (currentSearchWord.isEmpty() || currentSearchWord == viewModel.searchWord) return@setOnClickListener
                     if (!editSearch.isFocused) {
@@ -62,8 +76,6 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
                 }
             }
 
-            viewModel.isLoading.observe(this@SearchActivity) {}
-
             viewModel.searchResults.observe(this@SearchActivity) { results ->
                 val havePerfumeResult = results
                     .filterIsInstance<SearchResultViewData.SearchPerfumeViewData>()
@@ -72,7 +84,7 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
                 if (havePerfumeResult) { // 검색결과 있을 경우 Fragment Inflate
                     if (supportFragmentManager.fragments.any { it.tag == TAG_RESULT }) return@observe
                     addFragment(
-                        container = dataBinding.searchResultsContainer,
+                        container = this.searchResultsContainer,
                         saveInstanceState = null,
                         tag = TAG_RESULT,
                         arguments = null,
@@ -83,13 +95,13 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
                 } else { // 검색결과 없을 경우 Fragment Inflate
                     if (supportFragmentManager.fragments.any { it.tag == TAG_NO_RESULT }) return@observe
                     addFragment(
-                        container = dataBinding.searchResultsContainer,
+                        container = this.searchResultsContainer,
                         saveInstanceState = null,
                         tag = TAG_NO_RESULT,
                         arguments = null,
                         isBackStackEnabled = false
                     ) {
-                        SearchNoResultFragment()
+                        noResultFragment
                     }
                 }
             }
@@ -103,6 +115,7 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
 
     companion object {
 
+        private const val TAG_EMPTY = "EMPTY"
         private const val TAG_RESULT = "RESULT"
         private const val TAG_NO_RESULT = "NO_RESULT"
 

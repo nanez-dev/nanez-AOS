@@ -18,16 +18,15 @@ class SearchViewModel @Inject constructor(
     private val perfumesUsecase: PerfumesUsecase,
     private val mapper: PerfumesMapper
 ) : BaseViewModel() {
+    private val _initialized by lazy { MutableLiveData(false) }
+    val initialized: LiveData<Boolean>
+        get() = _initialized
 
     private var loadPage: Int = 1
     private var isLastItemLoaded: Boolean = false
 
-    var searchWord: String = ""
+    var searchWord = ""
         private set
-
-    private val _isLoading by lazy { MutableLiveData(false) }
-    val isLoading: LiveData<Boolean>
-        get() = _isLoading
 
     private val _searchResults by lazy { MutableLiveData<List<SearchResultViewData>>() }
     val searchResults: LiveData<List<SearchResultViewData>>
@@ -43,10 +42,11 @@ class SearchViewModel @Inject constructor(
     fun searchWith(word: String) {
         if (word == searchWord) return
 
+        showLoading(true)
+        initializeSearchResult()
+        searchWord = word
+
         viewModelScope.launch {
-            showLoading(true)
-            initializeSearchResult()
-            searchWord = word
             perfumesUsecase.getPerfumes(
                 query = searchWord,
                 loadPage = loadPage,
@@ -80,6 +80,8 @@ class SearchViewModel @Inject constructor(
                         showLoading(false)
                     }
                 }
+
+                if (_initialized.value == false) _initialized.post(true)
             }
         }
     }
