@@ -18,9 +18,6 @@ class SearchViewModel @Inject constructor(
     private val perfumesUsecase: PerfumesUsecase,
     private val mapper: PerfumesMapper
 ) : BaseViewModel() {
-    private val _initialized by lazy { MutableLiveData(false) }
-    val initialized: LiveData<Boolean>
-        get() = _initialized
 
     private var loadPage: Int = 1
     private var isLastItemLoaded: Boolean = false
@@ -80,8 +77,6 @@ class SearchViewModel @Inject constructor(
                         showLoading(false)
                     }
                 }
-
-                if (_initialized.value == false) _initialized.post(true)
             }
         }
     }

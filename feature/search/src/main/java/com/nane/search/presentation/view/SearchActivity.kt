@@ -14,7 +14,6 @@ import com.nane.search.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.utils.util.addFragment
 
-
 @AndroidEntryPoint
 class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(R.layout.search_activity) {
 
@@ -28,18 +27,16 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
         dataBinding: SearchActivityBinding,
         viewModel: SearchViewModel
     ) {
-        val noResultFragment = SearchNoResultFragment()
-
         dataBinding.apply {
             if (supportFragmentManager.fragments.isEmpty()) {
                 addFragment(
                     container = this.searchResultsContainer,
                     saveInstanceState = null,
-                    tag = TAG_NO_RESULT,
+                    tag = TAG_EMPTY,
                     arguments = null,
                     isBackStackEnabled = false
                 ) {
-                    noResultFragment
+                    SearchEmptyFragment()
                 }
             }
 
@@ -101,7 +98,7 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
                         arguments = null,
                         isBackStackEnabled = false
                     ) {
-                        noResultFragment
+                        SearchNoResultFragment()
                     }
                 }
             }
