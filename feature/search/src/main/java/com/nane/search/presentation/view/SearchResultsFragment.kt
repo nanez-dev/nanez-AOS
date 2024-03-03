@@ -36,8 +36,10 @@ class SearchResultsFragment : BaseBindFragment<SearchResultsFragmentBinding, Sea
         }
         dataBinding.apply {
             with(dataBinding.rvSearchResults) {
-                adapter ?: SearchResultAdapter().apply { adapter = this }
-                (adapter as SearchResultAdapter).setOnSearchResultClickListener(onSearchResultClickListener)
+                adapter ?: SearchResultAdapter().apply {
+                    setOnSearchResultClickListener(onSearchResultClickListener)
+                    adapter = this
+                }
                 layoutManager ?: GridLayoutManager(this.context, 2).apply {
                     spanSizeLookup = object: GridLayoutManager.SpanSizeLookup() {
                         override fun getSpanSize(position: Int): Int {
