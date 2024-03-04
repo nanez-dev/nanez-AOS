@@ -50,7 +50,26 @@ class ThemeAccordActivity : BaseBindActivity<ThemeAccordActivityBinding, ThemeAc
             }
 
             with(rvAccordItems) {
-                adapter ?: AccordAdapter().apply { adapter = this }
+                adapter ?: AccordAdapter().apply {
+                    setOnAccordItemClickListener(
+                        object: AccordAdapter.AccordItemClickListener {
+                            override fun onPopularAccordItemClick(itemId: Int) {
+                                addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeAccordDetailFragment.createArgument(itemId)) {
+                                    ThemeAccordDetailFragment()
+                                }
+                                setDetailFragmentVisibility(true)
+                            }
+
+                            override fun onAllAccordItemClick(itemId: Int) {
+                                addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeAccordDetailFragment.createArgument(itemId)) {
+                                    ThemeAccordDetailFragment()
+                                }
+                                setDetailFragmentVisibility(true)
+                            }
+                        }
+                    )
+                    adapter = this
+                }
                 layoutManager ?: GridLayoutManager(context, spanCount).apply {
                     spanSizeLookup = object: GridLayoutManager.SpanSizeLookup() {
                         override fun getSpanSize(position: Int): Int {
@@ -63,25 +82,6 @@ class ThemeAccordActivity : BaseBindActivity<ThemeAccordActivityBinding, ThemeAc
 
                     layoutManager = this
                 }
-
-                (adapter as AccordAdapter).setOnAccordItemClickListener(
-                    object: AccordAdapter.AccordItemClickListener {
-
-                        override fun onPopularAccordItemClick(itemId: Int) {
-                            addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeAccordDetailFragment.createArgument(itemId)) {
-                                ThemeAccordDetailFragment()
-                            }
-                            setDetailFragmentVisibility(true)
-                        }
-
-                        override fun onAllAccordItemClick(itemId: Int) {
-                            addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeAccordDetailFragment.createArgument(itemId)) {
-                                ThemeAccordDetailFragment()
-                            }
-                            setDetailFragmentVisibility(true)
-                        }
-                    }
-                )
             }
         }
 

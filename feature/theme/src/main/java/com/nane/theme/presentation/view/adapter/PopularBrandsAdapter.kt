@@ -29,15 +29,17 @@ class PopularBrandsAdapter : Adapter<PopularBrandsAdapter.PopularBrandItemViewHo
 
     inner class PopularBrandItemViewHolder(private val binding: ThemePopularBrandItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: BrandItemViewData?) {
-            binding.setVariable(BR.viewData, data)
-            binding.executePendingBindings()
-        }
-
         init {
             binding.root.setOnClickListener {
                 onItemClickListener?.onPopularBrandItemClick(itemList.getOrNull(adapterPosition)?.id ?: -1)
             }
+        }
+
+        fun onBind(data: BrandItemViewData?) {
+            data ?: return
+
+            binding.setVariable(BR.viewData, data)
+            binding.executePendingBindings()
         }
     }
 
