@@ -91,7 +91,7 @@ class AccordAdapter : Adapter<AbsAccordViewHolder<*>>() {
             with(binding.rvPopularAccords) {
                 adapter ?: PopularAccordsAdapter().apply {
                     setItemList(data.accordItemList)
-//                    setOnItemClickListener(null)
+                    setOnItemClickListener(onAccordItemClickListener)
                     adapter = this
                 }
                 layoutManager ?: LinearLayoutManager(
