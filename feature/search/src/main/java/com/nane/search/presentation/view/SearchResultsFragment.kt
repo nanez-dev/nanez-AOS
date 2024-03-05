@@ -1,5 +1,6 @@
 package com.nane.search.presentation.view
 
+import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.nane.base.view.BaseBindFragment
 import com.nane.search.R
 import com.nane.search.databinding.SearchResultsFragmentBinding
+import com.nane.search.presentation.data.SearchResultViewData
 import com.nane.search.presentation.data.SearchViewType
 import com.nane.search.presentation.view.adapter.SearchResultAdapter
 import com.nane.search.presentation.view.adapter.decoration.SearchResultItemDecoration
@@ -34,6 +36,7 @@ class SearchResultsFragment : BaseBindFragment<SearchResultsFragmentBinding, Sea
                 
             }
         }
+
         dataBinding.apply {
             with(dataBinding.rvSearchResults) {
                 adapter ?: SearchResultAdapter().apply {
@@ -67,8 +70,19 @@ class SearchResultsFragment : BaseBindFragment<SearchResultsFragmentBinding, Sea
             }
         }
 
-        viewModel.searchResults.observe(viewLifecycleOwner) {
-            (dataBinding.rvSearchResults.adapter as SearchResultAdapter).setItemList(it)
+        viewModel.searchResults.observe(viewLifecycleOwner) { results ->
+            val havePerfumeResult = results
+                .filterIsInstance<SearchResultViewData.SearchPerfumeViewData>()
+                .isNotEmpty()
+
+            if (havePerfumeResult) {
+                dataBinding.rvSearchResults.visibility = View.VISIBLE
+                dataBinding.vgNoResult.visibility = View.GONE
+                (dataBinding.rvSearchResults.adapter as SearchResultAdapter).setItemList(results)
+            } else {
+                dataBinding.rvSearchResults.visibility = View.GONE
+                dataBinding.vgNoResult.visibility = View.VISIBLE
+            }
         }
     }
 }
