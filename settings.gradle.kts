@@ -51,3 +51,4 @@ fun findSubProjects(projectPath: String, file: File) {
         }
     }
 }
+include(":feature:detail")

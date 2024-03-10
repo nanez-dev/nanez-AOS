@@ -90,4 +90,7 @@
     <string name="msg_profile_name_content">%s님, 안녕하세요</string>
     <string name="msg_empty_storage_having_list">아직 보유한 향수가 없습니다.</string>
     <string name="msg_empty_storage_wish_list">아직 찜한 향수가 없습니다.</string>
+
+    <string name="label_perfume_detail_info">향수 정보</string>
+
 </resources>
