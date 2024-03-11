@@ -9,7 +9,6 @@ import androidx.activity.viewModels
 import com.nane.base.view.BaseBindActivity
 import com.nane.search.R
 import com.nane.search.databinding.SearchActivityBinding
-import com.nane.search.presentation.data.SearchResultViewData
 import com.nane.search.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.utils.util.addFragment
@@ -72,36 +71,6 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
                 ) {
                     SearchResultsFragment()
                 }
-            }
-
-            viewModel.searchResults.observe(this@SearchActivity) { results ->
-//                val havePerfumeResult = results
-//                    .filterIsInstance<SearchResultViewData.SearchPerfumeViewData>()
-//                    .isNotEmpty()
-//
-//                if (havePerfumeResult) { // 검색결과 있을 경우 Fragment Inflate
-//                    if (supportFragmentManager.fragments.any { it.tag == TAG_RESULT }) return@observe
-//                    addFragment(
-//                        container = this.searchResultsContainer,
-//                        saveInstanceState = null,
-//                        tag = TAG_RESULT,
-//                        arguments = null,
-//                        isBackStackEnabled = false
-//                    ) {
-//                        SearchResultsFragment()
-//                    }
-//                } else { // 검색결과 없을 경우 Fragment Inflate
-//                    if (supportFragmentManager.fragments.any { it.tag == TAG_NO_RESULT }) return@observe
-//                    addFragment(
-//                        container = this.searchResultsContainer,
-//                        saveInstanceState = null,
-//                        tag = TAG_NO_RESULT,
-//                        arguments = null,
-//                        isBackStackEnabled = false
-//                    ) {
-//                        SearchNoResultFragment()
-//                    }
-//                }
             }
         }
     }
