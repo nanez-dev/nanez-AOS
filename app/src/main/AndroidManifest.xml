@@ -54,6 +54,16 @@
             android:theme="@style/Theme.Nanez"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
+
+
+        <activity
+            android:name="com.nane.detail.presentation.view.PerfumeDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

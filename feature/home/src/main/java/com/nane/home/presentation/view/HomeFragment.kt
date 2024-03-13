@@ -4,6 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nane.base.view.ActionbarView
 import com.nane.base.view.BaseBindFragment
+import com.nane.detail.presentation.view.PerfumeDetailActivity
 import com.nane.home.R
 import com.nane.home.databinding.HomeFragmentBinding
 import com.nane.home.presentation.data.HomeViewType
@@ -48,7 +49,7 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
                         }
 
                         override fun onClickPerfume(data: PerfumeItemViewData?) {
-
+                            moveToPerfumeDetail(data?.id ?: -1)
                         }
 
                         override fun onClickMore(@HomeViewType moreType: Int) {
@@ -89,6 +90,12 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
     private fun moveToBrand(brandId: Int) {
         activity?.let {
             it.startActivity(ThemeBrandActivity.createIntent(it, brandId))
+        }
+    }
+
+    private fun moveToPerfumeDetail(perfumeId: Int) {
+        activity?.let {
+            it.startActivity(PerfumeDetailActivity.createIntent(it, perfumeId))
         }
     }
 }

@@ -119,6 +119,10 @@ class ResUtils {
         return applicationContext.contentResolver
     }
 
+    fun getColor(@ColorRes res: Int): Int {
+        return applicationContext.getColor(res)
+    }
+
     fun getString(@StringRes resId: Int): String {
         return applicationContext.getString(resId)
     }

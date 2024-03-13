@@ -23,7 +23,7 @@ class DetailDomainMapper @Inject constructor() {
                 isHaving = data.isHaving
             ),
             accordInfo = data.accord?.map { toAccordViewData(it) },
-            noteInfo =
+            noteInfo = data.note?.let { toNoteViewData(data.note) }
         )
     }
 

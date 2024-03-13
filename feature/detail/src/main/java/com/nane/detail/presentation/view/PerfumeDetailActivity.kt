@@ -1,5 +1,7 @@
 package com.nane.detail.presentation.view
 
+import android.content.Context
+import android.content.Intent
 import androidx.activity.viewModels
 import com.nane.base.view.BaseBindActivity
 import com.nane.base.viewmodel.BaseViewModel
@@ -24,7 +26,13 @@ class PerfumeDetailActivity : BaseBindActivity<PerfumeDetailActivityBinding, Bas
                setUseBackBtn { onActionBackPressed() }
            }
 
-           addFragment(container, null, "PerfumeDetailFragment") {
+           val perfumeId = intent.extras?.getInt(PerfumeDetailFragment.PERFUME_ID) ?: -1
+
+           if (perfumeId < 0) {
+               return
+           }
+
+           addFragment(container, null, "PerfumeDetailFragment", arguments = PerfumeDetailFragment.createArgument(perfumeId)) {
                 PerfumeDetailFragment()
            }
        }
@@ -32,5 +40,16 @@ class PerfumeDetailActivity : BaseBindActivity<PerfumeDetailActivityBinding, Bas
 
     override fun onActionBackPressed() {
         finish()
+    }
+
+
+    companion object {
+
+        fun createIntent(context: Context, perfumeId: Int): Intent {
+            return Intent(context, PerfumeDetailActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                putExtra(PerfumeDetailFragment.PERFUME_ID, perfumeId)
+            }
+        }
     }
 }

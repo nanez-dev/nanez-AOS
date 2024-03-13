@@ -92,5 +92,9 @@
     <string name="msg_empty_storage_wish_list">아직 찜한 향수가 없습니다.</string>
 
     <string name="label_perfume_detail_info">향수 정보</string>
-
+    <string name="label_won">원</string>
+    <string name="label_having">보유중</string>
+    <string name="label_wish">찜</string>
+    <string name="label_perfume_detail_kor_name">%s, %sml</string>
+    <string name="label_accord">어코드</string>
 </resources>

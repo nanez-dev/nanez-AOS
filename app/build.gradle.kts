@@ -39,6 +39,7 @@ dependencies {
     implementation(project(":feature:theme"))
     implementation(project(":feature:profile"))
     implementation(project(":feature:storage"))
+    implementation(project(":feature:detail"))
 
     implementation(libs.bundles.module.app)
     kapt(libs.bundles.hilt.compile.kapt)

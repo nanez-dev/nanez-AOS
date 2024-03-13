@@ -108,7 +108,8 @@ class HomeDomainMapper @Inject constructor() {
             brandName = dto.brandName,
             name = dto.name,
             capacity = "${dto.capacity}ml",
-            content = dto.content
+            content = dto.content,
+            id = dto.id,
         )
     }
 }

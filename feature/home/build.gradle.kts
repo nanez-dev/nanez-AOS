@@ -12,6 +12,7 @@ dependencies {
     implementation(project(":utils"))
     implementation(project(":network"))
     implementation(project(":feature:theme"))
+    implementation(project(":feature:detail"))
 
     implementation(libs.bundles.module.home)
     kapt(libs.bundles.hilt.compile.kapt)

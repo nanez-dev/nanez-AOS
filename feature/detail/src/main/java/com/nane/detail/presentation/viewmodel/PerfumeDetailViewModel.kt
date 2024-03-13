@@ -10,12 +10,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.util.Event
 import org.techtown.nanez.utils.util.post
+import javax.inject.Inject
 
 /**
  * Created by haul on 3/10/24
  */
 @HiltViewModel
-class PerfumeDetailViewModel(
+class PerfumeDetailViewModel @Inject constructor(
     private val useCase: PerfumeDetailUseCase,
 ) : BaseViewModel() {
 
