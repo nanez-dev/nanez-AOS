@@ -5,5 +5,5 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nane.theme.presentation.data.AccordViewData
 
 abstract class AbsAccordViewHolder<T: AccordViewData>(itemView: View): RecyclerView.ViewHolder(itemView) {
-    abstract fun onBind(data: T)
+    abstract fun onBind(data: T?)
 }

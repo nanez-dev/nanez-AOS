@@ -45,7 +45,26 @@ class ThemeBrandActivity : BaseBindActivity<ThemeBrandActivityBinding, ThemeBran
             }
 
             with(rvBrandItems) {
-                adapter ?: BrandAdapter().apply { adapter = this }
+                adapter ?: BrandAdapter().apply {
+                    setOnBrandItemClickListener(
+                        object: BrandAdapter.BrandItemClickListener {
+                            override fun onPopularBrandItemClick(itemId: Int) {
+                                addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeBrandDetailFragment.createArgument(itemId)) {
+                                    ThemeBrandDetailFragment()
+                                }
+                                setDetailFragmentVisibility(true)
+                            }
+
+                            override fun onAllBrandItemClick(itemId: Int) {
+                                addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeBrandDetailFragment.createArgument(itemId)) {
+                                    ThemeBrandDetailFragment()
+                                }
+                                setDetailFragmentVisibility(true)
+                            }
+                        }
+                    )
+                    adapter = this
+                }
                 layoutManager ?: GridLayoutManager(context, 2).apply {
                     spanSizeLookup = object: GridLayoutManager.SpanSizeLookup() {
                         override fun getSpanSize(position: Int): Int {
@@ -58,24 +77,6 @@ class ThemeBrandActivity : BaseBindActivity<ThemeBrandActivityBinding, ThemeBran
                     layoutManager = this
                 }
                 if (itemDecorationCount == 0) addItemDecoration(BrandItemDecoration())
-                (adapter as BrandAdapter).setOnBrandItemClickListener(
-                    object: BrandAdapter.BrandItemClickListener {
-
-                        override fun onPopularBrandItemClick(itemId: Int) {
-                            addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeBrandDetailFragment.createArgument(itemId)) {
-                                ThemeBrandDetailFragment()
-                            }
-                            setDetailFragmentVisibility(true)
-                        }
-
-                        override fun onAllBrandItemClick(itemId: Int) {
-                            addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeBrandDetailFragment.createArgument(itemId)) {
-                                ThemeBrandDetailFragment()
-                            }
-                            setDetailFragmentVisibility(true)
-                        }
-                    }
-                )
             }
         }
 

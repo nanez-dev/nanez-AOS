@@ -68,15 +68,15 @@ class AccordAdapter : Adapter<AbsAccordViewHolder<*>>() {
     override fun onBindViewHolder(holder: AbsAccordViewHolder<*>, position: Int) {
         when (holder) {
             is PopularAccordViewHolder -> {
-                holder.onBind(itemList.getOrNull(position) as AccordViewData.PopularAccordItemListViewData)
+                holder.onBind(itemList.getOrNull(position) as? AccordViewData.PopularAccordItemListViewData)
             }
 
             is AllAccordTitleViewHolder -> {
-                holder.onBind(itemList.getOrNull(position) as AccordViewData.AccordTitleViewData)
+                holder.onBind(itemList.getOrNull(position) as? AccordViewData.AccordTitleViewData)
             }
 
             is AllAccordViewHolder -> {
-                holder.onBind(itemList.getOrNull(position) as AccordViewData.AllAccordItemViewData)
+                holder.onBind(itemList.getOrNull(position) as? AccordViewData.AllAccordItemViewData)
             }
         }
     }
@@ -85,13 +85,14 @@ class AccordAdapter : Adapter<AbsAccordViewHolder<*>>() {
         private val binding: ThemePopularAccordListItemViewBinding
     ): AbsAccordViewHolder<AccordViewData.PopularAccordItemListViewData>(binding.root) {
 
-        override fun onBind(data: AccordViewData.PopularAccordItemListViewData) {
-            with(binding.rvPopularAccords) {
-                adapter ?: PopularAccordsAdapter().apply { adapter = this }
+        override fun onBind(data: AccordViewData.PopularAccordItemListViewData?) {
+            data ?: return
 
-                (adapter as PopularAccordsAdapter).apply {
+            with(binding.rvPopularAccords) {
+                adapter ?: PopularAccordsAdapter().apply {
                     setItemList(data.accordItemList)
-//                    setOnItemClickListener()
+                    setOnItemClickListener(onAccordItemClickListener)
+                    adapter = this
                 }
                 layoutManager ?: LinearLayoutManager(
                     this.context,
@@ -108,7 +109,7 @@ class AccordAdapter : Adapter<AbsAccordViewHolder<*>>() {
         private val binding: ThemeAllAccordTitleItemViewBinding
     ): AbsAccordViewHolder<AccordViewData.AccordTitleViewData>(binding.root) {
 
-        override fun onBind(data: AccordViewData.AccordTitleViewData) {}
+        override fun onBind(data: AccordViewData.AccordTitleViewData?) {}
     }
 
     inner class AllAccordViewHolder(
@@ -123,7 +124,9 @@ class AccordAdapter : Adapter<AbsAccordViewHolder<*>>() {
             }
         }
 
-        override fun onBind(data: AccordViewData.AllAccordItemViewData) {
+        override fun onBind(data: AccordViewData.AllAccordItemViewData?) {
+            data ?: return
+
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

@@ -5,5 +5,5 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nane.theme.presentation.data.BrandViewData
 
 abstract class AbsBrandViewHolder<T: BrandViewData>(itemView: View): RecyclerView.ViewHolder(itemView) {
-    abstract fun onBind(data: T)
+    abstract fun onBind(data: T?)
 }

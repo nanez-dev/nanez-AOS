@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_bg50_r12_line50_s1"
+        android:foreground="@drawable/ripple_r12"
         android:paddingHorizontal="16dp"
         android:paddingTop="14dp"
         android:paddingBottom="16dp">
@@ -83,10 +84,10 @@
             style="@style/Head_18_B"
             android:layout_marginTop="16dp"
             app:layout_constraintLeft_toLeftOf="@id/imgItem"
-            app:layout_constraintTop_toBottomOf="@id/txtItemDescription"/>
+            app:layout_constraintTop_toBottomOf="@id/txtItemDescription" />
 
-<!--        정가 API 필요-->
-<!--        취소선 표시 필요-->
+        <!--        정가 API 필요-->
+        <!--        취소선 표시 필요-->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtItemPriceSub"
             style="@style/Body_14_R"
