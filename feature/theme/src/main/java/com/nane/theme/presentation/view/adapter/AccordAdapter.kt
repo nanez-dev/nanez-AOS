@@ -31,36 +31,13 @@ class AccordAdapter : Adapter<AbsAccordViewHolder<*>>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbsAccordViewHolder<*> {
         return when (viewType) {
             AccordViewType.POPULAR_ITEM_LIST_TYPE -> {
-                PopularAccordViewHolder(
-                    ThemePopularAccordListItemViewBinding
-                        .inflate(
-                            LayoutInflater.from(parent.context),
-                            parent,
-                            false
-                        )
-                )
+                PopularAccordViewHolder(ThemePopularAccordListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
-
             AccordViewType.TITLE_TYPE -> {
-                AllAccordTitleViewHolder(
-                    ThemeAllAccordTitleItemViewBinding
-                        .inflate(
-                            LayoutInflater.from(parent.context),
-                            parent,
-                            false
-                        )
-                )
+                AllAccordTitleViewHolder(ThemeAllAccordTitleItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
-
             else -> {
-                AllAccordViewHolder(
-                    ThemeAllAccordItemViewBinding
-                        .inflate(
-                            LayoutInflater.from(parent.context),
-                            parent,
-                            false
-                        )
-                )
+                AllAccordViewHolder(ThemeAllAccordItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
         }
     }
@@ -70,11 +47,9 @@ class AccordAdapter : Adapter<AbsAccordViewHolder<*>>() {
             is PopularAccordViewHolder -> {
                 holder.onBind(itemList.getOrNull(position) as? AccordViewData.PopularAccordItemListViewData)
             }
-
             is AllAccordTitleViewHolder -> {
                 holder.onBind(itemList.getOrNull(position) as? AccordViewData.AccordTitleViewData)
             }
-
             is AllAccordViewHolder -> {
                 holder.onBind(itemList.getOrNull(position) as? AccordViewData.AllAccordItemViewData)
             }
@@ -94,11 +69,7 @@ class AccordAdapter : Adapter<AbsAccordViewHolder<*>>() {
                     setOnItemClickListener(onAccordItemClickListener)
                     adapter = this
                 }
-                layoutManager ?: LinearLayoutManager(
-                    this.context,
-                    LinearLayoutManager.HORIZONTAL,
-                    false
-                ).apply { layoutManager = this }
+                layoutManager ?: LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false).apply { layoutManager = this }
 
                 if (itemDecorationCount == 0) addItemDecoration(PopularAccordItemDecoration())
             }
@@ -118,15 +89,12 @@ class AccordAdapter : Adapter<AbsAccordViewHolder<*>>() {
 
         init {
             binding.root.setOnClickListener {
-                onAccordItemClickListener?.onAllAccordItemClick(
-                    (itemList.getOrNull(adapterPosition) as AccordViewData.AllAccordItemViewData).id
-                )
+                onAccordItemClickListener?.onAllAccordItemClick((itemList.getOrNull(adapterPosition) as? AccordViewData.AllAccordItemViewData)?.id ?: -1)
             }
         }
 
         override fun onBind(data: AccordViewData.AllAccordItemViewData?) {
             data ?: return
-
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }

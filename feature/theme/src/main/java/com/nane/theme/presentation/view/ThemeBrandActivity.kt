@@ -84,8 +84,6 @@ class ThemeBrandActivity : BaseBindActivity<ThemeBrandActivityBinding, ThemeBran
             (dataBinding.rvBrandItems.adapter as? BrandAdapter)?.setItemList(it)
         }
 
-        viewModel.getBrandViewData()
-
         val brandId = intent?.getIntExtra(ThemeBrandDetailFragment.BRAND_ID, -1) ?: -1
         if (brandId > 0) {
             hasBeenDirectlyNavigatedToDetail = true

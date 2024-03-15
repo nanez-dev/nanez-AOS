@@ -31,36 +31,13 @@ class BrandAdapter : Adapter<AbsBrandViewHolder<*>>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbsBrandViewHolder<*> {
         return when (viewType) {
             BrandViewType.POPULAR_ITEM_LIST_TYPE -> {
-                PopularBrandViewHolder(
-                    ThemePopularBrandListItemViewBinding
-                        .inflate(
-                            LayoutInflater.from(parent.context),
-                            parent,
-                            false
-                        )
-                )
+                PopularBrandViewHolder(ThemePopularBrandListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
-
             BrandViewType.TITLE_TYPE -> {
-                AllBrandTitleViewHolder(
-                    ThemeAllBrandTitleItemViewBinding
-                        .inflate(
-                            LayoutInflater.from(parent.context),
-                            parent,
-                            false
-                        )
-                )
+                AllBrandTitleViewHolder(ThemeAllBrandTitleItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
-
             else -> {
-                AllBrandViewHolder(
-                    ThemeAllBrandItemViewBinding
-                        .inflate(
-                            LayoutInflater.from(parent.context),
-                            parent,
-                            false
-                        )
-                )
+                AllBrandViewHolder(ThemeAllBrandItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
         }
     }
@@ -70,11 +47,9 @@ class BrandAdapter : Adapter<AbsBrandViewHolder<*>>() {
             is PopularBrandViewHolder -> {
                 holder.onBind(itemList.getOrNull(position) as? BrandViewData.PopularBrandItemListViewData)
             }
-
             is AllBrandTitleViewHolder -> {
                 holder.onBind(itemList.getOrNull(position) as? BrandViewData.BrandTitleViewData)
             }
-
             is AllBrandViewHolder -> {
                 holder.onBind(itemList.getOrNull(position) as? BrandViewData.AllBrandItemViewData)
             }
@@ -89,36 +64,29 @@ class BrandAdapter : Adapter<AbsBrandViewHolder<*>>() {
             data ?: return
 
             with(binding.rvPopularBrands) {
-                adapter ?: PopularBrandsAdapter().apply { adapter = this }
-                (adapter as PopularBrandsAdapter).apply {
+                adapter ?: PopularBrandsAdapter().apply {
                     setItemList(data.brandItemList)
                     setOnItemClickListener(onBrandItemClickListener)
+                    adapter = this
                 }
-                layoutManager ?: LinearLayoutManager(
-                    this.context,
-                    LinearLayoutManager.HORIZONTAL,
-                    false
-                ).apply { layoutManager = this }
-
+                layoutManager ?: LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false).apply { layoutManager = this }
                 if (itemDecorationCount == 0) addItemDecoration(PopularBrandItemDecoration())
             }
         }
     }
 
     inner class AllBrandTitleViewHolder(
-        private val binding: ThemeAllBrandTitleItemViewBinding
+        binding: ThemeAllBrandTitleItemViewBinding
     ) : AbsBrandViewHolder<BrandViewData.BrandTitleViewData>(binding.root) {
-
         override fun onBind(data: BrandViewData.BrandTitleViewData?) {}
     }
 
     inner class AllBrandViewHolder(
         private val binding: ThemeAllBrandItemViewBinding
     ) : AbsBrandViewHolder<BrandViewData.AllBrandItemViewData>(binding.root) {
-
         init {
             binding.root.setOnClickListener {
-                onBrandItemClickListener?.onAllBrandItemClick((itemList.getOrNull(adapterPosition) as BrandViewData.AllBrandItemViewData).id)
+                onBrandItemClickListener?.onAllBrandItemClick((itemList.getOrNull(adapterPosition) as? BrandViewData.AllBrandItemViewData)?.id ?: -1)
             }
         }
 
@@ -128,7 +96,6 @@ class BrandAdapter : Adapter<AbsBrandViewHolder<*>>() {
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
         }
-
     }
 
     private var onBrandItemClickListener: BrandItemClickListener? = null
