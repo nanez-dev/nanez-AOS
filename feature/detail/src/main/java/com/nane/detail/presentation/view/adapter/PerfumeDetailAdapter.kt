@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nane.detail.databinding.PerfumeDetailAccordViewBinding
 import com.nane.detail.databinding.PerfumeDetailBasicViewBinding
+import com.nane.detail.databinding.PerfumeDetailNoteViewBinding
 import com.nane.detail.presentation.data.PerfumeDetailViewData
 import com.nane.detail.presentation.data.PerfumeDetailViewType
 
@@ -34,7 +35,9 @@ class PerfumeDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 )
             }
             PerfumeDetailViewType.TYPE_NOTE -> {
-                PerfumeEmptyViewHolder(View(parent.context))
+                PerfumeDetailNoteViewHolder(
+                    PerfumeDetailNoteViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                )
             }
             else -> {
                 PerfumeEmptyViewHolder(View(parent.context))
@@ -54,6 +57,11 @@ class PerfumeDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     if (it.isNotEmpty()) {
                         holder.onBind(it)
                     }
+                }
+            }
+            is PerfumeDetailNoteViewHolder -> {
+                viewData?.noteInfo?.let {
+                    holder.onBind(it)
                 }
             }
         }

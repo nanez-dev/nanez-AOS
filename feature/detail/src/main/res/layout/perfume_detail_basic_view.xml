@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_marginLeft="20dp"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
             android:textColor="@color/gray_800"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintLeft_toLeftOf="parent"

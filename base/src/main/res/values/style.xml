@@ -90,6 +90,11 @@
 
 
     <!-- Detail -->
+    <style name="Detail_11_R" parent="Text_Base">
+        <item name="android:textSize">11sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
     <style name="Detail_11_M" parent="Text_Base">
         <item name="android:textSize">11sp</item>
         <item name="android:lineSpacingExtra">2sp</item>
