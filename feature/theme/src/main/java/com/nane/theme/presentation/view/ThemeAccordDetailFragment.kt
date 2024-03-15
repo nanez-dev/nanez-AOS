@@ -23,15 +23,17 @@ class ThemeAccordDetailFragment : BaseBindFragment<ThemeAccordDetailFragmentBind
         accordId = arguments?.getInt(ACCORD_ID) ?: -1
 
         with(dataBinding.relatedItemsRecyclerView) {
-            adapter ?: RelatedAccordPerfumesAdapter().apply { adapter = this }
-            layoutManager ?: LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false).apply { layoutManager = this }
-            (adapter as RelatedAccordPerfumesAdapter).setOnItemClickListener(
-                object: RelatedAccordPerfumesAdapter.ItemClickListener {
-                    override fun onItemClick(idx: Int) {
+            adapter ?: RelatedAccordPerfumesAdapter().apply {
+                setOnItemClickListener(
+                    object: RelatedAccordPerfumesAdapter.ItemClickListener {
+                        override fun onItemClick(idx: Int) {
 
+                        }
                     }
-                }
-            )
+                )
+                adapter = this
+            }
+            layoutManager ?: LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false).apply { layoutManager = this }
             if (itemDecorationCount == 0) addItemDecoration(RelatedAccordPerfumeItemDecoration())
         }
 

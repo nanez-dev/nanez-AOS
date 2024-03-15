@@ -68,15 +68,15 @@ class BrandAdapter : Adapter<AbsBrandViewHolder<*>>() {
     override fun onBindViewHolder(holder: AbsBrandViewHolder<*>, position: Int) {
         when (holder) {
             is PopularBrandViewHolder -> {
-                holder.onBind(itemList.getOrNull(position) as BrandViewData.PopularBrandItemListViewData)
+                holder.onBind(itemList.getOrNull(position) as? BrandViewData.PopularBrandItemListViewData)
             }
 
             is AllBrandTitleViewHolder -> {
-                holder.onBind(itemList.getOrNull(position) as BrandViewData.BrandTitleViewData)
+                holder.onBind(itemList.getOrNull(position) as? BrandViewData.BrandTitleViewData)
             }
 
             is AllBrandViewHolder -> {
-                holder.onBind(itemList.getOrNull(position) as BrandViewData.AllBrandItemViewData)
+                holder.onBind(itemList.getOrNull(position) as? BrandViewData.AllBrandItemViewData)
             }
         }
     }
@@ -85,7 +85,8 @@ class BrandAdapter : Adapter<AbsBrandViewHolder<*>>() {
         private val binding: ThemePopularBrandListItemViewBinding
     ) : AbsBrandViewHolder<BrandViewData.PopularBrandItemListViewData>(binding.root) {
 
-        override fun onBind(data: BrandViewData.PopularBrandItemListViewData) {
+        override fun onBind(data: BrandViewData.PopularBrandItemListViewData?) {
+            data ?: return
 
             with(binding.rvPopularBrands) {
                 adapter ?: PopularBrandsAdapter().apply { adapter = this }
@@ -108,24 +109,26 @@ class BrandAdapter : Adapter<AbsBrandViewHolder<*>>() {
         private val binding: ThemeAllBrandTitleItemViewBinding
     ) : AbsBrandViewHolder<BrandViewData.BrandTitleViewData>(binding.root) {
 
-        override fun onBind(data: BrandViewData.BrandTitleViewData) {
-        }
+        override fun onBind(data: BrandViewData.BrandTitleViewData?) {}
     }
 
     inner class AllBrandViewHolder(
         private val binding: ThemeAllBrandItemViewBinding
     ) : AbsBrandViewHolder<BrandViewData.AllBrandItemViewData>(binding.root) {
 
-        override fun onBind(data: BrandViewData.AllBrandItemViewData) {
-            binding.setVariable(BR.viewData, data)
-            binding.executePendingBindings()
-        }
-
         init {
             binding.root.setOnClickListener {
                 onBrandItemClickListener?.onAllBrandItemClick((itemList.getOrNull(adapterPosition) as BrandViewData.AllBrandItemViewData).id)
             }
         }
+
+        override fun onBind(data: BrandViewData.AllBrandItemViewData?) {
+            data ?: return
+
+            binding.setVariable(BR.viewData, data)
+            binding.executePendingBindings()
+        }
+
     }
 
     private var onBrandItemClickListener: BrandItemClickListener? = null

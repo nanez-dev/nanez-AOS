@@ -37,9 +37,10 @@ class PopularAccordsAdapter : Adapter<PopularAccordsAdapter.PopularAccordViewHol
         }
 
         fun onBind(data: AccordItemViewData?) {
+            data ?: return
+
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
-            if (data == null) return
             binding.txtAccordTitleEnglish.text = data.engName?.toFirstUpperCase()
         }
     }

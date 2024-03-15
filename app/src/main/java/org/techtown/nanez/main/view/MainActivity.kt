@@ -1,5 +1,6 @@
 package org.techtown.nanez.main.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
@@ -11,6 +12,8 @@ import com.nane.base.view.BaseBindActivity
 import com.nane.home.presentation.view.HomeFragment
 import com.nane.profile.presentation.view.ProfileFragment
 import com.nane.storage.presentation.view.StorageFragment
+import com.nane.theme.presentation.view.ThemeAccordActivity
+import com.nane.theme.presentation.view.ThemeBrandActivity
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.R
 import org.techtown.nanez.databinding.MainActivityBinding
