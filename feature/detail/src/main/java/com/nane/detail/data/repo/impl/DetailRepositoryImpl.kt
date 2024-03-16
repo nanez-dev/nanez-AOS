@@ -25,4 +25,24 @@ class DetailRepositoryImpl @Inject constructor(
             DataResult.Failed(failed.errorMsg, failed.errorCode)
         }
     }
+
+    override suspend fun patchPerfumeWish(perfumeId: Int): DataResult<Boolean> {
+        val response = remoteSource.patchPerfumeWish(perfumeId)
+        return if (response.isSuccessful) {
+            DataResult.Success(response.body() ?: false)
+        } else {
+            val failed = getParseErrorResult(response)
+            DataResult.Failed(failed.errorMsg, failed.errorCode)
+        }
+    }
+
+    override suspend fun patchPerfumeHaving(perfumeId: Int): DataResult<Boolean> {
+        val response = remoteSource.patchPerfumeHaving(perfumeId)
+        return if (response.isSuccessful) {
+            DataResult.Success(response.body() ?: false)
+        } else {
+            val failed = getParseErrorResult(response)
+            DataResult.Failed(failed.errorMsg, failed.errorCode)
+        }
+    }
 }

@@ -8,4 +8,6 @@ import com.nane.detail.domain.data.PerfumeDetailDTO
  */
 interface IDetailRepository {
     suspend fun getPerfumeDetail(targetId: Int): DataResult<PerfumeDetailDTO>
+    suspend fun patchPerfumeWish(perfumeId: Int): DataResult<Boolean>
+    suspend fun patchPerfumeHaving(perfumeId: Int): DataResult<Boolean>
 }

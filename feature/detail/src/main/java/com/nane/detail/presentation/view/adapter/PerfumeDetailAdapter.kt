@@ -9,11 +9,14 @@ import com.nane.detail.databinding.PerfumeDetailBasicViewBinding
 import com.nane.detail.databinding.PerfumeDetailNoteViewBinding
 import com.nane.detail.presentation.data.PerfumeDetailViewData
 import com.nane.detail.presentation.data.PerfumeDetailViewType
+import com.nane.detail.presentation.viewmodel.PerfumeDetailViewModel
 
 /**
  * Created by haul on 3/10/24
  */
-class PerfumeDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PerfumeDetailAdapter(
+    private val vm: PerfumeDetailViewModel
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var viewData: PerfumeDetailViewData? = null
 
@@ -22,11 +25,22 @@ class PerfumeDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyItemRangeChanged(0, TOTAL_COUNT)
     }
 
+    fun notifyWishStatus(isWish: Boolean) {
+        viewData?.basicInfo?.isWish = isWish
+        notifyItemChanged(0)
+    }
+
+    fun notifyHavingStatus(isHaving: Boolean) {
+        viewData?.basicInfo?.isHaving = isHaving
+        notifyItemChanged(0)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             PerfumeDetailViewType.TYPE_BASIC -> {
                 PerfumeDetailBasicViewHolder(
-                    PerfumeDetailBasicViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                    PerfumeDetailBasicViewBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+                    vm
                 )
             }
             PerfumeDetailViewType.TYPE_ACCORD -> {

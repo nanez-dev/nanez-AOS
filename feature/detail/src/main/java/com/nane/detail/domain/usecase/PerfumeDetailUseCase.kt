@@ -29,4 +29,32 @@ class PerfumeDetailUseCase @Inject constructor(
         }
     }
 
+    suspend fun patchPerfumeWish(perfumeId: Int): DomainResult<Boolean> {
+        return when (val result = repository.patchPerfumeWish(perfumeId)) {
+            is DataResult.Success -> {
+                DomainResult.Success(result.data)
+            }
+            is DataResult.Failed -> {
+                DomainResult.Failed(result.msg, result.code)
+            }
+            is DataResult.Error -> {
+                DomainResult.Error(result.exception)
+            }
+        }
+    }
+
+    suspend fun patchPerfumeHaving(perfumeId: Int): DomainResult<Boolean> {
+        return when (val result = repository.patchPerfumeHaving(perfumeId)) {
+            is DataResult.Success -> {
+                DomainResult.Success(result.data)
+            }
+            is DataResult.Failed -> {
+                DomainResult.Failed(result.msg, result.code)
+            }
+            is DataResult.Error -> {
+                DomainResult.Error(result.exception)
+            }
+        }
+    }
+
 }

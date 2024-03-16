@@ -16,4 +16,12 @@ class DetailRemoteSourceImpl @Inject constructor(
     override suspend fun getPerfumeDetail(targetId: Int): Response<PerfumeDetailApi.Response> {
         return api.getPerfumeDetail(targetId)
     }
+
+    override suspend fun patchPerfumeWish(perfumeId: Int): Response<Boolean> {
+        return api.patchPerfumeWish(perfumeId)
+    }
+
+    override suspend fun patchPerfumeHaving(perfumeId: Int): Response<Boolean> {
+        return api.patchPerfumeHaving(perfumeId)
+    }
 }

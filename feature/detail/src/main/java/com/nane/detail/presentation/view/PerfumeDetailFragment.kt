@@ -29,7 +29,7 @@ class PerfumeDetailFragment : BaseBindFragment<PerfumeDetailFragmentBinding, Per
             with(recyclerView) {
                 itemAnimator = null
 
-                adapter ?: PerfumeDetailAdapter().apply {
+                adapter ?: PerfumeDetailAdapter(viewModel).apply {
                     adapter = this
                 }
 
@@ -55,6 +55,12 @@ class PerfumeDetailFragment : BaseBindFragment<PerfumeDetailFragmentBinding, Per
                 }
                 is PerfumeDetailEvent.InitView -> {
                     (dataBinding.recyclerView.adapter as? PerfumeDetailAdapter)?.setViewData(event.viewData)
+                }
+                is PerfumeDetailEvent.RefreshWish -> {
+                    (dataBinding.recyclerView.adapter as? PerfumeDetailAdapter)?.notifyWishStatus(event.isWish)
+                }
+                is PerfumeDetailEvent.RefreshHaving -> {
+                    (dataBinding.recyclerView.adapter as? PerfumeDetailAdapter)?.notifyHavingStatus(event.isHaving)
                 }
             }
         }

@@ -8,6 +8,7 @@ import com.nane.detail.databinding.PerfumeDetailAccordViewBinding
 import com.nane.detail.databinding.PerfumeDetailBasicViewBinding
 import com.nane.detail.databinding.PerfumeDetailNoteViewBinding
 import com.nane.detail.presentation.data.PerfumeDetailViewData
+import com.nane.detail.presentation.viewmodel.PerfumeDetailViewModel
 import org.techtown.nanez.utils.util.GlideImageLoadData
 import org.techtown.nanez.utils.util.GlideUtil
 import org.techtown.nanez.utils.util.ResUtils
@@ -17,10 +18,27 @@ import java.text.DecimalFormat
  * Created by haul on 3/10/24
  */
 class PerfumeDetailBasicViewHolder(
-    binding: PerfumeDetailBasicViewBinding
+    binding: PerfumeDetailBasicViewBinding,
+    vm: PerfumeDetailViewModel,
 ) : AbsPerfumeDetailViewHolder<PerfumeDetailViewData.Basic, PerfumeDetailBasicViewBinding>(binding) {
 
+    private var perfumeId = 0
+
+    init {
+        itemViewBinding.apply {
+            vgWish.setOnClickListener {
+                vm.onClickWish(perfumeId)
+            }
+
+            vgHaving.setOnClickListener {
+                vm.onClickHaving(perfumeId)
+            }
+        }
+    }
+
     override fun onBind(data: PerfumeDetailViewData.Basic) {
+        perfumeId = data.id
+
         itemViewBinding.apply {
             GlideUtil.instance.displayImage(GlideImageLoadData(imgPerfume, data.imageUrl))
             txtBrand.text = data.brandName
@@ -28,6 +46,7 @@ class PerfumeDetailBasicViewHolder(
             txtNameKor.text = ResUtils.instance.getString(com.nane.base.R.string.label_perfume_detail_kor_name, data.korName ?: "", data.capacity ?: "0")
 
             txtPrice.text = DecimalFormat("#,###").format(data.price)
+
 
             if (data.isWish) {
                 imgWish.setColorFilter(ResUtils.instance.getColor(com.nane.base.R.color.brand_500))

@@ -17,8 +17,8 @@ data class PerfumeDetailViewData(
         val price: Int,
         val imageUrl: String?,
         val capacity: String?,
-        val isWish: Boolean,
-        val isHaving: Boolean,
+        var isWish: Boolean,
+        var isHaving: Boolean,
     )
 
     data class Accord(

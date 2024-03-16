@@ -45,4 +45,49 @@ class PerfumeDetailViewModel @Inject constructor(
             showLoading(false)
         }
     }
+
+    fun onClickWish(perfumeId: Int) {
+        viewModelScope.launch {
+            showLoading(true)
+
+            when (val result = useCase.patchPerfumeWish(perfumeId)) {
+                is DomainResult.Success -> {
+                    _eventData.post(Event(PerfumeDetailEvent.RefreshWish(result.data)))
+                }
+                is DomainResult.Failed -> {
+                    showErrorToast(result.msg)
+                    _eventData.post(Event(PerfumeDetailEvent.Finish))
+                }
+                is DomainResult.Error -> {
+                    showErrorToast()
+                    _eventData.post(Event(PerfumeDetailEvent.Finish))
+                }
+            }
+
+            showLoading(false)
+        }
+    }
+
+    fun onClickHaving(perfumeId: Int) {
+        viewModelScope.launch {
+            showLoading(true)
+
+            when (val result = useCase.patchPerfumeHaving(perfumeId)) {
+                is DomainResult.Success -> {
+                    _eventData.post(Event(PerfumeDetailEvent.RefreshHaving(result.data)))
+                }
+                is DomainResult.Failed -> {
+                    showErrorToast(result.msg)
+                    _eventData.post(Event(PerfumeDetailEvent.Finish))
+                }
+                is DomainResult.Error -> {
+                    showErrorToast()
+                    _eventData.post(Event(PerfumeDetailEvent.Finish))
+                }
+            }
+
+            showLoading(false)
+        }
+
+    }
 }

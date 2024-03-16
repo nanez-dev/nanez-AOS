@@ -8,4 +8,6 @@ import retrofit2.Response
  */
 interface IDetailRemoteSource {
     suspend fun getPerfumeDetail(targetId: Int): Response<PerfumeDetailApi.Response>
+    suspend fun patchPerfumeWish(perfumeId: Int): Response<Boolean>
+    suspend fun patchPerfumeHaving(perfumeId: Int): Response<Boolean>
 }
