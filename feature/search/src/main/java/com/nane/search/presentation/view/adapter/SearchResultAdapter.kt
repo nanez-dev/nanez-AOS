@@ -14,9 +14,16 @@ import com.nane.search.presentation.view.adapter.decoration.RecommendedSearchWor
 
 class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() {
 
-    private var itemList: List<SearchResultViewData> = listOf()
+    private val itemList: MutableList<SearchResultViewData> = mutableListOf()
+
     fun setItemList(list: List<SearchResultViewData>) {
-        itemList = list
+        val insertedPositionStart = itemCount
+        itemList.addAll(list)
+        notifyItemRangeInserted(insertedPositionStart, list.size)
+    }
+
+    fun clearItemList() {
+        itemList.clear()
         notifyDataSetChanged()
     }
 
@@ -60,7 +67,7 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
         fun onPerfumeClick(itemId: Int)
     }
 
-    inner class RecommendedSearchWordListViewHolder(
+    private inner class RecommendedSearchWordListViewHolder(
         private val binding: SearchRecommendedSearchWordListItemViewBinding
     ): AbsSearchResultViewHolder<SearchResultViewData.RecommendedSearchWordListItemViewData>(binding.root) {
 
@@ -80,23 +87,23 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
         }
     }
 
-    inner class SearchPerfumeViewHolder(
+    private inner class SearchPerfumeViewHolder(
         private val binding: SearchPerfumeItemViewBinding
     ): AbsSearchResultViewHolder<SearchResultViewData.SearchPerfumeViewData>(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                onSearchResultClickListener?.onPerfumeClick(
+                    (itemList.getOrNull(adapterPosition) as? SearchResultViewData.SearchPerfumeViewData)?.id ?: -1
+                )
+            }
+        }
 
         override fun onBind(data: SearchResultViewData.SearchPerfumeViewData?) {
             data ?: return
 
             binding.setVariable(BR.viewData, data)
             binding.executePendingBindings()
-        }
-
-        init {
-            binding.root.setOnClickListener {
-                onSearchResultClickListener?.onPerfumeClick(
-                    (itemList.getOrNull(adapterPosition) as SearchResultViewData.SearchPerfumeViewData).id
-                )
-            }
         }
     }
 }

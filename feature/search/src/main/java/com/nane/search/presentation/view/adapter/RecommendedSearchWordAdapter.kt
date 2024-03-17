@@ -5,8 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.nane.search.databinding.SearchRecommendedSearchWordItemViewBinding
-import com.nane.search.presentation.data.SearchResultViewData
-import com.nane.theme.BR
 
 class RecommendedSearchWordAdapter: RecyclerView.Adapter<RecommendedSearchWordAdapter.RecommendedWordViewHolder>() {
 
@@ -28,14 +26,6 @@ class RecommendedSearchWordAdapter: RecyclerView.Adapter<RecommendedSearchWordAd
     }
 
     inner class RecommendedWordViewHolder(private val binding: SearchRecommendedSearchWordItemViewBinding): ViewHolder(binding.root) {
-        fun onBind(data: String?) {
-            data ?: return
-
-            binding.setVariable(BR.viewData, data)
-            binding.executePendingBindings()
-
-            binding.txtRecommendedSearchWord.text = data
-        }
 
         init {
             binding.txtRecommendedSearchWord.apply {
@@ -44,6 +34,12 @@ class RecommendedSearchWordAdapter: RecyclerView.Adapter<RecommendedSearchWordAd
                 }
                 clipToOutline = true
             }
+        }
+
+        fun onBind(data: String?) {
+            data ?: return
+
+            binding.txtRecommendedSearchWord.text = data
         }
     }
 

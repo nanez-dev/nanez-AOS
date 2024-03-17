@@ -15,7 +15,7 @@ class RecommendedSearchWordItemDecoration: RecyclerView.ItemDecoration() {
         super.getItemOffsets(outRect, view, parent, state)
 
         val position = parent.getChildAdapterPosition(view)
-        val itemCount = state.itemCount
+        val itemCount = parent.layoutManager?.itemCount ?: 0
 
         when (position) {
             0 -> {

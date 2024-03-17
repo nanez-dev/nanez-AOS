@@ -48,7 +48,7 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
                     val currentSearchWord = editSearch.text.toString()
 
                     // 아무것도 검색하지 않은 경우, 검색어가 이전과 같은 경우 API 호출 무시
-                    if (currentSearchWord.isEmpty() || currentSearchWord == viewModel.searchWord) return@setOnClickListener
+                    if (currentSearchWord.isEmpty() || currentSearchWord == viewModel.searchWord.value) return@setOnClickListener
                     if (!editSearch.isFocused) {
                         editSearch.isFocusable = true
                         return@setOnClickListener

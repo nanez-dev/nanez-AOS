@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nane.search.presentation.data.SearchViewType
 import org.techtown.nanez.utils.util.toDp
 
-class SearchResultItemDecoration: RecyclerView.ItemDecoration() {
+class SearchResultItemDecoration : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
@@ -20,8 +20,9 @@ class SearchResultItemDecoration: RecyclerView.ItemDecoration() {
             SearchViewType.RECOMMENDATION_TYPE -> {
                 outRect.bottom = 24.toDp()
             }
+
             else -> {
-                if (position%2 == 1) {
+                if (position % 2 == 1) {
                     outRect.left = 20.toDp()
                     outRect.right = (3.5).toDp()
                     if (position <= (parent.adapter?.itemCount?.minus(2) ?: 0)) {

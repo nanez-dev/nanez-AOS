@@ -60,8 +60,9 @@ class SearchResultsFragment : BaseBindFragment<SearchResultsFragmentBinding, Sea
                         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                             if (dy <= 0) return
 
-                            val lastItemPosition = (layoutManager as GridLayoutManager).findLastVisibleItemPosition()
-                            if (lastItemPosition >= ((viewModel.searchResults.value?.lastIndex ?: 10) - 1)) {
+                            val lastItemPosition = (layoutManager as? GridLayoutManager)?.findLastVisibleItemPosition() ?: Int.MIN_VALUE
+                            val totalItemCount = (adapter as? SearchResultAdapter)?.itemCount ?: 0
+                            if (lastItemPosition >= totalItemCount - VISIBLE_LAST_ITEMS_COUNT) {
                                 viewModel.loadMorePerfumes()
                             }
                         }
@@ -78,11 +79,19 @@ class SearchResultsFragment : BaseBindFragment<SearchResultsFragmentBinding, Sea
             if (havePerfumeResult) {
                 dataBinding.rvSearchResults.visibility = View.VISIBLE
                 dataBinding.vgNoResult.visibility = View.GONE
-                (dataBinding.rvSearchResults.adapter as SearchResultAdapter).setItemList(results)
+                (dataBinding.rvSearchResults.adapter as? SearchResultAdapter)?.setItemList(results)
             } else {
                 dataBinding.rvSearchResults.visibility = View.GONE
                 dataBinding.vgNoResult.visibility = View.VISIBLE
             }
         }
+
+        viewModel.searchWord.observe(viewLifecycleOwner) {
+            (dataBinding.rvSearchResults.adapter as? SearchResultAdapter)?.clearItemList()
+        }
+    }
+
+    companion object {
+        private const val VISIBLE_LAST_ITEMS_COUNT = 2
     }
 }
