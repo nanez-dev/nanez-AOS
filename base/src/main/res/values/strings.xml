@@ -85,6 +85,13 @@
     <string name="msg_profile_auth_title">로그인 후 이용하실 수 있습니다</string>
     <string name="msg_profile_auth_sub_title">로그인 하시면 더 많은 정보를 살펴 보실 수 있습니다</string>
 
+    <string name="label_origin_password">현재 비밀번호</string>
+    <string name="label_new_password">새 비밀번호</string>
+
+    <string name="msg_origin_password_title">비밀번호 변경을 위해\n현재 비밀번호를 입력해주세요</string>
+    <string name="msg_new_password_title">변경할 비밀번호를\n입력해주세요</string>
+    <string name="msg_origin_password_sub_title">비밀번호는 영문+숫자 조합의 8~20자리입니다:)</string>
+
     <string name="msg_search_word_recommendation">이런 검색어는 어떠세요?</string>
     <string name="msg_no_search_result">검색 결과가 없습니다.</string>
 
