@@ -1,5 +1,6 @@
 package com.nane.detail.presentation.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.nane.base.data.DomainResult
@@ -21,7 +22,7 @@ class PerfumeDetailViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _eventData by lazy { MutableLiveData<Event<PerfumeDetailEvent>>() }
-    val eventData get() = _eventData
+    val eventData: LiveData<Event<PerfumeDetailEvent>> get() = _eventData
 
 
     fun getPerfumeDetailInfo(targetId: Int) {
@@ -46,7 +47,7 @@ class PerfumeDetailViewModel @Inject constructor(
         }
     }
 
-    fun onClickWish(perfumeId: Int) {
+    fun onChangeWish(perfumeId: Int) {
         viewModelScope.launch {
             showLoading(true)
 
@@ -68,7 +69,7 @@ class PerfumeDetailViewModel @Inject constructor(
         }
     }
 
-    fun onClickHaving(perfumeId: Int) {
+    fun onChangHaving(perfumeId: Int) {
         viewModelScope.launch {
             showLoading(true)
 

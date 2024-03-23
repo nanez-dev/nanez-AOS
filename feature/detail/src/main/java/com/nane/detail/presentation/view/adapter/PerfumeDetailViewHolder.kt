@@ -1,6 +1,11 @@
 package com.nane.detail.presentation.view.adapter
 
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.nane.base.databinding.CommonBindingAdapter.setLoadImage
@@ -27,11 +32,11 @@ class PerfumeDetailBasicViewHolder(
     init {
         itemViewBinding.apply {
             vgWish.setOnClickListener {
-                vm.onClickWish(perfumeId)
+                vm.onChangeWish(perfumeId)
             }
 
             vgHaving.setOnClickListener {
-                vm.onClickHaving(perfumeId)
+                vm.onChangHaving(perfumeId)
             }
         }
     }
@@ -47,23 +52,16 @@ class PerfumeDetailBasicViewHolder(
 
             txtPrice.text = DecimalFormat("#,###").format(data.price)
 
-
-            if (data.isWish) {
-                imgWish.setColorFilter(ResUtils.instance.getColor(com.nane.base.R.color.brand_500))
-                txtWish.setTextColor(ResUtils.instance.getColor(com.nane.base.R.color.brand_500))
-            } else {
-                imgWish.setColorFilter(ResUtils.instance.getColor(com.nane.base.R.color.gray_800))
-                txtWish.setTextColor(ResUtils.instance.getColor(com.nane.base.R.color.gray_800))
-            }
-
-            if (data.isHaving) {
-                imgHaving.setColorFilter(ResUtils.instance.getColor(com.nane.base.R.color.brand_500))
-                txtHaving.setTextColor(ResUtils.instance.getColor(com.nane.base.R.color.brand_500))
-            } else {
-                imgHaving.setColorFilter(ResUtils.instance.getColor(com.nane.base.R.color.gray_800))
-                txtHaving.setTextColor(ResUtils.instance.getColor(com.nane.base.R.color.gray_800))
-            }
+            setViewData(data.isWish, imgWish, txtWish)
+            setViewData(data.isHaving, imgHaving, txtHaving)
         }
+    }
+
+
+    private fun setViewData(isSelected: Boolean, imgView: AppCompatImageView, textView: AppCompatTextView) {
+        val colorRes = if (isSelected) com.nane.base.R.color.brand_500 else com.nane.base.R.color.gray_800
+        imgView.setColorFilter(ResUtils.instance.getColor(colorRes))
+        textView.setTextColor(ResUtils.instance.getColor(colorRes))
     }
 }
 
@@ -74,27 +72,19 @@ class PerfumeDetailAccordViewHolder(
 
     override fun onBind(data: List<PerfumeDetailViewData.Accord>) {
         itemViewBinding.run {
-            data.getOrNull(0)?.let {
-                vgAccordOne.visibility = View.VISIBLE
-                imgAccord.setLoadImage(it.imageUrl, 12)
-                txtAccord.text = it.engName
-            } ?: run {
-                vgAccordOne.visibility = View.GONE
-            }
-            data.getOrNull(1)?.let {
-                vgAccordSecond.visibility = View.VISIBLE
-                imgAccordSecond.setLoadImage(it.imageUrl, 12)
-                txtAccordSecond.text = it.engName
-            } ?: run {
-                vgAccordSecond.visibility = View.GONE
-            }
-            data.getOrNull(2)?.let {
-                vgAccordThird.visibility = View.VISIBLE
-                imgAccordThird.setLoadImage(it.imageUrl, 12)
-                txtAccordThird.text = it.engName
-            } ?: run {
-                vgAccordThird.visibility = View.GONE
-            }
+            setViewData(data.getOrNull(0), vgAccordOne, imgAccord, txtAccord)
+            setViewData(data.getOrNull(1), vgAccordSecond, imgAccordSecond, txtAccordSecond)
+            setViewData(data.getOrNull(2), vgAccordThird, imgAccordThird, txtAccordThird)
+        }
+    }
+
+    private fun setViewData(data: PerfumeDetailViewData.Accord?, viewGroup: ViewGroup, imgView: AppCompatImageView, textView: AppCompatTextView) {
+        data?.let {
+            viewGroup.visibility = View.VISIBLE
+            imgView.setLoadImage(it.imageUrl, 12)
+            textView.text = it.engName
+        } ?: {
+            viewGroup.visibility = View.GONE
         }
     }
 }
@@ -109,50 +99,32 @@ class PerfumeDetailNoteViewHolder(
             txtNoteTitle.text = data.title
             txtNoteContent.text = data.subTitle
 
-            if (data.allTopNoteStr?.isEmpty() == true) {
-                vgTopNoteEtc.visibility = View.GONE
-            } else {
-                vgTopNoteEtc.visibility = View.VISIBLE
-                txtTopNoteEtc.text = data.allTopNoteStr
-            }
+            setEtcView(vgTopNoteEtc, txtTopNoteEtc, data.allTopNoteStr)
+            setEtcView(vgMiddleNoteEtc, txtMiddleNoteEtc, data.allMiddleNoteStr)
+            setEtcView(vgBaseNoteEtc, txtBaseNoteEtc, data.allBaseNoteStr)
 
-            if (data.allMiddleNoteStr?.isEmpty() == true) {
-                vgMiddleNoteEtc.visibility = View.GONE
-            } else {
-                vgMiddleNoteEtc.visibility = View.VISIBLE
-                txtMiddleNoteEtc.text = data.allMiddleNoteStr
-            }
+            setNoteMainView(data.topNote, vgTopNote, imgTopNote, txtTopNoteName)
+            setNoteMainView(data.middleNote, vgMiddleNote, imgMiddleNote, txtMiddleNoteName)
+            setNoteMainView(data.baseNote, vgBaseNote, imgBaseNote, txtBaseNoteName)
+        }
+    }
 
-            if (data.allBaseNoteStr?.isEmpty() == true) {
-                vgBaseNoteEtc.visibility = View.GONE
-            } else {
-                vgBaseNoteEtc.visibility = View.VISIBLE
-                txtBaseNoteEtc.text = data.allBaseNoteStr
-            }
+    private fun setEtcView(viewGroup: ViewGroup, textView: AppCompatTextView, content: String?) {
+        if (content.isNullOrEmpty()) {
+            viewGroup.visibility = View.GONE
+        } else {
+            viewGroup.visibility = View.VISIBLE
+            textView.text = content
+        }
+    }
 
-            data.topNote?.let {
-                vgTopNote.visibility = View.VISIBLE
-                imgTopNote.setLoadImage(it.imageUrl, 12)
-                txtTopNoteName.text = it.name
-            } ?: run {
-                vgTopNote.visibility = View.GONE
-            }
-
-            data.middleNote?.let {
-                vgMiddleNote.visibility = View.VISIBLE
-                imgMiddleNote.setLoadImage(it.imageUrl, 12)
-                txtMiddleNoteName.text = it.name
-            } ?: run {
-                vgMiddleNote.visibility = View.GONE
-            }
-
-            data.baseNote?.let {
-                vgBaseNote.visibility = View.VISIBLE
-                imgBaseNote.setLoadImage(it.imageUrl, 12)
-                txtBaseNoteName.text = it.name
-            } ?: run {
-                vgBaseNote.visibility = View.GONE
-            }
+    private fun setNoteMainView(data: PerfumeDetailViewData.Note.Detail?, viewGroup: ViewGroup, imageView: AppCompatImageView, textView: AppCompatTextView) {
+        data?.let {
+            viewGroup.visibility = View.VISIBLE
+            imageView.setLoadImage(it.imageUrl, 12)
+            textView.text = it.name
+        } ?: run {
+            viewGroup.visibility = View.GONE
         }
     }
 }
