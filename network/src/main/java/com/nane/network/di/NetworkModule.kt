@@ -3,6 +3,7 @@ package com.nane.network.di
 import com.nane.network.service.RetrofitAccordService
 import com.nane.network.service.RetrofitBrandService
 import com.nane.network.service.RetrofitPerfumeService
+import com.nane.network.service.RetrofitSearchService
 import com.nane.network.service.RetrofitUserService
 import dagger.Module
 import dagger.Provides
@@ -40,5 +41,11 @@ object NetworkModule {
     @Singleton
     fun providePerfumeService(retrofit: Retrofit): RetrofitPerfumeService {
         return retrofit.create(RetrofitPerfumeService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSearchService(retrofit: Retrofit): RetrofitSearchService {
+        return retrofit.create(RetrofitSearchService::class.java)
     }
 }

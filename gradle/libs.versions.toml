@@ -110,6 +110,11 @@ module-home = [
     "dotindicator"
 ]
 
+module-search = [
+    "hilt-android", "hilt-poet",
+    "retrofit2"
+]
+
 module-network = [
     "kotlin-coroutines-android", "kotlin-coroutines-core",
     "retrofit2", "retrofit2-gson",

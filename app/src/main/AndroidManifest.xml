@@ -54,6 +54,14 @@
             android:theme="@style/Theme.Nanez"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
+
+        <activity
+            android:name="com.nane.search.presentation.view.SearchActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false"/>
     </application>
 
 </manifest>
