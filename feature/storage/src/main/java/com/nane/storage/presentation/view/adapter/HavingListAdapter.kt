@@ -2,10 +2,8 @@ package com.nane.storage.presentation.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nane.storage.BR
-import com.nane.storage.R
 import com.nane.storage.databinding.HavingListRecyclerviewBinding
 import com.nane.storage.presentation.data.StorageViewData
 

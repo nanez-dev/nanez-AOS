@@ -4,7 +4,6 @@ import com.nane.network.api.theme.BrandApi
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 /**
  * Created by iseungjun on 2023/08/17

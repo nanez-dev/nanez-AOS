@@ -6,8 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
 import com.nane.join.domain.usecase.JoinUseCase
-import com.nane.join.presentation.data.*
-import com.nane.join.presentation.mapper.JoinViewMapper
+import com.nane.join.presentation.data.JoinAccordViewData
+import com.nane.join.presentation.data.JoinEmailAuthEventData
+import com.nane.join.presentation.data.JoinEventCodeEventData
+import com.nane.join.presentation.data.JoinNickNameEventData
+import com.nane.join.presentation.data.JoinPasswordEventData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.util.Event
@@ -21,7 +24,6 @@ import javax.inject.Inject
 @HiltViewModel
 class JoinViewModel @Inject constructor(
     private val useCase: JoinUseCase,
-    private val mapper: JoinViewMapper
 ) : BaseViewModel() {
 
     private val _accordList by lazy { MutableLiveData<List<JoinAccordViewData>>() }
@@ -141,7 +143,7 @@ class JoinViewModel @Inject constructor(
             useCase.getAllAccordList().collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        _accordList.postValue(result.data.map { mapper.toAccordViewData(it) })
+                        _accordList.postValue(result.data)
                     }
                     is DomainResult.Error -> {
                         _accordList.postValue(emptyList())

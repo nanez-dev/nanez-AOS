@@ -1,7 +1,5 @@
 package com.nane.base.data
 
-import java.lang.Exception
-
 /**
  * Created by iseungjun on 2023/08/26
  */

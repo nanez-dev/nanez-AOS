@@ -4,11 +4,9 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Window
 import android.view.WindowManager
-import com.nane.base.R
 import com.nane.base.databinding.LoadingDialogBinding
 
 /**

@@ -14,7 +14,11 @@ import com.nane.home.databinding.HomePagerItemViewBinding
 import com.nane.home.databinding.HomeTitleItemViewBinding
 import com.nane.home.presentation.data.HomeViewData
 import com.nane.home.presentation.data.HomeViewType
-import com.nane.home.presentation.view.adapter.*
+import com.nane.home.presentation.view.adapter.HomeAccordAdapter
+import com.nane.home.presentation.view.adapter.HomeBrandAdapter
+import com.nane.home.presentation.view.adapter.HomeHorizontalAdapter
+import com.nane.home.presentation.view.adapter.HomeMainAdapter
+import com.nane.home.presentation.view.adapter.HomeRecommendPerfumeAdapter
 import com.nane.home.presentation.view.adapter.decoration.HomeGridItemDecoration
 import com.nane.home.presentation.view.adapter.decoration.HomeHorizontalItemDecoration
 import org.techtown.nanez.utils.util.GlideImageLoadData

@@ -10,7 +10,6 @@ import com.nane.storage.presentation.data.StorageViewType
 import com.nane.storage.presentation.view.adapter.HavingListAdapter
 import com.nane.storage.presentation.viewmodel.HavingListViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import org.techtown.nanez.utils.session.SessionManager
 
 @AndroidEntryPoint
 class HavingListFragment : BaseBindFragment<HavingListFragmentBinding, HavingListViewModel>(R.layout.having_list_fragment) {

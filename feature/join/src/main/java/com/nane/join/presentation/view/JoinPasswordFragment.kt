@@ -12,7 +12,6 @@ import com.nane.join.presentation.data.JoinPasswordEventData
 import com.nane.join.presentation.viewmodel.JoinActViewModel
 import com.nane.join.presentation.viewmodel.JoinViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import org.techtown.nanez.utils.NaneLog
 import org.techtown.nanez.utils.util.ResUtils
 import org.techtown.nanez.utils.util.eventObserve
 import javax.inject.Inject

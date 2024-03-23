@@ -5,19 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
+import com.nane.join.domain.mapper.JoinDomainMapper
 import com.nane.join.domain.usecase.JoinUseCase
 import com.nane.join.presentation.data.JoinActEventData
 import com.nane.join.presentation.data.JoinUserViewData
-import com.nane.join.presentation.mapper.JoinViewMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.NaneLog
 import org.techtown.nanez.utils.util.Event
 import org.techtown.nanez.utils.util.post
 import javax.inject.Inject
-import kotlin.math.min
 import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Created by haul on 10/28/23
@@ -25,7 +24,7 @@ import kotlin.math.max
 @HiltViewModel
 class JoinActViewModel @Inject constructor(
     private val useCase: JoinUseCase,
-    private val mapper: JoinViewMapper
+    private val mapper: JoinDomainMapper
 ) : BaseViewModel() {
 
     private var totalProgress = 15

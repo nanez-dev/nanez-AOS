@@ -1,28 +1,28 @@
 package com.nane.profile.presentation.view
 
-import android.app.Activity
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import com.nane.base.view.BaseBindFragment
-import com.nane.base.viewmodel.BaseViewModel
 import com.nane.login.presentation.view.LoginActivity
 import com.nane.profile.R
 import com.nane.profile.databinding.ProfileFragmentBinding
-import com.nane.profile.presentation.data.ProfileLoginViewData
+import com.nane.profile.presentation.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.utils.session.SessionManager
 
 @AndroidEntryPoint
-class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, BaseViewModel>(R.layout.profile_fragment) {
+class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, ProfileViewModel>(R.layout.profile_fragment) {
 
-    override fun createViewModel() = viewModels<BaseViewModel>().value
+    override fun createViewModel() = viewModels<ProfileViewModel>().value
 
-    override fun initFragment(dataBinding: ProfileFragmentBinding, viewModel: BaseViewModel) {
+    override fun initFragment(dataBinding: ProfileFragmentBinding, viewModel: ProfileViewModel) {
         dataBinding.run {
             actionBar.setTitle(getString(com.nane.base.R.string.label_profile))
-
             initHelpCenterView(this)
+        }
+
+        viewModel.profileViewData.observe(viewLifecycleOwner) { data ->
+            dataBinding.profileLoginView.setViewData(data)
         }
     }
 
@@ -33,7 +33,7 @@ class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, BaseViewModel>(
                 it.profileLoginView.visibility = View.VISIBLE
                 it.profileNotLoginView.visibility = View.GONE
 
-                initLoginView(it.profileLoginView)
+                viewModel?.getProfileInfo()
             } else {
                 it.profileNotLoginView.visibility = View.VISIBLE
                 it.profileLoginView.visibility = View.GONE
@@ -42,18 +42,6 @@ class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, BaseViewModel>(
             }
         }
     }
-
-    private fun initLoginView(loginView: ProfileLoginView) {
-        loginView.run {
-            setViewData(ProfileLoginViewData(
-                nickName = "",
-                email = SessionManager.instance.getUserEmail(),
-                wishCount = 0,
-                havingCount = 0
-            ))
-        }
-    }
-
 
     private fun initNotLoginView(notLoginView: ProfileNoLoginView) {
         notLoginView.run {

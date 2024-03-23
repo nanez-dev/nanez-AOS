@@ -2,9 +2,10 @@ package com.nane.join.domain.usecase
 
 import com.nane.base.data.DataResult
 import com.nane.base.data.DomainResult
-import com.nane.join.domain.data.JoinAccordDTO
 import com.nane.join.domain.data.JoinSignUpDTO
+import com.nane.join.domain.mapper.JoinDomainMapper
 import com.nane.join.domain.repo.IJoinRepository
+import com.nane.join.presentation.data.JoinAccordViewData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.util.regex.Pattern
@@ -14,7 +15,8 @@ import javax.inject.Inject
  * Created by haul on 10/30/23
  */
 class JoinUseCase @Inject constructor(
-    private val repository: IJoinRepository
+    private val repository: IJoinRepository,
+    private val mapper: JoinDomainMapper,
 ) {
 
     private val passwordPattern by lazy { "^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,20}\$" }
@@ -104,11 +106,11 @@ class JoinUseCase @Inject constructor(
         }
     }
 
-    suspend fun getAllAccordList(): Flow<DomainResult<List<JoinAccordDTO>>> = flow {
+    suspend fun getAllAccordList(): Flow<DomainResult<List<JoinAccordViewData>>> = flow {
         repository.getAllAccordList().collect {  result ->
             when (result) {
                 is DataResult.Success -> {
-                    emit(DomainResult.Success(result.data))
+                    emit(DomainResult.Success(result.data.map { mapper.toAccordViewData(it) }))
                 }
                 is DataResult.Failed -> {
                     emit(DomainResult.Failed(result.msg, result.code))

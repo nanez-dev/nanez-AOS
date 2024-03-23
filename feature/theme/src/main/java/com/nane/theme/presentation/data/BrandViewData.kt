@@ -33,3 +33,9 @@ data class BrandItemViewData(
     val korDescriptionTitle: String?,
     val imgUrl: String?
 )
+
+
+data class BrandDetailViewData(
+    val brandItemViewData: BrandItemViewData?,
+    val relatedPerfumes: List<PerfumeViewData>
+)

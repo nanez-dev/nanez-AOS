@@ -7,10 +7,8 @@ import com.nane.base.viewmodel.BaseViewModel
 import com.nane.login.domain.usecase.UserLoginInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.techtown.nanez.main.data.MainEventData
-import org.techtown.nanez.utils.session.SessionManager
 import org.techtown.nanez.utils.util.Event
 import javax.inject.Inject
 

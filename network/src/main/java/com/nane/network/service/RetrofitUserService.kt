@@ -2,11 +2,13 @@ package com.nane.network.service
 
 import com.nane.network.api.users.JoinEmailAuthApi
 import com.nane.network.api.users.JoinVerifyAuthEmailCodeApi
-import org.techtown.nanez.data.api.users.SignInApi
+import com.nane.network.api.users.ProfileApi
 import com.nane.network.api.users.SignUpApi
+import org.techtown.nanez.data.api.users.SignInApi
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -14,6 +16,9 @@ import retrofit2.http.Query
  * Created by iseungjun on 2023/08/17
  */
 interface RetrofitUserService {
+
+    @GET("api/users/me")
+    suspend fun getMyProfile(): Response<ProfileApi.Response>
 
     @POST("api/users/nickname-verify")
     suspend fun postNicknameVerify(@Query("nickname") nickname: String): Response<Boolean>
@@ -32,5 +37,6 @@ interface RetrofitUserService {
 
     @DELETE("api/users/withdrawal")
     suspend fun deleteWithdraw(): Response<String>
+
 
 }

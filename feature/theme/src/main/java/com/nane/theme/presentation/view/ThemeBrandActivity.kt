@@ -1,5 +1,7 @@
 package com.nane.theme.presentation.view
 
+import android.content.Context
+import android.content.Intent
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -43,7 +45,26 @@ class ThemeBrandActivity : BaseBindActivity<ThemeBrandActivityBinding, ThemeBran
             }
 
             with(rvBrandItems) {
-                adapter ?: BrandAdapter().apply { adapter = this }
+                adapter ?: BrandAdapter().apply {
+                    setOnBrandItemClickListener(
+                        object: BrandAdapter.BrandItemClickListener {
+                            override fun onPopularBrandItemClick(itemId: Int) {
+                                addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeBrandDetailFragment.createArgument(itemId)) {
+                                    ThemeBrandDetailFragment()
+                                }
+                                setDetailFragmentVisibility(true)
+                            }
+
+                            override fun onAllBrandItemClick(itemId: Int) {
+                                addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeBrandDetailFragment.createArgument(itemId)) {
+                                    ThemeBrandDetailFragment()
+                                }
+                                setDetailFragmentVisibility(true)
+                            }
+                        }
+                    )
+                    adapter = this
+                }
                 layoutManager ?: GridLayoutManager(context, 2).apply {
                     spanSizeLookup = object: GridLayoutManager.SpanSizeLookup() {
                         override fun getSpanSize(position: Int): Int {
@@ -56,24 +77,6 @@ class ThemeBrandActivity : BaseBindActivity<ThemeBrandActivityBinding, ThemeBran
                     layoutManager = this
                 }
                 if (itemDecorationCount == 0) addItemDecoration(BrandItemDecoration())
-                (adapter as BrandAdapter).setOnBrandItemClickListener(
-                    object: BrandAdapter.BrandItemClickListener {
-
-                        override fun onPopularBrandItemClick(itemId: Int) {
-                            addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeBrandDetailFragment.createArgument(itemId)) {
-                                ThemeBrandDetailFragment()
-                            }
-                            setDetailFragmentVisibility(true)
-                        }
-
-                        override fun onAllBrandItemClick(itemId: Int) {
-                            addFragment(dataBinding.container, tag = TAG_FRAGMENT, arguments = ThemeBrandDetailFragment.createArgument(itemId)) {
-                                ThemeBrandDetailFragment()
-                            }
-                            setDetailFragmentVisibility(true)
-                        }
-                    }
-                )
             }
         }
 
@@ -109,5 +112,12 @@ class ThemeBrandActivity : BaseBindActivity<ThemeBrandActivityBinding, ThemeBran
 
     companion object {
         private const val TAG_FRAGMENT ="ThemeBrandDetailFragment"
+
+        fun createIntent(context: Context, brandId: Int): Intent {
+            return Intent(context, ThemeBrandActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                putExtra(ThemeBrandDetailFragment.BRAND_ID, brandId)
+            }
+        }
     }
 }

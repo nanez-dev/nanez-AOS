@@ -5,10 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
-import com.nane.theme.domain.usecase.BrandDetailUsecase
+import com.nane.theme.domain.usecase.BrandDetailUseCase
 import com.nane.theme.presentation.data.BrandItemViewData
 import com.nane.theme.presentation.data.PerfumeViewData
-import com.nane.theme.presentation.mapper.BrandDetailDomainMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.util.post
@@ -16,8 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ThemeBrandDetailViewModel @Inject constructor(
-    private val brandDetailUsecase: BrandDetailUsecase,
-    private val mapper: BrandDetailDomainMapper
+    private val brandDetailUseCase: BrandDetailUseCase,
 ) : BaseViewModel() {
 
     private val _brandItem by lazy { MutableLiveData<BrandItemViewData>() }
@@ -31,12 +29,11 @@ class ThemeBrandDetailViewModel @Inject constructor(
     fun getBrandDetailData(brandId: Int, limit: Int) {
         viewModelScope.launch {
             showLoading(true)
-            brandDetailUsecase.getBrandDetail(brandId = brandId).collect { result ->
+            brandDetailUseCase.getBrandDetail(brandId = brandId).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
-                        val viewData = mapper.toViewData(result.data)
-                        _brandItem.post(viewData.brandItemViewData)
-                        _relatedPerfumes.post(viewData.relatedPerfumes)
+                        _brandItem.post(result.data.brandItemViewData)
+                        _relatedPerfumes.post(result.data.relatedPerfumes)
                     }
                     is DomainResult.Failed -> {
                         showErrorToast()

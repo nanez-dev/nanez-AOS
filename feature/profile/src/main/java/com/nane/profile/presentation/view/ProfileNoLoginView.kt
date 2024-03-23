@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.nane.profile.databinding.ProfileLoginViewBinding
 import com.nane.profile.databinding.ProfileNoLoginViewBinding
 import org.techtown.nanez.utils.util.ResUtils
 

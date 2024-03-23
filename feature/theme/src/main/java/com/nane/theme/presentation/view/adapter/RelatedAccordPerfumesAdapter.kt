@@ -31,18 +31,19 @@ class RelatedAccordPerfumesAdapter(): Adapter<RelatedAccordPerfumesAdapter.Brand
 
     inner class BrandViewHolder(private val binding: ThemeRelatedAccordItemViewBinding): ViewHolder(binding.root) {
 
-        fun onBind(data: PerfumeViewData?) {
-            binding.setVariable(BR.viewData, data)
-            binding.executePendingBindings()
-            if (data == null) return
-            binding.txtItemPrice.text = data.price.toPrice()
-        }
-
         init {
             binding.root.setOnClickListener {
                 onItemClickListener?.onItemClick(itemList.getOrNull(adapterPosition)?.id ?: -1)
             }
             binding.txtItemPriceSub.paintFlags = binding.txtItemPriceSub.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        }
+
+        fun onBind(data: PerfumeViewData?) {
+            data ?: return
+
+            binding.setVariable(BR.viewData, data)
+            binding.executePendingBindings()
+            binding.txtItemPrice.text = data.price.toPrice()
         }
     }
 

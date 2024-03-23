@@ -1,5 +1,6 @@
 package com.nane.login.data.source.remote
 
+import com.nane.login.data.source.IUserRemoteDataSource
 import com.nane.network.service.RetrofitUserService
 import org.techtown.nanez.data.api.users.SignInApi
 import retrofit2.Response
@@ -10,9 +11,9 @@ import javax.inject.Inject
  */
 class UserRemoteDataSource @Inject constructor(
     private val userService: RetrofitUserService
-) {
+) : IUserRemoteDataSource {
 
-    suspend fun postLogin(body: SignInApi.Body): Response<SignInApi.Response> {
+    override suspend fun postLogin(body: SignInApi.Body): Response<SignInApi.Response> {
         return userService.postSignIn(body)
     }
 }

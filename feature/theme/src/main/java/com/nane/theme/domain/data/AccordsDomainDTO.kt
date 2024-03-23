@@ -17,3 +17,9 @@ data class AccordDTO(
     val engDescriptionBody: String? = null,
     val korDescriptionBody: String? = null
 )
+
+
+data class AccordDetailDomainDTO(
+    val accord: AccordDTO?,
+    val relatedPerfumes: List<PerfumeDomainDTO>?
+)
