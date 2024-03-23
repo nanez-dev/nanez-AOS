@@ -32,13 +32,15 @@ android {
 dependencies {
     implementation(project(":base"))
     implementation(project(":utils"))
-    implementation(project(mapOf("path" to ":network")))
+    implementation(project(":network"))
     implementation(project(":feature:home"))
     implementation(project(":feature:login"))
     implementation(project(":feature:join"))
     implementation(project(":feature:theme"))
     implementation(project(":feature:profile"))
     implementation(project(":feature:storage"))
+    implementation(project(":feature:detail"))
+    implementation(project(":feature:search"))
 
     implementation(libs.bundles.module.app)
     kapt(libs.bundles.hilt.compile.kapt)

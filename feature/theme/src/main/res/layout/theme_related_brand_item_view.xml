@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -37,20 +38,33 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtBrandName"
+            android:id="@+id/txtAccordName"
+            android:layout_width="0dp"
             style="@style/Body_14_R"
+            android:ellipsize="end"
             android:layout_marginBottom="2dp"
+            android:maxLines="1"
+            android:text="@{viewData.brand.korName}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgItem"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintBottom_toTopOf="@id/txtItemName"
             app:layout_constraintLeft_toLeftOf="@id/imgStar"
-            tools:text="@{viewData.brand.korName}" />
+            tools:text="dasmfkaskdsmf;amlsdsagasd" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtItemName"
             style="@style/Body_16_B"
+            android:layout_width="0dp"
+            android:text="@{viewData.korName}"
             android:layout_marginBottom="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtAccordName"
             app:layout_constraintBottom_toTopOf="@id/txtItemRating"
             app:layout_constraintLeft_toLeftOf="@id/imgStar"
-            tools:text="@{viewData.korName}" />
+            app:layout_constraintVertical_bias="0"
+            tools:text="dasmfkaskdsmf" />
 
         <!--        선명한 별 아이콘 필요-->
         <ImageView
@@ -59,7 +73,7 @@
             android:layout_height="16dp"
             android:layout_marginLeft="12dp"
             android:src="@drawable/img_star"
-            app:layout_constraintBottom_toBottomOf="@id/imgItem"
+            app:layout_constraintBottom_toBottomOf="@id/txtItemRating"
             app:layout_constraintLeft_toRightOf="@id/imgItem"
             app:layout_constraintTop_toTopOf="@id/txtItemRating" />
 
@@ -67,22 +81,30 @@
             android:id="@+id/txtItemRating"
             style="@style/Body_14_R"
             android:layout_marginLeft="2dp"
+            android:text="@{String.valueOf(viewData.rating)}"
+            app:layout_constraintTop_toBottomOf="@+id/txtItemName"
+            app:layout_constraintVertical_bias="0"
             app:layout_constraintBottom_toBottomOf="@id/imgItem"
             app:layout_constraintLeft_toRightOf="@id/imgStar"
-            tools:text="@{String.valueOf(viewData.rating)}" />
+            tools:text="4.32(19)" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtItemDescription"
             style="@style/Body_14_R"
             android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            android:text="@{viewData.description}"
+            android:textColor="@color/gray_600"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/imgItem"
             app:layout_constraintTop_toBottomOf="@id/imgItem"
-            tools:text="@{viewData.description}" />
+            tools:text="화이트 프리지아 부케향에 이제 막 익은 배의 신선함을 입히고 호박, 파 추출물을 사용하여 산뜻한 향기를 가지고 있습니다." />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtItemPrice"
             style="@style/Head_18_B"
             android:layout_marginTop="16dp"
+            android:textColor="@color/gray_800"
             app:layout_constraintLeft_toLeftOf="@id/imgItem"
             app:layout_constraintTop_toBottomOf="@id/txtItemDescription" />
 

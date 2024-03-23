@@ -12,6 +12,7 @@ dependencies {
     implementation(project(":utils"))
     implementation(project(":network"))
     implementation(project(":feature:theme"))
+    implementation(project(":feature:detail"))
     implementation(project(":feature:search"))
 
     implementation(libs.bundles.module.home)

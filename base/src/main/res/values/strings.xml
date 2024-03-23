@@ -93,4 +93,18 @@
     <string name="msg_profile_name_content">%s님, 안녕하세요</string>
     <string name="msg_empty_storage_having_list">아직 보유한 향수가 없습니다.</string>
     <string name="msg_empty_storage_wish_list">아직 찜한 향수가 없습니다.</string>
+
+    <string name="label_perfume_detail_info">향수 정보</string>
+    <string name="label_won">원</string>
+    <string name="label_having">보유중</string>
+    <string name="label_wish">찜</string>
+    <string name="label_perfume_detail_kor_name">%s, %sml</string>
+    <string name="label_accord">어코드</string>
+    <string name="label_note">노트</string>
+    <string name="label_top_note">Top Note</string>
+    <string name="label_top_note_with_colon">Top Note:</string>
+    <string name="label_middle_note">Middle Note</string>
+    <string name="label_middle_note_with_colon">Middle Note:</string>
+    <string name="label_base_note">Base Note</string>
+    <string name="label_base_note_with_colon">Base Note:</string>
 </resources>

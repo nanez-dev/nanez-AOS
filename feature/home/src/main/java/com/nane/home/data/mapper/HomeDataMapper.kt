@@ -34,7 +34,7 @@ class HomeDataMapper @Inject constructor() {
         return HomeSpecialPerfumeDTO(
             title = apiData?.title,
             itemList = apiData?.list?.map {
-                HomePerfumeDTO(imgUrl = it.image, name = it.name, brandName = it.brand?.name, content = it.description, capacity = it.capacity)
+                HomePerfumeDTO(imgUrl = it.image, name = it.name, brandName = it.brand?.name, content = it.description, capacity = it.capacity, id = it.id)
             } ?: emptyList()
         )
     }
@@ -43,7 +43,7 @@ class HomeDataMapper @Inject constructor() {
         return HomeRecommendPerfumeDTO(
             title = apiData?.title,
             itemList = apiData?.list?.map {
-                HomePerfumeDTO(imgUrl = it.image, name = it.name, brandName = it.brand?.name, content = it.description, capacity = it.capacity)
+                HomePerfumeDTO(imgUrl = it.image, name = it.name, brandName = it.brand?.name, content = it.description, capacity = it.capacity, id = it.id)
             } ?: emptyList()
         )
     }

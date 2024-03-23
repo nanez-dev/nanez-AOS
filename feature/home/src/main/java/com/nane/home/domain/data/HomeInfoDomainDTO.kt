@@ -60,7 +60,8 @@ data class HomePerfumeDTO(
     val name: String?,
     val brandName: String?,
     val capacity: String?,
-    val content: String?
+    val content: String?,
+    val id: Int,
 )
 
 

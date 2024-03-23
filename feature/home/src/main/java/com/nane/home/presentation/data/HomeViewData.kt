@@ -69,4 +69,5 @@ data class PerfumeItemViewData(
     val name: String?,
     val capacity: String?,
     val content: String? = null,
+    val id: Int,
 )

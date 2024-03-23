@@ -114,7 +114,10 @@
     <color name="black_3">#666666</color>
     <color name="black_4">#111111</color>
 
+    <color name="red_1">#F27766</color>
+
     <color name="gray_400">#999999</color>
+    <color name="gray_600">#666666</color>
     <color name="gray_800">#333333</color>
     <color name="gray_2">#424242</color>
     <color name="gray_300">#DBDBDB</color>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nane.base.view.BaseBindFragment
+import com.nane.detail.presentation.view.PerfumeDetailActivity
 import com.nane.theme.BR
 import com.nane.theme.R
 import com.nane.theme.databinding.ThemeAccordDetailFragmentBinding
@@ -27,7 +28,9 @@ class ThemeAccordDetailFragment : BaseBindFragment<ThemeAccordDetailFragmentBind
                 setOnItemClickListener(
                     object: RelatedAccordPerfumesAdapter.ItemClickListener {
                         override fun onItemClick(idx: Int) {
-
+                            activity?.let {
+                                it.startActivity(PerfumeDetailActivity.createIntent(it, idx))
+                            }
                         }
                     }
                 )

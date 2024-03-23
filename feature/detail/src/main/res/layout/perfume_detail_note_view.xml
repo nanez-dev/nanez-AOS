@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="20dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtTitle"
+            style="@style/Body_16_B"
+            android:layout_width="0dp"
+            android:text="@string/label_note"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtNoteTitle"
+            style="@style/Head_18_B"
+            android:layout_width="0dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/red_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+            tools:text="가을의 정수" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtNoteContent"
+            style="@style/Body_16_R"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNoteTitle"
+            tools:text="화이트 프리지아 부케향에 이제 막 익은 배의 신선함을 입히고 호박, 파출리, 우디향으로 은은함을 더했습니다." />
+
+
+        <LinearLayout
+            android:id="@+id/vgTopNoteEtc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/txtNoteContent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body_16_M"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_top_note_with_colon" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTopNoteEtc"
+                style="@style/Body_16_M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                tools:text="bergamot, cardamom, ambrette musk, plum" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/vgMiddleNoteEtc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/vgTopNoteEtc">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body_16_M"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_middle_note_with_colon" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtMiddleNoteEtc"
+                style="@style/Body_16_M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                tools:text="bergamot, cardamom, ambrette musk, plum" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/vgBaseNoteEtc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/vgMiddleNoteEtc">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body_16_M"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_base_note_with_colon" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtBaseNoteEtc"
+                style="@style/Body_16_M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                tools:text="bergamot, cardamom, ambrette musk, plum" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/vgTopNote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="4dp"
+            android:visibility="gone"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/vgMiddleNote"
+            app:layout_constraintTop_toBottomOf="@+id/vgBaseNoteEtc"
+            app:layout_goneMarginTop="16dp"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgTopNote"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/shape_white_r12_line50_s1"
+                android:padding="13dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintDimensionRatio="106:106"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTopNoteTitle"
+                style="@style/Detail_11_R"
+                android:layout_width="0dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/label_top_note"
+                android:textColor="@color/gray_600"
+                app:layout_constraintLeft_toLeftOf="@+id/imgTopNote"
+                app:layout_constraintRight_toRightOf="@+id/imgTopNote"
+                app:layout_constraintTop_toBottomOf="@+id/imgTopNote" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtTopNoteName"
+                style="@style/Body_14_M"
+                android:layout_width="0dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toLeftOf="@+id/txtTopNoteTitle"
+                app:layout_constraintRight_toRightOf="@+id/txtTopNoteTitle"
+                app:layout_constraintTop_toBottomOf="@+id/txtTopNoteTitle"
+                tools:text="Fruity" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/vgMiddleNote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@+id/vgTopNote"
+            app:layout_constraintRight_toLeftOf="@+id/vgBaseNote"
+            app:layout_constraintTop_toBottomOf="@+id/vgBaseNoteEtc"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgMiddleNote"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/shape_white_r12_line50_s1"
+                android:padding="13dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintDimensionRatio="106:106"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtMiddleNoteTitle"
+                style="@style/Detail_11_R"
+                android:layout_width="0dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/label_middle_note"
+                android:textColor="@color/gray_600"
+                app:layout_constraintLeft_toLeftOf="@+id/imgMiddleNote"
+                app:layout_constraintRight_toRightOf="@+id/imgMiddleNote"
+                app:layout_constraintTop_toBottomOf="@+id/imgMiddleNote" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtMiddleNoteName"
+                style="@style/Body_14_M"
+                android:layout_width="0dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toLeftOf="@+id/txtMiddleNoteTitle"
+                app:layout_constraintRight_toRightOf="@+id/txtMiddleNoteTitle"
+                app:layout_constraintTop_toBottomOf="@+id/txtMiddleNoteTitle"
+                tools:text="Fruity" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/vgBaseNote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@+id/vgMiddleNote"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vgBaseNoteEtc"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgBaseNote"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/shape_white_r12_line50_s1"
+                android:padding="13dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintDimensionRatio="106:106"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtBaseNoteTitle"
+                style="@style/Detail_11_R"
+                android:layout_width="0dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/label_base_note"
+                android:textColor="@color/gray_600"
+                app:layout_constraintLeft_toLeftOf="@+id/imgBaseNote"
+                app:layout_constraintRight_toRightOf="@+id/imgBaseNote"
+                app:layout_constraintTop_toBottomOf="@+id/imgBaseNote" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtBaseNoteName"
+                style="@style/Body_14_M"
+                android:layout_width="0dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintLeft_toLeftOf="@+id/txtBaseNoteTitle"
+                app:layout_constraintRight_toRightOf="@+id/txtBaseNoteTitle"
+                app:layout_constraintTop_toBottomOf="@+id/txtBaseNoteTitle"
+                tools:text="Fruity Fruity Fruity" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

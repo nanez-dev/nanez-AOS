@@ -75,6 +75,7 @@ class HomeApi {
         @SerializedName("subtitle")
         val description: String?,
         val brand: BrandItem?,
+        val id: Int,
     )
 
     @Keep

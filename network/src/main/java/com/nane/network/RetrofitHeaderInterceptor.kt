@@ -17,7 +17,7 @@ class RetrofitHeaderInterceptor : Interceptor {
             if (SessionManager.instance.isLoginCheck()) {
                 val token = SessionManager.instance.getAccessToken()
                 if (token?.isNotEmpty() == true) {
-                    header(API_AUTH_TOKEN, token)
+                    header(API_AUTH_TOKEN, "Bearer $token")
                 }
             }
         }
@@ -26,6 +26,6 @@ class RetrofitHeaderInterceptor : Interceptor {
     }
 
     companion object {
-        private const val API_AUTH_TOKEN = "API_AUTH_TOKEN"
+        private const val API_AUTH_TOKEN = "Authorization"
     }
 }
