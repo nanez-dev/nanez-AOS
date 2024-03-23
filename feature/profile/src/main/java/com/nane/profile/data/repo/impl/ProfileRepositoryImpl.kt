@@ -36,4 +36,16 @@ class ProfileRepositoryImpl @Inject constructor(
     }.catch { t ->
         emit(DataResult.Error(Exception(t)))
     }.flowOn(Dispatchers.IO)
+
+    override suspend fun patchChangeMyPassword(current_password: String, new_password: String): Flow<DataResult<Unit>> = flow {
+        val response = remoteSource.changeMyPassword(PasswordChangeApi.Body(current_password, new_password))
+        if (response.isSuccessful) {
+            emit(DataResult.Success(Unit))
+        } else {
+            val failed = getParseErrorResult(response)
+            emit(DataResult.Failed(failed.errorMsg, failed.errorCode))
+        }
+    }.catch { t ->
+        emit(DataResult.Error(Exception(t)))
+    }.flowOn(Dispatchers.IO)
 }
