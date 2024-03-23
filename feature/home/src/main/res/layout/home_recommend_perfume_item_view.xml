@@ -25,7 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:adjustViewBounds="true"
-            android:background="@drawable/shape_white_r20_gray3_s1"
+            android:background="@drawable/shape_white_r20_line100_s1"
             android:scaleType="centerInside"
             android:padding="1dp"
             app:img_load="@{viewData.imgUrl}"

@@ -85,6 +85,9 @@
     <string name="msg_profile_auth_title">로그인 후 이용하실 수 있습니다</string>
     <string name="msg_profile_auth_sub_title">로그인 하시면 더 많은 정보를 살펴 보실 수 있습니다</string>
 
+    <string name="msg_search_word_recommendation">이런 검색어는 어떠세요?</string>
+    <string name="msg_no_search_result">검색 결과가 없습니다.</string>
+
     <string name="label_theme_related_title">%s 대표 향수</string>
 
     <string name="msg_profile_name_content">%s님, 안녕하세요</string>

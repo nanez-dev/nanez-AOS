@@ -11,6 +11,7 @@ import com.nane.home.presentation.data.HomeViewType
 import com.nane.home.presentation.data.PerfumeItemViewData
 import com.nane.home.presentation.view.adapter.HomeMainAdapter
 import com.nane.home.presentation.view.adapter.decoration.HomeMainItemDecoration
+import com.nane.search.presentation.view.SearchActivity
 import com.nane.home.presentation.viewmodel.HomeViewModel
 import com.nane.theme.presentation.view.ThemeAccordActivity
 import com.nane.theme.presentation.view.ThemeBrandActivity
@@ -28,7 +29,9 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
                 setRightBtn(com.nane.base.R.drawable.icon_search)
                 actionListener = object : ActionbarView.ActionListener {
                     override fun onClickRight() {
-
+                        activity?.let {
+                            it.startActivity(SearchActivity.createIntent(it))
+                        }
                     }
                 }
             }
