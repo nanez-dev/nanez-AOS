@@ -2,7 +2,6 @@ package com.nane.network.api.search
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
-import com.nane.network.api.theme.AccordApi
 
 @Keep
 class SearchApi {
