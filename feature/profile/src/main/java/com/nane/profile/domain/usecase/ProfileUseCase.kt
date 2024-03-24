@@ -33,4 +33,20 @@ class ProfileUseCase @Inject constructor(
             }
         }
     }
+
+    suspend fun changeMyPassword(current_password: String, new_password: String): Flow<DataResult<Unit>> = flow {
+        repository.patchChangeMyPassword(current_password, new_password).collect { result ->
+            when (result) {
+                is DataResult.Success -> {
+                    emit(DomainResult.Success(Unit))
+                }
+                is DataResult.Failed -> {
+                    emit(DomainResult.Failed(result.msg, result.code))
+                }
+                is DataResult.Error -> {
+                    emit(DomainResult.Error(result.exception))
+                }
+            }
+        }
+    }
 }

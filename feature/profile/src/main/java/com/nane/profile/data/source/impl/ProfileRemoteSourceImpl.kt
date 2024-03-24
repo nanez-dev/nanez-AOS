@@ -1,6 +1,7 @@
 package com.nane.profile.data.source.impl
 
 import com.nane.network.api.users.ProfileApi
+import com.nane.network.api.users.PasswordChangeApi
 import com.nane.network.service.RetrofitUserService
 import com.nane.profile.data.source.IProfileRemoteSource
 import retrofit2.Response
@@ -15,5 +16,9 @@ class ProfileRemoteSourceImpl @Inject constructor(
 
     override suspend fun getMyProfileInfo(): Response<ProfileApi.Response> {
         return apiService.getMyProfile()
+    }
+
+    override suspend fun changeMyPassword(body: PasswordChangeApi.Body): Response<Unit> {
+        return apiService.changePassword(body)
     }
 }
