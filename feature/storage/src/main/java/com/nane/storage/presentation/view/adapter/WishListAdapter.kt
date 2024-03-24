@@ -11,6 +11,11 @@ class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
 
     private var dataList : List<StorageViewData.StorageItem> = emptyList()
 
+    var userActionListener: UserActionListener? = null
+    interface UserActionListener {
+        fun onMoveDetail(perfumeId: Int)
+    }
+
     fun setItemList(list: List<StorageViewData.StorageItem>) {
         dataList = list
         notifyDataSetChanged()
@@ -37,6 +42,10 @@ class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
             binding.apply {
                 setVariable(BR.viewData, item)
                 executePendingBindings()
+
+                vgParent.setOnClickListener {
+                    userActionListener?.onMoveDetail(item.id)
+                }
             }
         }
     }

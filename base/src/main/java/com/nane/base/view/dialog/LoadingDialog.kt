@@ -1,4 +1,4 @@
-package com.nane.base.view
+package com.nane.base.view.dialog
 
 import android.app.Dialog
 import android.content.Context

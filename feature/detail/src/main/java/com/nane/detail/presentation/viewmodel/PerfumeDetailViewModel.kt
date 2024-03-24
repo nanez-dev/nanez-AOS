@@ -57,11 +57,9 @@ class PerfumeDetailViewModel @Inject constructor(
                 }
                 is DomainResult.Failed -> {
                     showErrorToast(result.msg)
-                    _eventData.post(Event(PerfumeDetailEvent.Finish))
                 }
                 is DomainResult.Error -> {
                     showErrorToast()
-                    _eventData.post(Event(PerfumeDetailEvent.Finish))
                 }
             }
 
@@ -79,11 +77,9 @@ class PerfumeDetailViewModel @Inject constructor(
                 }
                 is DomainResult.Failed -> {
                     showErrorToast(result.msg)
-                    _eventData.post(Event(PerfumeDetailEvent.Finish))
                 }
                 is DomainResult.Error -> {
                     showErrorToast()
-                    _eventData.post(Event(PerfumeDetailEvent.Finish))
                 }
             }
 

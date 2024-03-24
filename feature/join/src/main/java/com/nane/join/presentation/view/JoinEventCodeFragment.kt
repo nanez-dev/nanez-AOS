@@ -6,12 +6,15 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.nane.base.view.BaseBindFragment
+import com.nane.base.view.dialog.CommonTextDialog
+import com.nane.base.view.dialog.data.DialogBuildData
 import com.nane.join.R
 import com.nane.join.databinding.JoinEventCodeFragmentBinding
 import com.nane.join.presentation.data.JoinEventCodeEventData
 import com.nane.join.presentation.viewmodel.JoinActViewModel
 import com.nane.join.presentation.viewmodel.JoinViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import org.techtown.nanez.utils.util.ResUtils
 import org.techtown.nanez.utils.util.eventObserve
 
 /**
@@ -57,6 +60,26 @@ class JoinEventCodeFragment : BaseBindFragment<JoinEventCodeFragmentBinding, Joi
                 is JoinEventCodeEventData.VerifyResult -> {
                     dataBinding.btnSignUp.isEnabled = event.isEnable
                     dataBinding.txtCheckResult.visibility = if (event.isEnable) View.VISIBLE else View.GONE
+
+                    CommonTextDialog().apply {
+                        setDialogData(
+                            DialogBuildData(
+                                titleTextColor = if (event.isEnable) {
+                                    com.nane.base.R.color.brand_500
+                                } else {
+                                    com.nane.base.R.color.error_500
+                                },
+                                title = if (event.isEnable) {
+                                    ResUtils.instance.getString(com.nane.base.R.string.msg_complete_check)
+                                } else {
+                                    ResUtils.instance.getString(com.nane.base.R.string.msg_not_match_event_code)
+                                },
+                                positiveText = ResUtils.instance.getString(com.nane.base.R.string.label_confirm)
+                            )
+                        )
+                    }.show(activity)
+
+
                     if (event.isEnable) {
                         actViewModel.updateEventCode(event.code)
                     } else {

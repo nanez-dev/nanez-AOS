@@ -4,12 +4,15 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nane.base.view.BaseBindFragment
+import com.nane.detail.presentation.view.PerfumeDetailActivity
 import com.nane.storage.R
 import com.nane.storage.databinding.HavingListFragmentBinding
 import com.nane.storage.presentation.data.StorageViewType
 import com.nane.storage.presentation.view.adapter.HavingListAdapter
+import com.nane.storage.presentation.view.adapter.StorageItemDecoration
 import com.nane.storage.presentation.viewmodel.HavingListViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import org.techtown.nanez.utils.util.toDp
 
 @AndroidEntryPoint
 class HavingListFragment : BaseBindFragment<HavingListFragmentBinding, HavingListViewModel>(R.layout.having_list_fragment) {
@@ -19,8 +22,21 @@ class HavingListFragment : BaseBindFragment<HavingListFragmentBinding, HavingLis
     override fun initFragment(dataBinding: HavingListFragmentBinding, viewModel: HavingListViewModel) {
         dataBinding.apply {
             with(recyclerView) {
-                adapter ?: HavingListAdapter().apply { adapter = this }
+                adapter ?: HavingListAdapter().apply {
+                    userActionListener = object : HavingListAdapter.UserActionListener {
+                        override fun onMoveDetail(perfumeId: Int) {
+                            activity?.let {
+                                it.startActivity(PerfumeDetailActivity.createIntent(it, perfumeId))
+                            }
+                        }
+                    }
+                    adapter = this
+                }
                 layoutManager ?: GridLayoutManager(context, 2).apply { layoutManager = this }
+
+                if (itemDecorationCount == 0) {
+                    addItemDecoration(StorageItemDecoration(spanCount = 2, spacing = 8.toDp(), horizontalMargin = 20.toDp()))
+                }
             }
         }
 
@@ -34,10 +50,11 @@ class HavingListFragment : BaseBindFragment<HavingListFragmentBinding, HavingLis
                 dataBinding.vgEmptyView.visibility = View.GONE
             }
         }
-
-        viewModel.getMyList(type = StorageViewType.STORAGE_HAVING_TYPE)
     }
 
 
-
+    override fun onResume() {
+        super.onResume()
+        viewModel?.getMyList(type = StorageViewType.STORAGE_HAVING_TYPE)
+    }
 }

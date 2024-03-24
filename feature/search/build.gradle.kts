@@ -11,7 +11,8 @@ dependencies {
     implementation(project(":base"))
     implementation(project(":utils"))
     implementation(project(":network"))
-    implementation(project(mapOf("path" to ":feature:theme")))
+    implementation(project(":feature:theme"))
+    implementation(project(":feature:detail"))
 
     implementation(libs.bundles.module.search)
     kapt(libs.bundles.hilt.compile.kapt)

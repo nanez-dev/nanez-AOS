@@ -40,20 +40,4 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun changeMyPassword(current_password: String, new_password: String) {
-        viewModelScope.launch {
-            useCase.changeMyPassword(current_password, new_password).collect { result ->
-                when (result) {
-                    is DomainResult.Success -> {
-                        // 성공일 때 처리 필요
-                    }
-                    is DomainResult.Failed -> {
-                    }
-                    is DomainResult.Error -> {
-                    }
-                }
-            }
-        }
-    }
-
 }

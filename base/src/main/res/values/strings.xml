@@ -18,8 +18,12 @@
     <string name="label_profile_notice">공지사항</string>
     <string name="label_profile_product_registration_request">제품등록요청</string>
     <string name="label_profile_report">신고하기</string>
+    <string name="label_change_password">비밀번호 변경</string>
     <string name="label_profile_terms_of_use">서비스이용약관</string>
     <string name="label_profile_privacy_policy">개인정보처리방침</string>
+    <string name="label_profile_setting">설정</string>
+    <string name="label_logout">로그아웃</string>
+    <string name="label_withdraw">회원탈퇴</string>
 
     <string name="label_more">더보기</string>
 
@@ -50,6 +54,7 @@
     <string name="msg_join_email_auth_title">로그인에 사용할\n이메일을 입력해주세요!</string>
     <string name="msg_join_email_auth_sub_title">아이디로 사용됩니다 :)</string>
     <string name="msg_join_email_input_auth_hint">인증번호를 입력해주세요.</string>
+    <string name="msg_error_check_auth_code">인증번호를 확인해주세요.</string>
     <string name="label_email">이메일</string>
     <string name="label_send_auth">인증번호 전송</string>
     <string name="label_auth_verify">인증 확인</string>
@@ -90,7 +95,8 @@
 
     <string name="msg_origin_password_title">비밀번호 변경을 위해\n현재 비밀번호를 입력해주세요</string>
     <string name="msg_new_password_title">변경할 비밀번호를\n입력해주세요</string>
-    <string name="msg_origin_password_sub_title">비밀번호는 영문+숫자 조합의 8~20자리입니다:)</string>
+    <string name="msg_complete_change_password">비밀번호 변경이 완료되었습니다</string>
+    <string name="msg_change_password_move_to_login">변경된 비밀번호로 다시 로그인 해주세요</string>
 
     <string name="msg_search_word_recommendation">이런 검색어는 어떠세요?</string>
     <string name="msg_no_search_result">검색 결과가 없습니다.</string>
@@ -114,4 +120,9 @@
     <string name="label_middle_note_with_colon">Middle Note:</string>
     <string name="label_base_note">Base Note</string>
     <string name="label_base_note_with_colon">Base Note:</string>
+
+    <string name="msg_need_login">로그인이 필요한 서비스입니다.</string>
+    <string name="msg_all_ready_email">이미 가입이 완료된 이메일입니다.</string>
+    <string name="msg_complete_check">확인이 완료되었습니다.</string>
+    <string name="msg_not_match_event_code">일치하는 쿠폰 코드가 없습니다.</string>
 </resources>

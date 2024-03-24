@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.nane.base.view.BaseBindFragment
+import com.nane.detail.presentation.view.PerfumeDetailActivity
 import com.nane.search.R
 import com.nane.search.databinding.SearchResultsFragmentBinding
 import com.nane.search.presentation.data.SearchResultViewData
@@ -33,7 +34,9 @@ class SearchResultsFragment : BaseBindFragment<SearchResultsFragmentBinding, Sea
             }
 
             override fun onPerfumeClick(itemId: Int) {
-                
+                activity?.let {
+                    it.startActivity(PerfumeDetailActivity.createIntent(it, itemId))
+                }
             }
         }
 

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="custom_dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">1</item>
+
+    </style>
+
+
     <style name="Text_Base">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -34,6 +45,12 @@
 
 
     <!-- Head -->
+    <style name="Head_16_B" parent="Text_Base">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
     <style name="Head_18_B" parent="Text_Base">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
@@ -71,6 +88,12 @@
         <item name="android:lineSpacingExtra">3sp</item>
     </style>
 
+    <style name="Body_14_B" parent="Text_Base">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+    </style>
+
     <style name="Body_16_B" parent="Text_Base">
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
@@ -84,6 +107,11 @@
 
     <style name="Body_16_M" parent="Text_Base">
         <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+    </style>
+
+    <style name="Body_20_M" parent="Text_Base">
+        <item name="android:textSize">20sp</item>
         <item name="android:lineSpacingExtra">2sp</item>
     </style>
     <!-- Body -->

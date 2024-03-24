@@ -12,12 +12,17 @@ class SessionManager private constructor() {
     private var userEmail: String? = null
     private var accessToken: String? = null
     private var refreshToken: String? = null
+    private var password: String? = null
 
 
     fun isLoginCheck() = accessToken?.isNotEmpty() == true && refreshToken?.isNotEmpty() == true
 
     fun saveEmail(email: String) {
         userEmail = email
+    }
+
+    fun savePassword(password: String) {
+        this.password = password
     }
 
     fun saveToken(accessToken: String, refreshToken: String) {
@@ -30,6 +35,8 @@ class SessionManager private constructor() {
     fun getUserEmail(): String? {
         return userEmail
     }
+
+    fun getPassWord() = password
 
 
     fun logOut() {

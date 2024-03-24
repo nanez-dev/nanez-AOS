@@ -7,6 +7,8 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.nane.base.view.BaseBindFragment
+import com.nane.base.view.dialog.CommonTextDialog
+import com.nane.base.view.dialog.data.DialogBuildData
 import com.nane.join.R
 import com.nane.join.databinding.JoinEmailAuthFragmentBinding
 import com.nane.join.presentation.data.JoinEmailAuthEventData
@@ -109,6 +111,15 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
                     if (isSendAuth) {
                         authTimer.start()
                     } else {
+                        CommonTextDialog().apply {
+                            setDialogData(
+                                DialogBuildData(
+                                    title = ResUtils.instance.getString(com.nane.base.R.string.msg_all_ready_email),
+                                    positiveText = ResUtils.instance.getString(com.nane.base.R.string.label_confirm)
+                                )
+                            )
+                        }.show(activity)
+
                         authTimer.cancel()
                     }
                 }
@@ -117,6 +128,15 @@ class JoinEmailAuthFragment : BaseBindFragment<JoinEmailAuthFragmentBinding, Joi
                     dataBinding.btnDoNext.isEnabled = isCheckAuth
 
                     if (isCheckAuth) {
+                        CommonTextDialog().apply {
+                            setDialogData(
+                                DialogBuildData(
+                                    title = ResUtils.instance.getString(com.nane.base.R.string.msg_complete_check),
+                                    positiveText = ResUtils.instance.getString(com.nane.base.R.string.label_confirm)
+                                )
+                            )
+                        }.show(activity)
+
                         authCompleteEmail = dataBinding.editEmail.text.toString()
                         dataBinding.btnSendAuth.isEnabled = false
                         authTimer.cancel()

@@ -80,6 +80,28 @@ class NanezDataStore {
         }
     }
 
+    suspend fun <T> clearValue(key: String, valueType: ValueType<T>) {
+        try {
+            dataStore.edit { preferences ->
+                val valueKey = when (valueType) {
+                    is ValueType.BooleanValue -> booleanPreferencesKey(key)
+                    is ValueType.DoubleValue -> doublePreferencesKey(key)
+                    is ValueType.FloatValue -> floatPreferencesKey(key)
+                    is ValueType.IntValue -> intPreferencesKey(key)
+                    is ValueType.LongValue -> longPreferencesKey(key)
+                    is ValueType.StringValue -> stringPreferencesKey(key)
+                    is ValueType.StringSetValue -> stringSetPreferencesKey(key)
+                }
+
+                if (preferences.contains(valueKey)) {
+                    preferences.remove(valueKey)
+                }
+            }
+        } catch (e: Exception) {
+            NaneLog.e(e)
+        }
+    }
+
     ////////////////////////////////////
     sealed class ValueType<T> {
         abstract fun getProperty(): T

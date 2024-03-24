@@ -29,6 +29,7 @@ class EmailLoginViewModel @Inject constructor(
     fun requestLogin(email: String?, password: String?) {
         viewModelScope.launch {
             if (email?.isNotEmpty() == true && password?.isNotEmpty() == true) {
+                showLoading(true)
                 userUseCase.requestLogin(email, password).collect { result ->
                     when (result) {
                         is DomainResult.Success -> {
@@ -53,6 +54,7 @@ class EmailLoginViewModel @Inject constructor(
                         }
                     }
                 }
+                showLoading(false)
             } else {
                 if (email?.isEmpty() == true) {
                     showErrorToast(ResUtils.instance.getString(com.nane.base.R.string.msg_hint_input_email))

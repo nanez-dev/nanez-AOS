@@ -70,6 +70,14 @@
             android:theme="@style/Theme.Nanez"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
+
+        <activity
+            android:name="com.nane.profile.presentation.view.password.PasswordChangeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false"/>
     </application>
 
 </manifest>

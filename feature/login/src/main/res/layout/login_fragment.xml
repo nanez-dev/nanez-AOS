@@ -38,7 +38,8 @@
                 android:foreground="@drawable/ripple_r12"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/vgEmail">
+                app:layout_constraintBottom_toTopOf="@+id/vgEmail"
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="24dp"
@@ -60,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/shape_white_r12_line50_s1"
                 android:foreground="@drawable/ripple_r12"
                 android:gravity="center"

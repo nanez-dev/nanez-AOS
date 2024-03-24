@@ -1,5 +1,7 @@
 package com.nane.home.presentation.view
 
+import android.content.Intent
+import android.net.Uri
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nane.base.view.ActionbarView
@@ -48,7 +50,12 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
                         }
 
                         override fun onClickBannerView(moveToUrl: String?) {
-
+                            if (moveToUrl?.isNotEmpty() == true) {
+                                val intent = Intent(Intent.ACTION_VIEW).apply {
+                                    data = Uri.parse(moveToUrl)
+                                }
+                                activity?.startActivity(intent)
+                            }
                         }
 
                         override fun onClickPerfume(data: PerfumeItemViewData?) {

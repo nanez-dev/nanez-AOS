@@ -22,6 +22,9 @@ class HomeMainItemDecoration : RecyclerView.ItemDecoration() {
             HomeViewType.HOME_HORI_LIST_TYPE -> {
                 outRect.top = 52.toDp()
             }
+            HomeViewType.HOME_PAGER_TYPE -> {
+                outRect.top = 0
+            }
             else -> {
                 outRect.top = 32.toDp()
             }

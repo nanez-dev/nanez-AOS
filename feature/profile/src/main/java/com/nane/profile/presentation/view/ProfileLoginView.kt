@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.nane.profile.databinding.ProfileLoginViewBinding
 import com.nane.profile.presentation.data.ProfileLoginViewData
+import org.techtown.nanez.utils.util.GlideImageLoadData
+import org.techtown.nanez.utils.util.GlideUtil
 import org.techtown.nanez.utils.util.ResUtils
 import org.techtown.nanez.utils.util.getString
 
@@ -34,6 +36,8 @@ class ProfileLoginView @JvmOverloads constructor(
 
             txtWishListNumber.text = "${data.wishCount}"
             txtHavingListNumber.text = "${data.havingCount}"
+
+            GlideUtil.instance.displayImage(GlideImageLoadData(imgIcon, data.profileImageUrl))
         }
     }
 

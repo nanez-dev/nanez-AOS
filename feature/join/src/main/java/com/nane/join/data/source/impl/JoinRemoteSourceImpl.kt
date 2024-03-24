@@ -34,6 +34,7 @@ class JoinRemoteSourceImpl @Inject constructor(
         return userService.postNicknameVerify(nickName)
     }
 
+    // TODO 이벤트 코드 체크
     override suspend fun postCheckEventCodeVerify(code: String): Response<Boolean> {
         return userService.postNicknameVerify(code)
     }

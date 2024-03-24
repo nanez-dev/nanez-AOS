@@ -9,5 +9,6 @@ import kotlinx.coroutines.flow.Flow
  */
 interface IProfileRepository {
     suspend fun getMyProfile(): Flow<DataResult<ProfileDTO>>
-    suspend fun patchChangeMyPassword(current_password: String, new_password: String): Flow<DataResult<Unit>>
+    suspend fun patchChangeMyPassword(currentPassword: String, newPassword: String): Flow<DataResult<Unit>>
+    suspend fun logOut(): Flow<DataResult<Unit>>
 }

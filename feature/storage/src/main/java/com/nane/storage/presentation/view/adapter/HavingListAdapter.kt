@@ -6,10 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nane.storage.BR
 import com.nane.storage.databinding.HavingListRecyclerviewBinding
 import com.nane.storage.presentation.data.StorageViewData
+import com.nane.storage.presentation.viewmodel.HavingListViewModel
 
 class HavingListAdapter : RecyclerView.Adapter<HavingListAdapter.ViewHolder>() {
 
     private var dataList : List<StorageViewData.StorageItem> = emptyList()
+
+    var userActionListener: UserActionListener? = null
+    interface UserActionListener {
+        fun onMoveDetail(perfumeId: Int)
+    }
 
     fun setItemList(list: List<StorageViewData.StorageItem>) {
         dataList = list
@@ -36,6 +42,10 @@ class HavingListAdapter : RecyclerView.Adapter<HavingListAdapter.ViewHolder>() {
             binding.apply {
                 setVariable(BR.viewData, item)
                 executePendingBindings()
+
+                vgParent.setOnClickListener {
+                    userActionListener?.onMoveDetail(item.id)
+                }
             }
         }
     }

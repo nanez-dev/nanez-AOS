@@ -56,25 +56,23 @@
                 </FrameLayout>
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
+                    android:orientation="vertical"
                     app:layout_constraintTop_toBottomOf="@+id/vgLoginStatusView">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txtTitle"
                         style="@style/Head_20_B"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="52dp"
-                        android:text="@string/label_profile_customer_center"
-                        app:layout_constraintBottom_toTopOf="@id/btnNotice"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:text="@string/label_profile_customer_center" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/btnNotice"
                         style="@style/Body_16_M"
                         android:layout_width="match_parent"
@@ -83,21 +81,14 @@
                         android:foreground="@drawable/ripple"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="15dp"
-                        android:text="@string/label_profile_notice"
-                        app:layout_constraintBottom_toTopOf="@+id/lineView1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+                        android:text="@string/label_profile_notice" />
 
                     <View
-                        android:id="@+id/lineView1"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/gray_300"
-                        app:layout_constraintBottom_toTopOf="@+id/btnProductRegistrationRequest"
-                        app:layout_constraintTop_toBottomOf="@+id/btnNotice" />
+                        android:background="@color/gray_300" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/btnProductRegistrationRequest"
                         style="@style/Body_16_M"
                         android:layout_width="match_parent"
@@ -105,19 +96,14 @@
                         android:foreground="@drawable/ripple"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="15dp"
-                        android:text="@string/label_profile_product_registration_request"
-                        app:layout_constraintBottom_toTopOf="@+id/lineView2"
-                        app:layout_constraintTop_toBottomOf="@+id/lineView1" />
+                        android:text="@string/label_profile_product_registration_request" />
 
                     <View
-                        android:id="@+id/lineView2"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/gray_300"
-                        app:layout_constraintBottom_toTopOf="@+id/btnReport"
-                        app:layout_constraintTop_toBottomOf="@+id/btnProductRegistrationRequest" />
+                        android:background="@color/gray_300" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/btnReport"
                         style="@style/Body_16_M"
                         android:layout_width="match_parent"
@@ -125,19 +111,38 @@
                         android:foreground="@drawable/ripple"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="15dp"
-                        android:text="@string/label_profile_report"
-                        app:layout_constraintBottom_toTopOf="@+id/lineView3"
-                        app:layout_constraintTop_toBottomOf="@+id/lineView2" />
+                        android:text="@string/label_profile_report" />
 
                     <View
-                        android:id="@+id/lineView3"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/gray_300"
-                        app:layout_constraintBottom_toTopOf="@+id/btnTermsOfUse"
-                        app:layout_constraintTop_toBottomOf="@+id/btnReport" />
+                        android:background="@color/gray_300" />
 
-                    <TextView
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/vgPasswordChange"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btnChangePassword"
+                            style="@style/Body_16_M"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple"
+                            android:paddingHorizontal="20dp"
+                            android:paddingVertical="15dp"
+                            android:text="@string/label_change_password"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/gray_300"
+                            app:layout_constraintBottom_toBottomOf="@+id/btnChangePassword" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/btnTermsOfUse"
                         style="@style/Body_16_M"
                         android:layout_width="match_parent"
@@ -145,19 +150,14 @@
                         android:foreground="@drawable/ripple"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="15dp"
-                        android:text="@string/label_profile_terms_of_use"
-                        app:layout_constraintBottom_toTopOf="@+id/lineView4"
-                        app:layout_constraintTop_toBottomOf="@+id/lineView3" />
+                        android:text="@string/label_profile_terms_of_use" />
 
                     <View
-                        android:id="@+id/lineView4"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/gray_300"
-                        app:layout_constraintBottom_toTopOf="@+id/btnPrivacyPolicy"
-                        app:layout_constraintTop_toBottomOf="@+id/btnTermsOfUse" />
+                        android:background="@color/gray_300" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/btnPrivacyPolicy"
                         style="@style/Body_16_M"
                         android:layout_width="match_parent"
@@ -165,10 +165,34 @@
                         android:foreground="@drawable/ripple"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="15dp"
-                        android:text="@string/label_profile_privacy_policy"
-                        app:layout_constraintTop_toBottomOf="@+id/lineView4" />
+                        android:text="@string/label_profile_privacy_policy" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/vgSetting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/gray_300"
+                            app:layout_constraintTop_toTopOf="@id/btnSetting" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btnSetting"
+                            style="@style/Body_16_M"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foreground="@drawable/ripple"
+                            android:paddingHorizontal="20dp"
+                            android:paddingVertical="15dp"
+                            android:text="@string/label_profile_setting"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>

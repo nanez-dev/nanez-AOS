@@ -45,12 +45,14 @@ class JoinViewModel @Inject constructor(
 
     fun sendAuthEmail(email: String) {
         viewModelScope.launch {
+            showLoading(true)
             useCase.postSendAuthEmail(email).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
                         _emailAuthEventData.post(Event(JoinEmailAuthEventData.SendEmailAuthResult(result.data)))
                     }
                     is DomainResult.Error -> {
+                        showErrorToast()
                         _emailAuthEventData.post(Event(JoinEmailAuthEventData.SendEmailAuthResult(false)))
                     }
                     is DomainResult.Failed -> {
@@ -58,24 +60,30 @@ class JoinViewModel @Inject constructor(
                     }
                 }
             }
+            showLoading(false)
         }
     }
 
     fun checkAuthEmailVerify(code: String, email: String) {
         viewModelScope.launch {
+            showLoading(true)
             useCase.checkAuthEmailCode(code, email).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
+                        if (!result.data) {
+                            showErrorToast(ResUtils.instance.getString(com.nane.base.R.string.msg_error_check_auth_code))
+                        }
                         _emailAuthEventData.post(Event(JoinEmailAuthEventData.VerifyCheck(result.data)))
                     }
                     is DomainResult.Error -> {
-
+                        showErrorToast()
                     }
                     is DomainResult.Failed -> {
-
+                        showErrorToast(result.msg)
                     }
                 }
             }
+            showLoading(false)
         }
     }
 
@@ -102,38 +110,42 @@ class JoinViewModel @Inject constructor(
 
     fun checkNickNameVerify(nickName: String) {
         viewModelScope.launch {
+            showLoading(true)
             useCase.checkNickNameVerify(nickName).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
                         _nickNameEventData.post(Event(JoinNickNameEventData.VerifyResult(result.data)))
                     }
                     is DomainResult.Error -> {
-
+                        showErrorToast()
                     }
                     is DomainResult.Failed -> {
-
+                        showErrorToast(result.msg)
                     }
                 }
             }
+            showLoading(false)
         }
     }
 
 
     fun checkEventCodeVerify(code: String) {
         viewModelScope.launch {
+            showLoading(true)
             useCase.checkEventCodeVerify(code).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
                         _eventCodeEventData.post(Event(JoinEventCodeEventData.VerifyResult(result.data, code)))
                     }
                     is DomainResult.Error -> {
-
+                        showErrorToast()
                     }
                     is DomainResult.Failed -> {
-
+                        showErrorToast(result.msg)
                     }
                 }
             }
+            showLoading(false)
         }
     }
 

@@ -57,9 +57,9 @@ class UserRepository @Inject constructor(
         emit(DataResult.Error(Exception(t)))
     }.flowOn(Dispatchers.IO)
 
-
     override suspend fun saveLoginInfo(dto: UserLoginDomainDTO) {
         SessionManager.instance.saveEmail(dto.email ?: "")
+        SessionManager.instance.savePassword(dto.passWord ?: "")
         SessionManager.instance.saveToken(dto.accessToken ?: "", dto.refreshToken ?: "")
         localDataSource.saveUserLoginInfo(mapper.toData(dto))
     }

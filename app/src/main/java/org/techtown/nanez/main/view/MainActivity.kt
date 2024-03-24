@@ -9,7 +9,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.nane.base.view.BaseBindActivity
+import com.nane.base.view.dialog.CommonTextDialog
+import com.nane.base.view.dialog.data.DialogBuildData
 import com.nane.home.presentation.view.HomeFragment
+import com.nane.login.presentation.view.LoginActivity
 import com.nane.profile.presentation.view.ProfileFragment
 import com.nane.storage.presentation.view.StorageFragment
 import com.nane.theme.presentation.view.ThemeAccordActivity
@@ -18,6 +21,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.R
 import org.techtown.nanez.databinding.MainActivityBinding
 import org.techtown.nanez.main.viewmodel.MainViewModel
+import org.techtown.nanez.utils.session.SessionManager
+import org.techtown.nanez.utils.util.ResUtils
 import org.techtown.nanez.utils.util.addFragment
 
 @AndroidEntryPoint
@@ -53,6 +58,21 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
                         }
                     }
                     R.id.menuStorage -> {
+                        if (!SessionManager.instance.isLoginCheck()) {
+                            CommonTextDialog().apply {
+                                setDialogData(
+                                    DialogBuildData(
+                                        title = ResUtils.instance.getString(com.nane.base.R.string.msg_need_login),
+                                        positiveText = ResUtils.instance.getString(com.nane.base.R.string.label_login),
+                                        onPositiveAction = {
+                                            startActivity(LoginActivity.createIntent(this@MainActivity))
+                                        }
+                                    )
+                                )
+                            }.show(this@MainActivity)
+
+                            return@setOnItemSelectedListener false
+                        }
                         addFragment(frameLayout, tag = "StorageFragment") {
                             StorageFragment()
                         }

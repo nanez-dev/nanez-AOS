@@ -39,6 +39,7 @@ class UserLoginInfoUseCase @Inject constructor(
         userRepository.postLogin(SignInApi.Body(email = email, password = password)).collect { response ->
             when (response) {
                 is DataResult.Success -> {
+                    saveLoginInfo(response.data)
                     emit(DomainResult.Success(response.data))
                 }
                 is DataResult.Failed -> {

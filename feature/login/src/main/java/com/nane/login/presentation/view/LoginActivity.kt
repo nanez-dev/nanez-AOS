@@ -58,9 +58,13 @@ class LoginActivity : BaseBindActivity<LoginActivityBinding, LoginActViewModel>(
 
     companion object {
 
-        fun createIntent(context: Context): Intent {
+        fun createIntent(context: Context, isAllClear: Boolean = false): Intent {
             return Intent(context, LoginActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                if (isAllClear) {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                } else {
+                    addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                }
             }
         }
     }
