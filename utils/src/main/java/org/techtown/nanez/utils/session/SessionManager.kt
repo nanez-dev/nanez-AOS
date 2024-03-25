@@ -1,5 +1,8 @@
 package org.techtown.nanez.utils.session
 
+import org.techtown.nanez.utils.NanezDataStore
+import org.techtown.nanez.utils.datastore.NanezDataConst
+
 /**
  * Created by haul on 12/21/23
  */
@@ -39,7 +42,12 @@ class SessionManager private constructor() {
     fun getPassWord() = password
 
 
-    fun logOut() {
+    suspend fun logOut() {
+        NanezDataStore.getInstance().clearValue(NanezDataConst.KEY_USER_EMAIL, NanezDataStore.ValueType.StringValue(""))
+        NanezDataStore.getInstance().clearValue(NanezDataConst.KEY_USER_PASSWORD, NanezDataStore.ValueType.StringValue(""))
+        NanezDataStore.getInstance().clearValue(NanezDataConst.KEY_USER_ACCESS_TOKEN, NanezDataStore.ValueType.StringValue(""))
+        NanezDataStore.getInstance().clearValue(NanezDataConst.KEY_USER_REFRESH_TOKEN, NanezDataStore.ValueType.StringValue(""))
+
         userEmail = null
         accessToken = null
         refreshToken = null

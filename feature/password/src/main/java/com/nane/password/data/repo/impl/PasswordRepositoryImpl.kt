@@ -5,7 +5,6 @@ import com.nane.network.api.users.PasswordChangeApi
 import com.nane.network.api.users.ResetRandomPasswordApi
 import com.nane.network.parser.getParseErrorResult
 import com.nane.password.data.repo.IPasswordRepository
-import com.nane.password.data.source.IPasswordLocalSource
 import com.nane.password.data.source.IPasswordRemoteSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -20,7 +19,6 @@ import javax.inject.Inject
  */
 class PasswordRepositoryImpl @Inject constructor(
     private val remoteSource: IPasswordRemoteSource,
-    private val localSource: IPasswordLocalSource,
 ) : IPasswordRepository {
 
     override suspend fun patchChangeMyPassword(currentPassword: String, newPassword: String): Flow<DataResult<Unit>> = flow {
@@ -38,7 +36,6 @@ class PasswordRepositoryImpl @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
     override suspend fun logOut(): Flow<DataResult<Unit>> = flow {
-        localSource.clearUserLoginInfo()
         SessionManager.instance.logOut()
         emit(DataResult.Success(Unit))
     }.flowOn(Dispatchers.IO)

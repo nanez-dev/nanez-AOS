@@ -47,11 +47,14 @@ class ActionbarView @JvmOverloads constructor(context: Context, attr: AttributeS
         binding.btnBack.setOnClickListener {
             onAction.invoke()
         }
-
     }
 
     fun setRightBtn(@DrawableRes imgRes: Int) {
         binding.btnRight.setImageDrawable(ResUtils.getDrawable(context, imgRes))
         binding.btnRight.visibility = View.VISIBLE
+    }
+
+    fun setLineViewVisible(isShow: Boolean) {
+        binding.lineView.visibility = if (isShow) View.VISIBLE else View.GONE
     }
 }

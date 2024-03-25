@@ -2,9 +2,7 @@ package com.nane.password.di
 
 import com.nane.password.data.repo.IPasswordRepository
 import com.nane.password.data.repo.impl.PasswordRepositoryImpl
-import com.nane.password.data.source.IPasswordLocalSource
 import com.nane.password.data.source.IPasswordRemoteSource
-import com.nane.password.data.source.impl.PasswordLocalSourceImpl
 import com.nane.password.data.source.impl.PasswordRemoteSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -26,8 +24,4 @@ abstract class PasswordDiModule {
     @Binds
     @ViewModelScoped
     abstract fun bindPasswordRemoteSource(impl: PasswordRemoteSourceImpl): IPasswordRemoteSource
-
-    @Binds
-    @ViewModelScoped
-    abstract fun bindPasswordLocalSource(impl: PasswordLocalSourceImpl): IPasswordLocalSource
 }

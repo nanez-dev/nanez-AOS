@@ -22,7 +22,8 @@ class StorageFragment : BaseBindFragment<StorageFragmentBinding, BaseViewModel>(
     override fun initFragment(dataBinding: StorageFragmentBinding, viewModel: BaseViewModel) {
         dataBinding.apply {
             actionBar.setTitle(getString(com.nane.base.R.string.label_storage))
-
+            actionBar.setLineViewVisible(false)
+            
             switchFragmentByPosition(StorageViewType.STORAGE_WISH_POSITION)
 
             with (dataBinding.tabLayout) {
