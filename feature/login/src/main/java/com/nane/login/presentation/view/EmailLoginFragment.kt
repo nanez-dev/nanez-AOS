@@ -11,6 +11,7 @@ import com.nane.login.R
 import com.nane.login.databinding.EmailLoginFragmentBinding
 import com.nane.login.presentation.data.EmailLoginEventData
 import com.nane.login.presentation.viewmodel.EmailLoginViewModel
+import com.nane.password.presentation.view.find.PasswordFindActivity
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.utils.util.ResUtils
 import org.techtown.nanez.utils.util.eventObserve
@@ -38,7 +39,13 @@ class EmailLoginFragment : BaseBindFragment<EmailLoginFragmentBinding, EmailLogi
 
             btnJoin.setOnClickListener {
                 activity?.let { act ->
-                    startActivity(JoinActivity.createIntent(act))
+                    act.startActivity(JoinActivity.createIntent(act))
+                }
+            }
+
+            txtFindPassword.setOnClickListener {
+                activity?.let {
+                    it.startActivity(PasswordFindActivity.createIntent(it))
                 }
             }
 

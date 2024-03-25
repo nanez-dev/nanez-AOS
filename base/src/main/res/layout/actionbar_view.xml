@@ -60,6 +60,13 @@
             tools:visibility="visible"
             tools:src="@tools:sample/avatars"/>
 
+        <View
+            android:id="@+id/lineView"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_100"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -1,13 +1,13 @@
-package com.nane.profile.presentation.view.password
+package com.nane.password.presentation.view.change
 
+import android.content.Intent
 import androidx.fragment.app.viewModels
-import com.nane.base.view.BaseBindActivity
 import com.nane.base.view.BaseBindFragment
 import com.nane.base.viewmodel.BaseViewModel
-import com.nane.login.presentation.view.LoginActivity
-import com.nane.profile.R
-import com.nane.profile.databinding.PasswordChangeCompleteFragmentBinding
+import com.nane.password.R
+import com.nane.password.databinding.PasswordChangeCompleteFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 /**
  * Created by haul on 3/24/24
@@ -20,7 +20,10 @@ class PasswordChangeCompleteFragment : BaseBindFragment<PasswordChangeCompleteFr
     override fun initFragment(dataBinding: PasswordChangeCompleteFragmentBinding, viewModel: BaseViewModel) {
         dataBinding.btnLogin.setOnClickListener {
             activity?.let {
-                it.startActivity(LoginActivity.createIntent(it, isAllClear = true))
+                val intent = Intent(it, Class.forName("com.nane.login.presentation.view.LoginActivity")).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                }
+                it.startActivity(intent)
                 it.finish()
             }
         }

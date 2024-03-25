@@ -1,14 +1,14 @@
-package com.nane.profile.presentation.view.password
+package com.nane.password.presentation.view.change
 
 import android.content.Context
 import android.content.Intent
 import android.view.View
 import androidx.activity.viewModels
 import com.nane.base.view.BaseBindActivity
-import com.nane.profile.R
-import com.nane.profile.databinding.PasswordChangeAcitivityBinding
-import com.nane.profile.presentation.data.PasswordActEventData
-import com.nane.profile.presentation.viewmodel.PasswordActViewModel
+import com.nane.password.R
+import com.nane.password.presentation.data.PasswordActEventData
+import com.nane.password.presentation.viewmodel.PasswordActViewModel
+import com.nane.password.databinding.PasswordChangeAcitivityBinding
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.utils.util.addFragment
 import org.techtown.nanez.utils.util.eventObserve

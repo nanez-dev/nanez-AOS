@@ -1,6 +1,6 @@
-package com.nane.profile.data.source.impl
+package com.nane.password.data.source.impl
 
-import com.nane.profile.data.source.IProfileLocalSource
+import com.nane.password.data.source.IPasswordLocalSource
 import org.techtown.nanez.utils.NanezDataStore
 import org.techtown.nanez.utils.datastore.NanezDataConst
 import javax.inject.Inject
@@ -8,7 +8,7 @@ import javax.inject.Inject
 /**
  * Created by haul on 3/24/24
  */
-class ProfileLocalSourceImpl @Inject constructor() : IProfileLocalSource {
+class PasswordLocalSourceImpl @Inject constructor() : IPasswordLocalSource {
 
     override suspend fun clearUserLoginInfo() {
         NanezDataStore.getInstance().clearValue(NanezDataConst.KEY_USER_EMAIL, NanezDataStore.ValueType.StringValue(""))

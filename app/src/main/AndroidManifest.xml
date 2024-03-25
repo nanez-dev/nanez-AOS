@@ -72,7 +72,15 @@
             android:exported="false"/>
 
         <activity
-            android:name="com.nane.profile.presentation.view.password.PasswordChangeActivity"
+            android:name="com.nane.password.presentation.view.change.PasswordChangeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false"/>
+
+        <activity
+            android:name="com.nane.password.presentation.view.find.PasswordFindActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Nanez"

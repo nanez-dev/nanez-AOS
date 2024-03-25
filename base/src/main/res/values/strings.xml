@@ -125,4 +125,14 @@
     <string name="msg_all_ready_email">이미 가입이 완료된 이메일입니다.</string>
     <string name="msg_complete_check">확인이 완료되었습니다.</string>
     <string name="msg_not_match_event_code">일치하는 쿠폰 코드가 없습니다.</string>
+
+    <string name="msg_find_password">회원정보를 잊으셨나요?</string>
+    <string name="label_find_password"><u>비밀번호 찾기</u></string>
+    <string name="label_send_email">이메일 전송</string>
+    <string name="label_goto_login">로그인 하러가기</string>
+    <string name="msg_find_password_title">비밀번호를 잊으셨나요?\n걱정하지 마세요!</string>
+    <string name="msg_find_password_content">나네에서 비밀번호를 찾아드릴게요 :)</string>
+    <string name="label_join_email">가입 이메일</string>
+    <string name="msg_not_join_email">* 가입되어있는 이메일이 아닙니다.</string>
+    <string name="msg_complete_send_random_password">이메일 전송이 완료되었습니다.</string>
 </resources>

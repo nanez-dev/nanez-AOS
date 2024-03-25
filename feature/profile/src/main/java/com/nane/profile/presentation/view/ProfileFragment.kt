@@ -4,9 +4,9 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.nane.base.view.BaseBindFragment
 import com.nane.login.presentation.view.LoginActivity
+import com.nane.password.presentation.view.change.PasswordChangeActivity
 import com.nane.profile.R
 import com.nane.profile.databinding.ProfileFragmentBinding
-import com.nane.profile.presentation.view.password.PasswordChangeActivity
 import com.nane.profile.presentation.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.utils.session.SessionManager

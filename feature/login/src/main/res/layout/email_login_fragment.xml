@@ -98,6 +98,32 @@
                     app:layout_constraintVertical_bias="0"
                     app:layout_constraintVertical_chainStyle="spread_inside" />
 
+                <LinearLayout
+                    android:id="@+id/vgFindPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnLogin">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Detail_12_R"
+                        android:text="@string/msg_find_password" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtFindPassword"
+                        style="@style/Detail_12_R"
+                        android:padding="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:text="@string/label_find_password"
+                        android:textColor="@color/blue_1"
+                        android:foreground="@drawable/ripple"/>
+
+                </LinearLayout>
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/vgJoin"

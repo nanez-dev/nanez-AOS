@@ -4,6 +4,7 @@ import com.nane.network.api.users.JoinEmailAuthApi
 import com.nane.network.api.users.JoinVerifyAuthEmailCodeApi
 import com.nane.network.api.users.PasswordChangeApi
 import com.nane.network.api.users.ProfileApi
+import com.nane.network.api.users.ResetRandomPasswordApi
 import com.nane.network.api.users.SignUpApi
 import org.techtown.nanez.data.api.users.SignInApi
 import retrofit2.Response
@@ -37,11 +38,12 @@ interface RetrofitUserService {
     @POST("api/users/signin")
     suspend fun postSignIn(@Body body: SignInApi.Body): Response<SignInApi.Response>
 
+    @POST("api/users/reset-random-password")
+    suspend fun postResetRandomPassword(@Body body: ResetRandomPasswordApi.Body): Response<Boolean>
+
     @DELETE("api/users/withdrawal")
     suspend fun deleteWithdraw(): Response<String>
 
     @PATCH("api/users/password")
-    suspend fun changePassword(@Body body: PasswordChangeApi.Body): Response<Unit>
-
-
+    suspend fun patchPassword(@Body body: PasswordChangeApi.Body): Response<Unit>
 }

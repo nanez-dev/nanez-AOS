@@ -17,8 +17,4 @@ class ProfileRemoteSourceImpl @Inject constructor(
     override suspend fun getMyProfileInfo(): Response<ProfileApi.Response> {
         return apiService.getMyProfile()
     }
-
-    override suspend fun changeMyPassword(body: PasswordChangeApi.Body): Response<Unit> {
-        return apiService.changePassword(body)
-    }
 }

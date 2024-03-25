@@ -116,6 +116,8 @@
 
     <color name="red_1">#F27766</color>
 
+    <color name="blue_1">#287EFF</color>
+
     <color name="gray_400">#999999</color>
     <color name="gray_600">#666666</color>
     <color name="gray_800">#333333</color>

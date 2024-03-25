@@ -1,9 +1,9 @@
-package com.nane.profile.presentation.viewmodel
+package com.nane.password.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nane.base.viewmodel.BaseViewModel
-import com.nane.profile.presentation.data.PasswordActEventData
+import com.nane.password.presentation.data.PasswordActEventData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.techtown.nanez.utils.util.Event
 import org.techtown.nanez.utils.util.post

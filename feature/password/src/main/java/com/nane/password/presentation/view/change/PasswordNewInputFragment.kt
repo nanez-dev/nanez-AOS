@@ -1,4 +1,4 @@
-package com.nane.profile.presentation.view.password
+package com.nane.password.presentation.view.change
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -6,11 +6,11 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.nane.base.view.BaseBindFragment
-import com.nane.profile.R
-import com.nane.profile.databinding.PasswordNewInputFragmentBinding
-import com.nane.profile.presentation.data.PasswordNewInputEventData
-import com.nane.profile.presentation.viewmodel.PasswordActViewModel
-import com.nane.profile.presentation.viewmodel.PasswordNewInputViewModel
+import com.nane.password.R
+import com.nane.password.presentation.data.PasswordNewInputEventData
+import com.nane.password.presentation.viewmodel.PasswordActViewModel
+import com.nane.password.presentation.viewmodel.PasswordNewInputViewModel
+import com.nane.password.databinding.PasswordNewInputFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.utils.session.SessionManager
 import org.techtown.nanez.utils.util.ResUtils

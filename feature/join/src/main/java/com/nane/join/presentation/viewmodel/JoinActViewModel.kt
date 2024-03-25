@@ -79,19 +79,21 @@ class JoinActViewModel @Inject constructor(
     fun postSignUp() {
         NaneLog.d("joinUserViewData postSignUp > $joinUserViewData")
         viewModelScope.launch {
+            showLoading(true)
             useCase.postSignUp(mapper.toSignUpDto(joinUserViewData)).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
                         _eventData.post(Event(JoinActEventData.SuccessSignUp))
                     }
                     is DomainResult.Failed -> {
-
+                        showErrorToast(result.msg)
                     }
                     is DomainResult.Error -> {
-
+                        showErrorToast()
                     }
                 }
             }
+            showLoading(false)
         }
     }
 }

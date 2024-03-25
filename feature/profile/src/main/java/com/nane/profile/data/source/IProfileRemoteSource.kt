@@ -9,5 +9,4 @@ import retrofit2.Response
  */
 interface IProfileRemoteSource {
     suspend fun getMyProfileInfo(): Response<ProfileApi.Response>
-    suspend fun changeMyPassword(body: PasswordChangeApi.Body) : Response<Unit>
 }

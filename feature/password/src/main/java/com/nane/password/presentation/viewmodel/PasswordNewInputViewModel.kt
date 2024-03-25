@@ -1,4 +1,4 @@
-package com.nane.profile.presentation.viewmodel
+package com.nane.password.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.nane.base.R
 import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
-import com.nane.profile.domain.usecase.PasswordNewInputUseCase
-import com.nane.profile.presentation.data.PasswordNewInputEventData
+import com.nane.password.domain.usecase.PasswordNewInputUseCase
+import com.nane.password.presentation.data.PasswordNewInputEventData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.techtown.nanez.utils.util.Event

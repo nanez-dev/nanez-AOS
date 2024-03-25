@@ -1,4 +1,4 @@
-package com.nane.profile.presentation.data
+package com.nane.password.presentation.data
 
 /**
  * Created by haul on 3/24/24
