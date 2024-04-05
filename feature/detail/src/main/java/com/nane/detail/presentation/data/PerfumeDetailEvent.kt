@@ -9,6 +9,7 @@ sealed class PerfumeDetailEvent {
     data class RefreshWish(val isWish: Boolean) : PerfumeDetailEvent()
     data class RefreshHaving(val isHaving: Boolean) : PerfumeDetailEvent()
 
+    object ShowLoginPopup : PerfumeDetailEvent()
     object Finish : PerfumeDetailEvent()
 
 }

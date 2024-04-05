@@ -4,6 +4,10 @@ plugins {
 
 android {
     namespace = "org.techtown.nanez.utils"
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {

@@ -61,6 +61,10 @@ object NaneLog {
     }
 
     private fun println(tag: String? = TAG, level: Int, msg: String?, t: Throwable? = null) {
+        if (!BuildConfig.DEBUG) {
+            return
+        }
+
         var resultMsg = msg ?: ""
         if (level < LEVEL) {
             return

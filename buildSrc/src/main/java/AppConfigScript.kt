@@ -118,11 +118,11 @@ object AppConfigScript {
             }
             when {
                 buildTypeName == "release" -> {
-                    resValue("string", "app_name", "Nanez")
+                    resValue("string", "app_name", "나네")
                 }
 
                 buildTypeName == "debug" -> {
-                    resValue("string", "app_name", "Nanez DEV")
+                    resValue("string", "app_name", "나네 DEV")
                 }
 
             }

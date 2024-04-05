@@ -9,6 +9,7 @@ import com.nane.detail.domain.usecase.PerfumeDetailUseCase
 import com.nane.detail.presentation.data.PerfumeDetailEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.techtown.nanez.utils.session.SessionManager
 import org.techtown.nanez.utils.util.Event
 import org.techtown.nanez.utils.util.post
 import javax.inject.Inject
@@ -48,6 +49,11 @@ class PerfumeDetailViewModel @Inject constructor(
     }
 
     fun onChangeWish(perfumeId: Int) {
+        if (!SessionManager.instance.isLoginCheck()) {
+            _eventData.post(Event(PerfumeDetailEvent.ShowLoginPopup))
+            return
+        }
+
         viewModelScope.launch {
             showLoading(true)
 
@@ -68,6 +74,11 @@ class PerfumeDetailViewModel @Inject constructor(
     }
 
     fun onChangHaving(perfumeId: Int) {
+        if (!SessionManager.instance.isLoginCheck()) {
+            _eventData.post(Event(PerfumeDetailEvent.ShowLoginPopup))
+            return
+        }
+
         viewModelScope.launch {
             showLoading(true)
 
