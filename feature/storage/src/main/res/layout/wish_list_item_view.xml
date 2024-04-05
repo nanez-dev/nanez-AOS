@@ -28,6 +28,7 @@
             android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:background="@drawable/shape_white_r12_line50_s1"
+            android:padding="1dp"
             android:scaleType="fitCenter"
             app:img_load="@{viewData.webImage1}"
             app:img_round="@{20}"
@@ -39,14 +40,15 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            app:layout_constraintRight_toRightOf="@+id/perfumeImg"
-            app:layout_constraintBottom_toBottomOf="@id/perfumeImg"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/icon_home_fav_vector"
-            android:padding="6dp"
             android:background="@drawable/shape_brand500_tl12_tr4_bl4_br12"
-            app:tint="@color/white"/>
+            android:padding="6dp"
+            android:src="@drawable/icon_home_fav_vector"
+            app:layout_constraintBottom_toBottomOf="@id/perfumeImg"
+            app:layout_constraintRight_toRightOf="@+id/perfumeImg"
+            app:tint="@color/white" />
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtPerfumeBrand"

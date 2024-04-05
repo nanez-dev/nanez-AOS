@@ -9,4 +9,5 @@ import kotlinx.coroutines.flow.Flow
  */
 interface IProfileRepository {
     suspend fun getMyProfile(): Flow<DataResult<ProfileDTO>>
+    suspend fun getMyList(type: String?): DataResult<Int>
 }

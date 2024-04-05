@@ -16,6 +16,13 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
 
     private val itemList: MutableList<SearchResultViewData> = mutableListOf()
 
+    private var onSearchResultClickListener: SearchResultClickListener? = null
+
+    interface SearchResultClickListener {
+        fun onSearchWordClick(keyword: String?)
+        fun onPerfumeClick(itemId: Int)
+    }
+
     fun setItemList(list: List<SearchResultViewData>) {
         val insertedPositionStart = itemCount
         itemList.addAll(list)
@@ -56,15 +63,9 @@ class SearchResultAdapter: RecyclerView.Adapter<AbsSearchResultViewHolder<*>>() 
         }
     }
 
-    private var onSearchResultClickListener: SearchResultClickListener? = null
+
     fun setOnSearchResultClickListener(itemClickListener: SearchResultClickListener) {
         onSearchResultClickListener = itemClickListener
-    }
-
-    interface SearchResultClickListener {
-        fun onSearchWordClick(idx: Int)
-
-        fun onPerfumeClick(itemId: Int)
     }
 
     private inner class RecommendedSearchWordListViewHolder(

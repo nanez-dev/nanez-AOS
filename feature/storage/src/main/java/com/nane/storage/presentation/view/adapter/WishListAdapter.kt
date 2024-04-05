@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nane.storage.BR
-import com.nane.storage.databinding.WishListRecyclerviewBinding
+import com.nane.storage.databinding.WishListItemViewBinding
 import com.nane.storage.presentation.data.StorageViewData
 
 class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
@@ -22,7 +22,7 @@ class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(WishListRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(WishListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -36,7 +36,7 @@ class WishListAdapter : RecyclerView.Adapter<WishListAdapter.ViewHolder>() {
 
 
 
-    inner class ViewHolder(private val binding: WishListRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: WishListItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: StorageViewData.StorageItem) {
             binding.apply {

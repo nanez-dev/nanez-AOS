@@ -1,5 +1,7 @@
 package com.nane.profile.data.source
 
+import com.nane.base.data.DataResult
+import com.nane.network.api.storage.StorageApi
 import com.nane.network.api.users.ProfileApi
 import com.nane.network.api.users.PasswordChangeApi
 import retrofit2.Response
@@ -9,4 +11,5 @@ import retrofit2.Response
  */
 interface IProfileRemoteSource {
     suspend fun getMyProfileInfo(): Response<ProfileApi.Response>
+    suspend fun getMyList(type: String?): Response<List<StorageApi.Response>>
 }

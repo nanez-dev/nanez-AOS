@@ -22,10 +22,9 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
         finish()
     }
 
-    override fun initActivity(
-        dataBinding: SearchActivityBinding,
-        viewModel: SearchViewModel
-    ) {
+    override fun initActivity(dataBinding: SearchActivityBinding, viewModel: SearchViewModel) {
+        val keyword = intent.getStringExtra(EXTRA_KEYWORD)
+
         dataBinding.apply {
             with(btnBack) {
                 setOnClickListener {
@@ -34,7 +33,9 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
             }
 
             with(editSearch) {
-                requestFocus()
+                if (keyword?.isNotEmpty() == true) {
+                    requestFocus()
+                }
                 setOnKeyListener { _, keyCode, event ->
                     if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                         btnSearch.performClick()
@@ -62,16 +63,17 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
             with(searchResultsContainer) {
                 if (supportFragmentManager.fragments.any { it.tag == TAG_RESULT }) return@with
 
-                addFragment(
-                    container = this,
-                    saveInstanceState = null,
-                    tag = TAG_RESULT,
-                    arguments = null,
-                    isBackStackEnabled = false
-                ) {
+                addFragment(container = this, saveInstanceState = null, tag = TAG_RESULT, arguments = null, isBackStackEnabled = false) {
                     SearchResultsFragment()
                 }
             }
+        }
+
+        if (keyword?.isNotEmpty() == true) {
+            dataBinding.editSearch.setText(keyword.toString())
+            dataBinding.editSearch.setSelection(keyword.length)
+            dataBinding.editSearch.clearFocus()
+            viewModel.searchWith(keyword)
         }
     }
 
@@ -83,10 +85,16 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
     companion object {
 
         private const val TAG_RESULT = "RESULT"
+        private const val EXTRA_KEYWORD = "keyword"
 
-        fun createIntent(context: Context): Intent {
+        fun createIntent(context: Context, keyword: String?): Intent {
             return Intent(context, SearchActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                if (keyword?.isNotEmpty() == true) {
+                    putExtra(EXTRA_KEYWORD, keyword)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                } else {
+                    addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                }
             }
         }
     }

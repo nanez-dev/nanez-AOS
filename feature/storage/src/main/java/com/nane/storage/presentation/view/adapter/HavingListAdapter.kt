@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nane.storage.BR
-import com.nane.storage.databinding.HavingListRecyclerviewBinding
+import com.nane.storage.databinding.HavingListItemViewBinding
 import com.nane.storage.presentation.data.StorageViewData
-import com.nane.storage.presentation.viewmodel.HavingListViewModel
 
 class HavingListAdapter : RecyclerView.Adapter<HavingListAdapter.ViewHolder>() {
 
@@ -23,7 +22,7 @@ class HavingListAdapter : RecyclerView.Adapter<HavingListAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(HavingListRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(HavingListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -36,8 +35,7 @@ class HavingListAdapter : RecyclerView.Adapter<HavingListAdapter.ViewHolder>() {
     override fun getItemCount() = dataList.size
 
 
-
-    inner class ViewHolder(private val binding: HavingListRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: HavingListItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: StorageViewData.StorageItem) {
             binding.apply {
                 setVariable(BR.viewData, item)

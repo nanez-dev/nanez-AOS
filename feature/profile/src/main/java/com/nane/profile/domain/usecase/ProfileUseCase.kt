@@ -32,4 +32,37 @@ class ProfileUseCase @Inject constructor(
             }
         }
     }
+
+    suspend fun getMyWishCountInfo(): DomainResult<Int> {
+        return when (val result = repository.getMyList(TYPE_WISH)) {
+            is DataResult.Success -> {
+                DomainResult.Success(result.data)
+            }
+            is DataResult.Error -> {
+                DomainResult.Error(result.exception)
+            }
+            is DataResult.Failed -> {
+                DomainResult.Failed(result.msg, result.code)
+            }
+        }
+    }
+
+    suspend fun getMyHavingCountInfo(): DomainResult<Int> {
+        return when (val result = repository.getMyList(TYPE_HAVING)) {
+            is DataResult.Success -> {
+                DomainResult.Success(result.data)
+            }
+            is DataResult.Error -> {
+                DomainResult.Error(result.exception)
+            }
+            is DataResult.Failed -> {
+                DomainResult.Failed(result.msg, result.code)
+            }
+        }
+    }
+
+    companion object {
+        private const val TYPE_WISH = "wish"
+        private const val TYPE_HAVING = "having"
+    }
 }

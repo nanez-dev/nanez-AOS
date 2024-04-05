@@ -24,6 +24,7 @@ class WishListViewModel @Inject constructor(
 
     fun getMyList(type: String?) {
         viewModelScope.launch {
+            showLoading(true)
             when (val domainResult = storageUseCase.getMyList(type)) {
                 is DomainResult.Success -> {
                     _wishList.postValue(domainResult.data)
@@ -35,6 +36,7 @@ class WishListViewModel @Inject constructor(
                     _wishList.postValue(emptyList())
                 }
             }
+            showLoading(false)
         }
     }
 }

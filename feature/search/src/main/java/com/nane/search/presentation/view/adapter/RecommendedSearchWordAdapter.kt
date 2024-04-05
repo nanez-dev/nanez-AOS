@@ -27,10 +27,12 @@ class RecommendedSearchWordAdapter: RecyclerView.Adapter<RecommendedSearchWordAd
 
     inner class RecommendedWordViewHolder(private val binding: SearchRecommendedSearchWordItemViewBinding): ViewHolder(binding.root) {
 
+        private var keyword: String? = null
+
         init {
             binding.txtRecommendedSearchWord.apply {
                 setOnClickListener {
-                    onSearchWordClickListener?.onSearchWordClick(adapterPosition)
+                    onSearchWordClickListener?.onSearchWordClick(keyword)
                 }
                 clipToOutline = true
             }
@@ -38,8 +40,8 @@ class RecommendedSearchWordAdapter: RecyclerView.Adapter<RecommendedSearchWordAd
 
         fun onBind(data: String?) {
             data ?: return
-
-            binding.txtRecommendedSearchWord.text = data
+            keyword = data
+            binding.txtRecommendedSearchWord.text = keyword
         }
     }
 

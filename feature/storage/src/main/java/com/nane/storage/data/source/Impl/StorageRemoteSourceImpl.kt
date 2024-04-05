@@ -9,6 +9,7 @@ import javax.inject.Inject
 class StorageRemoteSourceImpl @Inject constructor(
     private val perfumeService: RetrofitPerfumeService
 ): IStorageRemoteSource {
+
     override suspend fun getMyList(type: String?): Response<List<StorageApi.Response>> {
         return perfumeService.getMyList(type)
     }

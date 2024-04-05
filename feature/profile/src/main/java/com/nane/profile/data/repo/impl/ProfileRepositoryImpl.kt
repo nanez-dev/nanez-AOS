@@ -36,4 +36,15 @@ class ProfileRepositoryImpl @Inject constructor(
     }.catch { t ->
         emit(DataResult.Error(Exception(t)))
     }.flowOn(Dispatchers.IO)
+
+
+    override suspend fun getMyList(type: String?): DataResult<Int> {
+        val response = remoteSource.getMyList(type)
+        return if (response.isSuccessful) {
+            DataResult.Success(response.body()?.size ?: 0)
+        } else {
+            val failed = getParseErrorResult(response)
+            DataResult.Failed(failed.errorMsg, failed.errorCode)
+        }
+    }
 }

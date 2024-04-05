@@ -35,9 +35,11 @@ class HomeViewModel @Inject constructor(
                     }
                     is DomainResult.Failed -> {
                         showLoading(false)
+                        showErrorToast(result.msg)
                     }
                     is DomainResult.Error -> {
                         showLoading(false)
+                        showErrorToast()
                     }
                 }
             }

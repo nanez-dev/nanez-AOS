@@ -21,6 +21,8 @@ class HavingListViewModel @Inject constructor(
 
     fun getMyList(type: String?) {
         viewModelScope.launch {
+            showLoading(true)
+
             when (val domainResult = storageUseCase.getMyList(type)) {
                 is DomainResult.Success -> {
                     _havingList.postValue(domainResult.data)
@@ -32,6 +34,8 @@ class HavingListViewModel @Inject constructor(
                     _havingList.postValue(emptyList())
                 }
             }
+
+            showLoading(false)
         }
     }
 }

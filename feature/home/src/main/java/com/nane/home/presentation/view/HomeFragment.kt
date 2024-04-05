@@ -32,7 +32,7 @@ class HomeFragment : BaseBindFragment<HomeFragmentBinding, HomeViewModel>(R.layo
                 actionListener = object : ActionbarView.ActionListener {
                     override fun onClickRight() {
                         activity?.let {
-                            it.startActivity(SearchActivity.createIntent(it))
+                            it.startActivity(SearchActivity.createIntent(it, null))
                         }
                     }
                 }

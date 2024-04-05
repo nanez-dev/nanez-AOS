@@ -1,15 +1,21 @@
 package com.nane.home.presentation.view
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBindings
 import androidx.viewpager.widget.PagerAdapter
 import com.nane.home.BR
+import com.nane.home.R
 import com.nane.home.databinding.HomeListItemViewBinding
+import com.nane.home.databinding.HomePagerImageViewBinding
 import com.nane.home.databinding.HomePagerItemViewBinding
 import com.nane.home.databinding.HomeTitleItemViewBinding
 import com.nane.home.presentation.data.HomeViewData
@@ -24,6 +30,7 @@ import com.nane.home.presentation.view.adapter.decoration.HomeHorizontalItemDeco
 import org.techtown.nanez.utils.util.GlideImageLoadData
 import org.techtown.nanez.utils.util.GlideUtil
 import org.techtown.nanez.utils.util.toDp
+import kotlin.math.ceil
 
 /**
  * Created by iseungjun on 2023/08/19
@@ -46,7 +53,7 @@ class HomePagerViewHolder(
     }
 
 
-    private inner class HomePagerAdapter : PagerAdapter() {
+    private inner class HomePagerAdapter : RecyclerView.Adapter<HomePagerAdapter.HomeImageViewPagerHolder>() {
 
         private var imgUrlList = listOf<HomeViewData.Banner.BannerItem>()
 
@@ -55,29 +62,36 @@ class HomePagerViewHolder(
             notifyDataSetChanged()
         }
 
-        override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            val imageView = ImageView(container.context).apply {
-                scaleType = ImageView.ScaleType.FIT_XY
-                layoutParams ?: LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-                setOnClickListener {
-                    listener?.onClickBannerView(imgUrlList.getOrNull(position)?.link)
-                }
-            }
-            GlideUtil.instance.displayImage(GlideImageLoadData(imageView, imageUrl = imgUrlList.getOrNull(position)?.imgUrl))
-            container.addView(imageView)
-            return imageView
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeImageViewPagerHolder {
+            return HomeImageViewPagerHolder(HomePagerImageViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
         }
 
-        override fun getCount() = imgUrlList.size
-        override fun isViewFromObject(view: View, `object`: Any) = view == `object`
+        override fun onBindViewHolder(holder: HomeImageViewPagerHolder, position: Int) {
+            holder.onBind(imgUrlList.getOrNull(position))
+        }
 
-        override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-            if (`object` is View) {
-                container.removeView(`object`)
+        override fun getItemCount() = imgUrlList.size
+
+        private inner class HomeImageViewPagerHolder(private val binding: HomePagerImageViewBinding) : RecyclerView.ViewHolder(binding.root) {
+
+            init {
+                binding.imgBanner.apply {
+                    setOnClickListener {
+                        listener?.onClickBannerView(moveLink)
+                    }
+                }
+            }
+
+            private var moveLink: String? = null
+
+            fun onBind(data: HomeViewData.Banner.BannerItem?) {
+                moveLink = data?.link
+                GlideUtil.instance.displayImage(GlideImageLoadData(binding.imgBanner, imageUrl = data?.imgUrl))
             }
         }
     }
 }
+
 
 class HomeTitleViewHolder(
     private val binding: HomeTitleItemViewBinding

@@ -1,5 +1,6 @@
 package com.nane.search.presentation.view
 
+import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -22,15 +23,12 @@ class SearchResultsFragment : BaseBindFragment<SearchResultsFragmentBinding, Sea
 
     private val _viewModel: SearchViewModel by activityViewModels()
 
-    override fun createViewModel(): SearchViewModel = _viewModel
-
-    override fun initFragment(
-        dataBinding: SearchResultsFragmentBinding,
-        viewModel: SearchViewModel
-    ) {
-        val onSearchResultClickListener = object: SearchResultAdapter.SearchResultClickListener {
-            override fun onSearchWordClick(idx: Int) {
-
+    private val onSearchResultClickListener by lazy {
+        object: SearchResultAdapter.SearchResultClickListener {
+            override fun onSearchWordClick(keyword: String?) {
+                activity?.let {
+                    it.startActivity(SearchActivity.createIntent(it, keyword))
+                }
             }
 
             override fun onPerfumeClick(itemId: Int) {
@@ -39,7 +37,12 @@ class SearchResultsFragment : BaseBindFragment<SearchResultsFragmentBinding, Sea
                 }
             }
         }
+    }
 
+
+    override fun createViewModel(): SearchViewModel = _viewModel
+
+    override fun initFragment(dataBinding: SearchResultsFragmentBinding, viewModel: SearchViewModel) {
         dataBinding.apply {
             with(dataBinding.rvSearchResults) {
                 adapter ?: SearchResultAdapter().apply {

@@ -44,11 +44,7 @@ class SearchViewModel @Inject constructor(
         _searchWord.post(word)
 
         viewModelScope.launch {
-            perfumesUsecase.getPerfumes(
-                query = word,
-                loadPage = loadPage,
-                loadSize = ITEM_LOAD_SIZE
-            ).collect { result ->
+            perfumesUsecase.getPerfumes(query = word, loadPage = loadPage, loadSize = ITEM_LOAD_SIZE).collect { result ->
                 when (result) {
                     is DomainResult.Success -> {
                         val loadedItemsSize = result.data.perfumes?.size ?: 0
