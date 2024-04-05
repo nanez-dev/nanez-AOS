@@ -1,7 +1,7 @@
 package com.nane.join.presentation.data
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by haul on 11/16/23

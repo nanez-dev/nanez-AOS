@@ -48,7 +48,7 @@ class ThemeBrandDetailFragment : BaseBindFragment<ThemeBrandDetailFragmentBindin
             (dataBinding.relatedItemsRecyclerView.adapter as? RelatedBrandPerfumesAdapter)?.setItemList(it)
         }
 
-        viewModel.getBrandDetailData(brandId, 4)
+        viewModel.getBrandDetailData(brandId)
     }
 
     companion object {

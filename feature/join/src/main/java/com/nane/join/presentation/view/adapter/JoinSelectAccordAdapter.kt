@@ -59,10 +59,10 @@ class JoinSelectAccordAdapter : RecyclerView.Adapter<JoinSelectAccordAdapter.Joi
 
         init {
             binding.apply {
-                vgParent.setOnClickListener { view ->
-                    data?.let {
-                        it.isSelected = !it.isSelected
-                        changeSelectTarget(it)
+                vgParent.setOnClickListener {
+                    data?.let { viewData ->
+                        viewData.isSelected = !viewData.isSelected
+                        changeSelectTarget(viewData)
                     }
                 }
             }

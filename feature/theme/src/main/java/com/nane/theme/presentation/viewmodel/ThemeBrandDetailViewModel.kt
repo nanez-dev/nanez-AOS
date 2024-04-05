@@ -26,7 +26,7 @@ class ThemeBrandDetailViewModel @Inject constructor(
     val relatedPerfumes: LiveData<List<PerfumeViewData>>
         get() = _relatedPerfumes
 
-    fun getBrandDetailData(brandId: Int, limit: Int) {
+    fun getBrandDetailData(brandId: Int) {
         viewModelScope.launch {
             showLoading(true)
             brandDetailUseCase.getBrandDetail(brandId = brandId).collect { result ->
