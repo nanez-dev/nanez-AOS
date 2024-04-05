@@ -1,6 +1,8 @@
 import AppConfigScript.bindingConfigs
 import AppConfigScript.buildTypeConfigs
+import AppConfigScript.customSigningConfigs
 import AppConfigScript.etcOptionsConfigs
+import AppConfigScript.flavorsConfigs
 import GradleBuildScript.gitBranch
 
 plugins {
@@ -11,6 +13,8 @@ plugins {
 }
 
 android {
+    val gitBranch = gitBranch()
+
     namespace = "org.techtown.nanez"
     compileSdk = AppConfig.compileSdk
 
@@ -19,12 +23,13 @@ android {
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk
         versionName = AppConfig.versionName
-        resValue("string", "gitBranch", gitBranch())
+        resValue("string", "gitBranch", gitBranch)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
-    buildTypeConfigs()
+    customSigningConfigs(project)
+    buildTypeConfigs(gitBranch)
+    flavorsConfigs(gitBranch)
     etcOptionsConfigs(kotlinOptions)
     bindingConfigs()
 }

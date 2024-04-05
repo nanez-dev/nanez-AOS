@@ -1,5 +1,8 @@
+import GradleBuildScript.makeAppVersionCode
+import GradleBuildScript.makeVersionName
 import com.android.build.gradle.internal.api.ApkVariantOutputImpl
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
 /**
@@ -7,7 +10,26 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
  */
 object AppConfigScript {
 
-    fun BaseAppModuleExtension.buildTypeConfigs() {
+    fun BaseAppModuleExtension.customSigningConfigs(project: Project) {
+        signingConfigs {
+            create("stg") {
+                storeFile = project.file(project.findProperty("debugStoreFile") as String)
+                storePassword = project.findProperty("debugStorePassword") as String
+                keyAlias = project.findProperty("debugKeyAlias") as String
+                keyPassword = project.findProperty("debugKeyPassword") as String
+            }
+
+            create("prod") {
+                storeFile = project.file(project.findProperty("releaseStoreFile") as String)
+                storePassword = project.findProperty("releaseStorePassword") as String
+                keyAlias = project.findProperty("releaseKeyAlias") as String
+                keyPassword = project.findProperty("releaseKeyPassword") as String
+            }
+        }
+    }
+
+
+    fun BaseAppModuleExtension.buildTypeConfigs(gitBranch: String) {
         GradleBuildScript.log("buildTypeConfigs")
         buildTypes {
             getByName("debug") {
@@ -27,7 +49,7 @@ object AppConfigScript {
                 aaptOptions.cruncherEnabled = false
             }
 
-            buildResourceConfig()
+            buildResourceConfig(gitBranch)
         }
     }
 
@@ -73,16 +95,27 @@ object AppConfigScript {
         }
     }
 
-    private fun BaseAppModuleExtension.buildResourceConfig() {
+
+    fun BaseAppModuleExtension.flavorsConfigs(gitBranch: String) {
+        flavorDimensions += "environment"
+        productFlavors {
+            create("prod") {
+                versionCode = makeAppVersionCode(550, gitBranch)
+                signingConfig = signingConfigs.findByName("prod")
+                dimension = "environment"
+            }
+        }
+    }
+
+    private fun BaseAppModuleExtension.buildResourceConfig(gitBranch: String) {
         applicationVariants.all {
             val buildTypeName = this.buildType.name
             val flavorsName = this.flavorName
             if (buildTypeName == "release") {
                 outputs.configureEach {
-                    (this as ApkVariantOutputImpl).versionCodeOverride = GradleBuildScript.makeAppVersionCode(550)
+                    (this as ApkVariantOutputImpl).outputFileName = "nane_${flavorsName}_${buildTypeName}_${makeVersionName(gitBranch)}.apk"
                 }
             }
-
             when {
                 buildTypeName == "release" -> {
                     resValue("string", "app_name", "Nanez")
