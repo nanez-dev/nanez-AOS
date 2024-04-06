@@ -53,3 +53,4 @@ fun findSubProjects(projectPath: String, file: File) {
 }
 include(":feature:detail")
 include(":feature:password")
+include(":feature:setting")
