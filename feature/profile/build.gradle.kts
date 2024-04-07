@@ -13,6 +13,7 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":feature:login"))
     implementation(project(":feature:password"))
+    implementation(project(":feature:setting"))
 
     implementation(libs.bundles.module.home)
     kapt(libs.bundles.hilt.compile.kapt)

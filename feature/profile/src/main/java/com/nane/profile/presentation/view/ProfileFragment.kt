@@ -8,6 +8,7 @@ import com.nane.password.presentation.view.change.PasswordChangeActivity
 import com.nane.profile.R
 import com.nane.profile.databinding.ProfileFragmentBinding
 import com.nane.profile.presentation.viewmodel.ProfileViewModel
+import com.nane.setting.presentation.view.SettingActivity
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.utils.session.SessionManager
 
@@ -106,6 +107,16 @@ class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, ProfileViewMode
 
                 activity?.let {
                     it.startActivity(PasswordChangeActivity.createIntent(it))
+                }
+            }
+
+            btnSetting.setOnClickListener {
+                if (!isAdded) {
+                    return@setOnClickListener
+                }
+
+                activity?.let {
+                    it.startActivity(SettingActivity.createIntent(it))
                 }
             }
         }
