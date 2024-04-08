@@ -3,6 +3,7 @@ package com.nane.setting.presentation.view
 import android.content.Context
 import android.content.Intent
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.nane.base.view.BaseBindActivity
 import com.nane.base.view.dialog.CommonTextDialog
@@ -26,18 +27,29 @@ class SettingActivity :
     }
 
     override fun initActivity(dataBinding: SettingActivityBinding, viewModel: SettingViewModel) {
-        dataBinding.actionBar.setTitle(ResUtils.instance.getString(com.nane.base.R.string.label_profile_setting))
-        dataBinding.actionBar.setUseBackBtn {
-            finish()
+        with(dataBinding) {
+            actionBar.setTitle(ResUtils.instance.getString(com.nane.base.R.string.label_profile_setting))
+            actionBar.setUseBackBtn {
+                finish()
+            }
+            btnLogOut.setOnClickListener(clickListener)
+            btnWithdraw.setOnClickListener(clickListener)
         }
-        dataBinding.btnLogOut.setOnClickListener(clickListener)
-        dataBinding.btnWithdraw.setOnClickListener(clickListener)
 
-        viewModel.eventData.eventObserve(this) { event ->
-            when (event) {
-                is SettingEvent.LogoutEvent -> {
-                    finish()
+        with(viewModel) {
+            eventData.eventObserve(this@SettingActivity) { event ->
+                when (event) {
+                    is SettingEvent.LogoutEvent -> {
+                        finish()
+                    }
                 }
+            }
+            showToast.eventObserve(this@SettingActivity) {
+                showToast(it)
+            }
+
+            showLoading.eventObserve(this@SettingActivity) {
+                showLoading(it)
             }
         }
     }
@@ -74,6 +86,12 @@ class SettingActivity :
                 }.show(this)
             }
             else -> {}
+        }
+    }
+
+    private fun showToast(msg: String?) {
+        if (msg?.isNotEmpty() == true) {
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
         }
     }
 
