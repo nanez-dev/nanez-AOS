@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingViewModel @Inject constructor(
     private val userUsecase: UserUsecase
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val _eventData by lazy { MutableLiveData<Event<SettingEvent>>() }
     val eventData: LiveData<Event<SettingEvent>> get() = _eventData
@@ -29,15 +29,17 @@ class SettingViewModel @Inject constructor(
                     is DomainResult.Success -> {
                         _eventData.post(Event(SettingEvent.LogoutEvent))
                     }
+
                     is DomainResult.Failed -> {
                         showErrorToast(result.msg)
                     }
+
                     is DomainResult.Error -> {
                         showErrorToast()
                     }
                 }
+                showLoading(false)
             }
-            showLoading(false)
         }
     }
 
@@ -49,15 +51,17 @@ class SettingViewModel @Inject constructor(
                     is DomainResult.Success -> {
                         _eventData.post(Event(SettingEvent.LogoutEvent))
                     }
+
                     is DomainResult.Failed -> {
                         showErrorToast(result.msg)
                     }
+
                     is DomainResult.Error -> {
                         showErrorToast()
                     }
                 }
+                showLoading(false)
             }
-            showLoading(false)
         }
     }
 }

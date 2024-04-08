@@ -6,7 +6,6 @@ import com.nane.network.api.users.PasswordChangeApi
 import com.nane.network.api.users.ProfileApi
 import com.nane.network.api.users.ResetRandomPasswordApi
 import com.nane.network.api.users.SignUpApi
-import com.nane.network.api.users.WithdrawalApi
 import org.techtown.nanez.data.api.users.SignInApi
 import retrofit2.Response
 import retrofit2.http.Body
@@ -43,7 +42,7 @@ interface RetrofitUserService {
     suspend fun postResetRandomPassword(@Body body: ResetRandomPasswordApi.Body): Response<Boolean>
 
     @DELETE("api/users/withdrawal")
-    suspend fun deleteWithdraw(): Response<WithdrawalApi.Body>
+    suspend fun deleteWithdraw(): Response<Boolean>
 
     @PATCH("api/users/password")
     suspend fun patchPassword(@Body body: PasswordChangeApi.Body): Response<Unit>

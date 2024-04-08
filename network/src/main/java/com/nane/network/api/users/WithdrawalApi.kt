@@ -4,10 +4,6 @@ import androidx.annotation.Keep
 
 
 @Keep
-class WithdrawalApi() {
+sealed interface WithdrawalApi {
 
-    @Keep
-    data class Body(
-        val detail: String,
-    )
 }

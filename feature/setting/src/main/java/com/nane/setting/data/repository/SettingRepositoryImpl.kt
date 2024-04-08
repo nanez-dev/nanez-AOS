@@ -1,7 +1,6 @@
 package com.nane.setting.data.repository
 
 import com.nane.base.data.DataResult
-import com.nane.network.api.users.WithdrawalApi
 import com.nane.network.parser.getParseErrorResult
 import com.nane.setting.data.source.ISettingRemoteSource
 import com.nane.setting.domain.repository.ISettingRepository
@@ -23,10 +22,10 @@ class SettingRepositoryImpl @Inject constructor(
         emit(DataResult.Success(Unit))
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun withdraw(): Flow<DataResult<WithdrawalApi.Body?>> = flow {
+    override suspend fun withdraw(): Flow<DataResult<Unit>> = flow {
         val response = remoteDataSource.withdraw()
         if (response.isSuccessful) {
-            emit(DataResult.Success(response.body()))
+            emit(DataResult.Success(Unit))
         } else {
             val failed = getParseErrorResult(response)
             emit(DataResult.Failed(failed.errorMsg, failed.errorCode))
