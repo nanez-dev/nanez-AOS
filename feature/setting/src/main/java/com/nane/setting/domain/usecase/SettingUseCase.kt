@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class UserUsecase @Inject constructor(
+class SettingUseCase @Inject constructor(
     private val repository: ISettingRepository
 ) {
     suspend fun logOut(): Flow<DomainResult<Unit>> = flow {

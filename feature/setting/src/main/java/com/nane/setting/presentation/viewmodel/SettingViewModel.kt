@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.nane.base.data.DomainResult
 import com.nane.base.viewmodel.BaseViewModel
-import com.nane.setting.domain.usecase.UserUsecase
+import com.nane.setting.domain.usecase.SettingUseCase
 import com.nane.setting.presentation.data.SettingEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingViewModel @Inject constructor(
-    private val userUsecase: UserUsecase
+    private val userUsecase: SettingUseCase
 ) : BaseViewModel() {
 
     private val _eventData by lazy { MutableLiveData<Event<SettingEvent>>() }
