@@ -6,6 +6,7 @@ import com.nane.storage.data.mapper.StorageDataMapper
 import com.nane.storage.data.repository.IStorageRepository
 import com.nane.storage.data.source.IStorageRemoteSource
 import com.nane.storage.domain.data.StorageDomainDTO
+import org.techtown.nanez.utils.NaneLog
 import javax.inject.Inject
 
 class StorageRepositoryImpl @Inject constructor(
@@ -14,12 +15,17 @@ class StorageRepositoryImpl @Inject constructor(
 ) : IStorageRepository {
 
     override suspend fun getMyList(type: String?): DataResult<List<StorageDomainDTO>> {
-        val response = remoteSource.getMyList(type)
-        return if (response.isSuccessful) {
-            DataResult.Success(response.body()?.map { mapper.toDTO(it) } ?: emptyList())
-        } else {
-            val failed = getParseErrorResult(response)
-            DataResult.Failed(failed.errorMsg, failed.errorCode)
+        return try {
+            val response = remoteSource.getMyList(type)
+            if (response.isSuccessful) {
+                DataResult.Success(response.body()?.map { mapper.toDTO(it) } ?: emptyList())
+            } else {
+                val failed = getParseErrorResult(response)
+                DataResult.Failed(failed.errorMsg, failed.errorCode)
+            }
+        } catch (e: Exception) {
+            NaneLog.e(e)
+            DataResult.Error(e)
         }
     }
 }

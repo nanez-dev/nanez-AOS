@@ -140,5 +140,7 @@
     <string name="msg_confirm_withdraw">정말 회원을 탈퇴하시겠습니까?</string>
     <string name="msg_explain_withdraw">회원 탈퇴 시, 나만의 향수 정보를 다시 불러올 수 없습니다.</string>
 
-
+    <string name="nane_service_terms_of_use_url">https://nanez.notion.site/Na-nez-3d1026fa415d44f2afb456bc24bbf6dc</string>
+    <string name="nane_privacy_policy_url">https://nanez.notion.site/Na-nez-ba8a5a47341a455ba26cbb3807be2585</string>
+    <string name="nane_marketing_url">https://nanez.notion.site/Na-nez-SNS-3f74db9bc4d64415ba2d775268290a8c</string>
 </resources>

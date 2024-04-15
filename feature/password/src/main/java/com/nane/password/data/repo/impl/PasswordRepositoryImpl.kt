@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import org.techtown.nanez.utils.NaneLog
 import org.techtown.nanez.utils.session.SessionManager
 import javax.inject.Inject
 
@@ -42,12 +43,17 @@ class PasswordRepositoryImpl @Inject constructor(
 
 
     override suspend fun postRandomPassword(email: String): DataResult<Boolean> {
-        val response = remoteSource.postRandomPassword(ResetRandomPasswordApi.Body(email))
-        return if (response.isSuccessful) {
-            DataResult.Success(response.body() ?: false)
-        } else {
-            val failed = getParseErrorResult(response)
-            DataResult.Failed(failed.errorMsg, failed.errorCode)
+        return try {
+            val response = remoteSource.postRandomPassword(ResetRandomPasswordApi.Body(email))
+            if (response.isSuccessful) {
+                DataResult.Success(response.body() ?: false)
+            } else {
+                val failed = getParseErrorResult(response)
+                DataResult.Failed(failed.errorMsg, failed.errorCode)
+            }
+        } catch (e: Exception) {
+            NaneLog.e(e)
+            DataResult.Error(e)
         }
     }
 }

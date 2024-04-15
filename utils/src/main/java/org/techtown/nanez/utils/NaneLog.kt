@@ -71,7 +71,13 @@ object NaneLog {
         }
 
         if (t != null) {
-            resultMsg = """$msg\n${Log.getStackTraceString(t)}""".trimIndent()
+            val tStackMsg = Log.getStackTraceString(t)
+
+            resultMsg = if (tStackMsg.isNotEmpty()) {
+                """$msg\n${Log.getStackTraceString(t)}""".trimIndent()
+            } else {
+                """$msg\n$t""".trimIndent()
+            }
         }
         Log.println(level, tag, resultMsg)
     }

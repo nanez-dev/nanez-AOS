@@ -6,6 +6,7 @@ import com.nane.detail.data.repo.IDetailRepository
 import com.nane.detail.data.source.IDetailRemoteSource
 import com.nane.detail.domain.data.PerfumeDetailDTO
 import com.nane.network.parser.getParseErrorResult
+import org.techtown.nanez.utils.NaneLog
 import javax.inject.Inject
 
 /**
@@ -17,32 +18,47 @@ class DetailRepositoryImpl @Inject constructor(
 ) : IDetailRepository {
 
     override suspend fun getPerfumeDetail(targetId: Int): DataResult<PerfumeDetailDTO> {
-        val response = remoteSource.getPerfumeDetail(targetId)
-        return if (response.isSuccessful) {
-            DataResult.Success(mapper.toDto(response.body()?.perfume))
-        } else {
-            val failed = getParseErrorResult(response)
-            DataResult.Failed(failed.errorMsg, failed.errorCode)
+        return try{
+            val response = remoteSource.getPerfumeDetail(targetId)
+            if (response.isSuccessful) {
+                DataResult.Success(mapper.toDto(response.body()?.perfume))
+            } else {
+                val failed = getParseErrorResult(response)
+                DataResult.Failed(failed.errorMsg, failed.errorCode)
+            }
+        } catch (e: Exception) {
+            NaneLog.e(e)
+            DataResult.Error(e)
         }
     }
 
     override suspend fun patchPerfumeWish(perfumeId: Int): DataResult<Boolean> {
-        val response = remoteSource.patchPerfumeWish(perfumeId)
-        return if (response.isSuccessful) {
-            DataResult.Success(response.body() ?: false)
-        } else {
-            val failed = getParseErrorResult(response)
-            DataResult.Failed(failed.errorMsg, failed.errorCode)
+        return try {
+            val response = remoteSource.patchPerfumeWish(perfumeId)
+            if (response.isSuccessful) {
+                DataResult.Success(response.body() ?: false)
+            } else {
+                val failed = getParseErrorResult(response)
+                DataResult.Failed(failed.errorMsg, failed.errorCode)
+            }
+        } catch (e: Exception) {
+            NaneLog.e(e)
+            DataResult.Error(e)
         }
     }
 
     override suspend fun patchPerfumeHaving(perfumeId: Int): DataResult<Boolean> {
-        val response = remoteSource.patchPerfumeHaving(perfumeId)
-        return if (response.isSuccessful) {
-            DataResult.Success(response.body() ?: false)
-        } else {
-            val failed = getParseErrorResult(response)
-            DataResult.Failed(failed.errorMsg, failed.errorCode)
+        return try {
+            val response = remoteSource.patchPerfumeHaving(perfumeId)
+            if (response.isSuccessful) {
+                DataResult.Success(response.body() ?: false)
+            } else {
+                val failed = getParseErrorResult(response)
+                DataResult.Failed(failed.errorMsg, failed.errorCode)
+            }
+        } catch (e: Exception) {
+            NaneLog.e(e)
+            DataResult.Error(e)
         }
     }
 }

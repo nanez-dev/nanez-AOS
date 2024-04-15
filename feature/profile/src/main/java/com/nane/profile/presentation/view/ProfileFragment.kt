@@ -1,5 +1,7 @@
 package com.nane.profile.presentation.view
 
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.nane.base.view.BaseBindFragment
@@ -77,7 +79,7 @@ class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, ProfileViewMode
                 if (!isAdded) {
                     return@setOnClickListener
                 }
-
+                moveToUrl(getString(com.nane.base.R.string.nane_privacy_policy_url))
             }
 
             btnReport.setOnClickListener {
@@ -91,7 +93,7 @@ class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, ProfileViewMode
                 if (!isAdded) {
                     return@setOnClickListener
                 }
-
+                moveToUrl(getString(com.nane.base.R.string.nane_service_terms_of_use_url))
             }
 
             btnProductRegistrationRequest.setOnClickListener {
@@ -125,5 +127,12 @@ class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, ProfileViewMode
     private fun setVisibleMenu(isLogin: Boolean) {
         dataBinding?.vgPasswordChange?.visibility = if (isLogin) View.VISIBLE else View.GONE
         dataBinding?.vgSetting?.visibility = if (isLogin) View.VISIBLE else View.GONE
+    }
+
+    private fun moveToUrl(url: String?) {
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(url)
+        }
+        activity?.startActivity(intent)
     }
 }

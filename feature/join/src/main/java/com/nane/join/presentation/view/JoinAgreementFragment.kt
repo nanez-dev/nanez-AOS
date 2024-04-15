@@ -1,5 +1,7 @@
 package com.nane.join.presentation.view
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -55,7 +57,26 @@ class JoinAgreementFragment : BaseBindFragment<JoinAgreementFragmentBinding, Joi
             btnDoAgree.setOnClickListener {
                 actViewModel.updateMarketingAgree(txtMarketingAgree.isSelected)
             }
+
+            txtDetail.setOnClickListener {
+                moveToUrl(getString(com.nane.base.R.string.nane_service_terms_of_use_url))
+            }
+
+            txtDetail2.setOnClickListener {
+                moveToUrl(getString(com.nane.base.R.string.nane_privacy_policy_url))
+            }
+
+            txtDetail3.setOnClickListener {
+                moveToUrl(getString(com.nane.base.R.string.nane_marketing_url))
+            }
         }
+    }
+
+    private fun moveToUrl(url: String?) {
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(url)
+        }
+        activity?.startActivity(intent)
     }
 
 

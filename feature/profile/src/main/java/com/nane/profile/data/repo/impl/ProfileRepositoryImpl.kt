@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.retry
+import org.techtown.nanez.utils.NaneLog
 import java.io.IOException
 import javax.inject.Inject
 
@@ -39,12 +40,17 @@ class ProfileRepositoryImpl @Inject constructor(
 
 
     override suspend fun getMyList(type: String?): DataResult<Int> {
-        val response = remoteSource.getMyList(type)
-        return if (response.isSuccessful) {
-            DataResult.Success(response.body()?.size ?: 0)
-        } else {
-            val failed = getParseErrorResult(response)
-            DataResult.Failed(failed.errorMsg, failed.errorCode)
+        return try {
+            val response = remoteSource.getMyList(type)
+            if (response.isSuccessful) {
+                DataResult.Success(response.body()?.size ?: 0)
+            } else {
+                val failed = getParseErrorResult(response)
+                DataResult.Failed(failed.errorMsg, failed.errorCode)
+            }
+        } catch (e: Exception) {
+            NaneLog.e(e)
+            DataResult.Error(e)
         }
     }
 }

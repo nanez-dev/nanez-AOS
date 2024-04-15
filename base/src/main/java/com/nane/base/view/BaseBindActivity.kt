@@ -1,6 +1,7 @@
 package com.nane.base.view
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -8,11 +9,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import com.nane.base.view.dialog.LoadingDialog
+import com.nane.base.viewmodel.BaseViewModel
+import org.techtown.nanez.utils.util.eventObserve
 
 /**
  * Created by iseungjun on 2023/08/14
  */
-abstract class BaseBindActivity<VIEW: ViewDataBinding, VM: ViewModel>(@LayoutRes private val layoutRes: Int) : AppCompatActivity() {
+abstract class BaseBindActivity<VIEW: ViewDataBinding, VM: BaseViewModel>(@LayoutRes private val layoutRes: Int) : AppCompatActivity() {
 
     abstract fun createViewModel(): VM
     abstract fun initActivity(dataBinding: VIEW, viewModel: VM)
@@ -56,6 +59,21 @@ abstract class BaseBindActivity<VIEW: ViewDataBinding, VM: ViewModel>(@LayoutRes
 
         if (::_dataBinding.isInitialized && ::_viewModel.isInitialized) {
             initActivity(_dataBinding, _viewModel)
+        }
+
+
+        _viewModel.showToast.eventObserve(this) {
+            showToast(it)
+        }
+
+        _viewModel.showLoading.eventObserve(this) {
+            showLoading(it)
+        }
+    }
+
+    private fun showToast(msg: String?) {
+        if (msg?.isNotEmpty() == true) {
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
         }
     }
 

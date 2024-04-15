@@ -44,13 +44,6 @@ class SettingActivity :
                     }
                 }
             }
-            showToast.eventObserve(this@SettingActivity) {
-                showToast(it)
-            }
-
-            showLoading.eventObserve(this@SettingActivity) {
-                showLoading(it)
-            }
         }
     }
 
