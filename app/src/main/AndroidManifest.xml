@@ -86,6 +86,14 @@
             android:theme="@style/Theme.Nanez"
             android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
+
+        <activity
+            android:name="com.nane.setting.presentation.view.SettingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nanez"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -47,6 +47,7 @@ dependencies {
     implementation(project(":feature:detail"))
     implementation(project(":feature:search"))
     implementation(project(":feature:password"))
+    implementation(project(":feature:setting"))
 
     implementation(libs.bundles.module.app)
     kapt(libs.bundles.hilt.compile.kapt)

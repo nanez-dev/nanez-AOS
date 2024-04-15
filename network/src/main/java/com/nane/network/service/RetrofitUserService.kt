@@ -42,7 +42,7 @@ interface RetrofitUserService {
     suspend fun postResetRandomPassword(@Body body: ResetRandomPasswordApi.Body): Response<Boolean>
 
     @DELETE("api/users/withdrawal")
-    suspend fun deleteWithdraw(): Response<String>
+    suspend fun deleteWithdraw(): Response<Boolean>
 
     @PATCH("api/users/password")
     suspend fun patchPassword(@Body body: PasswordChangeApi.Body): Response<Unit>
