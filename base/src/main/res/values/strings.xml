@@ -143,4 +143,16 @@
     <string name="nane_service_terms_of_use_url">https://nanez.notion.site/Na-nez-3d1026fa415d44f2afb456bc24bbf6dc</string>
     <string name="nane_privacy_policy_url">https://nanez.notion.site/Na-nez-ba8a5a47341a455ba26cbb3807be2585</string>
     <string name="nane_marketing_url">https://nanez.notion.site/Na-nez-SNS-3f74db9bc4d64415ba2d775268290a8c</string>
+
+    <string name="msg_title_request_new_perfume_brand_name">새로운 향수의\n브랜드를 알려주세요!</string>
+    <string name="msg_title_request_new_perfume_name">새로운 향수의\n제품명을 알려주세요!</string>
+    <string name="msg_hint_request_new_perfume_brand_name">향수의 브랜드 명을 입력해주세요</string>
+    <string name="msg_hint_request_new_perfume_name">향수의 이름을 입력해주세요</string>
+    <string name="msg_apply_asap">빠른 시일 내에 반영하도록 하겠습니다 :)</string>
+    <string name="label_brand_name">브랜드</string>
+    <string name="label_perfume_name">향수명</string>
+    <string name="msg_registration_request_success">등록 요청이\n완료되었습니다!</string>
+    <string name="msg_notify_register_completion">등록이 완료되면 알려드리도록 할게요 :)</string>
+    <string name="label_goto_main">메인으로</string>
+    <string name="label_request">요청</string>
 </resources>

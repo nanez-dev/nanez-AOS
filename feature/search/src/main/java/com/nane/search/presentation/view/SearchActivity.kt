@@ -3,8 +3,6 @@ package com.nane.search.presentation.view
 import android.content.Context
 import android.content.Intent
 import android.view.KeyEvent
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import com.nane.base.view.BaseBindActivity
 import com.nane.search.R
@@ -12,6 +10,7 @@ import com.nane.search.databinding.SearchActivityBinding
 import com.nane.search.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.utils.util.addFragment
+import org.techtown.nanez.utils.util.hideImeService
 
 @AndroidEntryPoint
 class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(R.layout.search_activity) {
@@ -56,7 +55,7 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
                     }
 
                     viewModel.searchWith(currentSearchWord)
-                    hideImeServiceFrom(editSearch)
+                    editSearch.hideImeService()
                 }
             }
 
@@ -75,11 +74,6 @@ class SearchActivity : BaseBindActivity<SearchActivityBinding, SearchViewModel>(
             dataBinding.editSearch.clearFocus()
             viewModel.searchWith(keyword)
         }
-    }
-
-    private fun hideImeServiceFrom(view: View) {
-        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     companion object {

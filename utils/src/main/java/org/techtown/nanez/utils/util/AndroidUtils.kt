@@ -1,8 +1,11 @@
 package org.techtown.nanez.utils.util
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Looper
+import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -80,4 +83,19 @@ fun <T : Fragment> AppCompatActivity.addFragment(container: ViewGroup, saveInsta
         }
     }
     return fragment
+}
+
+
+fun View.hideImeService() {
+    if (requestFocus()) {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }
+}
+
+fun View.showImeService() {
+    if (requestFocus()) {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+    }
 }
