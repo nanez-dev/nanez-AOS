@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.fragment.app.FragmentManager
 import com.nane.base.view.BaseBindActivity
 import com.nane.base.view.BaseBindFragment
 import com.nane.setting.R
@@ -84,10 +85,7 @@ class RegistrationActivity :
                                 vgRequestCompletion.visibility = View.VISIBLE
                                 btnGoMain.visibility = View.VISIBLE
                             }
-
-                            if (supportFragmentManager.backStackEntryCount > 1) {
-                                supportFragmentManager.popBackStack()
-                            }
+                            supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                         }
                     }
                 }

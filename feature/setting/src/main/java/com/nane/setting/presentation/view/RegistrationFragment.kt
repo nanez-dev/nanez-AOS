@@ -42,7 +42,7 @@ class RegistrationFragment :
                     editRequest.hint = ResUtils.instance.getString(com.nane.base.R.string.msg_hint_request_new_perfume_name)
                     btnDoNext.text = ResUtils.instance.getString(com.nane.base.R.string.label_request)
                     btnDoNext.setOnClickListener {
-                        it.hideImeService()
+                        editRequest.hideImeService()
                         viewModel.registerPerfumeName(editRequest.text?.toString() ?: "")
                     }
                 }
