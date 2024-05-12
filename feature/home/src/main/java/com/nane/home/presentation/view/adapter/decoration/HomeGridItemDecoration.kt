@@ -10,45 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 class HomeGridItemDecoration(
     private val spanCount: Int,
     private val spacing: Int,
-    private val horizontalMargin: Int
 ) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
-        val position = parent.getChildAdapterPosition(view)
-        val column = position % spanCount
+        val position = parent.getChildAdapterPosition(view) // item position
+        val column = position % spanCount // item column
 
-        if (spanCount == 2) {
-            when (column) {
-                0 -> {
-                    outRect.left = horizontalMargin
-                    outRect.right = spacing / 2
-                }
+        outRect.left = column * spacing / spanCount
+        outRect.right = spacing - (column + 1) * spacing / spanCount
 
-                else -> {
-                    outRect.left = spacing / 2
-                    outRect.right = horizontalMargin
-                }
-            }
-        } else if (spanCount == 3) {
-            when (column) {
-                0 -> {
-                    outRect.left = horizontalMargin
-                    outRect.right = 0
-                }
-
-                1 -> {
-                    outRect.left = spacing
-                    outRect.right = spacing
-                }
-
-                else -> {
-                    outRect.left = 0
-                    outRect.right = horizontalMargin
-                }
-            }
-        }
-
-        outRect.bottom = spacing * 2
+        outRect.bottom = spacing * 2 // item bottom
     }
 }

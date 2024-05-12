@@ -13,6 +13,7 @@ import com.nane.profile.presentation.viewmodel.ProfileViewModel
 import com.nane.setting.presentation.view.RegistrationActivity
 import com.nane.setting.presentation.view.SettingActivity
 import dagger.hilt.android.AndroidEntryPoint
+import org.techtown.nanez.utils.NaneLog
 import org.techtown.nanez.utils.session.SessionManager
 
 @AndroidEntryPoint
@@ -24,6 +25,19 @@ class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, ProfileViewMode
         dataBinding.run {
             actionBar.setTitle(getString(com.nane.base.R.string.label_profile))
             initHelpCenterView(this)
+
+            profileLoginView.userActionListener = object : ProfileLoginView.UserActionListener {
+                override fun onMoveStorage(isWish: Boolean) {
+                    // 임시 방편으로 리플렉션 이용
+                    try {
+                        val classInfo = Class.forName("org.techtown.nanez.main.view.MainActivity")
+                        classInfo.getMethod("moveToNavigationTab", Integer.TYPE).invoke(requireActivity(), 1)
+                    } catch (e: Exception) {
+                        NaneLog.e(e)
+                    }
+
+                }
+            }
         }
 
         viewModel.profileViewData.observe(viewLifecycleOwner) { data ->
@@ -73,7 +87,7 @@ class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, ProfileViewMode
                 if (!isAdded) {
                     return@setOnClickListener
                 }
-
+                moveToUrl(getString(com.nane.base.R.string.nane_notice_url))
             }
 
             btnPrivacyPolicy.setOnClickListener {

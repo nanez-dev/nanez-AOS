@@ -21,10 +21,24 @@ class ProfileLoginView @JvmOverloads constructor(
 
     private val binding = ProfileLoginViewBinding.inflate(LayoutInflater.from(context), this, true)
 
+    var userActionListener: UserActionListener? = null
+    interface UserActionListener {
+        fun onMoveStorage(isWish: Boolean)
+    }
+
     init {
         binding.apply {
             layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             setBackgroundColor(ResUtils.getColor(context, com.nane.base.R.color.white))
+
+
+            vgHavingList.setOnClickListener {
+                userActionListener?.onMoveStorage(false)
+            }
+
+            vgWishList.setOnClickListener {
+                userActionListener?.onMoveStorage(true)
+            }
         }
     }
 

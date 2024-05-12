@@ -7,6 +7,7 @@ import com.nane.base.viewmodel.BaseViewModel
 import com.nane.password.R
 import com.nane.password.databinding.PasswordChangeCompleteFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
+import org.techtown.nanez.utils.NaneLog
 
 
 /**
@@ -20,11 +21,16 @@ class PasswordChangeCompleteFragment : BaseBindFragment<PasswordChangeCompleteFr
     override fun initFragment(dataBinding: PasswordChangeCompleteFragmentBinding, viewModel: BaseViewModel) {
         dataBinding.btnLogin.setOnClickListener {
             activity?.let {
-                val intent = Intent(it, Class.forName("com.nane.login.presentation.view.LoginActivity")).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                // 임시 방편으로 리플렉션 이용
+                try {
+                    val intent = Intent(it, Class.forName("com.nane.login.presentation.view.LoginActivity")).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    }
+                    it.startActivity(intent)
+                    it.finish()
+                } catch (e: Exception) {
+                    NaneLog.e(e)
                 }
-                it.startActivity(intent)
-                it.finish()
             }
         }
     }

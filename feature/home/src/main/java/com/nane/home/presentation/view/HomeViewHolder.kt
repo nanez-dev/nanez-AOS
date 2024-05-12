@@ -111,6 +111,7 @@ class HomeHorizontalViewHolder(
 
     init {
         binding.recyclerView.apply {
+            setPadding(0, 0, 0, 0)
             layoutManager ?: LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false).apply {
                 layoutManager = this
             }
@@ -141,6 +142,7 @@ class HomeRecommendPerfumeViewHolder(
 
     init {
         binding.recyclerView.apply {
+            setPadding(20.toDp(), 0, 20.toDp(), 0)
             isNestedScrollingEnabled = false
 
             layoutManager ?: GridLayoutManager(context, 2).apply {
@@ -153,7 +155,7 @@ class HomeRecommendPerfumeViewHolder(
             }
 
             if (itemDecorationCount == 0) {
-                addItemDecoration(HomeGridItemDecoration(spanCount = 2, spacing = 12.toDp(), horizontalMargin = 16.toDp()))
+                addItemDecoration(HomeGridItemDecoration(spanCount = 2, spacing = 7.toDp()))
             }
         }
     }
@@ -174,6 +176,7 @@ class HomeBrandViewHolder(
     init {
         binding.apply {
             with(recyclerView) {
+                setPadding(20.toDp(), 0, 20.toDp(), 0)
                 isNestedScrollingEnabled = false
                 layoutManager ?: GridLayoutManager(context, 2).apply {
                     layoutManager = this
@@ -185,7 +188,7 @@ class HomeBrandViewHolder(
                 }
 
                 if (itemDecorationCount == 0) {
-                    addItemDecoration(HomeGridItemDecoration(spanCount = 2, spacing = 12.toDp(), horizontalMargin = 16.toDp()))
+                    addItemDecoration(HomeGridItemDecoration(spanCount = 2, spacing = 7.toDp()))
                 }
             }
 
@@ -211,6 +214,7 @@ class HomeAccordViewHolder(
     init {
         binding.apply {
             with(recyclerView) {
+                setPadding(20.toDp(), 0, 20.toDp(), 0)
                 isNestedScrollingEnabled = false
                 layoutManager ?: GridLayoutManager(context, 3).apply {
                     layoutManager = this
@@ -222,7 +226,7 @@ class HomeAccordViewHolder(
                 }
 
                 if (itemDecorationCount == 0) {
-                    addItemDecoration(HomeGridItemDecoration(spanCount = 3, spacing = 12.toDp(), horizontalMargin = 16.toDp()))
+                    addItemDecoration(HomeGridItemDecoration(spanCount = 3, spacing = 8.toDp()))
                 }
             }
 

@@ -1,6 +1,5 @@
 package org.techtown.nanez.main.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
@@ -15,8 +14,6 @@ import com.nane.home.presentation.view.HomeFragment
 import com.nane.login.presentation.view.LoginActivity
 import com.nane.profile.presentation.view.ProfileFragment
 import com.nane.storage.presentation.view.StorageFragment
-import com.nane.theme.presentation.view.ThemeAccordActivity
-import com.nane.theme.presentation.view.ThemeBrandActivity
 import dagger.hilt.android.AndroidEntryPoint
 import org.techtown.nanez.R
 import org.techtown.nanez.databinding.MainActivityBinding
@@ -108,6 +105,18 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
             Toast.makeText(this, "뒤로가기 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
         } else {
             finish()
+        }
+    }
+
+    /**
+     * 임시 방편으로 리플렉션으로 사용중
+     */
+    fun moveToNavigationTab(tabIndex: Int) {
+        dataBinding?.bottomNavView?.selectedItemId = when (tabIndex) {
+            0 -> R.id.menuHome
+            1 -> R.id.menuStorage
+            2 -> R.id.menuMypage
+            else -> R.id.menuHome
         }
     }
 

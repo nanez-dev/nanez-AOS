@@ -55,6 +55,7 @@
                 android:id="@+id/vgHavingList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:foreground="@drawable/ripple"
                 app:layout_constraintEnd_toStartOf="@+id/vgWishList"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -88,6 +89,7 @@
                 android:id="@+id/vgWishList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:foreground="@drawable/ripple"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/vgHavingList"
                 app:layout_constraintTop_toTopOf="parent">
