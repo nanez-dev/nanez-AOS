@@ -62,7 +62,7 @@ class DetailDataMapper @Inject constructor() {
                     type = it.type,
                     engName = it.note?.eng,
                     korName = it.note?.kor,
-                    illustration = it.note?.illustration
+                    illustration = it.note?.image ?: it.note?.illustration
                 )
             }
         )
