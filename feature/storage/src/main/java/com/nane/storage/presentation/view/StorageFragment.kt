@@ -28,6 +28,8 @@ class StorageFragment : BaseBindFragment<StorageFragmentBinding, BaseViewModel>(
             actionBar.setTitle(getString(com.nane.base.R.string.label_storage))
             actionBar.setLineViewVisible(false)
 
+            switchFragmentByPosition(StorageViewType.STORAGE_WISH_POSITION)
+            
             with (dataBinding.tabLayout) {
                 addTab(newTab().setText(getString(com.nane.base.R.string.label_profile_wish)))
                 addTab(newTab().setText(getString(com.nane.base.R.string.label_profile_having)))
