@@ -31,7 +31,7 @@ class ProfileFragment : BaseBindFragment<ProfileFragmentBinding, ProfileViewMode
                     // 임시 방편으로 리플렉션 이용
                     try {
                         val classInfo = Class.forName("org.techtown.nanez.main.view.MainActivity")
-                        classInfo.getMethod("moveToNavigationTab", Integer.TYPE).invoke(requireActivity(), 1)
+                        classInfo.getMethod("moveToNavigationStorageTab", Integer.TYPE).invoke(requireActivity(), if (isWish) 0 else 1)
                     } catch (e: Exception) {
                         NaneLog.e(e)
                     }

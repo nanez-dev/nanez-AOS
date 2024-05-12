@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.Keep
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.nane.base.view.BaseBindActivity
@@ -26,6 +27,7 @@ import org.techtown.nanez.utils.util.addFragment
 class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layout.main_activity) {
 
     private var waitTime = 0L
+    private var moveStoragePosition = 0
 
     override fun createViewModel() = viewModels<MainViewModel>().value
 
@@ -70,7 +72,7 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
 
                             return@setOnItemSelectedListener false
                         }
-                        addFragment(frameLayout, tag = "StorageFragment") {
+                        addFragment(frameLayout, tag = "StorageFragment", arguments = StorageFragment.createArgument(moveStoragePosition)) {
                             StorageFragment()
                         }
                     }
@@ -111,13 +113,10 @@ class MainActivity : BaseBindActivity<MainActivityBinding, MainViewModel>(R.layo
     /**
      * 임시 방편으로 리플렉션으로 사용중
      */
-    fun moveToNavigationTab(tabIndex: Int) {
-        dataBinding?.bottomNavView?.selectedItemId = when (tabIndex) {
-            0 -> R.id.menuHome
-            1 -> R.id.menuStorage
-            2 -> R.id.menuMypage
-            else -> R.id.menuHome
-        }
+    @Keep
+    fun moveToNavigationStorageTab(tabIndex: Int) {
+        moveStoragePosition = tabIndex
+        dataBinding?.bottomNavView?.selectedItemId = R.id.menuStorage
     }
 
 }
