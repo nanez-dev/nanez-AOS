@@ -99,6 +99,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/btnReport"
                         style="@style/Body_16_M"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:foreground="@drawable/ripple"
@@ -109,6 +110,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:visibility="gone"
                         android:background="@color/gray_300" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
